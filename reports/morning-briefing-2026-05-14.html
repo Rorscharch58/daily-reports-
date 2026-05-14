@@ -1,922 +1,407 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Morning Briefing — 14 mai 2026</title>
+  <title>Morning Briefing — 14 May 2026</title>
   <style>
-    :root {
-      --bg: #0d1117;
-      --bg-card: #161b22;
-      --bg-table-header: #1c2333;
-      --border: #30363d;
-      --text: #e6edf3;
-      --text-muted: #8b949e;
-      --green: #3fb950;
-      --red: #f85149;
-      --amber: #d29922;
-      --blue: #58a6ff;
-      --accent: #388bfd;
-    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
       font-size: 13px;
-      line-height: 1.5;
-      padding: 24px 20px;
-      max-width: 1120px;
+      line-height: 1.6;
+      padding: 20px;
+      max-width: 1100px;
       margin: 0 auto;
     }
-    .header {
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 14px;
-      margin-bottom: 20px;
-    }
-    .header h1 {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-    .header .meta {
-      color: var(--text-muted);
-      font-size: 12px;
-      margin-top: 5px;
-    }
-    .section {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 16px;
-      margin-bottom: 14px;
-    }
-    .section h2 {
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--accent);
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 8px;
-      margin-bottom: 12px;
-    }
-    .section h3 {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.7px;
-      color: var(--text-muted);
-      margin: 14px 0 7px;
-    }
-    .section h3:first-of-type { margin-top: 4px; }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 12px;
-    }
-    th {
-      background: var(--bg-table-header);
-      color: var(--text-muted);
-      text-align: left;
-      padding: 6px 10px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      white-space: nowrap;
-    }
-    td {
-      padding: 5px 10px;
-      border-bottom: 1px solid var(--border);
-      color: var(--text);
-      vertical-align: top;
-    }
+    h1 { color: #e6edf3; font-size: 22px; margin-bottom: 4px; }
+    h2 { color: #e6edf3; font-size: 15px; border-bottom: 1px solid #30363d; padding-bottom: 6px; margin: 28px 0 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+    h3 { color: #58a6ff; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; margin: 16px 0 8px; }
+    .header-meta { color: #8b949e; font-size: 12px; margin-bottom: 6px; }
+    .tag { display: inline-block; background: #21262d; border: 1px solid #30363d; border-radius: 4px; padding: 2px 8px; font-size: 11px; color: #8b949e; margin-right: 6px; }
+    .pos { color: #3fb950; }
+    .neg { color: #f85149; }
+    .warn { color: #d29922; }
+    .na { color: #8b949e; font-style: italic; }
+    .blue { color: #58a6ff; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 12px; font-size: 12px; }
+    th { background: #161b22; color: #8b949e; text-align: left; padding: 6px 10px; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid #30363d; }
+    td { padding: 6px 10px; border-bottom: 1px solid #21262d; vertical-align: top; }
     tr:last-child td { border-bottom: none; }
-    tr:hover td { background: rgba(255,255,255,0.025); }
-    .positive { color: var(--green); font-weight: 600; }
-    .negative { color: var(--red); font-weight: 600; }
-    .neutral { color: var(--text-muted); }
-    .nd { color: var(--text-muted); font-style: italic; }
-    .tag {
-      display: inline-block;
-      padding: 1px 6px;
-      border-radius: 4px;
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-      vertical-align: middle;
-    }
-    .tag-high { background: rgba(248,81,73,0.2); color: var(--red); }
-    .tag-med { background: rgba(210,153,34,0.2); color: var(--amber); }
-    .tag-atl { background: rgba(63,185,80,0.2); color: var(--green); }
-    .news-item {
-      padding: 9px 0;
-      border-bottom: 1px solid var(--border);
-    }
+    tr:hover td { background: #161b22; }
+    .section-card { background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: 14px 16px; margin-bottom: 20px; }
+    .news-item { padding: 8px 0; border-bottom: 1px solid #21262d; }
     .news-item:last-child { border-bottom: none; }
-    .news-title { font-weight: 600; color: var(--text); font-size: 13px; }
-    .news-source { color: var(--accent); font-size: 11px; margin: 2px 0; }
-    .news-impact { color: var(--text-muted); font-size: 12px; line-height: 1.5; }
-    .commentary {
-      color: var(--text);
-      font-size: 12px;
-      line-height: 1.6;
-    }
-    .commentary p { margin-bottom: 6px; }
-    .commentary p:last-child { margin-bottom: 0; }
-    .commentary strong { color: var(--text); }
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    .three-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 14px;
-    }
-    .watch-item {
-      display: grid;
-      grid-template-columns: 160px 1fr 110px;
-      gap: 10px;
-      padding: 7px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 12px;
-      align-items: start;
-    }
-    .watch-item:last-child { border-bottom: none; }
-    .watch-name { font-weight: 700; color: var(--text); }
-    .watch-reason { color: var(--text-muted); line-height: 1.4; }
-    .watch-direction { text-align: right; font-size: 11px; font-weight: 600; }
-    .theme-item {
-      padding: 7px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 12px;
-    }
-    .theme-item:last-child { border-bottom: none; }
-    .theme-title { font-weight: 600; color: var(--text); margin-bottom: 2px; }
-    .theme-desc { color: var(--text-muted); line-height: 1.4; }
-    .subcard {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 12px;
-    }
-    .subcard h3 { margin-top: 0; }
-    .separator-row td {
-      background: rgba(56,139,253,0.05);
-      color: var(--text-muted);
-      font-style: italic;
-      font-size: 11px;
-    }
-    .footer {
-      margin-top: 20px;
-      padding: 14px 16px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-    .footer .sources-title {
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      margin-bottom: 8px;
-      color: var(--text);
-      font-size: 11px;
-    }
-    .footer ul { padding-left: 16px; line-height: 1.7; }
-    .footer a { color: var(--accent); text-decoration: none; }
-    .warning {
-      margin-top: 12px;
-      padding: 8px 12px;
-      background: rgba(248,81,73,0.08);
-      border-left: 3px solid var(--red);
-      color: var(--text-muted);
-      font-size: 11px;
-      line-height: 1.5;
-    }
-    @media (max-width: 750px) {
-      .two-col, .three-col { grid-template-columns: 1fr; }
-      .watch-item { grid-template-columns: 1fr; }
-      .watch-direction { text-align: left; }
-    }
+    .news-headline { color: #e6edf3; font-weight: 600; margin-bottom: 2px; }
+    .news-source { color: #58a6ff; font-size: 11px; margin-right: 8px; }
+    .news-why { color: #8b949e; font-size: 11px; }
+    .bullet { padding: 4px 0; }
+    .bullet::before { content: "▸ "; color: #58a6ff; }
+    .col2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .col3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .label { color: #8b949e; font-size: 11px; }
+    .footer { margin-top: 32px; padding-top: 14px; border-top: 1px solid #21262d; color: #8b949e; font-size: 11px; }
+    .footer ul { list-style: none; padding: 0; }
+    .footer li { padding: 2px 0; }
+    .alert-box { background: #1c1a0f; border: 1px solid #d29922; border-radius: 4px; padding: 8px 12px; margin-bottom: 10px; color: #d29922; font-size: 12px; }
+    @media (max-width: 700px) { .col2, .col3 { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
 
-<!-- ========== EN-TETE ========== -->
-<div class="header">
-  <h1>Morning Briefing &mdash; Jeudi 14 Mai 2026</h1>
-  <div class="meta">
-    Généré le 14 mai 2026 &bull; 07:00 BST (Londres) &bull;
-    Données collectées entre 06:00 et 07:00 BST &bull;
-    Fuseau de référence : Europe/London (BST = UTC+1)
-  </div>
+<!-- ═══════════════════════════════ 1. HEADER ═══════════════════════════════ -->
+<h1>Morning Briefing</h1>
+<div class="header-meta">
+  <span class="tag">Thursday 14 May 2026</span>
+  <span class="tag">Generated ~07:00 BST</span>
+  <span class="tag">London pre-open</span>
+</div>
+<div class="alert-box">
+  Data collected via live web search 14 May 2026. Key risk events: US Retail Sales + Jobless Claims 13:30 BST; Trump-Xi Day 2 Beijing summit ongoing; Cisco +15% after-hours effect on today's session.
 </div>
 
-<!-- ========== 2. IMPORTANT NEWS ========== -->
-<div class="section">
-  <h2>2. Important News</h2>
+<!-- ═══════════════════════════════ 2. IMPORTANT NEWS ═══════════════════════════════ -->
+<h2>2. Important News</h2>
+<div class="section-card">
 
   <div class="news-item">
-    <div class="news-title">Sommet Trump-Xi s'ouvre à Beijing : tariffs, Taiwan, Iran, IA et terres rares à l'agenda</div>
-    <div class="news-source">CNBC / Al Jazeera / Washington Post &bull; ~06:30 BST</div>
-    <div class="news-impact">Trump a atterri à Beijing mercredi, accompagné d'Elon Musk (Tesla) et Jensen Huang (Nvidia). Deux jours de discussions couvrant tariffs, restrictions semi-conducteurs, terres rares, Taiwan et Iran. Création de "boards bilatéraux" de supervision économique et IA envisagée. Impact marché : toute avancée tarifaire = fort risk-on sur indices et crédit. Xi a averti qu'un mauvais traitement de Taiwan serait "extrêmement dangereux" — risque de retournement si la rhétorique durcit.</div>
-  </div>
-
-  <div class="news-item">
-    <div class="news-title">Washington autorise Nvidia à vendre ses puces H200 à 10 groupes chinois (Alibaba, Tencent, ByteDance, JD.com)</div>
-    <div class="news-source">Reuters / CNBC &bull; ~05:00 BST</div>
-    <div class="news-impact">Nvidia gagne +3-4 % en pré-marché. Réouverture partielle du marché chinois de l'IA avec contraintes strictes. Potentiel de revenus pluriannuels estimé en dizaines de milliards. Catalyseur pour toute la chaîne semi/datacenter en Europe (ASML, Infineon, STM) et en Asie.</div>
+    <div class="news-headline">1. Trump-Xi Beijing summit — China agrees to buy 200 Boeing jets; "constructive relationship" framework signed for next three years</div>
+    <span class="news-source">CNBC / NBC News</span>
+    <span class="news-why">Direct positive for Boeing; signals partial trade-war de-escalation; Taiwan, Iran and AI also on the agenda. Musk, Huang, Cook and Rubio all present in Beijing.</span>
   </div>
 
   <div class="news-item">
-    <div class="news-title">Cisco Q3 FY2026 : CA +12 % à 15,8 Md$, guidance au-dessus des attentes, 4 000 suppressions de postes</div>
-    <div class="news-source">CNBC / Benzinga &bull; après clôture US mercredi 13 mai</div>
-    <div class="news-impact">Action +16 % en after-hours. Demande IA confirmée sur les infrastructures réseau — pas seulement GPU. S&P 500 a inscrit un nouveau record absolu (ATH) mercredi. Morgan Stanley relève son objectif à 120 $. Bénéfique pour l'ensemble du secteur tech/networking européen.</div>
+    <div class="news-headline">2. Cisco Q3 FY26 beat: EPS $1.06 vs $1.00 est; revenue $15.84B vs $15.56B est; AI infrastructure orders raised to $9B full-year from $5B — shares +15%</div>
+    <span class="news-source">CNBC / GURUFocus</span>
+    <span class="news-why">Largest single-day pop for CSCO in years. CEO called it a "networking supercycle" driven by AI. Sets positive tone for tech hardware and hyperscaler spend.</span>
   </div>
 
   <div class="news-item">
-    <div class="news-title">CPI US avril 2026 : +3,8 % YoY, au-dessus du consensus à 3,7 % — plus haut depuis mai 2023</div>
-    <div class="news-source">BLS / CNBC &bull; publié lundi 12 mai</div>
-    <div class="news-impact">Core +2,8 % YoY. L'énergie (+3,8 % MoM, essence +28,4 % YoY) liée au conflit iranien est le principal moteur. Espoirs de baisse Fed pour 2026 pratiquement anéantis ; odds d'une hausse en décembre remontent à 30 %.</div>
+    <div class="news-headline">3. US April PPI +1.4% MoM — hottest monthly gain since March 2022; YoY +6%; energy shock from Iran war is principal driver</div>
+    <span class="news-source">BLS / Yahoo Finance</span>
+    <span class="news-why">Reinforces stickier inflation narrative; Fed rate-cut expectations pushed further out; ECB rate-hike probability for June now above 80%. Pressure on sovereign bonds.</span>
   </div>
 
   <div class="news-item">
-    <div class="news-title">Kevin Warsh confirmé président de la Fed (54-45), vote le plus partisan de l'histoire de la Fed</div>
-    <div class="news-source">RISMedia / Yahoo Finance &bull; mercredi 13 mai</div>
-    <div class="news-impact">Warsh plaide pour des taux bas mais l'inflation à 3,8 % rend tout assouplissement immédiat impossible. Taux directeur actuel : 3,50-3,75 %. Première sortie publique attendue — ton hawkish possible = pression sur durations longues et spread Bund/périphériques. Vote partisan fragilise la perception d'indépendance de la Fed.</div>
+    <div class="news-headline">4. IEA: Strait of Hormuz crude and fuel flows fell ~6 million bpd in Q1 2026; Saudi Arabia oil output at lowest level since 1990</div>
+    <span class="news-source">CNBC / IEA</span>
+    <span class="news-why">Structural supply shock. Brent at $107/bbl despite pullback; energy names and defence stocks remain elevated. Iran ceasefire remains fragile.</span>
   </div>
+
+  <div class="news-item">
+    <div class="news-headline">5. US S&P 500 and Nasdaq close at fresh records despite hot PPI; Dow just misses 50,000; Dow opens above 50,000 on May 14</div>
+    <span class="news-source">TheStreet / Yahoo Finance</span>
+    <span class="news-why">Market is pricing in earnings strength and trade optimism over inflation risk — for now. Divergence between equity bullishness and bond market anxiety is a key tension to watch.</span>
+  </div>
+
 </div>
 
-<!-- ========== 3. FUTURES EUROPEENNES ========== -->
-<div class="section">
-  <h2>3. Futures Européennes (Pré-ouverture)</h2>
-  <table>
-    <tr>
-      <th>Contrat</th>
-      <th>Niveau</th>
-      <th>Variation indicative</th>
-      <th>Heure collecte</th>
-    </tr>
-    <tr>
-      <td>Euro Stoxx 50 (FESX)</td>
-      <td>5 907</td>
-      <td class="positive">+0,6 % vs clôture veille</td>
-      <td>06:45 BST</td>
-    </tr>
-    <tr>
-      <td>DAX (FDAX)</td>
-      <td class="nd">n/d</td>
-      <td class="positive">positif, en ligne avec ES50</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>CAC 40 (FCE)</td>
-      <td class="nd">n/d</td>
-      <td class="positive">positif, en ligne avec ES50</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>FTSE 100 (Z)</td>
-      <td class="nd">n/d</td>
-      <td class="positive">positif, en ligne avec ES50</td>
-      <td>—</td>
-    </tr>
-    <tr class="separator-row">
-      <td colspan="4">Contexte US — Futures pré-marché</td>
-    </tr>
-    <tr>
-      <td>S&amp;P 500 e-mini</td>
-      <td class="nd">n/d</td>
-      <td class="positive">+0,1 %</td>
-      <td>06:45 BST</td>
-    </tr>
-    <tr>
-      <td>Nasdaq 100 e-mini</td>
-      <td class="nd">n/d</td>
-      <td class="positive">+0,5 %</td>
-      <td>06:45 BST</td>
-    </tr>
-    <tr>
-      <td>Dow Jones e-mini</td>
-      <td class="nd">n/d</td>
-      <td class="positive">+0,2 %</td>
-      <td>06:45 BST</td>
-    </tr>
-  </table>
-  <div class="commentary" style="margin-top:9px;">
-    <p>Biais d'ouverture positif tiré par la clearance H200 Nvidia/Chine et les résultats Cisco post-clôture. L'incertitude du sommet Trump-Xi crée un risque binaire : tout communiqué favorable sur les tariffs renforcerait l'ouverture ; tout incident sur Taiwan l'inverserait. Niveaux nominaux DAX/CAC/FTSE non disponibles en sources publiques ce matin.</p>
-  </div>
+<!-- ═══════════════════════════════ 3. EUROPEAN FUTURES ═══════════════════════════════ -->
+<h2>3. European Futures (Pre-Open)</h2>
+<div class="section-card">
+<div class="label" style="margin-bottom:8px;">Data collected ~07:00 BST. Source: Barchart, Investing.com.</div>
+<table>
+  <thead><tr><th>Index</th><th>Futures Level</th><th>Expected Move vs Close</th><th>Note</th></tr></thead>
+  <tbody>
+    <tr><td>Euro Stoxx 50</td><td>5,907</td><td><span class="pos">+0.6% est.</span></td><td>Opening higher, 5,888 open on futures market</td></tr>
+    <tr><td>DAX</td><td><span class="na">n/a</span></td><td><span class="pos">Positive bias</span></td><td>Implied higher given Asia gains and US record close</td></tr>
+    <tr><td>CAC 40</td><td><span class="na">n/a</span></td><td><span class="pos">Positive bias</span></td><td>Boeing/China positive; watch energy and banks</td></tr>
+    <tr><td>FTSE 100</td><td><span class="na">n/a</span></td><td><span class="pos">Positive bias</span></td><td>Energy sector drag on Brent pullback may limit gains</td></tr>
+    <tr><td>S&amp;P 500 (e-mini)</td><td colspan="2"><span class="pos">Dow +373 pts (+0.7%) at May 14 open; S&amp;P +0.3%; Nasdaq +0.1%</span></td><td>Strong open on retail sales + trade optimism</td></tr>
+  </tbody>
+</table>
 </div>
 
-<!-- ========== 4. CLOTURES EUROPEENNES ========== -->
-<div class="section">
-  <h2>4. Clôtures de la Veille — Indices Européens (13 mai 2026)</h2>
-  <table>
-    <tr>
-      <th>Indice</th>
-      <th>Clôture</th>
-      <th>Variation</th>
-    </tr>
-    <tr>
-      <td>Euro Stoxx 50</td>
-      <td>5 870</td>
-      <td class="positive">+1,0 %</td>
-    </tr>
-    <tr>
-      <td>DAX 40</td>
-      <td>~24 102</td>
-      <td class="positive">+0,6 %</td>
-    </tr>
-    <tr>
-      <td>CAC 40</td>
-      <td>7 971</td>
-      <td class="negative">&#8722;0,11 %</td>
-    </tr>
-    <tr>
-      <td>FTSE 100</td>
-      <td>10 313</td>
-      <td class="positive">+0,47 %</td>
-    </tr>
-  </table>
-  <div class="commentary" style="margin-top:9px;">
-    <p>Séance majoritairement positive en Europe, portée par l'anticipation du sommet Trump-Xi et la dynamique tech/IA. La sous-performance du CAC 40 (-0,11 %) détonne : probables prises de bénéfices sur les valeurs de luxe et de consommation discrétionnaire face au risque géopolitique et à l'inflation persistante. DAX solide grâce à l'exposition industrielle et aux espoirs d'un deal US-Chine sur les matières premières.</p>
-  </div>
+<!-- ═══════════════════════════════ 4. YESTERDAY'S CLOSES ═══════════════════════════════ -->
+<h2>4. Yesterday's Closes — European Indices (13 May 2026)</h2>
+<div class="section-card">
+<div class="label" style="margin-bottom:8px;">Source: CNBC, RTTNews, TradingEconomics.</div>
+<table>
+  <thead><tr><th>Index</th><th>Close</th><th>Change</th><th>Tone</th></tr></thead>
+  <tbody>
+    <tr><td>Euro Stoxx 50</td><td>~5,870</td><td><span class="pos">+1.0%</span></td><td>Broad-based bounce; earnings + US-China hopes</td></tr>
+    <tr><td>DAX</td><td>~24,137</td><td><span class="pos">+0.76%</span></td><td>Industrials and tech supported</td></tr>
+    <tr><td>CAC 40</td><td><span class="na">n/a</span></td><td><span class="pos">+0.35%</span></td><td>Underperformed peers; energy drag</td></tr>
+    <tr><td>FTSE 100</td><td><span class="na">n/a</span></td><td><span class="pos">+0.58%</span></td><td>Solid; financials and defensives contributed</td></tr>
+    <tr><td>Stoxx 600</td><td><span class="na">n/a</span></td><td><span class="pos">+0.79%</span></td><td>Pan-European advance; recovery from prior session losses</td></tr>
+  </tbody>
+</table>
 </div>
 
-<!-- ========== 5. MARCHES US ========== -->
-<div class="section">
-  <h2>5. Orientation des Marchés US (Séance du 13 mai 2026)</h2>
-  <table>
-    <tr>
-      <th>Indice</th>
-      <th>Clôture</th>
-      <th>Variation</th>
-      <th>Note</th>
-    </tr>
-    <tr>
-      <td>S&amp;P 500</td>
-      <td>~7 444</td>
-      <td class="positive">+0,58 %</td>
-      <td><span class="tag tag-atl">Nouveau ATH</span></td>
-    </tr>
-    <tr>
-      <td>Nasdaq Composite</td>
-      <td>26 402</td>
-      <td class="positive">+1,2 %</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>Dow Jones IA</td>
-      <td class="nd">n/d</td>
-      <td class="positive">positif (~+0,3 % estimé)</td>
-      <td class="nd">Données clôture non confirmées</td>
-    </tr>
-  </table>
-  <div class="commentary" style="margin-top:9px;">
-    <p>Séance haussière portée par Nvidia (+4 % sur la rumeur d'approbation H200) et l'anticipation du sommet de Beijing. Cisco a publié ses résultats après clôture (+16 % after-hours), renforçant le ton positif pour la séance de jeudi. Secteurs en tête : tech, semi-conducteurs, communication, services numériques. Secteurs en retard : énergie (pétrole stable autour de 100 $), services aux collectivités. S&P 500 inscrit un record absolu, soutenu par la résilience des ventes au détail (+0,5 %) et la dynamique IA.</p>
-  </div>
+<!-- ═══════════════════════════════ 5. US MARKETS ═══════════════════════════════ -->
+<h2>5. US Markets — Yesterday's Session (13 May 2026)</h2>
+<div class="section-card">
+<div class="label" style="margin-bottom:8px;">Source: TheStreet, Yahoo Finance, CNBC.</div>
+<table>
+  <thead><tr><th>Index</th><th>Close</th><th>Change</th><th>YTD</th></tr></thead>
+  <tbody>
+    <tr><td>S&amp;P 500</td><td>7,444.25</td><td><span class="pos">+0.58%</span></td><td>Record high</td></tr>
+    <tr><td>Nasdaq Composite</td><td>26,402.34</td><td><span class="pos">+1.20%</span></td><td>Record high</td></tr>
+    <tr><td>Dow Jones</td><td>49,693.20</td><td><span class="neg">-0.14%</span></td><td>Just below 50,000</td></tr>
+  </tbody>
+</table>
+<div class="bullet"><strong>Tone:</strong> Risk-on. Tech dominated. Hot PPI initially unsettled markets but was absorbed by session's end.</div>
+<div class="bullet"><strong>Leading sectors:</strong> Technology (Cisco +15% after hours, Nasdaq IT component up); Communication Services; Consumer Discretionary.</div>
+<div class="bullet"><strong>Lagging sectors:</strong> Healthcare (Doximity -26% on earnings miss); Industrials (Dow underperformed); Energy (crude pullback).</div>
+<div class="bullet"><strong>Key takeaway:</strong> Earnings strength and US-China trade optimism outweighed inflation fears for a second straight session. The S&amp;P 500 and Nasdaq set simultaneous records despite a 6% annualised PPI print.</div>
 </div>
 
-<!-- ========== 6. MARCHES ASIATIQUES ========== -->
-<div class="section">
-  <h2>6. Orientation des Marchés Asiatiques (Séance du 14 mai 2026)</h2>
-  <table>
-    <tr>
-      <th>Indice</th>
-      <th>Clôture</th>
-      <th>Variation</th>
-    </tr>
-    <tr>
-      <td>Nikkei 225</td>
-      <td>63 449</td>
-      <td class="positive">+0,28 %</td>
-    </tr>
-    <tr>
-      <td>Hang Seng</td>
-      <td class="nd">n/d</td>
-      <td class="positive">+0,3 % (approx.)</td>
-    </tr>
-    <tr>
-      <td>Shanghai Composite</td>
-      <td>4 204</td>
-      <td class="negative">&#8722;0,91 %</td>
-    </tr>
-    <tr>
-      <td>Kospi (Corée du Sud)</td>
-      <td>7 981</td>
-      <td class="positive">+1,75 %</td>
-    </tr>
-  </table>
-  <div class="commentary" style="margin-top:9px;">
-    <p>Séance asiatique en ordre dispersé, dominée par le sommet Trump-Xi. Le Kospi surperforme nettement : Samsung et SK Hynix portés par la réouverture du marché chinois aux puces Nvidia — la Corée bénéficie directement de tout rebond dans le cycle semi asiatique. Le Shanghai Composite recule (-0,91 %) : les investisseurs locaux attendent des signaux concrets avant de se repositionner. Le Nikkei a oscillé en séance (point bas à -0,98 % à l'ouverture du sommet) avant de clôturer légèrement positif. Hang Seng quasi-stable, Hang Seng Tech en légère hausse (+0,5 %).</p>
-  </div>
+<!-- ═══════════════════════════════ 6. ASIAN MARKETS ═══════════════════════════════ -->
+<h2>6. Asian Markets — Overnight Session (14 May 2026)</h2>
+<div class="section-card">
+<div class="label" style="margin-bottom:8px;">Source: CNBC Asia, BusinessUpturn, Invezz.</div>
+<table>
+  <thead><tr><th>Index</th><th>Level</th><th>Change</th><th>Driver</th></tr></thead>
+  <tbody>
+    <tr><td>Nikkei 225</td><td><span class="na">n/a</span></td><td><span class="pos">+0.27%</span></td><td>US record close; Samsung rally lifted sentiment</td></tr>
+    <tr><td>Topix</td><td><span class="na">n/a</span></td><td><span class="neg">-0.23%</span></td><td>Domestic banks and utilities lagged</td></tr>
+    <tr><td>Hang Seng</td><td>26,550</td><td><span class="pos">+0.60%</span></td><td>US-China summit optimism; tech stocks led</td></tr>
+    <tr><td>Shanghai Composite</td><td>4,216.97</td><td><span class="neg">-0.60%</span></td><td>Profit-taking; caution on summit expectations</td></tr>
+    <tr><td>Kospi</td><td><span class="na">n/a</span></td><td><span class="pos">+0.38%</span></td><td>Samsung +5.46% (record high); chip sector rally</td></tr>
+    <tr><td>Kosdaq</td><td><span class="na">n/a</span></td><td><span class="pos">+1.31%</span></td><td>Small-cap tech outperformed on AI optimism</td></tr>
+  </tbody>
+</table>
+<div class="bullet"><strong>Tone:</strong> Mixed but leaning positive. Divergence between Hang Seng (risk-on ahead of summit) and Shanghai (cautious profit-taking).</div>
+<div class="bullet"><strong>Key driver:</strong> Trump-Xi summit narrative dominated. Samsung's 5.46% record high boosted Korea. Nvidia and Tesla CEOs' presence in Beijing seen as signalling potential AI/EV deal progress.</div>
 </div>
 
-<!-- ========== 7. COMMODITES ========== -->
-<div class="section">
-  <h2>7. Commodités</h2>
-  <table>
-    <tr>
-      <th>Matière première</th>
-      <th>Niveau</th>
-      <th>Variation</th>
-      <th>Heure</th>
-    </tr>
-    <tr>
-      <td>Brent (ICE, USD/bbl)</td>
-      <td>105,87</td>
-      <td class="positive">+0,22 %</td>
-      <td>06:45 BST</td>
-    </tr>
-    <tr>
-      <td>WTI (NYMEX, USD/bbl)</td>
-      <td>100,87</td>
-      <td class="negative">&#8722;0,15 %</td>
-      <td>06:45 BST</td>
-    </tr>
-    <tr>
-      <td>Or (XAU/USD, USD/oz)</td>
-      <td>4 693</td>
-      <td class="positive">+0,10 %</td>
-      <td>06:45 BST</td>
-    </tr>
-    <tr>
-      <td>Cuivre (COMEX, USD/lb)</td>
-      <td>~6,60</td>
-      <td class="positive">+ATH</td>
-      <td>06:45 BST</td>
-    </tr>
-    <tr>
-      <td>Gaz naturel (Henry Hub, USD/MMBtu)</td>
-      <td>2,84</td>
-      <td class="negative">&#8722;0,79 %</td>
-      <td>06:45 BST</td>
-    </tr>
-    <tr>
-      <td>Gaz naturel (TTF européen, EUR/MWh)</td>
-      <td class="nd">n/d</td>
-      <td class="nd">—</td>
-      <td>—</td>
-    </tr>
-  </table>
-  <div class="commentary" style="margin-top:9px;">
-    <p>Le pétrole maintient un niveau élevé au-dessus de 100 $/bbl — le conflit iranien reste le moteur principal. L'or consolide à un plateau historique autour de 4 700 $, soutenu par l'inflation élevée et la demande de refuge géopolitique. Le cuivre atteint de nouveaux records historiques, porté par la demande chinoise en infrastructure IA et les espoirs d'un deal commercial US-Chine. Point d'attention : un Brent persistant au-dessus de 100 $ entretient la pression inflationniste sur la zone euro et complique l'agenda BCE. Tout accord en marge du sommet sur l'Iran serait un choc baissier brutal sur le Brent.</p>
-  </div>
+<!-- ═══════════════════════════════ 7. COMMODITIES ═══════════════════════════════ -->
+<h2>7. Commodities</h2>
+<div class="section-card">
+<div class="label" style="margin-bottom:8px;">Source: Fortune/OilPriceAPI (oil), BusinessUpturn (metals), TradingEconomics (gas). ~07:00 BST.</div>
+<table>
+  <thead><tr><th>Commodity</th><th>Level</th><th>Change</th><th>Context</th></tr></thead>
+  <tbody>
+    <tr><td>Brent Crude</td><td>$107.82/bbl</td><td><span class="neg">-2.8%</span></td><td>Pullback from recent highs; ceasefire hopes; still +$41.50 YoY on Iran shock</td></tr>
+    <tr><td>WTI Crude</td><td>$101.54/bbl</td><td><span class="pos">~flat</span></td><td>Holding above $101; IEA warned Hormuz flows fell 6mbpd in Q1</td></tr>
+    <tr><td>Gold</td><td>$4,680/oz</td><td><span class="neg">Down (2nd session)</span></td><td>Hot PPI dampens rate-cut hopes; dollar strength weighing on gold</td></tr>
+    <tr><td>Natural Gas (US)</td><td>$2.92/MMBtu</td><td><span class="pos">Rising — 6-week high</span></td><td>Freeport LNG liquefaction train restart; declining production supporting prices</td></tr>
+    <tr><td>Copper</td><td><span class="na">n/a (USD)</span></td><td><span class="neg">-1.12%</span></td><td>Demand concerns; China uncertainty weighing on base metals</td></tr>
+  </tbody>
+</table>
+<div class="bullet"><strong>Notable:</strong> Brent's $3 intraday drop is the largest in two weeks and reflects residual ceasefire optimism around Iran, though fundamental supply disruption persists. Gold's decline is a rate-sensitive sell, not risk-off.</div>
 </div>
 
-<!-- ========== 8. TAUX & FX ========== -->
-<div class="section">
-  <h2>8. Taux &amp; FX</h2>
-  <table>
-    <tr>
-      <th>Instrument</th>
-      <th>Niveau</th>
-      <th>Variation</th>
-      <th>Heure</th>
-    </tr>
-    <tr>
-      <td>US Treasury 10 ans</td>
-      <td>4,45 %</td>
-      <td class="positive">&#8722;2 pb</td>
-      <td>06:45 BST</td>
-    </tr>
-    <tr>
-      <td>Bund allemand 10 ans</td>
-      <td>~3,09 %</td>
-      <td class="nd">approx. (proche +15 ans high)</td>
-      <td>06:45 BST</td>
-    </tr>
-    <tr>
-      <td>EUR/USD</td>
-      <td>1,1713</td>
-      <td class="negative">&#8722;0,01 %</td>
-      <td>06:50 BST</td>
-    </tr>
-    <tr>
-      <td>GBP/USD</td>
-      <td>1,3500</td>
-      <td class="negative">&#8722;0,28 %</td>
-      <td>06:50 BST</td>
-    </tr>
-    <tr>
-      <td>DXY (Dollar Index)</td>
-      <td>98,49</td>
-      <td class="positive">+0,01 %</td>
-      <td>06:50 BST</td>
-    </tr>
-  </table>
-  <div class="commentary" style="margin-top:9px;">
-    <p>Le T10 US se détend légèrement (-2 pb) après le rally actions risk-on, en dehors du contexte CPI chaud. Le spread US/Bund reste large (+136 pb), reflétant le différentiel de politique monétaire. L'EUR/USD tient à 1,17+ soutenu par des flux de reflation européenne. La livre sterling recule de 0,28 % en amont de publications macro UK attendues ce matin. Le dollar reste sous pression relative avec le DXY sous 99, pendu au résultat des négociations Trump-Xi.</p>
-  </div>
+<!-- ═══════════════════════════════ 8. RATES & FX ═══════════════════════════════ -->
+<h2>8. Rates &amp; FX</h2>
+<div class="section-card">
+<div class="label" style="margin-bottom:8px;">Source: TradingEconomics, FXEmpire, CNBC. ~07:00 BST.</div>
+<table>
+  <thead><tr><th>Instrument</th><th>Level</th><th>Change</th><th>Note</th></tr></thead>
+  <tbody>
+    <tr><td>US 10Y Treasury</td><td>4.45%</td><td><span class="pos">-2bps</span></td><td>Slight easing overnight; CPI/PPI pricing largely absorbed. Fed cuts priced out to Q4 at earliest</td></tr>
+    <tr><td>German 10Y Bund</td><td>~3.10%</td><td><span class="na">n/a</span></td><td>Near highest since May 2011; ECB hike probability for June now >80%; energy inflation driving repricing</td></tr>
+    <tr><td>EUR/USD</td><td>1.1700</td><td><span class="na">Flat</span></td><td>Defending ascending trendline support; ECB hike expectations supporting EUR vs Fed hold</td></tr>
+    <tr><td>GBP/USD</td><td>1.3510</td><td><span class="neg">Third day of decline</span></td><td>At rising channel floor; at 10-day low; watch UK macro data for catalyst</td></tr>
+    <tr><td>DXY (USD Index)</td><td>~98.54</td><td><span class="pos">+0.28%</span></td><td>Third consecutive day of gains; hot CPI/PPI driving higher-for-longer USD narrative</td></tr>
+  </tbody>
+</table>
+<div class="bullet"><strong>Key tension:</strong> Bund yield at 15-year highs signals ECB hawkishness. EUR/USD is holding despite dollar strength — likely because ECB hike pricing is offsetting. DXY above 98.5 is the near-term battleground.</div>
 </div>
 
-<!-- ========== 9. DCM ========== -->
-<div class="section">
-  <h2>9. DCM — Marché Primaire Obligataire</h2>
+<!-- ═══════════════════════════════ 9. DCM ═══════════════════════════════ -->
+<h2>9. DCM — Primary Bond Market</h2>
+<div class="section-card">
 
-  <h3>Issuances de la Veille (13 mai 2026)</h3>
+  <h3>9a. Yesterday's Issuances (13 May 2026)</h3>
+  <div class="warn" style="font-size:12px; margin-bottom:8px;">No specific deal-level data retrievable from public sources at time of collection. Bloomberg/Dealogic/IFR subscription required for transaction detail.</div>
   <table>
-    <tr>
-      <th>Émetteur</th>
-      <th>Devise</th>
-      <th>Montant</th>
-      <th>Maturité</th>
-      <th>Coupon</th>
-      <th>Notes</th>
-    </tr>
-    <tr>
-      <td>ArcelorMittal</td>
-      <td>USD</td>
-      <td>1 000 M$</td>
-      <td>10 ans (19 mai 2036)</td>
-      <td>5,375 %</td>
-      <td>Corporate IG, metals/industrials. Spread vs UST n/d. Deal USD, émetteur Lux-coté.</td>
-    </tr>
-    <tr>
-      <td>Autres corporates EUR IG/HY</td>
-      <td class="nd">n/d</td>
-      <td class="nd">n/d</td>
-      <td class="nd">n/d</td>
-      <td class="nd">n/d</td>
-      <td class="nd">Données non disponibles via sources publiques — Bloomberg/IFR requis.</td>
-    </tr>
-    <tr>
-      <td>SSA / Financials EUR</td>
-      <td class="nd">n/d</td>
-      <td class="nd">n/d</td>
-      <td class="nd">n/d</td>
-      <td class="nd">n/d</td>
-      <td class="nd">Données non disponibles via sources publiques — Bloomberg/IFR requis.</td>
-    </tr>
+    <thead><tr><th>Issuer</th><th>Size</th><th>Maturity</th><th>Coupon/Spread</th><th>IPT Tightening</th></tr></thead>
+    <tbody>
+      <tr><td colspan="5"><span class="na">n/a — no confirmed deal data sourced. Verify via Bloomberg DCM screens or IFR.</span></td></tr>
+    </tbody>
   </table>
 
-  <h3>Pipeline / Issuances Prévues</h3>
-  <div class="commentary">
-    <p>Aucun deal EUR spécifiquement annoncé dans les sources accessibles pour aujourd'hui 14 mai. La fenêtre primaire reste techniquement ouverte en l'absence de choc de taux supplémentaire. Point de vigilance : un communiqué positif du sommet Trump-Xi pourrait déclencher des mandats dans les secteurs industrials, transport et énergie, potentiellement en fin de journée ou vendredi.</p>
-  </div>
+  <h3>9b. Pipeline / Expected Today</h3>
+  <div class="bullet">European corporate IG pipeline active per GlobalCapital data; investor appetite supported by equity rally and tighter credit tone. Window appears open.</div>
+  <div class="bullet">Elevated Bund yields (3.10%) compressing NIPs on EUR SSA; issuers face higher all-in funding cost but books remain covered on demand side per 2026 outlook data (Amundi Research).</div>
+  <div class="bullet">Watch for industrials, transport, and energy names given equity moves in those sectors. <span class="na">Specific mandated deals: n/a.</span></div>
 
-  <h3>Principaux Spreads de Crédit</h3>
+  <h3>9c. Key Spreads</h3>
   <table>
-    <tr>
-      <th>Indice</th>
-      <th>Niveau (pb)</th>
-      <th>Variation / Sens</th>
-    </tr>
-    <tr>
-      <td>iTraxx Europe Main 5 ans</td>
-      <td class="nd">n/d</td>
-      <td class="nd">—</td>
-    </tr>
-    <tr>
-      <td>iTraxx Europe Crossover 5 ans</td>
-      <td class="nd">n/d</td>
-      <td class="nd">—</td>
-    </tr>
-    <tr>
-      <td>CDX IG 5 ans (USD)</td>
-      <td class="nd">n/d</td>
-      <td class="nd">—</td>
-    </tr>
-    <tr>
-      <td>Spread IG corporate EUR moyen</td>
-      <td class="nd">n/d</td>
-      <td class="nd">—</td>
-    </tr>
+    <thead><tr><th>Instrument</th><th>Level (bps)</th><th>Change</th><th>Direction</th></tr></thead>
+    <tbody>
+      <tr><td>iTraxx Main (5Y)</td><td><span class="na">n/a</span></td><td><span class="na">n/a</span></td><td><span class="na">n/a — Bloomberg/Markit required</span></td></tr>
+      <tr><td>iTraxx Crossover (5Y)</td><td><span class="na">n/a</span></td><td><span class="na">n/a</span></td><td><span class="na">n/a — Bloomberg/Markit required</span></td></tr>
+      <tr><td>CDX IG (5Y)</td><td><span class="na">n/a</span></td><td><span class="na">n/a</span></td><td><span class="na">n/a — Bloomberg/Markit required</span></td></tr>
+      <tr><td>Avg EUR IG corp spread</td><td><span class="na">n/a</span></td><td><span class="na">n/a</span></td><td><span class="na">n/a</span></td></tr>
+    </tbody>
   </table>
-  <div style="margin-top:6px; font-size:11px; color:var(--text-muted); font-style:italic;">iTraxx Main/Crossover : niveaux exacts non disponibles via sources publiques — données Bloomberg Terminal / ICE requises.</div>
 
-  <h3>Commentaire Marché Primaire</h3>
-  <div class="commentary">
-    <p>Le pricing de l'obligation ArcelorMittal (1 Md$ 10 ans à 5,375 %) démontre que la fenêtre primaire est ouverte pour les émetteurs IG industrials, même dans un contexte Brent >100 $ et CPI à 3,8 %. L'appétit des investisseurs reste soutenu par des réallocations depuis la dette courte. Un accord commercial US-Chine concret aujourd'hui pourrait débloquer un pipeline EUR notamment dans les secteurs transport, shipping et énergie, qui font partie des secteurs que nous surveillons. Conditions de financement tendues vs début 2026 (taux absolus plus élevés) mais soutenables pour les noms IG bien notés avec des actifs réels en collatéral.</p>
-  </div>
+  <h3>9d. Commentary</h3>
+  <div class="bullet">Primary market tone is cautiously open. The equity rally and US-China trade optimism provide a supportive risk backdrop, but the 3.10% German Bund yield is the highest since 2011, compressing NIP room for EUR issuers and pushing all-in funding costs materially higher.</div>
+  <div class="bullet">ECB hike expectations (June probability above 80%) create uncertainty around re-offer spreads. Issuers with flexible timing are likely watching today's Retail Sales data before committing.</div>
+  <div class="bullet">Demand side remains solid per 2026 outlook data. European institutional buyers continue to absorb supply. HY window is more sensitive to rate volatility; IG financials and SSA are better placed.</div>
+
 </div>
 
-<!-- ========== 10. CALENDRIER ECONOMIQUE ========== -->
-<div class="section">
-  <h2>10. Calendrier Économique du Jour (14 mai 2026)</h2>
-  <table>
-    <tr>
-      <th>Heure (BST)</th>
-      <th>Zone</th>
-      <th>Indicateur</th>
-      <th>Consensus / Actuel</th>
-      <th>Importance</th>
-    </tr>
-    <tr>
-      <td>07:00</td>
-      <td>Allemagne</td>
-      <td>Prix de gros — avril (YoY)</td>
-      <td class="nd">Consensus n/d</td>
-      <td><span class="tag tag-med">Moyenne</span></td>
-    </tr>
-    <tr>
-      <td>08:00</td>
-      <td>France</td>
-      <td>CPI final — avril</td>
-      <td class="nd">Consensus n/d</td>
-      <td><span class="tag tag-med">Moyenne</span></td>
-    </tr>
-    <tr>
-      <td>10:00</td>
-      <td>Zone euro</td>
-      <td>PIB flash Q1 2026 (QoQ / YoY)</td>
-      <td>+0,1 % QoQ / +0,8 % YoY (actuel conforme)</td>
-      <td><span class="tag tag-high">Haute</span></td>
-    </tr>
-    <tr>
-      <td>10:00</td>
-      <td>Zone euro</td>
-      <td>Production industrielle — mars (MoM / YoY)</td>
-      <td>+0,2 % MoM / &#8722;2,1 % YoY (actuel conforme)</td>
-      <td><span class="tag tag-med">Moyenne</span></td>
-    </tr>
-    <tr>
-      <td>13:30</td>
-      <td>US</td>
-      <td>Ventes au détail — avril (MoM)</td>
-      <td>Cons. +0,5 % / Actuel : +0,5 % (ex-autos +0,7 %)</td>
-      <td><span class="tag tag-high">Haute</span></td>
-    </tr>
-    <tr>
-      <td>13:30</td>
-      <td>US</td>
-      <td>Inscriptions chômage hebdomadaires</td>
-      <td class="nd">Consensus n/d</td>
-      <td><span class="tag tag-med">Moyenne</span></td>
-    </tr>
-    <tr>
-      <td>15:00</td>
-      <td>US</td>
-      <td>Fed de Philadelphie — indice des affaires mai</td>
-      <td class="nd">Consensus n/d</td>
-      <td><span class="tag tag-med">Moyenne</span></td>
-    </tr>
-  </table>
-  <div class="commentary" style="margin-top:9px;">
-    <p>Publication clé du jour : PIB zone euro Q1 à 10h00 BST. La confirmation du +0,1 % QoQ (stagnation) renforcera le scénario stagflationniste et pourrait peser sur l'EUR. Les ventes au détail US (+0,5 %) ont été publiées ce matin, confirmant la résilience du consommateur et réduisant la probabilité d'une baisse Fed à court terme.</p>
-  </div>
+<!-- ═══════════════════════════════ 10. ECONOMIC CALENDAR ═══════════════════════════════ -->
+<h2>10. Economic Calendar — 14 May 2026</h2>
+<div class="section-card">
+<div class="label" style="margin-bottom:8px;">Source: Investing.com, Kiplinger, BLS. Times in London (BST = ET + 5h).</div>
+<table>
+  <thead><tr><th>London Time</th><th>Region</th><th>Indicator</th><th>Consensus</th><th>Previous</th><th>Importance</th></tr></thead>
+  <tbody>
+    <tr><td>13:30</td><td>US</td><td>Retail Sales (Apr)</td><td>+0.5%</td><td>+1.7%</td><td><span class="neg">HIGH</span></td></tr>
+    <tr><td>13:30</td><td>US</td><td>Retail Control (core)</td><td>+0.4%</td><td>+0.7%</td><td><span class="neg">HIGH</span></td></tr>
+    <tr><td>13:30</td><td>US</td><td>Initial Jobless Claims</td><td>205K</td><td>200K</td><td><span class="warn">MEDIUM</span></td></tr>
+    <tr><td>13:30</td><td>US</td><td>Continuing Claims</td><td>1,790K</td><td>1,766K</td><td><span class="warn">MEDIUM</span></td></tr>
+    <tr><td>13:30</td><td>US</td><td>Import Price Index (Apr)</td><td>+1.0%</td><td>+0.8%</td><td><span class="warn">MEDIUM</span></td></tr>
+    <tr><td>14:00</td><td>US</td><td>Business Inventories (Mar)</td><td>+0.8%</td><td>+0.4%</td><td>LOW</td></tr>
+    <tr><td>TBC</td><td>ECB</td><td>ECB speaker(s) / guidance</td><td>—</td><td>—</td><td><span class="warn">MEDIUM — watch for June hike signals</span></td></tr>
+    <tr><td>TBC</td><td>EU/UK</td><td>Eurozone / UK specific releases</td><td><span class="na">n/a</span></td><td><span class="na">n/a</span></td><td><span class="na">n/a — not confirmed in sources</span></td></tr>
+  </tbody>
+</table>
+<div class="bullet"><strong>Watch:</strong> Retail Sales is the key print. A miss (below +0.5%) after hot PPI could send mixed signals — weak consumer despite inflation. A beat reinforces stagflation risk and pushes Fed cuts even further out. Both scenarios likely lift the dollar.</div>
 </div>
 
-<!-- ========== 11. EVENEMENTS CORPORATE ========== -->
-<div class="section">
-  <h2>11. Événements &amp; Publications Corporate</h2>
-  <table>
-    <tr>
-      <th>Société</th>
-      <th>Place</th>
-      <th>Événement</th>
-      <th>Heure</th>
-    </tr>
-    <tr>
-      <td>Cisco Systems (CSCO)</td>
-      <td>Nasdaq US</td>
-      <td>Call résultats Q3 FY2026 — suivi post-publication mercredi soir</td>
-      <td>Matin US (14:00-15:00 BST)</td>
-    </tr>
-    <tr>
-      <td>Volatus Aerospace (FLT)</td>
-      <td>TSX / OTCQB</td>
-      <td>Publication résultats Q1 2026 après clôture + call 18h00 ET</td>
-      <td>Après clôture (23:00 BST)</td>
-    </tr>
-  </table>
-  <div class="commentary" style="margin-top:9px;">
-    <p>Agenda corporate européen allégé ce jeudi. L'attention se concentre sur les retombées du sommet Trump-Xi et les publications macro zone euro. Aucun résultat de grande capitalisation européenne n'est attendu aujourd'hui. Saison des résultats Q1 zone euro largement terminée.</p>
-  </div>
+<!-- ═══════════════════════════════ 11. CORPORATE EVENTS ═══════════════════════════════ -->
+<h2>11. Corporate Events &amp; Earnings — 14 May 2026</h2>
+<div class="section-card">
+<div class="label" style="margin-bottom:8px;">Source: EarningsWhispers, MarketScreener, TipRanks. 173 earnings announcements scheduled today.</div>
+<table>
+  <thead><tr><th>Company</th><th>Ticker</th><th>Event</th><th>Region</th><th>Note</th></tr></thead>
+  <tbody>
+    <tr><td>Cisco Systems</td><td>CSCO</td><td>Q3 FY26 — already reported after-hours May 13</td><td>US</td><td>+15% pre-market effect; AI supercycle narrative</td></tr>
+    <tr><td>Applied Materials</td><td>AMAT</td><td>Q2 FY26 earnings</td><td>US</td><td>Key read on semiconductor capex cycle; watch guidance</td></tr>
+    <tr><td>Klarna Group</td><td>KLAR</td><td>Q1 2026 results — already reported</td><td>US/SE</td><td>+16%; strong AI-powered fintech beat</td></tr>
+    <tr><td>Doximity</td><td>DOCS</td><td>Q4 FY26 — already reported</td><td>US</td><td>-26%; revenue miss + weak guidance</td></tr>
+    <tr><td>Bayer AG</td><td>BAYN.DE</td><td>Q1 2026 results</td><td>DE</td><td>Crop science and pharma watch; litigation overhangs persist</td></tr>
+    <tr><td>Deutsche Telekom</td><td>DTE.DE</td><td>Q1 2026 results</td><td>DE</td><td>T-Mobile US contribution key; watch EBITDA guidance</td></tr>
+    <tr><td>Vodafone Group</td><td>VOD.L</td><td>Full-year / Q4 trading update</td><td>UK</td><td>Watch free cash flow and dividend confirmation post-portfolio disposals</td></tr>
+    <tr><td>Allianz SE</td><td>ALV.DE</td><td>Q1 2026 results</td><td>DE</td><td>Insurance P&amp;C margins; exposure to Iran/energy risk</td></tr>
+    <tr><td>Siemens AG</td><td>SIE.DE</td><td>Q2 FY26 results</td><td>DE</td><td>Industrial orders and digital business; watch grid/energy automation</td></tr>
+    <tr><td>SoftBank Group</td><td>9984.T</td><td>FY25 full-year results</td><td>JP</td><td>Vision Fund performance and AI portfolio marks key</td></tr>
+  </tbody>
+</table>
 </div>
 
-<!-- ========== 12. ACTIONS A SUIVRE ========== -->
-<div class="section">
-  <h2>12. Actions à Suivre</h2>
-
-  <div class="watch-item">
-    <div class="watch-name">Nvidia (NVDA) — US</div>
-    <div class="watch-reason">Clearance US pour vente H200 à Alibaba, Tencent, ByteDance, JD.com. Réouverture du marché chinois IA. Pré-marché +3-4 %. Potentiel de rerating du secteur semi.</div>
-    <div class="watch-direction positive">Haussier fort</div>
-  </div>
-
-  <div class="watch-item">
-    <div class="watch-name">Cisco (CSCO) — Nasdaq</div>
-    <div class="watch-reason">Q3 FY2026 : CA +12 % YoY, guidance supérieur consensus, 4 000 suppressions pour pivot IA. After-hours +16 %. Target Morgan Stanley relevé à 120 $.</div>
-    <div class="watch-direction positive">Haussier fort</div>
-  </div>
-
-  <div class="watch-item">
-    <div class="watch-name">ASML (ASML.AS) — AEX</div>
-    <div class="watch-reason">Bénéficiaire indirect de la réouverture H200 Chine. Tout regain du cycle semi asiatique = demande lithographie EUV. Catalyseur sectoriel significatif.</div>
-    <div class="watch-direction positive">Haussier modéré</div>
-  </div>
-
-  <div class="watch-item">
-    <div class="watch-name">ArcelorMittal (MT.AS) — AEX</div>
-    <div class="watch-reason">Pricing 1 Md$ 10 ans USD (5,375 %) mercredi. Cuivre à ATH. Deal commercial US-Chine sur matières premières = catalyseur supplémentaire. Secteur metals en focus.</div>
-    <div class="watch-direction positive">Haussier modéré</div>
-  </div>
-
-  <div class="watch-item">
-    <div class="watch-name">d'Amico Int'l Shipping (DIS.MI) — Milan</div>
-    <div class="watch-reason">+84 % YTD sur perturbations des routes maritimes (Iran). Q1 2026 net profit +45,6 % YoY, taux spot tanker +53 %. Valorisation tendue — profit taking possible si détente Iran.</div>
-    <div class="watch-direction neutral">Neutre / Surveiller</div>
-  </div>
-
-  <div class="watch-item">
-    <div class="watch-name">TotalEnergies (TTE.PA) — CAC</div>
-    <div class="watch-reason">Brent à 105,87 $/bbl = flux FCF élevés. Tout accord Iran en marge du sommet = risque baissier soudain sur pétrole. Position asymétrique à surveiller.</div>
-    <div class="watch-direction positive">Haussier (oil élevé)</div>
-  </div>
-
-  <div class="watch-item">
-    <div class="watch-name">Airbus (AIR.PA) — CAC</div>
-    <div class="watch-reason">Sommet Trump-Xi : discussions sur achats US de produits aéronautiques (farm goods, énergie, avions selon Goldman Sachs). Catalyseur commandes potentiel. Pression cost side sur pétrole pour clients aériens.</div>
-    <div class="watch-direction positive">Haussier (deal potentiel)</div>
-  </div>
-
-  <div class="watch-item">
-    <div class="watch-name">BNP Paribas / SocGen — CAC</div>
-    <div class="watch-reason">Confirmation Warsh Fed + Bund à ~3,09 % : environnement de taux favorable aux NII bancaires. Tout signal hawkish Warsh ce jeudi = positif pour banques zone euro via spreads des taux.</div>
-    <div class="watch-direction positive">Haussier taux</div>
-  </div>
+<!-- ═══════════════════════════════ 12. STOCKS TO WATCH ═══════════════════════════════ -->
+<h2>12. Stocks to Watch</h2>
+<div class="section-card">
+<div class="label" style="margin-bottom:8px;">Source: TheStreet, CNBC, TipRanks, CNBC Asia, Yahoo Finance.</div>
+<table>
+  <thead><tr><th>Company</th><th>Ticker</th><th>Sector</th><th>Reason</th><th>Direction</th></tr></thead>
+  <tbody>
+    <tr><td>Cisco Systems</td><td>CSCO</td><td>Tech / Networking</td><td>Q3 FY26 beat; AI order raised to $9B; CEO "networking supercycle"</td><td><span class="pos">STRONG UP +14-15%</span></td></tr>
+    <tr><td>Boeing</td><td>BA</td><td>Aerospace &amp; Defense</td><td>Trump confirms China to buy 200 Boeing jets — direct revenue catalyst</td><td><span class="pos">UP — watch magnitude</span></td></tr>
+    <tr><td>Klarna Group</td><td>KLAR</td><td>Fintech</td><td>Q1 2026 beat; AI-powered credit growth; IPO momentum</td><td><span class="pos">UP +16%</span></td></tr>
+    <tr><td>Nvidia</td><td>NVDA</td><td>Semiconductors / AI</td><td>CEO Jensen Huang at Trump-Xi summit; potential China AI access signal</td><td><span class="pos">UP — watch news flow</span></td></tr>
+    <tr><td>Samsung Electronics</td><td>005930.KS</td><td>Tech / Chips</td><td>+5.46% to record high overnight; AI chip demand + Korea-US trade alignment</td><td><span class="pos">UP — record territory</span></td></tr>
+    <tr><td>Doximity</td><td>DOCS</td><td>Healthcare Tech</td><td>Q4 miss + weak guidance; already -26% after-hours</td><td><span class="neg">DOWN -26%</span></td></tr>
+    <tr><td>Tesla</td><td>TSLA</td><td>EV / Energy</td><td>Elon Musk at Beijing summit; watch China EV market access signals</td><td><span class="pos">Likely UP on China headlines</span></td></tr>
+    <tr><td>Applied Materials</td><td>AMAT</td><td>Semiconductor Equip</td><td>Q2 FY26 earnings today; key read for capex cycle post-CSCO beat</td><td><span class="warn">BINARY — earnings today</span></td></tr>
+    <tr><td>Siemens</td><td>SIE.DE</td><td>Industrial / Energy</td><td>Q2 FY26 results today; grid automation in focus given energy crisis</td><td><span class="warn">BINARY — results today</span></td></tr>
+    <tr><td>Vodafone</td><td>VOD.L</td><td>Telecoms</td><td>Full-year results today; free cash flow and dividend the market test</td><td><span class="warn">BINARY — results today</span></td></tr>
+  </tbody>
+</table>
 </div>
 
-<!-- ========== 13. GROS POINTS MACRO/CORPO/POLITIQUE ========== -->
-<div class="section">
-  <h2>13. Gros Points Macro / Corpo / Politiques</h2>
+<!-- ═══════════════════════════════ 13. MACRO / CORPORATE / POLITICAL ═══════════════════════════════ -->
+<h2>13. Macro / Corporate / Political Highlights</h2>
+<div class="section-card">
 
   <h3>Macro</h3>
-  <div class="commentary">
-    <p><strong>Inflation US accrochée à 3,8 % :</strong> CPI avril au-dessus du consensus (3,7 %). Core +2,8 %. L'énergie (essence +28,4 % YoY) liée au conflit iranien est le principal moteur. Trajectoire difficile vers l'objectif Fed 2 % en 2026.</p>
-    <p><strong>Fed sous Warsh — statu quo forcé :</strong> Taux directeur 3,50-3,75 %. Zéro probabilité de baisse en 2026 ; odds d'une hausse d'ici décembre à 30 % et en progression. Warsh pro-assouplissement mais n'a aucune latitude à court terme.</p>
-    <p><strong>Zone euro en quasi-stagnation :</strong> PIB Q1 +0,1 % QoQ, +0,8 % YoY. Production industrielle mars -2,1 % YoY. ECB face au même dilemme : oil à 105 $, croissance nulle. Prochaine réunion BCE mi-juin : statu quo probable.</p>
-    <p><strong>Consommateur US résilient :</strong> Ventes au détail +0,5 % MoM (ex-autos +0,7 %). Chômage US 4,3 % (données 8 mai). Pas de signal de récession côté demande interne américaine.</p>
-  </div>
+  <div class="bullet">US April PPI +1.4% MoM (+6% YoY) — hottest since March 2022. Energy shock from Iran war is primary driver. Fed funds futures now pricing zero cuts before Q4 2026. Powell has not spoken since the Iran escalation began.</div>
+  <div class="bullet">ECB June hike probability above 80% per market pricing. Bund yield at 3.10% — 15-year high. The ECB faces an energy-driven inflation shock that pre-empts its standard data-dependent framework.</div>
+  <div class="bullet">US April Retail Sales due 13:30 BST today (consensus +0.5%). Key test of whether consumer spending is holding up under energy-inflation squeeze. Prior +1.7% was front-loading ahead of tariff threats.</div>
+  <div class="bullet">Dow Jones touching 50,000 for the first time in pre-market trading on May 14 — symbolic threshold. S&amp;P 500 at record 7,444.25.</div>
 
   <h3>Corporate</h3>
-  <div class="commentary">
-    <p><strong>Cisco — pivot IA confirmé :</strong> CA +12 % YoY, guidance supérieur aux attentes, 4 000 suppressions de postes pour financer le repositionnement vers l'IA, la cybersécurité et le silicium. La vague IA s'étend au-delà du GPU vers les réseaux et l'infrastructure.</p>
-    <p><strong>Nvidia — réouverture marché chinois :</strong> H200 autorisé pour 10 grandes firmes tech chinoises sous conditions strictes. Potentiel de revenus pluriannuels significatif. Bénéficiaires collatéraux : toute la chaîne EDA/équipements (ASML, Lam Research, AMAT).</p>
-    <p><strong>ArcelorMittal — bond USD 10 ans :</strong> 1 Md$ à 5,375 % confirme l'appétit du marché pour les industrials IG bien notés même à taux absolus élevés. Cuivre à ATH renforce les bilans du secteur métaux/mining.</p>
-    <p><strong>Délégation US à Beijing :</strong> Musk (Tesla), Jensen Huang (Nvidia) accompagnent Trump. Probabilité de deals spécifiques (EVs, semi, data centers) en marge du sommet. Catalyseur potentiel pour auto et tech européens.</p>
-  </div>
+  <div class="bullet">Cisco AI orders raised from $5B to $9B expected for FY26; revenue guidance raised to $16.7-16.9B for Q4 vs $15.8B consensus. This is the most significant positive earnings revision in large-cap tech this quarter.</div>
+  <div class="bullet">China agrees to buy 200 Boeing jets per Trump announcement at Beijing summit. Deal represents a partial reversal of aviation trade restrictions from 2025 tariff dispute. Boeing order backlog and revenue visibility materially improved.</div>
+  <div class="bullet">Klarna Q1 2026: strong results; shares +16%. AI-driven credit scoring and collections cited as margin driver. BNPL sector re-rating underway as fintech demonstrates profitability.</div>
+  <div class="bullet">Doximity -26% on earnings miss: a reminder that healthcare SaaS is under pressure. Guides below consensus for Q1 FY27.</div>
 
-  <h3>Politique / Géopolitique</h3>
-  <div class="commentary">
-    <p><strong>Sommet Trump-Xi (14-15 mai) :</strong> Agenda : tariffs, terres rares, semi, Iran, Taiwan, IA. Attente minimale de no-escalade ; idéalement gel des tariffs additionnels et achats de farm goods/énergie/avions US par Pékin. Goldman Sachs anticipe des avancées ciblées, pas de reset global.</p>
-    <p><strong>Avertissement de Xi sur Taiwan :</strong> Ligne rouge clairement tracée. Risque de queue de marché : si Taiwan prend de l'espace dans les déclarations finales, sell-off sur semi/tech et safe-haven bid sur or/CHF/JPY.</p>
-    <p><strong>Conflit iranien — oil >100 $ :</strong> Pas de résolution en vue. Iran demeure le principal facteur de risque haussier sur le Brent. Un accord périphérique Iran pourrait déclencher une correction brutale du pétrole (-5 à -10 $/bbl), négatif pour les intégrées pétrolières, positif pour les aériennes.</p>
-  </div>
+  <h3>Political / Geopolitical</h3>
+  <div class="bullet">Trump-Xi two-day Beijing summit (Day 2 today). Day 1 agreed a "constructive relationship framework" for 3 years. Xi warned that Taiwan mishandling would put the relationship in "great jeopardy." Iran also on the agenda — US-Iran ceasefire fragile.</div>
+  <div class="bullet">Iran conflict: Strait of Hormuz throughput down ~6 million bpd in Q1 2026 per IEA. Saudi output at lowest since 1990. Brent remains elevated at $107/bbl despite recent pullback from $126 peak (April 30).</div>
+  <div class="bullet">Nvidia and Apple CEOs at Beijing summit signals potential easing of AI chip export restrictions. Any signal of Nvidia H20/H100 access for China would be major positive for NVDA and broader semiconductor sector.</div>
+
 </div>
 
-<!-- ========== 14. KEY THEMES ========== -->
-<div class="section">
-  <h2>14. Key Themes — Top 5 par Horizon</h2>
-  <div class="three-col">
-
-    <div class="subcard">
-      <h3>Top 5 du Jour</h3>
-      <div class="theme-item">
-        <div class="theme-title">1. Sommet Trump-Xi Jour 1</div>
-        <div class="theme-desc">Toute avancée tarifaire ou sur les terres rares = fort risk-on indices et crédit EUR. Tout incident Taiwan = retournement violent.</div>
-      </div>
-      <div class="theme-item">
-        <div class="theme-title">2. Nvidia H200 — Réouverture Chine</div>
-        <div class="theme-desc">Clearance pour 10 firmes chinoises relance le cycle de revenus et rerate le secteur semi global, y compris ASML en Europe.</div>
-      </div>
-      <div class="theme-item">
-        <div class="theme-title">3. CPI US 3,8 % — Fed en impasse</div>
-        <div class="theme-desc">Inflation au-dessus consensus réduit les espoirs de baisse. Odds de hausse en décembre à 30 %. Pression sur les durations longues.</div>
-      </div>
-      <div class="theme-item">
-        <div class="theme-title">4. Cisco post-earnings +16 %</div>
-        <div class="theme-desc">La vague IA s'étend aux infrastructures réseau — signal que le CapEx IA bénéficie à un spectre plus large de valeurs tech/industrials.</div>
-      </div>
-      <div class="theme-item">
-        <div class="theme-title">5. PIB zone euro +0,1 % QoQ</div>
-        <div class="theme-desc">Stagnation à la limite de la récession technique. ECB en position délicate avec l'oil à 105 $ et la croissance quasi-nulle.</div>
-      </div>
-    </div>
-
-    <div class="subcard">
-      <h3>Top 5 de la Semaine</h3>
-      <div class="theme-item">
-        <div class="theme-title">1. Communiqué US-Chine (14-15 mai)</div>
-        <div class="theme-desc">Le texte bilatéral structure le positionnement de fin de semaine. Tout gel de tariffs supplémentaires = rallye en clôture vendredi.</div>
-      </div>
-      <div class="theme-item">
-        <div class="theme-title">2. Kevin Warsh — First move Fed</div>
-        <div class="theme-desc">Première communication post-confirmation attendue. Ton hawkish ou dovish définit la trajectoire obligataire de l'été.</div>
-      </div>
-      <div class="theme-item">
-        <div class="theme-title">3. Ventes détail US +0,5 % confirmé</div>
-        <div class="theme-desc">Consommateur résilient = Fed sans pression recessionniste pour agir. Statu quo long confirmé, compression des espoirs de détente obligataire.</div>
-      </div>
-      <div class="theme-item">
-        <div class="theme-title">4. Réouverture IA Chine (H200)</div>
-        <div class="theme-desc">Deal potentiellement transformateur pour le secteur. Surveillance des contreparties et des conditions imposées par Washington.</div>
-      </div>
-      <div class="theme-item">
-        <div class="theme-title">5. Marché primaire EUR post-ArcelorMittal</div>
-        <div class="theme-desc">La réussite du deal USD teste l'appétit pour un pipeline EUR en industrials/transport/énergie en fin de semaine.</div>
-      </div>
-    </div>
-
-    <div class="subcard">
-      <h3>Top 5 du Mois</h3>
-      <div class="theme-item">
-        <div class="theme-title">1. Reset commercial US-Chine</div>
-        <div class="theme-desc">L'issue du sommet de Beijing structure les chaînes d'approvisionnement mondiales et les valorisations sectorielles pour H2 2026.</div>
-      </div>
-      <div class="theme-item">
-        <div class="theme-title">2. Trajectoire Fed sous Warsh</div>
-        <div class="theme-desc">Odds hausse décembre à 30 % et en hausse. Potentielle correction obligataire et repricing des actifs à longue duration.</div>
-      </div>
-      <div class="theme-item">
-        <div class="theme-title">3. Pétrole >100 $ — Stagflation</div>
-        <div class="theme-desc">Conflit iranien maintient le Brent élevé. Persistance = révisions à la baisse des marges corporates et des objectifs macro euro.</div>
-      </div>
-      <div class="theme-item">
-        <div class="theme-title">4. Zone euro — Stagnation structurelle</div>
-        <div class="theme-desc">PIB Q1 +0,1 % avec industrie en contraction -2,1 % YoY. ECB en juin face au dilemme inflation importée vs croissance nulle.</div>
-      </div>
-      <div class="theme-item">
-        <div class="theme-title">5. Cycle CapEx IA — 2e vague</div>
-        <div class="theme-desc">Cisco + Nvidia + accès Chine = CapEx IA accélère vers l'infrastructure réseau et les data centers mondiaux. Bénéficiaires : ASML, Infineon, STM, équipementiers réseaux.</div>
-      </div>
-    </div>
-
+<!-- ═══════════════════════════════ 14. KEY THEMES ═══════════════════════════════ -->
+<h2>14. Key Themes — Top 5 by Horizon</h2>
+<div class="section-card">
+<div class="col3">
+  <div>
+    <h3>Today's Top 5</h3>
+    <div class="bullet"><strong>Cisco after-hours effect:</strong> +15% will pull tech sector and AI infrastructure names. Watch NVDA, AMD, AMAT sympathy moves.</div>
+    <div class="bullet"><strong>US Retail Sales 13:30 BST:</strong> Key consumer health data. Miss would spark stagflation fears; beat keeps the bull narrative alive.</div>
+    <div class="bullet"><strong>Boeing China order:</strong> 200-jet deal is a single-stock catalyst and an aerospace sector re-rating event. Watch supply chain names (Spirit AeroSystems, Safran, Airbus competitor reaction).</div>
+    <div class="bullet"><strong>Trump-Xi Day 2:</strong> Any Taiwan, AI chip, or tariff headline will move markets instantly. Nvidia and Tesla most leveraged to China access news.</div>
+    <div class="bullet"><strong>Siemens / Bayer / Vodafone results:</strong> Three large European names reporting — will set tone for European equities in the session and test whether European earnings season matches US bullishness.</div>
+  </div>
+  <div>
+    <h3>This Week's Top 5</h3>
+    <div class="bullet"><strong>Trump-Xi Beijing summit (May 13-14):</strong> Most significant geopolitical event of Q2. Outcome will define US-China trade, tech and rare earth narrative for months.</div>
+    <div class="bullet"><strong>US inflation data (CPI Mon, PPI Wed):</strong> Both came in hot. Markets have absorbed but the repricing of the Fed path is ongoing through the week.</div>
+    <div class="bullet"><strong>Cisco Q3 FY26 results:</strong> Raised guidance transforms the AI infrastructure trade; watch for sector-wide re-rating this week.</div>
+    <div class="bullet"><strong>ECB June hike probability rising to 80%+:</strong> Bund yield at 3.10%. Euro credit market re-pricing of issuance cost is underway.</div>
+    <div class="bullet"><strong>Brent crude pullback from $126 to $108:</strong> Iran ceasefire holding tentatively — energy sector de-risking but structural supply damage persists per IEA data.</div>
+  </div>
+  <div>
+    <h3>This Month's Top 5</h3>
+    <div class="bullet"><strong>ECB June meeting (June 4 est.):</strong> First potential hike of the cycle in response to energy-driven inflation. Would be the most significant ECB policy shift since 2022.</div>
+    <div class="bullet"><strong>US-China trade framework implementation:</strong> The May summit has set a 3-year framework; watch for concrete tariff schedules, rare earth supply agreements, and chip access decisions in May-June.</div>
+    <div class="bullet"><strong>Iran ceasefire durability:</strong> Fragile ceasefire is the single biggest macro risk. Any re-escalation would reverse the commodity pullback and hit risk assets hard. Hormuz remains partially restricted.</div>
+    <div class="bullet"><strong>Fed meeting and guidance (next FOMC):</strong> No cuts expected near-term; the question is whether the Fed signals a tightening bias in the face of energy inflation. Watch May and June inflation data.</div>
+    <div class="bullet"><strong>European earnings season (May):</strong> Siemens, Bayer, Deutsche Telekom, Allianz, Vodafone — results this week will test whether European corporates are absorbing energy costs or passing them on via margins.</div>
   </div>
 </div>
-
-<!-- ========== 15. KEY TRENDS ========== -->
-<div class="section">
-  <h2>15. Key Trends à Surveiller</h2>
-  <div class="three-col">
-
-    <div class="subcard">
-      <h3>À 1 Jour</h3>
-      <div class="commentary">
-        <p><strong>Communiqué Trump-Xi :</strong> Résultat binaire — accord tarifaire = rally, incident Taiwan = sell-off. Principale source de volatilité intraday.</p>
-        <p><strong>PIB zone euro Q1 (10h00 BST) :</strong> En-dessous de +0,1 % = risque sell-off EUR et élargissement spreads périphériques. Conforme = sans surprise.</p>
-        <p><strong>Trade IA / semi :</strong> Continuation du trade Nvidia/ASML sur la réouverture H200 Chine. Surveiller la réaction des fabs coréens (Samsung, SK Hynix).</p>
-        <p><strong>Brent et inflation :</strong> Tout spike au-dessus de 107 $ intensifie les craintes stagflationnistes et pèse sur les actifs à duration longue.</p>
-      </div>
-    </div>
-
-    <div class="subcard">
-      <h3>À 1 Semaine</h3>
-      <div class="commentary">
-        <p><strong>Texte final sommet US-Chine :</strong> Calendrier de réduction des tariffs ? Achats de farm goods, LNG et avions ? Structure de supervision IA bilatérale ?</p>
-        <p><strong>Première sortie Warsh :</strong> Discours ou interview attendus. Ton hawkish renforcerait la pression obligataire US et mondiale.</p>
-        <p><strong>PMI flash zone euro (semaine du 18 mai) :</strong> Baromètre clé post-PIB Q1 stagnant. En-dessous de 50 = risque de récession accentué pour Q2.</p>
-        <p><strong>Marché primaire EUR :</strong> Si sommet positif, pipeline IG EUR en industrials/financials/transport possible en deuxième partie de semaine.</p>
-      </div>
-    </div>
-
-    <div class="subcard">
-      <h3>À 1 Mois</h3>
-      <div class="commentary">
-        <p><strong>FOMC juin (premier sous Warsh) :</strong> Statu quo quasi-certain mais le ton guide la trajectoire H2 2026. Odds de hausse décembre à 30 % et progressifs.</p>
-        <p><strong>Réunion BCE juin :</strong> Coincée entre oil >100 $ (inflationniste) et croissance quasi-nulle. Risque d'erreur de communication. Statu quo attendu mais ton crucial.</p>
-        <p><strong>Résolution / escalade Iran :</strong> Tout accord Iran en marge du sommet = choc baissier Brent, positif aériens, négatif intégrées pétrolières.</p>
-        <p><strong>Saison bénéficiaire Q1 zone euro :</strong> Reporting en cours — industrials, financials et shipping en focus. Tendance surprises positives sur NII bancaires.</p>
-      </div>
-    </div>
-
-  </div>
 </div>
 
-<!-- ========== FOOTER ========== -->
+<!-- ═══════════════════════════════ 15. KEY TRENDS ═══════════════════════════════ -->
+<h2>15. Key Trends to Watch</h2>
+<div class="section-card">
+<div class="col3">
+  <div>
+    <h3>1 Day</h3>
+    <div class="bullet">US Retail Sales print at 13:30 BST is the session anchor. Any miss could reprice risk assets that have rallied on trade/earnings optimism despite hot inflation.</div>
+    <div class="bullet">Cisco's +15% pre-market pull for AI infrastructure names. Watch NVDA, AMD, AMAT, Arista Networks for sympathy. European tech (ASML, Infineon) may follow.</div>
+    <div class="bullet">Trump-Xi Day 2 headlines could come at any time. China-sensitive names (Boeing, Nvidia, Tesla, Apple) on hair-trigger. Taiwan headline risk is the tail risk.</div>
+    <div class="bullet">Brent at $107.82 — further Iran ceasefire progress could accelerate the pullback toward $100. Energy sector underperformance risk if this continues.</div>
+  </div>
+  <div>
+    <h3>1 Week</h3>
+    <div class="bullet">US-China summit outcome will set the directional trade framework for the coming weeks. A full framework on tariffs and tech would be risk-on catalyst.</div>
+    <div class="bullet">ECB speaker circuit will amplify or dampen June hike expectations. Bund at 3.10% already prices a hike — any ECB dovish pushback could compress yields sharply.</div>
+    <div class="bullet">European earnings season continues. Germany heavyweights (Siemens, Bayer, Allianz) reporting this week will test DAX's ability to hold 24,000.</div>
+    <div class="bullet">Fed rhetoric watch: no FOMC this week but regional Fed presidents could jawbone. Market wants clarity on whether the Fed sees the PPI shock as transitory.</div>
+  </div>
+  <div>
+    <h3>1 Month</h3>
+    <div class="bullet">ECB June meeting: if the hike materialises, EUR/USD could test 1.20 and European bank stocks re-rate. The first hike in this cycle is a structural shift for euro credit.</div>
+    <div class="bullet">Iran ceasefire sustainability: the IEA data (Hormuz flows -6mbpd) shows underlying supply damage. A return to conflict would send Brent back toward $120-$130 and crush European growth expectations.</div>
+    <div class="bullet">AI infrastructure spending cycle: Cisco's $9B order raise is a data point, not an anomaly. Watch CAPEX announcements from Microsoft (Azure), Google (GCP), Amazon (AWS) in coming weeks for confirmation.</div>
+    <div class="bullet">US-China rare earth access: China controls 60%+ of global rare earth refining. Any deal framework from the Beijing summit addressing supply access would be transformative for defence, EV and chip sectors.</div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
 <div class="footer">
-  <div class="sources-title">Sources Principales Utilisées</div>
+  <strong>Sources:</strong>
   <ul>
-    <li>CNBC — sommet Trump-Xi live, Asia-Pacific markets, Cisco Q3, CPI avril 2026, confirmation Warsh</li>
-    <li>Reuters — Nvidia H200 China clearance, ArcelorMittal bond pricing (GlobeNewsWire)</li>
-    <li>Xinhua English — US markets close 12 mai 2026 (S&amp;P, Dow, Nasdaq)</li>
-    <li>Yahoo Finance / Bloomberg / TheStreet — S&amp;P 500 ATH, Nasdaq close 13 mai</li>
-    <li>Trading Economics — Brent/WTI, EUR/USD, DXY, US 10Y, Germany Bund, or</li>
-    <li>DailyForex — XAU/USD forecast et range 14 mai 2026</li>
-    <li>Benzinga / Meyka — US pre-market futures 14 mai 2026</li>
-    <li>BLS.gov — CPI April 2026 official release</li>
-    <li>Sharecast / Eurostat — Eurozone Q1 GDP flash, Industrial Production mars</li>
-    <li>Al Jazeera — Trump-Xi summit agenda et live updates</li>
-    <li>RISMedia / Yahoo Finance — Kevin Warsh Senate confirmation</li>
-    <li>Canada LNG Group / EIA — Henry Hub natural gas (mise à jour 11 mai 2026)</li>
-    <li>BabyPips — GBP/USD 14 mai 2026</li>
-    <li>Business Upturn — commodités ouverture 14 mai 2026</li>
-    <li>Fortune / OilPrice.com — Brent/WTI 13-14 mai 2026</li>
-    <li>GlobeNewsWire — Volatus Aerospace earnings call</li>
-    <li>InvestorIdeas / Yahoo Finance — inflation et Fed sous Warsh</li>
-    <li>Euronews / Stocktitan — European equities performance mai 2026</li>
+    <li>CNBC: stock-market-today-live-updates, Asia-Pacific markets, Cisco CSCO Q3 earnings, Trump-Xi summit coverage</li>
+    <li>TheStreet: Stock Market Today May 13 and May 14, 2026</li>
+    <li>Yahoo Finance: S&amp;P 500 / Nasdaq / Dow closes May 13 2026; Retail Sales / Jobless Claims calendar</li>
+    <li>RTTNews: European Markets Close May 13 2026</li>
+    <li>TradingEconomics: US 10Y yield, German Bund, commodities data</li>
+    <li>Fortune / OilPriceAPI: Brent $107.82, WTI $101.54 — May 14 2026</li>
+    <li>BusinessUpturn: Asian markets update May 14 2026; commodities open May 14</li>
+    <li>FXEmpire / OANDA MarketPulse: EUR/USD 1.170, GBP/USD 1.351, DXY 98.54</li>
+    <li>EarningsWhispers / TipRanks: earnings calendar May 14 2026</li>
+    <li>Invezz: Hang Seng 26,550 (+0.6%), Shanghai -0.60% to 4,216.97 — May 14 2026</li>
+    <li>GURUFocus: Cisco Q3 FY26 earnings call highlights</li>
+    <li>Schwab Market Update: early gains May 14 — retail sales, Cisco, China trip</li>
+    <li>Investing.com: US macro calendar May 14 2026</li>
+    <li>GlobalCapital / Amundi Research: European bond market 2026 backdrop</li>
+    <li>IEA (via CNBC): Strait of Hormuz throughput data Q1 2026</li>
   </ul>
-  <div class="warning">
-    Données collectées automatiquement entre 06:00 et 07:00 BST le 14 mai 2026 via recherches web en sources ouvertes. Certaines données marquées <em>n/d</em> n'ont pas pu être obtenues de façon fiable et requièrent un accès Bloomberg Terminal, Refinitiv Eikon ou ICE pour confirmation. À vérifier avant toute décision d'investissement ou d'exécution de transaction. Ce document n'est pas un conseil en investissement.
-  </div>
+  <p style="margin-top:10px; color:#f85149; font-weight:600;">Data collected automatically via live web search. Verify all figures before making any investment or trading decision. Spread data (iTraxx, CDX) not available via public search — use Bloomberg or Markit for current levels.</p>
 </div>
 
 </body>
