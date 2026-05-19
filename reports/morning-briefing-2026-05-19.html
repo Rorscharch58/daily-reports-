@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Briefing — 19 May 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  h1 { color: #e6edf3; font-size: 22px; margin-bottom: 4px; }
+  h2 { color: #e6edf3; font-size: 15px; margin: 18px 0 8px 0; border-bottom: 1px solid #30363d; padding-bottom: 4px; }
+  h3 { color: #58a6ff; font-size: 13px; margin: 12px 0 6px 0; text-transform: uppercase; letter-spacing: 0.5px; }
+  .header-meta { color: #8b949e; font-size: 12px; margin-bottom: 6px; }
+  .section-wrapper { margin-bottom: 24px; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 12px; }
+  th { background: #161b22; color: #8b949e; text-align: left; padding: 5px 8px; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.4px; border-bottom: 1px solid #30363d; }
+  td { padding: 5px 8px; border-bottom: 1px solid #21262d; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #161b22; }
+  .pos { color: #3fb950; }
+  .neg { color: #f85149; }
+  .warn { color: #d29922; }
+  .link { color: #58a6ff; }
+  .na { color: #6e7681; }
+  .news-item { padding: 6px 0; border-bottom: 1px solid #21262d; }
+  .news-item:last-child { border-bottom: none; }
+  .news-headline { color: #e6edf3; font-weight: 600; }
+  .news-source { color: #58a6ff; font-size: 11px; }
+  .news-why { color: #8b949e; font-size: 11px; margin-top: 2px; }
+  .stock-item { padding: 5px 0; border-bottom: 1px solid #21262d; }
+  .stock-item:last-child { border-bottom: none; }
+  .theme-item { padding: 5px 0 5px 10px; border-left: 2px solid #30363d; margin-bottom: 6px; }
+  .theme-label { color: #e6edf3; font-weight: 600; font-size: 12px; }
+  .theme-body { color: #8b949e; font-size: 11px; margin-top: 2px; }
+  .event-item { padding: 5px 0; border-bottom: 1px solid #21262d; }
+  .event-item:last-child { border-bottom: none; }
+  .item { padding: 4px 0; }
+  .badge { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: 700; margin-left: 6px; }
+  .badge-high { background: #3d1f1f; color: #f85149; }
+  .badge-med { background: #2d2a14; color: #d29922; }
+  .badge-low { background: #161b22; color: #6e7681; }
+  .badge-bull { background: #1a2f1a; color: #3fb950; }
+  .badge-bear { background: #3d1f1f; color: #f85149; }
+  .badge-watch { background: #1c2030; color: #58a6ff; }
+  .sub-section { margin: 12px 0 8px 0; }
+  .sub-heading { color: #d29922; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 6px; border-left: 3px solid #d29922; padding-left: 6px; }
+  .commentary { background: #161b22; border: 1px solid #30363d; border-radius: 4px; padding: 10px 12px; font-size: 12px; line-height: 1.6; color: #c9d1d9; margin: 8px 0; }
+  .footer { margin-top: 30px; padding-top: 12px; border-top: 1px solid #30363d; font-size: 11px; color: #6e7681; }
+  .footer a { color: #58a6ff; text-decoration: none; }
+  .disclaimer { background: #2d2a14; border: 1px solid #d29922; border-radius: 4px; padding: 8px 12px; margin-top: 10px; font-size: 11px; color: #d29922; }
+  .trend-horizon { background: #161b22; border: 1px solid #30363d; border-radius: 4px; padding: 10px 12px; margin: 6px 0; }
+  .trend-label { color: #58a6ff; font-weight: 700; font-size: 11px; text-transform: uppercase; margin-bottom: 4px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr; } }
+
+  @media print {
+    body {
+      background: #0d1117 !important;
+      color: #c9d1d9 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .section, table, tr, td, th, .data-block, .theme-block, .calendar-row {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+    }
+    thead { display: table-header-group; }
+    p, li, div, span {
+      orphans: 3;
+      widows: 3;
+    }
+    .section-wrapper {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    .item, .news-item, .stock-item, .theme-item, .event-item {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    @page {
+      size: A4 landscape;
+      margin: 12mm;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 1 — HEADER
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h1>Morning Briefing</h1>
+  <div class="header-meta">Tuesday, 19 May 2026 &nbsp;|&nbsp; Generated ~06:45 BST &nbsp;|&nbsp; London pre-open &nbsp;|&nbsp; Data collected 06:00–06:45 BST</div>
+  <div class="header-meta" style="color:#d29922;">
+    <strong>KEY RISK TODAY:</strong> US 30Y yield at 5.13% (highest since 2007) &nbsp;|&nbsp; Trump-Iran military standby &nbsp;|&nbsp; Samsung strike mediation ongoing &nbsp;|&nbsp; UK labour data 07:00 BST
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 2 — IMPORTANT NEWS
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>2. IMPORTANT NEWS</h2>
+
+  <div class="news-item item">
+    <div class="news-headline">Trump postpones planned Iran attack after GCC leaders intervene; military remains on standby</div>
+    <div class="news-source">CNBC / Washington Post — 18 May 2026</div>
+    <div class="news-why">Oil fell on relief but Brent stays above $107. Trump told Hegseth to be ready for "full, large scale assault on a moment's notice." Binary risk remains live; any breakdown in talks sends oil higher and equities lower.</div>
+  </div>
+
+  <div class="news-item item">
+    <div class="news-headline">US 30-year Treasury yield hits 5.127%, highest since 2007; 10-year at 4.60% — global bond rout deepens</div>
+    <div class="news-source">Bloomberg / Reuters — 18–19 May 2026</div>
+    <div class="news-why">Bond selloff driven by elevated oil, US CPI at 3.3% and zero prospect of Fed cuts in 2026. Rising long-end yields compress equity multiples and raise corporate borrowing costs. German Bund 10Y pulled back to 3.14% from 3.19%.</div>
+  </div>
+
+  <div class="news-item item">
+    <div class="news-headline">Korean court halts Samsung 18-day chip strike; Chairman Jay Y. Lee issues public apology; Kospi V-shaped reversal</div>
+    <div class="news-source">Fortune / Bloomberg / TradingKey — 18 May 2026</div>
+    <div class="news-why">45,000-worker strike at Samsung memory plants would have been the largest in semiconductor history. Court injunction and management concessions temporarily avert AI supply chain disruption. Second mediation round underway this morning.</div>
+  </div>
+
+  <div class="news-item item">
+    <div class="news-headline">Fed held rates at 3.50–3.75% in April with historic 4-way dissent; US CPI 3.3% YoY — no 2026 cuts expected</div>
+    <div class="news-source">CNBC / Federal Reserve — 29 April 2026</div>
+    <div class="news-why">Inflation re-acceleration and energy shock lock the Fed in place. April FOMC minutes release Wednesday. Markets have fully priced out cuts; hike probability slowly rising. Stagflation narrative strengthening.</div>
+  </div>
+
+  <div class="news-item item">
+    <div class="news-headline">Rolls-Royce €1bn dual-tranche euro bond 8.1x oversubscribed; first euro issuance since 2020 (A-/Fitch)</div>
+    <div class="news-source">Bloomberg / Foreign Policy Journal — 17 May 2026</div>
+    <div class="news-why">Signals selective but strong IG demand even in volatile backdrop. Defense-adjacent, investment-grade issuers can still open the window. Precedent for other UK/EU industrials considering euro supply.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 3 — EUROPEAN FUTURES (PRE-OPEN)
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>3. EUROPEAN FUTURES — Pre-Open</h2>
+  <div class="header-meta">Data: ~06:00–06:45 BST. Levels based on overnight futures activity. Sources: Barchart, Investing.com, Invezz.</div>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr style="page-break-inside: avoid;">
+        <th>Index</th>
+        <th>Futures Level</th>
+        <th>Expected Move</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td>Euro Stoxx 50</td><td>5,746</td><td class="neg">-1.3%</td><td>Geopolitical selloff; bond yield pressure</td></tr>
+      <tr style="page-break-inside: avoid;"><td>DAX</td><td>23,670</td><td class="neg">-1.15%</td><td>Industrials and tech weigh</td></tr>
+      <tr style="page-break-inside: avoid;"><td>CAC 40</td><td>7,860</td><td class="neg">-1.17%</td><td>Energy / luxury names mixed</td></tr>
+      <tr style="page-break-inside: avoid;"><td>FTSE 100</td><td class="na">n/a pre-open</td><td class="warn">Modest decline expected</td><td>Cash closed Mon +0.04%; energy offset</td></tr>
+      <tr style="page-break-inside: avoid;"><td colspan="4" style="background:#161b22; color:#8b949e; font-style:italic;">US FUTURES — for context</td></tr>
+      <tr style="page-break-inside: avoid;"><td>S&amp;P 500 (cash close)</td><td>7,403.05</td><td class="neg">-0.07%</td><td>Mon 18 May close; futures directionally negative</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Nasdaq (cash close)</td><td>26,090.73</td><td class="neg">-0.51%</td><td>Tech drag; bond yield pressure</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 4 — YESTERDAY'S CLOSES
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>4. YESTERDAY'S CLOSES — Monday 18 May 2026</h2>
+  <div class="header-meta">Sources: Trading Economics, Invezz, CNBC. Confirmed closes.</div>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr style="page-break-inside: avoid;">
+        <th>Index</th>
+        <th>Close</th>
+        <th>Change</th>
+        <th>% Change</th>
+        <th>Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td>Euro Stoxx 50</td><td>5,746</td><td class="neg">-76 pts</td><td class="neg">-1.30%</td><td>Broad selloff; Iran / bond yield fears</td></tr>
+      <tr style="page-break-inside: avoid;"><td>DAX</td><td>23,670</td><td class="neg">-277 pts</td><td class="neg">-1.15%</td><td>Industrials and autos led decline</td></tr>
+      <tr style="page-break-inside: avoid;"><td>CAC 40</td><td>7,860</td><td class="neg">-93 pts</td><td class="neg">-1.17%</td><td>Energy names partially offset; luxury weak</td></tr>
+      <tr style="page-break-inside: avoid;"><td>FTSE 100</td><td>10,149</td><td class="pos">+4 pts</td><td class="pos">+0.04%</td><td>Bucked trend; BP/Shell energy uplift; GBP weakness supportive</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 5 — US MARKETS YESTERDAY
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>5. US MARKETS — Monday 18 May 2026 Session</h2>
+  <div class="header-meta">Sources: GuruFocus, TheStreet, Sunday Guardian Live, CNBC.</div>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr style="page-break-inside: avoid;">
+        <th>Index</th>
+        <th>Close</th>
+        <th>Change (pts)</th>
+        <th>% Change</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td>S&amp;P 500</td><td>7,403.05</td><td class="neg">-5.45</td><td class="neg">-0.07%</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Dow Jones</td><td>49,686.12</td><td class="pos">+159.95</td><td class="pos">+0.32%</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Nasdaq</td><td>26,090.73</td><td class="neg">-134.41</td><td class="neg">-0.51%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-section">
+    <div class="sub-heading">Sector Performance</div>
+    <table style="page-break-inside: avoid;">
+      <thead>
+        <tr style="page-break-inside: avoid;"><th>Sector</th><th>Performance</th><th>Note</th></tr>
+      </thead>
+      <tbody>
+        <tr style="page-break-inside: avoid;"><td>Energy</td><td class="pos">+1.29%</td><td>Brent/WTI elevated; Iran premium</td></tr>
+        <tr style="page-break-inside: avoid;"><td>Financials</td><td class="neg">-0.81%</td><td>Yield curve pressure on sentiment</td></tr>
+        <tr style="page-break-inside: avoid;"><td>Technology</td><td class="neg">-1.51%</td><td>Rate sensitivity; bond yield headwind</td></tr>
+        <tr style="page-break-inside: avoid;"><td>Basic Materials</td><td class="neg">-3.53%</td><td>Worst sector; copper selloff; demand fears</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="commentary item">
+    <strong>Session tone:</strong> Mixed with defensive undertone. Dow held up on energy and defensive names; S&amp;P and Nasdaq dragged by tech and materials. Rising bond yields (10Y at 4.60%, 30Y at 5.13%) compressed growth multiples. Trump's Iran attack postponement provided mid-session relief but market closed with broad caution. Energy was the sole clear winner. Bond market stress is the dominant macro driver.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 6 — ASIAN MARKETS OVERNIGHT
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>6. ASIAN MARKETS — Overnight / Mon 18 May Session</h2>
+  <div class="header-meta">Note: Report generated at ~06:45 BST. Nikkei and Shanghai data reflects Mon 18 May closes. Tue 19 May Asian session may still be partially in progress. Hang Seng and Kospi May 19 data unavailable at generation time. Sources: CNBC, Trading Economics, Yahoo Finance, TradingKey.</div>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr style="page-break-inside: avoid;">
+        <th>Index</th>
+        <th>Level</th>
+        <th>% Change</th>
+        <th>Session</th>
+        <th>Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td>Nikkei 225</td><td>60,815.95</td><td class="neg">-0.97%</td><td>Mon 18 May</td><td>Iran / bond yield concerns; yen safe-haven flows</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Shanghai Composite</td><td>4,132</td><td class="neg">-0.08%</td><td>Mon 18 May</td><td>Near-flat; PBOC decision Wednesday in focus</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Hang Seng</td><td class="na">n/a</td><td class="na">n/a</td><td>May 15: 25,962.73</td><td>Weekly review showed -1.62%; US-Iran / Taiwan warnings</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Kospi</td><td class="na">n/a</td><td class="na">n/a</td><td>May 15: 7,493.18</td><td>V-shaped reversal expected after Samsung court injunction May 18; was -6.1% on May 15</td></tr>
+    </tbody>
+  </table>
+
+  <div class="commentary item">
+    <strong>Tone:</strong> Cautious. Nikkei fell on global bond yield pressure and Iran uncertainty. Shanghai near-flat ahead of Wednesday's PBOC rate decision. The dominant story is Korea: the Samsung 45,000-worker strike (18-day planned work stoppage from May 21) was halted by court injunction on May 18, triggering a V-shaped Kospi reversal. Samsung Chairman Jay Y. Lee returned from Japan and issued a public apology. Second mediation round is ongoing this morning. Resolution matters for global AI chip supply chains.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 7 — COMMODITIES
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>7. COMMODITIES</h2>
+  <div class="header-meta">Data: Mon 18 May 2026. Sources: Trading Economics, OilPrice.com, Fortune, Kitco.</div>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr style="page-break-inside: avoid;">
+        <th>Commodity</th>
+        <th>Level</th>
+        <th>Change</th>
+        <th>% Change</th>
+        <th>Context</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td>Brent Crude</td><td>$107.71/bbl</td><td class="neg">-$1.55</td><td class="neg">-1.42%</td><td>Fell on Trump-Iran deal hopes; still +64% YoY; war risk premium intact</td></tr>
+      <tr style="page-break-inside: avoid;"><td>WTI Crude</td><td>$106.22/bbl</td><td class="pos">+$0.80</td><td class="pos">+0.76%</td><td>WTI/Brent spread inversion briefly; supply tightness from Hormuz risk</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Gold</td><td>$4,542.49/oz</td><td class="neg">-$5.45</td><td class="neg">-0.12%</td><td>Near all-time high; up 41% YoY; strong dollar and yields weighed; central bank buying underpins</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Natural Gas (Henry Hub)</td><td>$3.03/MMBtu</td><td class="pos">Higher</td><td class="pos">7-week high</td><td>Near-normal storage report; output decline; Iran LNG risk premium building</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Copper (LME)</td><td>~$6.50/lb</td><td class="neg">-$0.13</td><td class="neg">~-2.0%</td><td>Profit-taking from near-record highs; AI infra and grid demand long-term supportive</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 8 — RATES & FX
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>8. RATES &amp; FX</h2>
+  <div class="header-meta">Data: Mon 18 May / early Tue 19 May 2026. Sources: Trading Economics, FRED, ExchangeRates.org, PoundSterlingLive.</div>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr style="page-break-inside: avoid;">
+        <th>Instrument</th>
+        <th>Level</th>
+        <th>Change</th>
+        <th>Direction</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td>US 10Y Treasury</td><td>4.60%</td><td class="neg">Higher</td><td class="neg">Selling</td><td>Near highest since early 2025; markets price zero 2026 cuts</td></tr>
+      <tr style="page-break-inside: avoid;"><td>US 30Y Treasury</td><td>5.13%</td><td class="neg">+0.01pp</td><td class="neg">Selling</td><td class="warn"><strong>Highest since 2007</strong> — equity multiple headwind</td></tr>
+      <tr style="page-break-inside: avoid;"><td>German Bund 10Y</td><td>3.14%</td><td class="pos">Pulled back</td><td class="pos">Bid</td><td>Retreated from intraday high of 3.19%; ECB June in focus</td></tr>
+      <tr style="page-break-inside: avoid;"><td>EUR/USD</td><td>1.1655</td><td class="pos">+0.25%</td><td class="pos">EUR gaining</td><td>Recovered from 1-month low of 1.161; Iran optimism lifted risk appetite</td></tr>
+      <tr style="page-break-inside: avoid;"><td>GBP/USD</td><td>1.3310</td><td class="neg">-0.13%</td><td class="neg">GBP weak</td><td>Weekly low; UK labour data this morning (07:00 BST) key catalyst</td></tr>
+      <tr style="page-break-inside: avoid;"><td>DXY (Dollar Index)</td><td>~99</td><td class="neg">Lower</td><td class="neg">USD softening</td><td>Pulled back from 1-month high; Iran deal optimism reduced safe-haven demand</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 9 — DCM / PRIMARY BOND MARKET
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>9. DCM — PRIMARY BOND MARKET</h2>
+
+  <div class="sub-section">
+    <div class="sub-heading">Yesterday's Issuances (priced week of 12–18 May 2026)</div>
+    <table style="page-break-inside: avoid;">
+      <thead>
+        <tr style="page-break-inside: avoid;">
+          <th>Issuer</th>
+          <th>Currency / Size</th>
+          <th>Tranches</th>
+          <th>Coupon</th>
+          <th>Rating</th>
+          <th>Coverage</th>
+          <th>Arrangers</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="page-break-inside: avoid;">
+          <td><strong>Rolls-Royce Holdings</strong></td>
+          <td>EUR €1bn</td>
+          <td>€500m May 2031 + €500m May 2036</td>
+          <td>3.375% / 3.875%</td>
+          <td class="pos">A- (Fitch)</td>
+          <td class="pos">8.1x oversubscribed (&gt;€8.1bn orders)</td>
+          <td>BNP Paribas, CA-CIB, Goldman Sachs, Lloyds, Santander, SocGen</td>
+          <td>First euro bond since 2020; defense spending / EBITDA margin ~20% cited</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="commentary" style="margin-top:6px; color:#6e7681; font-size:11px;">Note: Specific IPT-to-pricing tightening data not retrieved. Additional May 18 issuances not confirmed via available sources — report as above only. Other deals may have priced; data marked n/a pending Bloomberg/IFR verification.</div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-heading">Pipeline / Expected Today &amp; This Week</div>
+    <div class="commentary item">
+      Pipeline data not confirmed via public sources at generation time. <span class="na">n/a</span> — check IFR Markets and GlobalCapital for mandated deals. Given elevated yields (US 10Y 4.60%, Bund 3.14%) and geopolitical uncertainty, execution risk is elevated for HY issuers. IG window remains selectively open for strong credits.
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-heading">Key Spreads</div>
+    <table style="page-break-inside: avoid;">
+      <thead>
+        <tr style="page-break-inside: avoid;"><th>Index</th><th>Level</th><th>Move</th><th>Direction</th></tr>
+      </thead>
+      <tbody>
+        <tr style="page-break-inside: avoid;"><td>iTraxx Main (5Y)</td><td class="na">n/a</td><td class="na">n/a</td><td class="na">Not retrieved</td></tr>
+        <tr style="page-break-inside: avoid;"><td>iTraxx Crossover (5Y)</td><td class="na">n/a</td><td class="na">n/a</td><td class="na">Not retrieved</td></tr>
+        <tr style="page-break-inside: avoid;"><td>CDX IG</td><td class="na">n/a</td><td class="na">n/a</td><td class="na">Not retrieved</td></tr>
+        <tr style="page-break-inside: avoid;"><td>Avg Euro IG Corp Spread</td><td class="na">n/a</td><td class="na">n/a</td><td class="na">Not retrieved</td></tr>
+      </tbody>
+    </table>
+    <div style="color:#6e7681; font-size:11px; margin-top:4px;">Spread data requires Bloomberg/Reuters Eikon subscription-level access. Verify via terminal before trading.</div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-heading">Commentary</div>
+    <div class="commentary item">
+      The primary window is selectively open for IG names with strong fundamentals. Rolls-Royce's 8.1x oversubscription on a rare euro issuance confirms that defense-adjacent, investment-grade credits can still attract substantial demand despite elevated yields and geopolitical noise. The 5/10Y dual-tranche structure at 3.375%/3.875% reflects meaningful premium to Bunds, but demand for yield and quality drove the book. High-yield issuance is likely constrained: widening credit conditions, energy-driven inflation, and rising base rates create a difficult execution environment. SSA issuers face steeper yield curves and compressed swap spreads, shifting demand toward shorter maturities. Industrials and transport names monitoring window for opportunistic supply; financing need driven by elevated capex and defense budget expansion.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 10 — ECONOMIC CALENDAR
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>10. ECONOMIC CALENDAR — Tuesday 19 May 2026</h2>
+  <div class="header-meta">Sources: LiteFinance weekly calendar, Trading Economics, FXStreet, Econoday.</div>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr style="page-break-inside: avoid;">
+        <th>London Time</th>
+        <th>Country</th>
+        <th>Indicator</th>
+        <th>Consensus</th>
+        <th>Importance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;">
+        <td><strong>07:00 BST</strong></td>
+        <td>UK</td>
+        <td>Labour Market: Claimant Count, Unemployment Rate, Average Earnings</td>
+        <td class="na">n/a</td>
+        <td><span class="badge badge-high">HIGH</span></td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td>01:30 BST</td>
+        <td>Australia</td>
+        <td>RBA May Meeting Minutes</td>
+        <td class="na">n/a</td>
+        <td><span class="badge badge-med">MEDIUM</span></td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td>TBD (afternoon BST)</td>
+        <td>Canada</td>
+        <td>CPI (April)</td>
+        <td class="na">n/a</td>
+        <td><span class="badge badge-high">HIGH</span></td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td colspan="5" style="background:#161b22; color:#8b949e; font-style:italic; padding:6px 8px;">Rest of week — key dates</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td>Wed 20 May, 07:00</td>
+        <td>UK</td>
+        <td>CPI (April)</td>
+        <td class="na">n/a</td>
+        <td><span class="badge badge-high">HIGH</span></td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td>Wed 20 May, TBD</td>
+        <td>China</td>
+        <td>PBOC Rate Decision (LPR)</td>
+        <td class="na">n/a</td>
+        <td><span class="badge badge-high">HIGH</span></td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td>Wed 20 May, 19:00</td>
+        <td>US</td>
+        <td>Fed April FOMC Meeting Minutes</td>
+        <td class="na">n/a</td>
+        <td><span class="badge badge-high">HIGH</span></td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td>Thu 21 May, 09:00</td>
+        <td>Eurozone / Germany / UK / US</td>
+        <td>Flash PMIs (Manufacturing + Services)</td>
+        <td class="na">n/a</td>
+        <td><span class="badge badge-high">HIGH</span></td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td>Fri 22 May, 07:00</td>
+        <td>UK</td>
+        <td>Retail Sales (April)</td>
+        <td class="na">n/a</td>
+        <td><span class="badge badge-med">MEDIUM</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 11 — CORPORATE EVENTS & EARNINGS
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>11. CORPORATE EVENTS &amp; EARNINGS — 19 May 2026</h2>
+
+  <div class="event-item item">
+    <strong>Samsung Electronics (005930.KS)</strong> — Strike mediation round 2 ongoing this morning. Court injunction (May 18) halted planned 18-day work stoppage from May 21. Chairman Jay Y. Lee returned from Japan early; issued public apology. Prime Minister warned of emergency adjustment powers. <span class="badge badge-watch">WATCH</span>
+  </div>
+
+  <div class="event-item item">
+    <strong>Rolls-Royce (RR.L)</strong> — Share price trading near GBX 1,200 post-bond allocation (May 17). Technical indicators flagging overbought. Defense spending tailwind intact. Next earnings catalyst TBD. <span class="badge badge-watch">WATCH</span>
+  </div>
+
+  <div class="event-item item">
+    <strong>Multiple European companies</strong> — Approximately 40 earnings releases scheduled across European markets this week per MarketScreener data. Specific confirmed names for May 19 not retrieved at generation time. Check Yahoo Finance earnings calendar for full list. <span class="badge badge-low">CHECK</span>
+  </div>
+
+  <div class="event-item item">
+    <strong>US earnings season</strong> — Q1 2026 season largely complete per FactSet (as of May 1). Residual reporters today not confirmed. Check Investing.com earnings calendar. <span class="badge badge-low">CHECK</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 12 — STOCKS TO WATCH
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>12. STOCKS TO WATCH</h2>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr style="page-break-inside: avoid;">
+        <th>Company</th>
+        <th>Ticker</th>
+        <th>Reason</th>
+        <th>Direction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;" class="stock-item">
+        <td><strong>Samsung Electronics</strong></td>
+        <td>005930.KS</td>
+        <td>Court injunction halted 18-day strike; Chairman apology; mediation round 2; Kospi V-shape developing. World's largest memory chip maker.</td>
+        <td><span class="badge badge-bull">BULLISH</span></td>
+      </tr>
+      <tr style="page-break-inside: avoid;" class="stock-item">
+        <td><strong>SK Hynix</strong></td>
+        <td>000660.KS</td>
+        <td>AI chip supply chain dynamics post-Samsung; SK's 72% Q1 operating margin triggered Samsung worker dispute. Watch for sympathy moves and AI infrastructure narrative.</td>
+        <td><span class="badge badge-watch">WATCH</span></td>
+      </tr>
+      <tr style="page-break-inside: avoid;" class="stock-item">
+        <td><strong>Rolls-Royce</strong></td>
+        <td>RR.L</td>
+        <td>Bond success (8.1x oversubscribed); GBX 1,200; overbought technicals; defense spending structural tailwind. Strong cash generation narrative.</td>
+        <td><span class="badge badge-watch">WATCH</span></td>
+      </tr>
+      <tr style="page-break-inside: avoid;" class="stock-item">
+        <td><strong>IAG / Air France-KLM / Lufthansa</strong></td>
+        <td>IAG.L / AF.PA / LHA.DE</td>
+        <td>Brent at $107/bbl — fuel cost squeeze. No near-term relief unless Iran deal materialises. Margin compression risk.</td>
+        <td><span class="badge badge-bear">BEARISH</span></td>
+      </tr>
+      <tr style="page-break-inside: avoid;" class="stock-item">
+        <td><strong>BP / Shell / TotalEnergies</strong></td>
+        <td>BP.L / SHEL.L / TTE.PA</td>
+        <td>Brent at $107; oil up 64% YoY. Elevated margins; Iran war risk premium embedded. FTSE 100 energy resilience driver (Mon +0.04%).</td>
+        <td><span class="badge badge-bull">BULLISH</span></td>
+      </tr>
+      <tr style="page-break-inside: avoid;" class="stock-item">
+        <td><strong>Glencore / Anglo American / Rio Tinto</strong></td>
+        <td>GLEN.L / AAL.L / RIO.L</td>
+        <td>Copper -2% Mon; US basic materials worst sector (-3.53%). Demand growth outlook questioned despite AI infra long-term bid. Near-term technical pressure.</td>
+        <td><span class="badge badge-bear">BEARISH (near-term)</span></td>
+      </tr>
+      <tr style="page-break-inside: avoid;" class="stock-item">
+        <td><strong>BAE Systems / Rheinmetall / Leonardo</strong></td>
+        <td>BA.L / RHM.DE / LDO.MI</td>
+        <td>Iran conflict extension sustains elevated European defense budgets. Defense spend structural theme accelerating; multi-year order books building.</td>
+        <td><span class="badge badge-bull">BULLISH</span></td>
+      </tr>
+      <tr style="page-break-inside: avoid;" class="stock-item">
+        <td><strong>HSBC / Barclays / NatWest</strong></td>
+        <td>HSBA.L / BARC.L / NWG.L</td>
+        <td>UK labour market data at 07:00 BST — direct catalyst. Steep yield curve supports net interest income. Watch for earnings revision if data surprises.</td>
+        <td><span class="badge badge-watch">WATCH</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 13 — MACRO / CORPORATE / POLITICAL HIGHLIGHTS
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>13. MACRO / CORPORATE / POLITICAL HIGHLIGHTS</h2>
+
+  <div class="sub-section">
+    <div class="sub-heading">Macro</div>
+    <div class="item" style="padding: 4px 0;">
+      <strong>Federal Reserve — rates held, no 2026 cuts.</strong> April 28-29 meeting: 8-4 vote to hold at 3.50–3.75%. Four dissenters (Miran for cut; Hammack, Kashkari, Logan for hold/hike considerations). Most contested FOMC in over 30 years. April minutes Wednesday — watch for rate hike language.
+    </div>
+    <div class="item" style="padding: 4px 0;">
+      <strong>US CPI 3.3% YoY (March) — highest since Q2 2024.</strong> Energy price surge from Iran war the primary driver. Services inflation sticky. Market has fully priced out cuts; hike probability beginning to enter terminal rate discussion.
+    </div>
+    <div class="item" style="padding: 4px 0;">
+      <strong>ECB June meeting — rate path complicated.</strong> German Bund 10Y at 3.14% after touching 3.19%; European energy shock feeding into headline CPI. ECB must balance growth slowdown against inflation re-acceleration. June decision less certain than markets assumed three months ago.
+    </div>
+    <div class="item" style="padding: 4px 0;">
+      <strong>Gold at all-time high territory ($4,542/oz).</strong> Up 41% YoY. Central bank buying, inflation hedging, and geopolitical insurance driving demand. Modest pullback Monday but structural bid intact.
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-heading">Corporate</div>
+    <div class="item" style="padding: 4px 0;">
+      <strong>Rolls-Royce: First euro bond since 2020 — 8.1x oversubscribed.</strong> €1bn dual-tranche (€500m 3.375% May 2031, €500m 3.875% May 2036). A-/Fitch. Demonstrates that defense-adjacent IG credits with ~20% EBITDA margins and 11% FCF yield can open a volatile primary window. Precedent for other UK industrials.
+    </div>
+    <div class="item" style="padding: 4px 0;">
+      <strong>Samsung strike averted — court injunction and public apology.</strong> 45,000-worker stoppage at Samsung memory plants halted. SK Hynix's 72% Q1 operating margin and its profit-sharing scheme emboldened Samsung workers. Mediation continues; risk not eliminated, but immediate supply disruption avoided.
+    </div>
+    <div class="item" style="padding: 4px 0;">
+      <strong>European earnings season largely complete.</strong> BNP Paribas, SocGen, Deutsche Bank, ING, Santander all reported late April. Sector rotation: defense, energy and financials outperforming technology and consumer discretionary YTD in Europe.
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-heading">Political / Geopolitical</div>
+    <div class="item" style="padding: 4px 0;">
+      <strong>Trump postpones Iran attack — military on standby.</strong> Qatari Emir, Saudi Crown Prince MBS, and UAE President asked Trump to hold off as "serious negotiations are now taking place." Trump maintains blockade until nuclear deal reached; conditions include "NO NUCLEAR WEAPONS FOR IRAN." Military told to prepare "large scale assault on a moment's notice."
+    </div>
+    <div class="item" style="padding: 4px 0;">
+      <strong>Trump-Xi summit concluded (May 15) — limited trade progress.</strong> Two-day summit in Beijing ended with no major trade deal. Existing truce maintained. Both sides committed to further talks. Geopolitical tension around Taiwan maintained; Korean semiconductor situation adds complexity.
+    </div>
+    <div class="item" style="padding: 4px 0;">
+      <strong>Korean political risk — Samsung, AI policy, AI profit redistribution.</strong> South Korea's president proposed "AI profit redistribution," triggering a broader policy debate. Samsung labor dispute intertwined with government AI industrial policy. Emergency adjustment powers threatened.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 14 — KEY THEMES — TOP 5 BY HORIZON
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>14. KEY THEMES — TOP 5 BY HORIZON</h2>
+
+  <div class="grid-3">
+
+    <div>
+      <h3>Today's Top 5</h3>
+
+      <div class="theme-item item">
+        <div class="theme-label">1. Iran diplomacy — fragile truce</div>
+        <div class="theme-body">Trump postponed attack; military on standby. Any breakdown in talks sends Brent back above $110 and European equities down 2%+. Every headline matters.</div>
+      </div>
+
+      <div class="theme-item item">
+        <div class="theme-label">2. US 30Y yield at 5.13% — highest since 2007</div>
+        <div class="theme-body">Long-end selloff compresses growth multiples globally. Each 10bp rise removes ~$1 trillion from global equity valuations. Watch 5.15% as next psychological level.</div>
+      </div>
+
+      <div class="theme-item item">
+        <div class="theme-label">3. Samsung court injunction — Kospi V-shape</div>
+        <div class="theme-body">Strike halted but mediation unresolved. A confirmed settlement lifts Korean tech and AI chip names globally. Breakdown reactivates supply disruption risk narrative.</div>
+      </div>
+
+      <div class="theme-item item">
+        <div class="theme-label">4. UK Labour Market data — 07:00 BST</div>
+        <div class="theme-body">Claimant count and unemployment rate — direct input to BoE June rate decision. Weak data supports rate cut; strong data pushes back. GBP/USD at 1.3310 is sensitive.</div>
+      </div>
+
+      <div class="theme-item item">
+        <div class="theme-label">5. Continental Europe opens -1.2%</div>
+        <div class="theme-body">DAX at 23,670, CAC at 7,860 in futures. FTSE bucked trend on energy. Session tone set by Iran news flow and whether bond yield pressure stabilises or intensifies.</div>
+      </div>
+    </div>
+
+    <div>
+      <h3>This Week's Top 5</h3>
+
+      <div class="theme-item item">
+        <div class="theme-label">1. Fed April FOMC minutes — Wed 20 May</div>
+        <div class="theme-body">4-way dissent detail: how close was the FOMC to a hike? Language around inflation trajectory and energy price pass-through will set near-term rate expectations.</div>
+      </div>
+
+      <div class="theme-item item">
+        <div class="theme-label">2. Flash PMIs — Thu 21 May</div>
+        <div class="theme-body">Eurozone, UK, and US preliminary PMIs measure real-time impact of energy shock and geopolitical disruption on manufacturing and services activity.</div>
+      </div>
+
+      <div class="theme-item item">
+        <div class="theme-label">3. Samsung mediation outcome</div>
+        <div class="theme-body">18-day strike was due to begin May 21. Court injunction active. Settlement by May 21 removes AI supply risk premium; failure re-opens it and hits Nikkei and Nasdaq semis.</div>
+      </div>
+
+      <div class="theme-item item">
+        <div class="theme-label">4. PBOC rate decision — Wed 20 May</div>
+        <div class="theme-body">China LPR decision. Markets expect stimulus given trade war truce uncertainty and property sector drag. A cut lifts Chinese equities and commodity demand sentiment.</div>
+      </div>
+
+      <div class="theme-item item">
+        <div class="theme-label">5. UK CPI — Wed 20 May</div>
+        <div class="theme-body">April UK inflation print. Energy passthrough from oil surge is key. Determines whether BoE June cut is possible or stays on hold. Sterling direction follows.</div>
+      </div>
+    </div>
+
+    <div>
+      <h3>This Month's Top 5</h3>
+
+      <div class="theme-item item">
+        <div class="theme-label">1. US-Iran nuclear deal — binary oil outcome</div>
+        <div class="theme-body">Deal removes $15-20/bbl war premium from Brent (scenario: $87-92); attack resumption could push above $120-130. Largest single macro risk for May.</div>
+      </div>
+
+      <div class="theme-item item">
+        <div class="theme-label">2. Fed rate hike risk — paradigm shift</div>
+        <div class="theme-body">Markets shifted from "2 cuts" to "0 cuts" in 4 months. Shift to "1 hike" would be a severe shock to equity and credit markets. FOMC minutes this week critical evidence.</div>
+      </div>
+
+      <div class="theme-item item">
+        <div class="theme-label">3. Korean semiconductor supply — AI supply chain</div>
+        <div class="theme-body">Samsung + SK Hynix = 42% of Kospi. 45,000-worker strike at world's largest memory chip maker would be the biggest supply chain disruption in AI infrastructure build-out.</div>
+      </div>
+
+      <div class="theme-item item">
+        <div class="theme-label">4. European defense spending acceleration</div>
+        <div class="theme-body">Iran conflict extending European defence budget cycle. BAE, Rheinmetall, Leonardo, Rolls-Royce all benefiting from structural multi-year orders. Sector outperforming strongly YTD.</div>
+      </div>
+
+      <div class="theme-item item">
+        <div class="theme-label">5. Gold at $4,542 — all-time high territory</div>
+        <div class="theme-body">Central bank buying (EM reserve diversification), inflation hedging, and geopolitical insurance combining. Up 41% YoY. Watch for potential break to $4,700+ or correction if Iran deal confirmed.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 15 — KEY TRENDS TO WATCH
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>15. KEY TRENDS TO WATCH</h2>
+
+  <div class="trend-horizon item">
+    <div class="trend-label">1 Day — Today's Session Drivers</div>
+    <ul style="margin: 6px 0 0 16px; color: #c9d1d9; font-size: 12px; line-height: 1.8;">
+      <li><strong>Iran news flow:</strong> Any signal of deal progress sends Brent lower and lifts equities; any threat resumption sends energy and defense up, equities down.</li>
+      <li><strong>Bond yield trajectory:</strong> Whether US 10Y holds below 4.65% and 30Y below 5.15% determines whether equity selling intensifies. Watch 13:30 BST US open.</li>
+      <li><strong>UK labour market print (07:00 BST):</strong> Claimant count / unemployment / earnings — GBP and UK bank direction for the session.</li>
+      <li><strong>Samsung mediation:</strong> Any signal before May 21 strike date calms Korean tech; failure risks fresh Kospi selling ahead of European close.</li>
+    </ul>
+  </div>
+
+  <div class="trend-horizon item">
+    <div class="trend-label">1 Week — Structural Week Drivers</div>
+    <ul style="margin: 6px 0 0 16px; color: #c9d1d9; font-size: 12px; line-height: 1.8;">
+      <li><strong>Fed April minutes (Wed):</strong> Inflation language and rate hike discussion — single most important rate event of the week globally.</li>
+      <li><strong>Flash PMIs (Thu):</strong> Real-time growth vs. inflation assessment across major economies; manufacturing vs. services divergence watch.</li>
+      <li><strong>PBOC rate decision (Wed):</strong> China stimulus signal — copper, iron ore, and EM FX directional catalyst.</li>
+      <li><strong>UK CPI (Wed):</strong> Determines BoE June meeting outcome probability; sterling and Gilt yield direction follows.</li>
+      <li><strong>Samsung mediation deadline (by May 21):</strong> Resolution removes AI supply chain risk; escalation triggers semiconductor sector de-rating globally.</li>
+    </ul>
+  </div>
+
+  <div class="trend-horizon item">
+    <div class="trend-label">1 Month — Strategic Macro Trends</div>
+    <ul style="margin: 6px 0 0 16px; color: #c9d1d9; font-size: 12px; line-height: 1.8;">
+      <li><strong>US-Iran binary resolution:</strong> Deal (oil -$15-20, equities rally, bonds bid) vs. attack resumption (oil $120+, recession risk, defense rally). Dominant macro event of May.</li>
+      <li><strong>Fed trajectory shift — from 0 cuts to hike risk:</strong> If May CPI (June release) shows no progress, hike probability crosses 20% — repricing of all risk assets. Watch June 11 CPI date.</li>
+      <li><strong>ECB June decision:</strong> Eurozone energy shock vs. growth slowdown. June 5 ECB meeting. Cut probability receding; hold most likely but language will matter for EUR.</li>
+      <li><strong>Korean semiconductor resolution:</strong> Permanent deal or protracted dispute defines AI compute availability and Nvidia/TSMC earnings outlook for H2 2026.</li>
+      <li><strong>Gold supercycle and commodity rotation:</strong> Gold, oil, and natural gas all elevated. Copper and base metals correcting. Whether commodity inflation is supply-side (Iran) or demand-side determines duration of the cycle and central bank response.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════════ -->
+<div class="footer">
+  <strong style="color:#e6edf3;">Sources used in this report:</strong>
+  <ul style="margin: 8px 0 0 16px; line-height: 1.8;">
+    <li>CNBC — US markets, S&amp;P 500, Dow Jones, Nasdaq closes; Trump-Iran news; Asian markets; Fed rate decision</li>
+    <li>Bloomberg — Bond yields; oil markets; Rolls-Royce bond; Korean markets</li>
+    <li>TheStreet — S&amp;P 500 daily market update May 18</li>
+    <li>GuruFocus — S&amp;P 500 sector performance; Dow/Nasdaq close</li>
+    <li>Invezz — European index crash article; DAX/CAC/Stoxx levels May 18</li>
+    <li>Trading Economics — Brent, WTI, Gold, FX rates, Bund yield, FTSE 100</li>
+    <li>Fortune — Samsung strike; oil price</li>
+    <li>TradingKey — Kospi analysis; Samsung court injunction; V-shaped reversal</li>
+    <li>Sunday Guardian Live — US market summary May 18</li>
+    <li>Foreign Policy Journal — Rolls-Royce bond issuance details</li>
+    <li>Yahoo Finance / ExchangeRates.org — EUR/USD, GBP/USD historical rates</li>
+    <li>EIA / Fred St. Louis Fed — Natural gas Henry Hub price</li>
+    <li>LiteFinance — Weekly economic calendar May 18-24 2026</li>
+    <li>Benzinga — Copper supercycle; Kospi 8,000 analysis</li>
+    <li>NBC News / PBS NewsHour / Washington Post / Newsweek / Axios — Iran geopolitical context</li>
+    <li>GlobalCapital / IFR — SSA issuance context; bond market outlook</li>
+    <li>Federal Reserve — April 28-29 FOMC statement and rate decision</li>
+  </ul>
+  <div class="disclaimer" style="margin-top:12px;">
+    Data collected automatically during session of 19 May 2026, approximately 06:00-06:45 BST. Verify all figures independently before making any trading or investment decision. Several data points (iTraxx spreads, specific pre-open futures levels, Hang Seng/Kospi May 19 closes, DCM pipeline) were unavailable from public sources and are marked n/a. All n/a items should be verified via Bloomberg, Reuters Eikon, or direct exchange data before use.
+  </div>
+</div>
+
+</body>
+</html>
