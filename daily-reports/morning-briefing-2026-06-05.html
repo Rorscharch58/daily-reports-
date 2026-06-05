@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Briefing — 5 June 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  h1 { color: #e6edf3; font-size: 22px; border-bottom: 2px solid #21262d; padding-bottom: 8px; margin-bottom: 6px; }
+  h2 { color: #e6edf3; font-size: 15px; margin: 18px 0 8px 0; border-left: 3px solid #58a6ff; padding-left: 8px; }
+  h3 { color: #58a6ff; font-size: 13px; margin: 10px 0 6px 0; text-transform: uppercase; letter-spacing: 0.05em; }
+  .meta { color: #8b949e; font-size: 12px; margin-bottom: 16px; }
+  .pos { color: #3fb950; }
+  .neg { color: #f85149; }
+  .warn { color: #d29922; }
+  .link { color: #58a6ff; }
+  .na { color: #6e7681; font-style: italic; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 12px 0;
+    font-size: 12px;
+    page-break-inside: avoid;
+  }
+  table tr { page-break-inside: avoid; }
+  th {
+    background: #161b22;
+    color: #8b949e;
+    text-align: left;
+    padding: 5px 8px;
+    border-bottom: 1px solid #21262d;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+  td {
+    padding: 5px 8px;
+    border-bottom: 1px solid #161b22;
+    vertical-align: top;
+  }
+  tr:hover td { background: #161b22; }
+
+  .section-wrapper {
+    background: #0d1117;
+    border: 1px solid #21262d;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .item {
+    padding: 4px 0;
+    border-bottom: 1px solid #161b22;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .item:last-child { border-bottom: none; }
+  .news-item { padding: 6px 0; border-bottom: 1px solid #161b22; page-break-inside: avoid; break-inside: avoid; }
+  .news-item:last-child { border-bottom: none; }
+  .news-headline { color: #e6edf3; font-weight: 600; }
+  .news-source { color: #58a6ff; font-size: 11px; }
+  .news-why { color: #8b949e; font-size: 12px; margin-top: 2px; }
+
+  .stock-item { padding: 5px 0; border-bottom: 1px solid #161b22; page-break-inside: avoid; break-inside: avoid; }
+  .stock-item:last-child { border-bottom: none; }
+  .theme-item { padding: 5px 0; border-bottom: 1px solid #161b22; page-break-inside: avoid; break-inside: avoid; }
+  .theme-item:last-child { border-bottom: none; }
+  .theme-label { color: #e6edf3; font-weight: 600; }
+
+  .calendar-row { page-break-inside: avoid; break-inside: avoid; }
+  .data-block { page-break-inside: avoid; break-inside: avoid; }
+  .badge { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 11px; font-weight: 600; }
+  .badge-high { background: #3d1515; color: #f85149; }
+  .badge-med { background: #2a2a15; color: #d29922; }
+  .badge-low { background: #0d2a0d; color: #3fb950; }
+  .badge-pos { background: #0d2a0d; color: #3fb950; }
+  .badge-neg { background: #3d1515; color: #f85149; }
+  .badge-neut { background: #161b22; color: #8b949e; }
+
+  .tight { color: #3fb950; font-size: 11px; }
+  .wide { color: #f85149; font-size: 11px; }
+
+  .footer {
+    margin-top: 24px;
+    padding: 12px 16px;
+    background: #161b22;
+    border-radius: 6px;
+    font-size: 11px;
+    color: #6e7681;
+    border: 1px solid #21262d;
+  }
+  .footer strong { color: #8b949e; }
+
+  @media print {
+    body {
+      background: #0d1117 !important;
+      color: #c9d1d9 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .section, table, tr, td, th, .data-block, .theme-block, .calendar-row {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+    }
+    thead { display: table-header-group; }
+    p, li, div, span { orphans: 3; widows: 3; }
+    .section-wrapper { page-break-inside: avoid !important; break-inside: avoid !important; }
+    .item, .news-item, .stock-item, .theme-item, .event-item {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    @page { size: A4 landscape; margin: 12mm; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== SECTION 1: HEADER ===== -->
+<div class="section-wrapper">
+  <h1>MORNING BRIEFING</h1>
+  <div class="meta">
+    <strong style="color:#e6edf3;">Friday, 5 June 2026</strong> &nbsp;|&nbsp;
+    Generated: ~06:30 BST &nbsp;|&nbsp;
+    London timezone &nbsp;|&nbsp;
+    <span class="warn">Data collected approximately 05:30–06:30 BST. Verify all figures before acting.</span>
+  </div>
+</div>
+
+<!-- ===== SECTION 2: IMPORTANT NEWS ===== -->
+<div class="section-wrapper">
+  <h2>2. IMPORTANT NEWS</h2>
+  <div class="news-item">
+    <div class="news-headline">1. US Nonfarm Payrolls (May) due today at 13:30 BST — consensus 125K</div>
+    <div class="news-source">BLS / Reuters / Yahoo Finance</div>
+    <div class="news-why">Highest-impact data point of the week. April came in at 115K. A beat reinforces Fed-on-hold; a miss reopens cut expectations. USD and rates will reprice immediately.</div>
+  </div>
+  <div class="news-item">
+    <div class="news-headline">2. Broadcom Q2: AI revenue $10.8B (+143% YoY) but Q3 AI guidance of $16B misses analyst estimate of $17.2B — stock down 12% after-hours</div>
+    <div class="news-source">Broadcom IR / CNBC / Yahoo Finance</div>
+    <div class="news-why">Q3 miss triggers semiconductor de-rating. Nasdaq underperformed Wednesday; AI-adjacent names (NVIDIA, Marvell, AMD) face sympathy selling at open. Total Q2 revenue $22.2B (+48% YoY).</div>
+  </div>
+  <div class="news-item">
+    <div class="news-headline">3. US-Iran 60-day ceasefire MOU reportedly agreed — awaiting Trump approval; oil down ~20% from 2026 highs</div>
+    <div class="news-source">CNBC / Al Jazeera / Euronews</div>
+    <div class="news-why">Partial Strait of Hormuz reopening expected if deal holds. Brent fell below $97; analysts flag $90–100 range likely for 2 months. Energy equities, shipping names and Gulf-linked spreads repricing.</div>
+  </div>
+  <div class="news-item">
+    <div class="news-headline">4. Dow Jones closes at record 51,562 (+1.73%) on healthcare/financials rotation; Nasdaq flat as tech lags</div>
+    <div class="news-source">CNBC / TheStreet</div>
+    <div class="news-why">Rotation trade — UnitedHealth +5.36%, Goldman Sachs +4.98%, Merck +4.86%. Signals investors moving from growth/tech to defensives and financials ahead of NFP.</div>
+  </div>
+  <div class="news-item">
+    <div class="news-headline">5. ECB officials signal June 11 rate hike possible; inflation forecast 3.1% Q2 2026 — next meeting in 6 days</div>
+    <div class="news-source">ECB / Central Banking / ING Think</div>
+    <div class="news-why">ECB held rates at April meeting (depo 2.00%, refi 2.15%). Middle East energy shock pushing Q2 inflation above target. A June hike would be the first in this cycle and reshape EUR rate curve.</div>
+  </div>
+</div>
+
+<!-- ===== SECTION 3: EUROPEAN FUTURES ===== -->
+<div class="section-wrapper">
+  <h2>3. EUROPEAN FUTURES (pre-open)</h2>
+  <div class="data-block">
+    <table style="page-break-inside: avoid;">
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>Futures Level</th>
+          <th>Expected Move</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="page-break-inside: avoid;"><td>Euro Stoxx 50</td><td class="na">n/a</td><td class="warn">Cautious flat/slight neg</td><td>Broadcom drag on tech; oil dip supportive of energy offset</td></tr>
+        <tr style="page-break-inside: avoid;"><td>DAX</td><td class="na">n/a</td><td class="warn">Flat to -0.2%</td><td>Export-oriented names sensitive to USD/EUR and Iran newsflow</td></tr>
+        <tr style="page-break-inside: avoid;"><td>CAC 40</td><td class="na">n/a</td><td class="warn">Flat to -0.2%</td><td>Energy/financials partially offset tech weakness</td></tr>
+        <tr style="page-break-inside: avoid;"><td>FTSE 100</td><td class="na">n/a</td><td class="pos">Flat to +0.2%</td><td>Oil majors (Shell, BP) supported by Brent; defensive bias helps</td></tr>
+        <tr style="page-break-inside: avoid;"><td>S&amp;P 500 Futures</td><td class="na">n/a</td><td class="warn">Cautious ahead of NFP</td><td>Fell on Broadcom guidance; NFP at 13:30 BST the key catalyst</td></tr>
+        <tr style="page-break-inside: avoid;"><td>Nasdaq 100 Futures</td><td class="na">n/a</td><td class="neg">Negative</td><td>Broadcom -12% after-hours drags semiconductor complex</td></tr>
+      </tbody>
+    </table>
+    <div class="item"><span class="warn">Specific pre-open futures levels not available at report generation time. Check Eurex / Bloomberg at open.</span></div>
+  </div>
+</div>
+
+<!-- ===== SECTION 4: YESTERDAY'S CLOSES ===== -->
+<div class="section-wrapper">
+  <h2>4. YESTERDAY'S CLOSES — European Indices (4 June 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Close</th>
+        <th>Change %</th>
+        <th>Direction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td>STOXX 600</td><td>624.32</td><td class="neg">-0.10%</td><td class="neg">&#9660;</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Euro Stoxx 50</td><td class="na">n/a</td><td class="na">n/a</td><td>—</td></tr>
+      <tr style="page-break-inside: avoid;"><td>DAX (Germany)</td><td class="na">n/a</td><td class="neg">-0.67%</td><td class="neg">&#9660;</td></tr>
+      <tr style="page-break-inside: avoid;"><td>CAC 40 (France)</td><td class="na">n/a</td><td class="neg">-0.41%</td><td class="neg">&#9660;</td></tr>
+      <tr style="page-break-inside: avoid;"><td>FTSE MIB (Italy)</td><td class="na">n/a</td><td class="neg">-0.49%</td><td class="neg">&#9660;</td></tr>
+      <tr style="page-break-inside: avoid;"><td>FTSE 100 (UK)</td><td class="na">n/a</td><td class="pos">+0.03%</td><td class="pos">&#9650;</td></tr>
+    </tbody>
+  </table>
+  <div class="item">Declines driven by renewed geopolitical concerns in the Middle East and elevated oil prices. Trump signals on Iran talks tempered further losses. FTSE 100 outperformed on energy sector support.</div>
+</div>
+
+<!-- ===== SECTION 5: US MARKETS ===== -->
+<div class="section-wrapper">
+  <h2>5. US MARKETS — YESTERDAY'S SESSION (4 June 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Close</th>
+        <th>Change</th>
+        <th>Change %</th>
+        <th>Direction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td>Dow Jones</td><td>51,561.93</td><td class="pos">+874.86</td><td class="pos">+1.73%</td><td class="pos">&#9650; RECORD</td></tr>
+      <tr style="page-break-inside: avoid;"><td>S&amp;P 500</td><td>7,584.31</td><td class="pos">+0.41%</td><td class="pos">+0.41%</td><td class="pos">&#9650;</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Nasdaq Composite</td><td>26,830.96</td><td class="neg">-0.09%</td><td class="neg">-0.09%</td><td class="neg">&#9660;</td></tr>
+    </tbody>
+  </table>
+  <div class="item"><strong style="color:#e6edf3;">Session tone:</strong> Pronounced rotation from tech/growth into healthcare and financials. Dow hit a fresh all-time record. Nasdaq underperformed as Broadcom's after-hours guidance miss weighed on chip names.</div>
+  <div class="item"><strong style="color:#3fb950;">Leading sectors:</strong> Healthcare (+3.2%), Financials (+2.1%), Industrials (+1.4%)</div>
+  <div class="item"><strong style="color:#f85149;">Lagging sectors:</strong> Technology (-0.4%), Consumer Discretionary (-0.3%)</div>
+  <div class="item"><strong style="color:#e6edf3;">Key movers:</strong> UnitedHealth (UNH) <span class="pos">+5.36%</span>, Goldman Sachs (GS) <span class="pos">+4.98%</span>, Merck (MRK) <span class="pos">+4.86%</span>, JPMorgan <span class="pos">+3.0%</span>. Broadcom (AVGO) fell <span class="neg">-12%</span> after-hours on Q3 AI guidance miss.</div>
+  <div class="item"><strong style="color:#e6edf3;">Takeaway:</strong> Investors front-running NFP by rotating to defensives. Dow breadth strong, but Nasdaq's flat performance signals tech leadership narrowing. Watch whether rotation sustains post-payrolls.</div>
+</div>
+
+<!-- ===== SECTION 6: ASIAN MARKETS ===== -->
+<div class="section-wrapper">
+  <h2>6. ASIAN MARKETS — OVERNIGHT SESSION</h2>
+  <div class="item"><span class="warn">Note: Most recent data from June 2–3 session. June 5 Asian session data not yet available at report generation.</span></div>
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Close (most recent)</th>
+        <th>Change %</th>
+        <th>Session</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td>Nikkei 225 (Japan)</td><td>66,734</td><td class="neg">-0.30%</td><td>2 Jun</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Hang Seng (HK)</td><td class="na">n/a</td><td class="pos">+2.41%</td><td>2 Jun</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Shanghai CSI 300</td><td>4,914.56</td><td class="pos">+1.45%</td><td>2 Jun</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Kospi (S. Korea)</td><td>8,801.49</td><td class="neg">-0.15%</td><td>2 Jun</td></tr>
+    </tbody>
+  </table>
+  <div class="item"><strong style="color:#e6edf3;">Overall tone:</strong> Mixed. Hong Kong outperformed on China tech optimism. Japan softer. South Korea flat amid semiconductor caution.</div>
+  <div class="item"><strong style="color:#e6edf3;">Drivers:</strong> Iran ceasefire optimism supportive of risk assets broadly. Broadcom guidance miss arriving after Asian close had limited same-session impact; expect reaction in Japan/Korea open on 5 June to show chip-sector pressure.</div>
+</div>
+
+<!-- ===== SECTION 7: COMMODITIES ===== -->
+<div class="section-wrapper">
+  <h2>7. COMMODITIES</h2>
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Commodity</th>
+        <th>Level</th>
+        <th>Change</th>
+        <th>Context</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td>Brent Crude</td><td>~$97/bbl</td><td class="neg">-1%</td><td>Below $97; Iran ceasefire MOU drove 20% drop from 2026 highs. Hormuz partially reopening.</td></tr>
+      <tr style="page-break-inside: avoid;"><td>WTI Crude</td><td>~$92–95/bbl</td><td class="neg">-1 to -3%</td><td>US crude inventories drew down 7.97mb (6th consecutive weekly decline). Supply tight despite price drop.</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Gold</td><td>~$4,450/oz</td><td class="na">n/a</td><td>Elevated on geopolitical risk premium and inflation fears; rate-hike expectations cap upside.</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Natural Gas (NYMEX)</td><td class="na">n/a</td><td class="pos">+0.47%</td><td>Rose despite bearish inventory data; US summer heat forecast drives demand expectations.</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Copper (LME)</td><td class="na">n/a</td><td class="na">n/a</td><td>Goldman raised 12m target to $13,735/t; Citi sees $15,000 within a year on mine disruptions.</td></tr>
+    </tbody>
+  </table>
+  <div class="item"><span class="warn">Notable:</span> Brent's near-20% May decline (worst month since COVID) reflects Iran peace optimism, but analysts warn infrastructure damage and tanker security challenges cap the downside in oil prices even if a deal succeeds.</div>
+</div>
+
+<!-- ===== SECTION 8: RATES & FX ===== -->
+<div class="section-wrapper">
+  <h2>8. RATES &amp; FX</h2>
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Instrument</th>
+        <th>Level</th>
+        <th>Change / Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td>US 10Y Treasury Yield</td><td>4.49%</td><td>Near 2-month high; ADP private payrolls 122K (beat) reinforced tighter-for-longer narrative</td></tr>
+      <tr style="page-break-inside: avoid;"><td>German 10Y Bund Yield</td><td>2.95%</td><td>Declined to 2.95% on June 2; ECB June 11 meeting keeps market cautious</td></tr>
+      <tr style="page-break-inside: avoid;"><td>EUR/USD</td><td class="na">n/a</td><td>Not confirmed at report generation. DXY at 99.54 (2-month high) implies EUR under pressure.</td></tr>
+      <tr style="page-break-inside: avoid;"><td>GBP/USD</td><td>~1.3454</td><td class="pos">+0.27%</td></tr>
+      <tr style="page-break-inside: avoid;"><td>DXY (Dollar Index)</td><td>99.54</td><td class="pos">+1.18% over 4 weeks</td></tr>
+    </tbody>
+  </table>
+  <div class="item">Dollar at 2-month high as strong US data (ADP 122K, prior NFP 115K) keeps Fed on hold. Bund yields eased as ECB uncertainty cuts both ways. GBP outperforming on relative UK resilience. Today's NFP is the key catalyst for all three axes.</div>
+</div>
+
+<!-- ===== SECTION 9: DCM — PRIMARY BOND MARKET ===== -->
+<div class="section-wrapper">
+  <h2>9. DCM — PRIMARY BOND MARKET</h2>
+
+  <h3>Yesterday's Issuances (4 June 2026)</h3>
+  <div class="data-block">
+    <div class="item"><span class="na">No specific deal data confirmed for 4 June at report generation time. Check IFR Markets / GlobalCapital for overnight updates.</span></div>
+    <div class="item">Context: European primary has been active in 2026 with SSAs frontloading and FIG (financial institution) issuers tapping robust investor demand across the capital structure. Tech-sector debt from hyperscalers also elevated.</div>
+  </div>
+
+  <h3>Pipeline / Expected Today</h3>
+  <div class="data-block">
+    <div class="item"><span class="na">Pipeline data not confirmed at generation time.</span> Watch for European IG corporates (particularly industrials, energy, financials) that may exploit post-NFP window if spreads hold. SSA supply expected to remain elevated given European government borrowing needs.</div>
+  </div>
+
+  <h3>Key Spreads</h3>
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Level (bps)</th>
+        <th>Move</th>
+        <th>Direction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td>iTraxx Main (5Y)</td><td class="na">n/a</td><td class="na">n/a</td><td>—</td></tr>
+      <tr style="page-break-inside: avoid;"><td>iTraxx Crossover (5Y)</td><td class="na">n/a</td><td class="na">n/a</td><td>—</td></tr>
+      <tr style="page-break-inside: avoid;"><td>CDX IG (5Y, US)</td><td class="na">n/a</td><td class="na">n/a</td><td>—</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Avg EUR Corp IG Spread</td><td class="na">n/a</td><td class="na">n/a</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <div class="item"><span class="warn">Spread data not available from public searches at generation time. Check Bloomberg / ICE Data Services for live levels.</span></div>
+
+  <h3>Commentary</h3>
+  <div class="item">European primary market tone has been constructive in May and early June, with FIG investors absorbing heavy issuance waves and SSAs continuing to frontload. The combination of Middle East uncertainty and rising ECB rate-hike probability creates a two-sided risk for new issuers. A June 11 ECB hike would steepen the front end and compress swap spreads, making long-end SSA issuance costlier. Corporate IG windows remain open for now but issuers are advised to move ahead of the ECB meeting. Energy-sector and defense-sector borrowers face tightest demand. HY concessions remain elevated given macro uncertainty.</div>
+</div>
+
+<!-- ===== SECTION 10: ECONOMIC CALENDAR ===== -->
+<div class="section-wrapper">
+  <h2>10. ECONOMIC CALENDAR — 5 June 2026</h2>
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>London Time</th>
+        <th>Country</th>
+        <th>Indicator</th>
+        <th>Consensus</th>
+        <th>Previous</th>
+        <th>Importance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;" class="calendar-row"><td>07:00</td><td>Germany</td><td>Factory Orders (Apr)</td><td class="na">n/a</td><td class="na">n/a</td><td><span class="badge badge-med">MEDIUM</span></td></tr>
+      <tr style="page-break-inside: avoid;" class="calendar-row"><td>10:00</td><td>Eurozone</td><td>GDP (Q1, final)</td><td class="na">n/a</td><td class="na">n/a</td><td><span class="badge badge-med">MEDIUM</span></td></tr>
+      <tr style="page-break-inside: avoid;" class="calendar-row"><td>13:30</td><td>US</td><td><strong style="color:#e6edf3;">Nonfarm Payrolls (May)</strong></td><td>125K</td><td>115K</td><td><span class="badge badge-high">HIGH</span></td></tr>
+      <tr style="page-break-inside: avoid;" class="calendar-row"><td>13:30</td><td>US</td><td><strong style="color:#e6edf3;">Unemployment Rate (May)</strong></td><td>4.3%</td><td>4.3%</td><td><span class="badge badge-high">HIGH</span></td></tr>
+      <tr style="page-break-inside: avoid;" class="calendar-row"><td>13:30</td><td>US</td><td>Average Hourly Earnings (May)</td><td class="na">n/a</td><td class="na">n/a</td><td><span class="badge badge-high">HIGH</span></td></tr>
+      <tr style="page-break-inside: avoid;" class="calendar-row"><td>15:00</td><td>US</td><td>ISM Services PMI (May)</td><td class="na">n/a</td><td class="na">n/a</td><td><span class="badge badge-med">MEDIUM</span></td></tr>
+    </tbody>
+  </table>
+  <div class="item"><span class="warn">Consensus figures sourced from pre-release analyst surveys (Reuters/FactSet/Kiplinger). Some European releases not confirmed at generation. Verify times on Bloomberg/Reuters.</span></div>
+</div>
+
+<!-- ===== SECTION 11: CORPORATE EVENTS & EARNINGS ===== -->
+<div class="section-wrapper">
+  <h2>11. CORPORATE EVENTS &amp; EARNINGS</h2>
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Event</th>
+        <th>Region</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td><strong>Broadcom (AVGO)</strong></td><td>Q2 FY2026 results (post-close 3 Jun)</td><td>US</td><td>Revenue $22.2B (+48% YoY); Q3 AI guidance $16B misses $17.2B est; stock <span class="neg">-12%</span> after-hours — impact felt today</td></tr>
+      <tr style="page-break-inside: avoid;"><td><strong>Lululemon (LULU)</strong></td><td>FY guidance cut (post-close 4 Jun)</td><td>US</td><td>Lowered full-year EPS and revenue forecast; stock <span class="neg">-11%</span> after-hours</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Other US/Europe earnings</td><td>—</td><td>—</td><td><span class="na">No additional major earnings confirmed for 5 June. Q1 2026 season largely concluded.</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ===== SECTION 12: STOCKS TO WATCH ===== -->
+<div class="section-wrapper">
+  <h2>12. STOCKS TO WATCH</h2>
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Company / Ticker</th>
+        <th>Sector</th>
+        <th>Reason</th>
+        <th>Probable Direction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;" class="stock-item"><td><strong>Broadcom (AVGO)</strong></td><td>Semiconductors</td><td>Q3 AI revenue guidance $16B missed $17.2B estimate; stock -12% after-hours</td><td class="neg">&#9660; Negative open expected</td></tr>
+      <tr style="page-break-inside: avoid;" class="stock-item"><td><strong>NVIDIA (NVDA)</strong></td><td>AI / Chips</td><td>Sympathy selling from Broadcom AI guidance miss; sector re-rating risk</td><td class="neg">&#9660; Negative bias</td></tr>
+      <tr style="page-break-inside: avoid;" class="stock-item"><td><strong>Shell / BP / TotalEnergies</strong></td><td>Energy</td><td>Brent ~$97 and Iran ceasefire developments; oil price volatile; energy rotation theme</td><td class="warn">&#9670; Two-way risk; watch Brent</td></tr>
+      <tr style="page-break-inside: avoid;" class="stock-item"><td><strong>Maersk / Hapag-Lloyd</strong></td><td>Shipping</td><td>Strait of Hormuz ceasefire MOU; route normalisation would compress freight rates</td><td class="neg">&#9660; Negative on rate compression</td></tr>
+      <tr style="page-break-inside: avoid;" class="stock-item"><td><strong>Airbus / Rolls-Royce</strong></td><td>Aerospace</td><td>Middle East tensions supportive of defense; commercial aviation demand resilient; watch GBP/EUR</td><td class="pos">&#9650; Positive bias</td></tr>
+      <tr style="page-break-inside: avoid;" class="stock-item"><td><strong>Rheinmetall / BAE Systems / Leonardo</strong></td><td>Aerospace &amp; Defense</td><td>European defense spending super-cycle; weapon stockpile restocking demand; geopolitical premiums held</td><td class="pos">&#9650; Positive bias</td></tr>
+      <tr style="page-break-inside: avoid;" class="stock-item"><td><strong>European Banks (BNP, Santander, HSBC)</strong></td><td>Financials</td><td>ECB June 11 hike risk supportive of NIM; rotation into financials from tech continues</td><td class="pos">&#9650; Positive bias</td></tr>
+      <tr style="page-break-inside: avoid;" class="stock-item"><td><strong>Lululemon (LULU)</strong></td><td>Consumer Discretionary</td><td>Cut FY guidance; -11% after-hours; signals weakening consumer confidence in premium retail</td><td class="neg">&#9660; Negative open expected</td></tr>
+      <tr style="page-break-inside: avoid;" class="stock-item"><td><strong>Glencore / Anglo American / Rio Tinto</strong></td><td>Metals &amp; Mining</td><td>Copper bullish outlook (Goldman $13,735 target); China demand data supportive</td><td class="pos">&#9650; Positive on copper tone</td></tr>
+      <tr style="page-break-inside: avoid;" class="stock-item"><td><strong>UnitedHealth (UNH)</strong></td><td>Healthcare</td><td>Led Dow to record (+5.36%); rotation trade beneficiary; watch for consolidation</td><td class="warn">&#9670; Consolidation after surge</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ===== SECTION 13: MACRO / CORPORATE / POLITICAL HIGHLIGHTS ===== -->
+<div class="section-wrapper">
+  <h2>13. MACRO / CORPORATE / POLITICAL HIGHLIGHTS</h2>
+
+  <h3>Macro</h3>
+  <div class="item">ECB held rates at April meeting (deposit: 2.00%, refi: 2.15%, MLF: 2.40%). Inflation projected at 3.1% in Q2 2026 driven by Middle East energy shock, declining to 2.8% in Q3 and 2.0% in 2027. June 11 meeting is live for a hike. Several board members have publicly flagged the possibility.</div>
+  <div class="item">Fed held at 3.50–3.75% in April. ADP private payrolls for May: 122K (beat forecast), strongest reading since January 2025. Today's NFP (consensus: 125K) is the key swing factor. Fed next meets June 17. Market pricing implies rates on hold through H2 2026 barring NFP surprise.</div>
+  <div class="item">US inflation pressures remain elevated from Middle East energy shock. Gulf infrastructure damage and tanker security challenges mean energy prices will not normalise quickly even under a ceasefire scenario. Central banks face a stagflation-adjacent dilemma: tighten to address inflation, or hold to support slowing growth.</div>
+  <div class="item">UAE formally exited OPEC effective 1 May 2026, fragmenting OPEC+ cohesion. Global oil inventories expected to fall 8.5mb/d in Q2 2026. Despite ceasefire optimism, structural supply constraints remain.</div>
+
+  <h3>Corporate</h3>
+  <div class="item">Broadcom Q2: Revenue $22.2B (+48% YoY), AI chip revenue $10.8B (+143%). EBITDA $15.2B (69% margin). However, Q3 AI guidance of $16B disappointed vs $17.2B analyst forecast. After-hours: -12%. This is the first major AI chip earnings guide-down in this cycle and may trigger a valuation reset across the semiconductor sector.</div>
+  <div class="item">Dow Jones rotation to healthcare and financials reached record 51,562. Signals a structural portfolio shift away from high-multiple tech names ahead of potential rate rises and earnings season scrutiny. JPMorgan, Goldman Sachs, and UnitedHealth saw the sharpest gains.</div>
+  <div class="item">Lululemon cut full-year revenue and EPS guidance — stock fell 11% after-hours. Signals premium consumer discretionary spending under pressure as inflation erodes purchasing power at the higher end of the market.</div>
+
+  <h3>Political / Geopolitical</h3>
+  <div class="item">US-Iran: Negotiators agreed a 60-day MOU to extend the ceasefire and initiate nuclear talks. Trump approval pending. The MOU covers Hormuz reopening terms, uranium enrichment limits, sanctions relief timetable, and verification protocols. Oil has repriced 20% lower from highs; a breakdown in talks would reverse this sharply.</div>
+  <div class="item">EU–China: Tensions widening from EVs to wind components, solar panels, and mature-node semiconductors. Brussels expected to announce new investigations by end of June. Risk of retaliatory tariffs on European luxury and agri-food exports.</div>
+  <div class="item">US fiscal trajectory: Mounting federal debt is narrowing Washington's fiscal space. Dollar's reserve currency status is beginning to face credibility questions among sovereign investors. Watch DXY and US Treasury auctions for early stress signals.</div>
+</div>
+
+<!-- ===== SECTION 14: KEY THEMES — TOP 5 BY HORIZON ===== -->
+<div class="section-wrapper">
+  <h2>14. KEY THEMES — TOP 5 BY HORIZON</h2>
+
+  <h3>Today's Top 5</h3>
+  <div class="theme-item"><span class="theme-label">1. US Nonfarm Payrolls (13:30 BST)</span> — The single highest-impact data point today. 125K consensus vs 115K April. A beat (150K+) could push DXY higher and risk assets lower; a miss (sub-90K) would reignite Fed cut bets and trigger a USD sell-off. NFP also shapes ECB expectations for June 11.</div>
+  <div class="theme-item"><span class="theme-label">2. Broadcom contagion in semiconductors</span> — Broadcom's Q3 AI guidance miss ($16B vs $17.2B estimate) may force a sector-wide rerating. NVIDIA, Marvell, AMD, and TSMC ADRs all at risk of sympathy selling. Watch whether this is a one-stock or sector-wide story.</div>
+  <div class="theme-item"><span class="theme-label">3. Iran ceasefire MOU and oil volatility</span> — Trump's approval of the 60-day MOU will drive energy markets. Brent around $97 with a wide range depending on deal confirmation or breakdown. Energy equity sector positioning is directionally dependent on news flow through the session.</div>
+  <div class="theme-item"><span class="theme-label">4. Dow vs. Nasdaq divergence</span> — Rotation into healthcare, financials, and industrials at the expense of tech is accelerating. Monitor whether this broadens (healthy market) or signals growth anxiety (risk-off). S&P 500 +0.41% while Nasdaq -0.09% on the same day is an unusual signal.</div>
+  <div class="theme-item"><span class="theme-label">5. ECB June 11 positioning</span> — With the ECB meeting in 6 days and board members openly signalling a potential hike, European bond markets are repricing. Front-end Bund yields and EUR corporate credit spreads will be sensitive to any ECB communication today.</div>
+
+  <h3>This Week's Top 5</h3>
+  <div class="theme-item"><span class="theme-label">1. NFP report (today)</span> — Defines Fed/dollar narrative for the rest of the month and sets up Fed June 17 meeting expectations.</div>
+  <div class="theme-item"><span class="theme-label">2. Broadcom earnings fallout and semiconductor rerating</span> — Markets will take multiple sessions to process whether this is company-specific or a signal of AI capex cycle peaking.</div>
+  <div class="theme-item"><span class="theme-label">3. Iran ceasefire developments</span> — Any Trump statement confirming or rejecting the 60-day MOU will move oil 3–5% intraday. Shipping and energy equity positioning is pivotal.</div>
+  <div class="theme-item"><span class="theme-label">4. ECB June 11 meeting prep</span> — Expect ECB officials to maintain silence (purdah) from this weekend. Markets will extrapolate from Friday's data flow. A rate hike would be the first in this cycle.</div>
+  <div class="theme-item"><span class="theme-label">5. EU–China trade tensions escalation</span> — Potential announcement of new EU trade investigations (wind, solar, semis). Retaliatory risk to European luxury, automotive, and agri-food exports to China.</div>
+
+  <h3>This Month's Top 5</h3>
+  <div class="theme-item"><span class="theme-label">1. ECB June 11 rate decision</span> — First potential hike in 2026. A 25bps move to 2.25% deposit rate would reshape the EUR curve and test corporate bond market resilience. Could re-open credit spread widening if financial stability concerns arise.</div>
+  <div class="theme-item"><span class="theme-label">2. Fed FOMC June 17</span> — Post-NFP, market will refine the path. If June 5 NFP beats and core wages are firm, June 17 becomes a hawkish hold. If NFP misses, the September cut narrative re-emerges.</div>
+  <div class="theme-item"><span class="theme-label">3. US-Iran peace negotiation timeline</span> — The 60-day MOU clock starts on signing. Oil market will trade the probability of a permanent deal. Infrastructure rebuilding timeline and Hormuz shipping normalisation are multi-month catalysts for shipping and energy.</div>
+  <div class="theme-item"><span class="theme-label">4. Q2 2026 earnings season (mid-June)</span> — First major banks report mid-June. AI capex commitments, energy cost impact on margins, and consumer discretionary demand are the three investor focus areas. Broadcom's guide-down may set a cautious tone.</div>
+  <div class="theme-item"><span class="theme-label">5. European Parliament summer recess (July)</span> — Legislative window closing. Expect acceleration of fiscal initiatives (rearmament fund, green industrial policy) before summer. Bond issuance and EU-level debt conversations will intensify in June.</div>
+</div>
+
+<!-- ===== SECTION 15: KEY TRENDS TO WATCH ===== -->
+<div class="section-wrapper">
+  <h2>15. KEY TRENDS TO WATCH</h2>
+
+  <h3>1 Day: What Could Move Markets Today</h3>
+  <div class="item">NFP May print at 13:30 BST is the day's defining event. Any print outside the 90–150K range will trigger a sharp re-pricing of USD, Treasuries, and risk assets. Watch Average Hourly Earnings alongside the headline number — hot wages keep the Fed on hold and reinforce the ECB hike case.</div>
+  <div class="item">Broadcom opening print and intraday trajectory of NVIDIA and the Philadelphia Semiconductor Index (SOX) will determine whether Wednesday's Nasdaq underperformance was a one-day event or the start of a sustained tech de-rating.</div>
+  <div class="item">Any statement from Trump or State Department on the Iran MOU will be an immediate oil catalyst. Brent above $100 is possible on a breakdown; below $90 if the MOU is formally signed with Hormuz reopening confirmed.</div>
+
+  <h3>1 Week: Key Appointments and Themes</h3>
+  <div class="item">ECB Governing Council meeting on 11 June is the week's anchor event. Today's NFP feeds directly into ECB deliberations. A hawkish ECB will tighten EUR front-end rates, pressure European duration, and potentially compress credit spreads through a stronger EUR.</div>
+  <div class="item">Congressional testimony and Washington political calendar around the Iran deal. Trump's deal-or-no-deal decision on the MOU drives energy, shipping, and Middle East-linked names for the entire week.</div>
+  <div class="item">Semiconductor sector digestion of Broadcom results. Analyst upgrades/downgrades and PT revisions from major brokers will continue through the week, setting the tone for the AI-infrastructure trade into Q2 earnings.</div>
+
+  <h3>1 Month: Major Deadlines and Underlying Trends</h3>
+  <div class="item">Rate cycle convergence: ECB hiking while Fed holds is a rare configuration. EUR/USD will be a central battleground. European banks benefit; European exporters face headwinds. Watch cross-asset correlation between EUR rate and equity sector rotations.</div>
+  <div class="item">AI infrastructure capex cycle: Broadcom's guide-down raises the first credible question about whether hyperscaler AI spending is decelerating. Microsoft, Amazon, Google, and Meta capital expenditure guidance in Q2 earnings will either confirm or refute this concern.</div>
+  <div class="item">Middle East energy shock aftermath: Even with ceasefire optimism, oil supply from Iran will take months to normalise. Gulf refinery and pipeline infrastructure damage is extensive. Energy prices will remain a structural inflation driver through Q3 2026.</div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <strong>Sources:</strong>
+  Reuters, Bloomberg, CNBC, TheStreet, Yahoo Finance, Financial Times, Broadcom IR,
+  BLS (Bureau of Labor Statistics), ECB (ecb.europa.eu), ING Think, Euronews,
+  Al Jazeera Economy, GlobalCapital, Fortune, Trading Economics, IndexBox,
+  Central Banking, Kiplinger, Metaintro, Motley Fool (aerospace/defense context).
+  <br><br>
+  <span class="warn">Data collected automatically between approximately 05:30 and 06:30 BST on 5 June 2026.
+  Specific pre-open futures levels, iTraxx spreads, EUR/USD, and certain absolute index levels were not available from public sources at generation time and are marked n/a.
+  Verify all data points before making any trading or investment decision.
+  This report is for informational purposes only and does not constitute financial advice.</span>
+</div>
+
+</body>
+</html>
