@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Briefing — 10 June 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h1 { font-size: 22px; color: #e6edf3; border-bottom: 2px solid #21262d; padding-bottom: 10px; margin-bottom: 6px; }
+  h2 { font-size: 15px; color: #58a6ff; text-transform: uppercase; letter-spacing: 0.06em; margin: 18px 0 8px 0; border-left: 3px solid #58a6ff; padding-left: 8px; }
+  h3 { font-size: 13px; color: #d29922; text-transform: uppercase; letter-spacing: 0.05em; margin: 12px 0 6px 0; }
+
+  .header-meta { color: #8b949e; font-size: 12px; margin-bottom: 6px; }
+  .header-warning { background: #161b22; border: 1px solid #d29922; border-radius: 4px; padding: 6px 10px; margin-top: 8px; color: #d29922; font-size: 11px; }
+
+  .section-wrapper { margin-bottom: 24px; page-break-inside: avoid; break-inside: avoid; }
+
+  table { width: 100%; border-collapse: collapse; margin: 6px 0; font-size: 12px; page-break-inside: avoid; }
+  thead th { background: #161b22; color: #8b949e; font-weight: 600; text-transform: uppercase; font-size: 10px; letter-spacing: 0.05em; padding: 5px 8px; text-align: left; border-bottom: 1px solid #21262d; }
+  tbody tr { border-bottom: 1px solid #161b22; page-break-inside: avoid; break-inside: avoid; }
+  tbody tr:hover { background: #161b22; }
+  td { padding: 5px 8px; vertical-align: middle; }
+
+  .pos { color: #3fb950; font-weight: 600; }
+  .neg { color: #f85149; font-weight: 600; }
+  .neu { color: #8b949e; }
+  .warn { color: #d29922; }
+  .na { color: #484f58; font-style: italic; }
+
+  .news-item { padding: 7px 10px; margin: 4px 0; background: #161b22; border-radius: 4px; border-left: 3px solid #21262d; page-break-inside: avoid; break-inside: avoid; }
+  .news-item .headline { color: #e6edf3; font-weight: 600; font-size: 13px; }
+  .news-item .source { color: #58a6ff; font-size: 11px; margin-top: 2px; }
+  .news-item .why { color: #8b949e; font-size: 11px; margin-top: 2px; }
+
+  .stock-item { display: grid; grid-template-columns: 140px 1fr 80px; gap: 8px; padding: 6px 10px; margin: 3px 0; background: #161b22; border-radius: 4px; align-items: center; page-break-inside: avoid; break-inside: avoid; }
+  .stock-ticker { color: #e6edf3; font-weight: 700; font-size: 12px; }
+  .stock-reason { color: #c9d1d9; font-size: 12px; }
+  .stock-dir { text-align: right; font-weight: 600; font-size: 12px; }
+
+  .theme-block { padding: 6px 10px; margin: 3px 0; background: #161b22; border-radius: 4px; page-break-inside: avoid; break-inside: avoid; }
+  .theme-label { color: #e6edf3; font-weight: 700; font-size: 12px; }
+  .theme-desc { color: #8b949e; font-size: 12px; margin-top: 2px; }
+
+  .theme-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .theme-col h3 { border-bottom: 1px solid #21262d; padding-bottom: 4px; }
+
+  .highlight-block { padding: 6px 10px; margin: 3px 0; background: #161b22; border-radius: 4px; border-left: 2px solid #21262d; page-break-inside: avoid; break-inside: avoid; }
+  .highlight-block p { color: #c9d1d9; font-size: 12px; }
+  .highlight-block strong { color: #e6edf3; }
+
+  .macro-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+
+  .dcm-section { background: #161b22; border-radius: 4px; padding: 10px; margin: 6px 0; }
+
+  .cal-row { display: grid; grid-template-columns: 90px 1fr 100px 70px; gap: 8px; padding: 5px 8px; margin: 2px 0; background: #0d1117; border-radius: 3px; align-items: center; page-break-inside: avoid; break-inside: avoid; }
+  .cal-time { color: #58a6ff; font-weight: 600; font-size: 12px; }
+  .cal-event { color: #c9d1d9; font-size: 12px; }
+  .cal-consensus { color: #8b949e; font-size: 12px; }
+  .cal-high { color: #f85149; font-weight: 700; font-size: 11px; text-align: center; background: rgba(248,81,73,0.1); border-radius: 3px; padding: 1px 5px; }
+  .cal-med { color: #d29922; font-weight: 700; font-size: 11px; text-align: center; background: rgba(210,153,34,0.1); border-radius: 3px; padding: 1px 5px; }
+  .cal-low { color: #3fb950; font-weight: 700; font-size: 11px; text-align: center; background: rgba(63,185,80,0.1); border-radius: 3px; padding: 1px 5px; }
+
+  .trends-row { padding: 8px 10px; margin: 4px 0; background: #161b22; border-radius: 4px; page-break-inside: avoid; break-inside: avoid; }
+  .trends-horizon { color: #58a6ff; font-weight: 700; font-size: 12px; margin-bottom: 4px; }
+  .trends-content { color: #c9d1d9; font-size: 12px; }
+
+  .footer { margin-top: 24px; padding-top: 12px; border-top: 1px solid #21262d; color: #484f58; font-size: 11px; }
+  .footer a { color: #58a6ff; text-decoration: none; }
+
+  .badge { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+  .badge-new { background: rgba(63,185,80,0.2); color: #3fb950; }
+  .badge-warn { background: rgba(248,81,73,0.2); color: #f85149; }
+  .badge-info { background: rgba(88,166,255,0.2); color: #58a6ff; }
+
+  .spread-tight { color: #3fb950; }
+  .spread-wide { color: #f85149; }
+
+  @media print {
+    body {
+      background: #0d1117 !important;
+      color: #c9d1d9 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .section, table, tr, td, th, .data-block, .theme-block, .calendar-row {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+    }
+    thead { display: table-header-group; }
+    p, li, div, span {
+      orphans: 3;
+      widows: 3;
+    }
+    .section-wrapper {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    .item, .news-item, .stock-item, .theme-item, .event-item {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    @page {
+      size: A4 landscape;
+      margin: 12mm;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 1: HEADER                               -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h1>Morning Briefing &mdash; 10 June 2026</h1>
+  <p class="header-meta">Generated: 06:55 BST (London) &nbsp;|&nbsp; Pre-European open &nbsp;|&nbsp; Data collected: 06:00–06:55 BST</p>
+  <div class="header-warning">
+    &#9888;&nbsp; Data collected automatically from public sources. Verify all figures before making any investment decision. Some data points may reflect prior-session closes. Items marked n/a could not be reliably sourced.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 2: IMPORTANT NEWS                       -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>2. Important News</h2>
+
+  <div class="news-item item">
+    <div class="headline">&#9679; SpaceX sets $135/share IPO price; pricing tonight, Nasdaq debut 12 June (ticker: SPCX)</div>
+    <div class="source">CNBC / IPOScoop / Capital.com</div>
+    <div class="why">Largest IPO in history at $75B raised; $1.77T market cap would rank SpaceX 7th-largest US company. Goldman Sachs lead banker. Sentiment around AI and space infrastructure tested at open Thursday.</div>
+  </div>
+
+  <div class="news-item item">
+    <div class="headline">&#9679; US CPI for May 2026 releases today at 08:30 ET (13:30 London)</div>
+    <div class="source">BLS / US Inflation Calculator</div>
+    <div class="why">Binary macro event. Markets price ~70% probability of a Dec 2026 Fed rate hike after May jobs beat (+172k vs +85k expected). A hot print reinforces that view and pressures equities and bonds.</div>
+  </div>
+
+  <div class="news-item item">
+    <div class="headline">&#9679; Trump: Iran deal "days away," would reopen Strait of Hormuz immediately — but ceasefire frayed again at weekend</div>
+    <div class="source">CNBC / CBS News / BeinCrypto</div>
+    <div class="why">Oil fell ~3% on Monday/Tuesday as deal optimism grew; Brent near $93/bbl. A confirmed deal opens Hormuz and could drop Brent toward $70s. Another failure keeps energy inflation sticky and complicates Fed path.</div>
+  </div>
+
+  <div class="news-item item">
+    <div class="headline">&#9679; Trump administration planning new 10–12.5% tariffs on many countries</div>
+    <div class="source">CNBC (Europe markets coverage)</div>
+    <div class="why">Adds to trade uncertainty already weighing on European equities. Sector exposure: autos, industrials, chemicals. Adds to EUR/USD downside pressure and complicates ECB easing narrative.</div>
+  </div>
+
+  <div class="news-item item">
+    <div class="headline">&#9679; PHLX Semiconductor Index fell 10% last Friday; partial rebound Monday on chip rally</div>
+    <div class="source">CNBC</div>
+    <div class="why">Largest single-day chip drop since April 2025. Rebound Monday fragile — ASML, STM, Infineon in Europe may see volatile open. Direction of Nasdaq on Tuesday close (-0.97%) suggests rebound did not fully hold.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 3: EUROPEAN FUTURES (PRE-OPEN)          -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>3. European Futures — Pre-Open</h2>
+  <p style="color:#8b949e; font-size:12px; margin-bottom:6px;">Specific pre-open levels not reliably sourced at time of collection. Directional context provided. Check Barchart / Eurex / Bloomberg for live quotes.</p>
+
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Contract</th>
+        <th>Last Reliable Reference</th>
+        <th>Direction Bias</th>
+        <th>Key Driver</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Euro Stoxx 50</strong></td>
+        <td class="na">n/a</td>
+        <td class="warn">Mixed</td>
+        <td>Iran deal hope vs tariff risk vs chip selloff</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>DAX</strong></td>
+        <td class="na">n/a</td>
+        <td class="warn">Mixed / slight neg</td>
+        <td>DAX -1.38% yesterday; tariff exposure</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>CAC 40</strong></td>
+        <td class="na">n/a</td>
+        <td class="warn">Mixed</td>
+        <td>CAC +0.43% yesterday; watch oil majors</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>FTSE 100</strong></td>
+        <td class="na">n/a</td>
+        <td class="warn">Mixed</td>
+        <td>FTSE -0.40% yesterday; energy, mining weight</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>S&amp;P 500 Futures</strong></td>
+        <td class="na">n/a</td>
+        <td class="warn">Flat to slight neg</td>
+        <td>CPI pre-positioning; tech drag</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Nasdaq 100 Futures</strong></td>
+        <td class="na">n/a</td>
+        <td class="neg">Slightly neg</td>
+        <td>Chips volatile; SpaceX IPO diverting risk appetite</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="color:#484f58; font-size:11px; margin-top:4px;">Note: June 8 intraday data showed ES50 futures -1.5%, Stoxx 600 futures -1.3% at one point that session. Context only.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 4: YESTERDAY'S CLOSES                   -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>4. Yesterday's Closes — European Indices (9 June 2026)</h2>
+
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Close</th>
+        <th>Change</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Euro Stoxx 50</strong></td>
+        <td class="na">n/a</td>
+        <td class="na">n/a</td>
+        <td>Stoxx 600 proxy: -0.53% day</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Stoxx 600</strong></td>
+        <td class="na">n/a</td>
+        <td class="neg">-0.53%</td>
+        <td>Broad European index; lacked direction</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>DAX</strong></td>
+        <td class="na">n/a</td>
+        <td class="neg">-1.38%</td>
+        <td>Worst performer; tariff and Iran risk</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>CAC 40</strong></td>
+        <td class="na">n/a</td>
+        <td class="pos">+0.43%</td>
+        <td>Outperformer; energy names helped</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>FTSE 100</strong></td>
+        <td class="na">n/a</td>
+        <td class="neg">-0.40%</td>
+        <td>Oil/mining drag; Iran ceasefire optimism offset</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="color:#484f58; font-size:11px; margin-top:4px;">Absolute closing levels not reliably sourced. Percentage changes from RTT News / CNBC European market coverage.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 5: US MARKETS — YESTERDAY'S SESSION     -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>5. US Markets — Session of 9 June 2026</h2>
+
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Close</th>
+        <th>Change</th>
+        <th>Points</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>S&amp;P 500</strong></td>
+        <td>7,386.65</td>
+        <td class="neg">-0.26%</td>
+        <td class="neg">-19 pts</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Dow Jones</strong></td>
+        <td>50,872.11</td>
+        <td class="pos">+0.17%</td>
+        <td class="pos">+86 pts</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Nasdaq Composite</strong></td>
+        <td>25,678.82</td>
+        <td class="neg">-0.97%</td>
+        <td class="neg">-252 pts</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight-block item" style="margin-top:8px;">
+    <p><strong>Session tone:</strong> Negative for tech, resilient for value. S&amp;P and Nasdaq sold off sharply intraday after President Trump suggested kinetic strikes on Iran might resume following the reported targeting of a US Army Apache helicopter off Oman. A partial recovery into the close left Nasdaq still down nearly 1%. The Dow gained on rotation into defensive/industrial names.</p>
+    <p style="margin-top:4px;"><strong>Leading sector:</strong> Dow industrials, financials (slight gains). <strong>Lagging:</strong> Technology (-2%), semiconductors.</p>
+    <p style="margin-top:4px;"><strong>Key takeaway:</strong> Iran risk premium is back in the market and creating intraday volatility. The partial chip rebound from last Friday's 10% PHLX crash failed to hold by close.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 6: ASIAN MARKETS — OVERNIGHT SESSION    -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>6. Asian Markets — Overnight Session (10 June 2026)</h2>
+  <p style="color:#8b949e; font-size:12px; margin-bottom:6px;">Data reflects most recent available closes. June 10 session may still be in progress at report generation.</p>
+
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Level</th>
+        <th>Change</th>
+        <th>As of</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Nikkei 225</strong></td>
+        <td>65,416</td>
+        <td class="pos">+2.17%</td>
+        <td class="warn">9 Jun close</td>
+        <td>Snapped 3-day losing streak; tech/AI rebound</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Hang Seng</strong></td>
+        <td>24,565.90</td>
+        <td class="na">n/a</td>
+        <td class="warn">9 Jun close</td>
+        <td>Level confirmed; daily % not sourced</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Shanghai Composite</strong></td>
+        <td class="na">n/a</td>
+        <td class="na">n/a</td>
+        <td class="na">n/a</td>
+        <td>Data not reliably sourced this session</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Kospi (South Korea)</strong></td>
+        <td>~8,639</td>
+        <td class="neg">-1.84%</td>
+        <td class="warn">4 Jun (stale)</td>
+        <td>Most recent data Jun 4; Iran/oil drag at that date</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight-block item" style="margin-top:8px;">
+    <p><strong>Overnight tone:</strong> Japan recovered Tuesday on AI/tech buying. Broader Asia mixed given ongoing Iran-Hormuz uncertainty, elevated oil, and US chip volatility. Chinese and Korean data sparse at collection time.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 7: COMMODITIES                          -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>7. Commodities</h2>
+
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Commodity</th>
+        <th>Level</th>
+        <th>Change / Context</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Brent Crude</strong></td>
+        <td>~$93/bbl</td>
+        <td class="neg">Fell below $93 Jun 9</td>
+        <td>Down ~3% on Iran ceasefire optimism. Peak near $95 this week.</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>WTI Crude</strong></td>
+        <td>~$88–90/bbl</td>
+        <td class="neg">Jun 9 range: $86–$91.54</td>
+        <td>Trump "deal days away" driving declines. Still well above pre-conflict levels.</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Gold</strong></td>
+        <td>~$4,260/oz</td>
+        <td class="neg">Fell from recent highs</td>
+        <td>Eased as geopolitical safe-haven demand faded on ceasefire talk. Still up sharply YTD.</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Natural Gas</strong></td>
+        <td class="na">n/a</td>
+        <td class="na">n/a</td>
+        <td>US NatGas +6.1% in May index; Hormuz disruption raised LNG prices sharply in Mar–Apr.</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Copper</strong></td>
+        <td class="na">n/a</td>
+        <td class="na">n/a</td>
+        <td>Data not reliably sourced this session. AI infrastructure demand supports prices.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight-block item" style="margin-top:6px;">
+    <p><strong>Context:</strong> Oil has fallen roughly 20% from 2026 peak as Iran deal talk accelerated. The IEA has called this conflict the "greatest global energy security challenge in history." Energy price index fell 5.4% in May as Brent crude declined 10.7%. A confirmed Hormuz deal could accelerate the drop toward $70s; a deal collapse would quickly reverse gains.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 8: RATES & FX                           -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>8. Rates &amp; FX</h2>
+
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Instrument</th>
+        <th>Level</th>
+        <th>Change / Direction</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>US 10Y Treasury Yield</strong></td>
+        <td>~4.57%</td>
+        <td class="neg">&#8593; (elevated)</td>
+        <td>Bounced to 5.46% Mon (9-week high), pulled back. Driven by May jobs beat (+172k vs +85k exp).</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>German 10Y Bund Yield</strong></td>
+        <td>~3.04%</td>
+        <td class="neg">&#8593;</td>
+        <td>Tracking US yields higher; spread to Treasuries still wide given divergent growth.</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>EUR/USD</strong></td>
+        <td>~1.165</td>
+        <td class="warn">Range-bound</td>
+        <td>Broadly stable near late-May levels. Tariff risk and ECB path weigh. DXY pressure limits upside.</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>GBP/USD</strong></td>
+        <td>~1.343</td>
+        <td class="warn">Eased</td>
+        <td>Gave back most of early-May push toward mid-1.36s. UK data watch.</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>DXY (Dollar Index)</strong></td>
+        <td>~100</td>
+        <td class="neg">Slipped below 100</td>
+        <td>Eased Tue after Iran ceasefire talk reduced safe-haven demand. Strong jobs print limits downside.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight-block item" style="margin-top:6px;">
+    <p><strong>Key rate dynamic:</strong> Strong May payrolls (+172k, UR 4.3% steady) raised Dec 2026 Fed rate-hike probability to ~70%. Market is no longer pricing cuts — the shift is toward higher for longer or even a hike. Today's CPI is the next pivotal input. A hot reading would push the 10Y back toward 5.5%.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 9: DCM — PRIMARY BOND MARKET            -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>9. DCM — Primary Bond Market</h2>
+
+  <div class="dcm-section">
+    <h3>Yesterday's Issuances (9 June 2026)</h3>
+    <p style="color:#8b949e; font-size:12px; margin-top:4px;">Transaction-level data for June 9 not available from public searches at time of collection. Sources (Dealogic, IFR, GlobalCapital) require authenticated access. Verify via Bloomberg / IFR primary market desk.</p>
+    <table style="page-break-inside:avoid; margin-top:6px;">
+      <thead>
+        <tr>
+          <th>Issuer</th>
+          <th>Size</th>
+          <th>Tenor</th>
+          <th>Coupon / Spread</th>
+          <th>IPT Tightening</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="page-break-inside:avoid;">
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="dcm-section" style="margin-top:8px;">
+    <h3>Pipeline / Expected Today &amp; This Week</h3>
+    <div class="highlight-block item">
+      <p><strong>SpaceX (SPCX):</strong> Equity IPO pricing tonight (11 June), not a bond — but Goldman/MS/BofA/Citi/JPM involvement signals heavy ECM bandwidth this week, potentially reducing DCM capacity.</p>
+    </div>
+    <div class="highlight-block item">
+      <p><strong>AI &amp; Hyperscaler Debt Pipeline:</strong> Several hundred billion USD of new issuance expected from hyperscalers and large-tech borrowers in 2026 to fund data center build-out. EUR-denominated foreign issuance has surged to ~EUR 100bn YTD vs EUR 32bn avg over same period last 5 years. Watch for datacentre/cloud issuer mandates in coming weeks.</p>
+    </div>
+    <div class="highlight-block item">
+      <p><strong>Sovereign/SSA:</strong> EU sovereign debt issuance calendar available via EFC Sub-Committee. No specific announcement found for June 10 at time of collection.</p>
+    </div>
+  </div>
+
+  <div class="dcm-section" style="margin-top:8px;">
+    <h3>Key Spreads</h3>
+    <table style="page-break-inside:avoid;">
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>Level (bps)</th>
+          <th>Move</th>
+          <th>Direction</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="page-break-inside:avoid;">
+          <td><strong>iTraxx Main (5Y)</strong></td>
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+        </tr>
+        <tr style="page-break-inside:avoid;">
+          <td><strong>iTraxx Crossover (5Y)</strong></td>
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+        </tr>
+        <tr style="page-break-inside:avoid;">
+          <td><strong>CDX IG (5Y)</strong></td>
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+        </tr>
+        <tr style="page-break-inside:avoid;">
+          <td><strong>Avg EUR Corp IG Spread</strong></td>
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="color:#484f58; font-size:11px; margin-top:4px;">Live spread data requires Bloomberg/ICE terminal. Retrieve from Cbonds, ICE, or S&amp;P iTraxx pages before open.</p>
+  </div>
+
+  <div class="dcm-section" style="margin-top:8px;">
+    <h3>Commentary</h3>
+    <div class="highlight-block item">
+      <p>Primary market tone in EUR IG has been constructive in early June despite rate volatility. Window remains technically open: EUR foreign issuance running ~3x historical pace in 2026, driven by AI/hyperscaler demand for EUR funding. The primary risk to the window is today's CPI print — a material upside surprise would cheapen new-issue concessions and may prompt issuers to pull mandates until conditions stabilize. Financials and SSA remain the anchor segments; HY execution is more selective given energy inflation backdrop. Industrials and transport issuers watch Iran deal closely: a reopened Hormuz would materially change fuel cost assumptions and could re-rate balance sheet risk.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 10: ECONOMIC CALENDAR                   -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>10. Economic Calendar — 10 June 2026</h2>
+
+  <div style="background:#161b22; border-radius:4px; padding:6px 8px; margin-bottom:6px;">
+    <div style="display:grid; grid-template-columns:90px 1fr 100px 70px; gap:8px; padding:3px 0; font-size:10px; color:#484f58; text-transform:uppercase; font-weight:700;">
+      <span>London Time</span><span>Indicator</span><span>Consensus</span><span>Importance</span>
+    </div>
+  </div>
+
+  <div class="cal-row item">
+    <span class="cal-time">13:30</span>
+    <span class="cal-event"><strong>US CPI (May 2026)</strong> — Consumer Price Index YoY &amp; MoM</span>
+    <span class="cal-consensus">n/a (watch)</span>
+    <span class="cal-high">HIGH</span>
+  </div>
+
+  <div class="cal-row item">
+    <span class="cal-time">13:30</span>
+    <span class="cal-event">US Initial Jobless Claims (weekly, if scheduled)</span>
+    <span class="cal-consensus">n/a</span>
+    <span class="cal-med">MEDIUM</span>
+  </div>
+
+  <div class="cal-row item">
+    <span class="cal-time">10:00</span>
+    <span class="cal-event">Eurozone / ECB speaker (if scheduled — verify)</span>
+    <span class="cal-consensus">n/a</span>
+    <span class="cal-med">MEDIUM</span>
+  </div>
+
+  <div class="cal-row item">
+    <span class="cal-time">All day</span>
+    <span class="cal-event"><strong>Aegon AGM</strong> — Annual General Meeting; final dividend EUR 0.21/share proposed</span>
+    <span class="cal-consensus">n/a</span>
+    <span class="cal-low">LOW</span>
+  </div>
+
+  <div style="margin-top:8px; padding:6px 10px; background:#161b22; border-radius:4px; color:#8b949e; font-size:12px;">
+    <strong style="color:#d29922;">Tomorrow (11 June):</strong> US PPI (May 2026) — follows CPI for full inflation picture. SpaceX IPO pricing after market close.
+  </div>
+
+  <p style="color:#484f58; font-size:11px; margin-top:6px;">Calendar data from BLS / US Inflation Calculator / White House PFEI schedule. Verify full calendar at Investing.com or TradingView economic calendar for any additional releases.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 11: CORPORATE EVENTS & EARNINGS         -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>11. Corporate Events &amp; Earnings</h2>
+
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Event</th>
+        <th>Detail</th>
+        <th>Market Impact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Aegon (AGN)</strong></td>
+        <td>AGM — June 10</td>
+        <td>Final dividend EUR 0.21/share to be proposed; 2025 accounts presented</td>
+        <td>Low short-term; dividend confirmation supportive</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>SpaceX (pre-IPO)</strong></td>
+        <td>IPO Roadshow final day</td>
+        <td>$135/share price set; pricing tonight after close; Nasdaq debut June 12 as SPCX</td>
+        <td>Major event; watch sentiment in space &amp; AI names today</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Palo Alto Networks (PANW)</strong></td>
+        <td>Earnings (week of June 8–12)</td>
+        <td>Q earnings release this week (verify exact date)</td>
+        <td>Cybersecurity sector bellwether</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Broadcom (AVGO)</strong></td>
+        <td>Earnings (week of June 8–12)</td>
+        <td>AI chip/networking revenue closely watched</td>
+        <td>Key AI infrastructure read-through</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>CrowdStrike (CRWD)</strong></td>
+        <td>Earnings (week of June 8–12)</td>
+        <td>Cybersecurity demand in Iran conflict backdrop</td>
+        <td>Geopolitical threat backdrop supportive</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="color:#484f58; font-size:11px; margin-top:4px;">Exact earnings dates for PANW/AVGO/CRWD: verify on Yahoo Finance earnings calendar. Q1 2026 S&amp;P 500 EPS growth tracking +28.4% YoY per FactSet.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 12: STOCKS TO WATCH                     -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>12. Stocks to Watch</h2>
+
+  <div class="stock-item item">
+    <div><span class="stock-ticker">NVDA</span><br><span style="color:#8b949e;font-size:11px;">NVIDIA (Nasdaq)</span></div>
+    <div class="stock-reason">Multiple broker upgrades; expanded Blackwell GPU shipments guided H2 2026. AI demand strongest in years. Volatile after PHLX -10% last Friday.</div>
+    <div class="stock-dir pos">&#8593; Bullish</div>
+  </div>
+
+  <div class="stock-item item">
+    <div><span class="stock-ticker">ASML</span><br><span style="color:#8b949e;font-size:11px;">ASML (AEX)</span></div>
+    <div class="stock-reason">European chip bellwether hit by PHLX selloff last Friday. Today's open crucial: rebound continuation or further unwind of positions.</div>
+    <div class="stock-dir warn">&#8597; Volatile</div>
+  </div>
+
+  <div class="stock-item item">
+    <div><span class="stock-ticker">SPCX</span><br><span style="color:#8b949e;font-size:11px;">SpaceX (IPO Jun 12)</span></div>
+    <div class="stock-reason">IPO priced at $135; $1.77T valuation. First trade Thursday. Sentiment proxy for AI/space; spillover to Virgin Galactic, Rocket Lab, satellite names today.</div>
+    <div class="stock-dir pos">&#8593; Bullish sentiment</div>
+  </div>
+
+  <div class="stock-item item">
+    <div><span class="stock-ticker">HPE</span><br><span style="color:#8b949e;font-size:11px;">HP Enterprise (NYSE)</span></div>
+    <div class="stock-reason">Loop Capital upgraded to Buy with $75 target. AI infrastructure server demand cited. Watch earnings release this week.</div>
+    <div class="stock-dir pos">&#8593; Upgrade</div>
+  </div>
+
+  <div class="stock-item item">
+    <div><span class="stock-ticker">KNX</span><br><span style="color:#8b949e;font-size:11px;">Knight-Swift (NYSE)</span></div>
+    <div class="stock-reason">Susquehanna upgraded Neutral to Positive, $90 target. Transport sector in multi-month rally from April 2025 lows.</div>
+    <div class="stock-dir pos">&#8593; Upgrade</div>
+  </div>
+
+  <div class="stock-item item">
+    <div><span class="stock-ticker">BP / SHEL / TTE</span><br><span style="color:#8b949e;font-size:11px;">Oil Majors (LSE/Paris)</span></div>
+    <div class="stock-reason">Brent -3% move on Iran deal talk. Majors sold off on oil price decline but supported by yield-seeking. Iran deal progress / failure is binary catalyst today.</div>
+    <div class="stock-dir warn">&#8597; Deal-dependent</div>
+  </div>
+
+  <div class="stock-item item">
+    <div><span class="stock-ticker">RTX / LMT / NOC</span><br><span style="color:#8b949e;font-size:11px;">US Defense (NYSE)</span></div>
+    <div class="stock-reason">Trump proposed $1.5T defense budget for FY2027. Iran conflict backdrop sustains demand. Watch for contract news.</div>
+    <div class="stock-dir pos">&#8593; Structural bid</div>
+  </div>
+
+  <div class="stock-item item">
+    <div><span class="stock-ticker">GH</span><br><span style="color:#8b949e;font-size:11px;">Guardant Health (Nasdaq)</span></div>
+    <div class="stock-reason">Evercore ISI upgraded to Outperform, $160 target. Liquid biopsy / oncology diagnostics growth thesis.</div>
+    <div class="stock-dir pos">&#8593; Upgrade</div>
+  </div>
+
+  <div class="stock-item item">
+    <div><span class="stock-ticker">EXP</span><br><span style="color:#8b949e;font-size:11px;">Eagle Materials (NYSE)</span></div>
+    <div class="stock-reason">JPMorgan upgraded Underweight to Neutral, $225 target. Construction materials beneficiary of US infrastructure spend.</div>
+    <div class="stock-dir warn">&#8593; Upgrade (neutral)</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 13: MACRO / CORPORATE / POLITICAL       -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>13. Macro / Corporate / Political Highlights</h2>
+
+  <div class="macro-cols">
+    <div>
+      <h3>Macro</h3>
+      <div class="highlight-block item">
+        <p><strong>Fed path shift:</strong> May payrolls +172k (est. +85k); UR 4.3% steady. Markets now price ~70% chance of Fed rate hike in December 2026, reversing earlier cut expectations. Today's CPI is decisive.</p>
+      </div>
+      <div class="highlight-block item">
+        <p><strong>Energy inflation:</strong> IEA labels Iran conflict "greatest global energy security challenge in history." Energy price index +24% YTD; Brent peaked above $120 after Hormuz closure in March, now near $93 on deal hopes.</p>
+      </div>
+      <div class="highlight-block item">
+        <p><strong>ECB divergence:</strong> European growth lagging US; ECB expected to continue easing cycle despite energy-driven inflation. EUR/USD range-bound ~1.165 reflects this policy split.</p>
+      </div>
+    </div>
+
+    <div>
+      <h3>Corporate</h3>
+      <div class="highlight-block item">
+        <p><strong>SpaceX IPO:</strong> Largest in history at $75B raise, $1.77T valuation. Goldman Sachs lead. Elon Musk retains 82%+ voting control. 2025 revenue $18.7B but net loss $4.9B. Sets tone for AI/space equity valuations.</p>
+      </div>
+      <div class="highlight-block item">
+        <p><strong>Q1 2026 S&amp;P earnings:</strong> FactSet tracking +28.4% YoY growth — highest since Q4 2021. Strong earnings backdrop is a key bull case support even as rate fears rise.</p>
+      </div>
+      <div class="highlight-block item">
+        <p><strong>AI debt issuance wave:</strong> Hyperscalers and tech borrowers expected to issue hundreds of billions in bonds in 2026 to fund data center build. EUR-denominated non-euro corporate issuance running ~3x historical average YTD.</p>
+      </div>
+    </div>
+
+    <div>
+      <h3>Political / Geopolitical</h3>
+      <div class="highlight-block item">
+        <p><strong>Iran-US war:</strong> Conflict began with US-Israel joint operation Feb 28 that killed Iran's Supreme Leader. Hormuz closed March 4, sending Brent above $120. Trump claims peace deal "days away" (repeated claim). Ceasefire frayed June 7–8 weekend. Kinetic strike risk remains.</p>
+      </div>
+      <div class="highlight-block item">
+        <p><strong>New US tariffs:</strong> Trump admin planning 10–12.5% tariffs on many countries. European response uncertain; adds to EUR/USD downside and complicates ECB path.</p>
+      </div>
+      <div class="highlight-block item">
+        <p><strong>China-Japan tensions:</strong> Ongoing China-Japan territorial tensions weighed on Hong Kong stocks in early 2026; one factor compressing Hang Seng relative to other Asian markets.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 14: KEY THEMES — TOP 5 BY HORIZON       -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>14. Key Themes — Top 5 by Horizon</h2>
+
+  <div class="theme-cols">
+    <div>
+      <h3>Today's Top 5</h3>
+
+      <div class="theme-block item">
+        <div class="theme-label">1. US CPI (May) at 13:30 London</div>
+        <div class="theme-desc">Binary event: hot print pushes Fed rate-hike odds above 70%, pressures bonds and equities; soft print gives risk assets relief.</div>
+      </div>
+
+      <div class="theme-block item">
+        <div class="theme-label">2. Iran Deal Progress</div>
+        <div class="theme-desc">Each headline moves Brent 2–4%; oil direction sets the tone for energy stocks and European inflation expectations at the open.</div>
+      </div>
+
+      <div class="theme-block item">
+        <div class="theme-label">3. SpaceX IPO Roadshow Sentiment</div>
+        <div class="theme-desc">Final roadshow day before tonight's pricing; secondary effects on Rocket Lab, Planet Labs, NVIDIA, and other AI/space names.</div>
+      </div>
+
+      <div class="theme-block item">
+        <div class="theme-label">4. Chip Sector Stability</div>
+        <div class="theme-desc">After PHLX -10% Friday and partial rebound Monday, markets need to confirm whether the low holds; ASML and STM are European read-throughs.</div>
+      </div>
+
+      <div class="theme-block item">
+        <div class="theme-label">5. European Open Direction</div>
+        <div class="theme-desc">DAX was worst performer yesterday at -1.38%; CAC held (+0.43%); divergence reflects tariff vs energy sensitivity — direction today hinges on Iran and CPI pre-positioning.</div>
+      </div>
+    </div>
+
+    <div>
+      <h3>This Week's Top 5</h3>
+
+      <div class="theme-block item">
+        <div class="theme-label">1. SpaceX Nasdaq Debut (Jun 12)</div>
+        <div class="theme-desc">First trading day of SPCX at $135; how it trades sets sentiment for AI/space sector and the IPO market for the rest of 2026.</div>
+      </div>
+
+      <div class="theme-block item">
+        <div class="theme-label">2. US PPI (Jun 11)</div>
+        <div class="theme-desc">Back-to-back inflation prints (CPI today, PPI tomorrow) give a complete picture of the inflation pulse and Fed's likely next move.</div>
+      </div>
+
+      <div class="theme-block item">
+        <div class="theme-label">3. Iran Ceasefire Resolution Attempt</div>
+        <div class="theme-desc">Trump claims deal in "days" for the fourth time; if it holds, Hormuz reopens and Brent could drop $10–15/bbl within sessions.</div>
+      </div>
+
+      <div class="theme-block item">
+        <div class="theme-label">4. Fed Communication Post-Data</div>
+        <div class="theme-desc">After two strong data prints (jobs + CPI), market watches for Fed speakers to confirm or push back on the December rate-hike narrative.</div>
+      </div>
+
+      <div class="theme-block item">
+        <div class="theme-label">5. Tariff Implementation Detail</div>
+        <div class="theme-desc">Trump's 10–12.5% tariff announcement needs specifics; sectors at risk (autos, industrials) will react once country/product lists emerge.</div>
+      </div>
+    </div>
+
+    <div>
+      <h3>This Month's Top 5</h3>
+
+      <div class="theme-block item">
+        <div class="theme-label">1. Iran War Endgame &amp; Hormuz</div>
+        <div class="theme-desc">Permanent ceasefire and Hormuz reopening would be the largest single macro tailwind of 2026 — cutting energy costs, easing inflation, and reducing geopolitical premium in rates.</div>
+      </div>
+
+      <div class="theme-block item">
+        <div class="theme-label">2. Federal Reserve June Meeting</div>
+        <div class="theme-desc">Post-CPI and PPI data, June Fed meeting will clarify the rate path; shift from cuts to hike would reprice the entire yield curve.</div>
+      </div>
+
+      <div class="theme-block item">
+        <div class="theme-label">3. SpaceX Index Inclusion Timeline</div>
+        <div class="theme-desc">A $1.77T company listing on Nasdaq will trigger rebalancing discussions; S&amp;P 500 inclusion in coming months would force passive fund buying.</div>
+      </div>
+
+      <div class="theme-block item">
+        <div class="theme-label">4. Q2 2026 Earnings Pre-Announcements</div>
+        <div class="theme-desc">Q1 tracked +28.4% YoY; Q2 guidance will tell whether energy inflation and tariffs are starting to compress margins — particularly for industrials and transport.</div>
+      </div>
+
+      <div class="theme-block item">
+        <div class="theme-label">5. ECB Rate Decision &amp; EUR Outlook</div>
+        <div class="theme-desc">ECB easing while Fed considers hiking creates the widest transatlantic rate gap in years; watch EUR/USD for a decisive break from the 1.165 range.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 15: KEY TRENDS TO WATCH                 -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section-wrapper">
+  <h2>15. Key Trends to Watch</h2>
+
+  <div class="trends-row item">
+    <div class="trends-horizon">1 DAY — Today's Session</div>
+    <div class="trends-content">
+      CPI at 13:30 London is the primary binary event: a hot reading (+0.4% MoM or above) would push equities lower and yields up, reinforcing the Fed hike narrative. Iran deal headlines remain live throughout the session and will move oil and European energy stocks instantly. Watch ASML, STM, and Infineon opens as the first read on whether the chip sector rebound is durable or a dead-cat bounce. European open direction set by CAC vs DAX divergence and overnight Asian tone from Nikkei recovery.
+    </div>
+  </div>
+
+  <div class="trends-row item">
+    <div class="trends-horizon">1 WEEK — Key Appointments</div>
+    <div class="trends-content">
+      SpaceX first trade Thursday June 12 is the week's set-piece event for risk appetite. PPI Tuesday June 11 completes the inflation double-header. Iran deal talks will dominate headlines all week — any confirmation or collapse will be a top market mover. Earnings from PANW, CRWD, AVGO this week add to the risk calendar. Watch for US tariff implementation specifics and European government responses. Fed speakers post-data will calibrate rate-hike market pricing.
+    </div>
+  </div>
+
+  <div class="trends-row item">
+    <div class="trends-horizon">1 MONTH — Underlying Trends</div>
+    <div class="trends-content">
+      The overarching question for June is whether the Fed hike narrative solidifies (would be a regime change) or reverses if CPI/PPI disappoint. Iran war and Hormuz dynamics remain the dominant macro variable for energy inflation. ECB-Fed policy divergence is widening and will compress EUR/USD unless a deal lowers energy costs and eases ECB inflation concerns. The AI debt supercycle continues: hyperscalers issuing hundreds of billions in bonds, and EUR foreign issuance running at 3x historical pace. US Q2 earnings guidance from June 20 onward will test whether the +28% Q1 growth rate is sustainable amid tariff and energy headwinds.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- FOOTER                                          -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="footer">
+  <p><strong style="color:#e6edf3;">Sources:</strong></p>
+  <ul style="margin-top:6px; padding-left:16px; list-style:disc; line-height:1.8;">
+    <li><a href="https://www.cnbc.com/2026/06/09/stock-market-today-live-updates.html">CNBC — S&amp;P 500 and Nasdaq close June 8–9, 2026</a></li>
+    <li><a href="https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-09-2026">TheStreet — Stock Market Today June 9, 2026</a></li>
+    <li><a href="https://www.cnbc.com/2026/06/09/trump-iran-war-deal-days.html">CNBC — Trump repeats Iran deal "days" claim June 9, 2026</a></li>
+    <li><a href="https://www.cnbc.com/2026/06/09/oil-prices-iran-war-strait-hormuz-trump-israel-lebanon.html">CNBC — Oil falls on Iran deal optimism June 9, 2026</a></li>
+    <li><a href="https://www.cnbc.com/2026/05/20/spacex-ipo-live-updates.html">CNBC — SpaceX IPO details</a></li>
+    <li><a href="https://www.iposcoop.com/the-ipo-buzz-spacex-spcx-proposed-sets-135-share-ipo-price-to-raise-75-billion/">IPOScoop — SpaceX $135 IPO price, $75B raise</a></li>
+    <li><a href="https://capital.com/en-int/learn/ipo/spacex-ipo">Capital.com — SpaceX IPO June 2026 timeline</a></li>
+    <li><a href="https://beincrypto.com/iran-ceasefire-stocks-oil-bitcoin-trump-june-2026/">BeinCrypto — Iran ceasefire and market reactions</a></li>
+    <li><a href="https://www.rttnews.com/story.aspx?Id=3659071">RTTNews — European markets fail to hold gains</a></li>
+    <li><a href="https://www.ig.com/en/news-and-trade-ideas/nikkei-june-2026-analysis-260610">IG — Nikkei June 2026 analysis</a></li>
+    <li><a href="https://www.usinflationcalculator.com/inflation/consumer-price-index-release-schedule/">US Inflation Calculator — CPI release schedule 2026</a></li>
+    <li><a href="https://www.bls.gov/schedule/news_release/cpi.htm">BLS — CPI release schedule</a></li>
+    <li><a href="https://www.heygotrade.com/en/blog/wall-street-analyst-upgrades-june-2026/">HeyGoTrade — Analyst upgrades June 2026</a></li>
+    <li><a href="https://www.wikipedia.org/wiki/Economic_impact_of_the_2026_Iran_war">Wikipedia — Economic impact of 2026 Iran war</a></li>
+    <li><a href="https://www.jpmorgan.com/insights/global-research/commodities/iran-us-tensions-market-effect">JPMorgan — Iran tensions market effect</a></li>
+    <li><a href="https://fortune.com/article/current-price-of-gold-06-08-2026/">Fortune — Gold price June 8, 2026</a></li>
+    <li>Trading Economics, Yahoo Finance, Bloomberg Markets, Reuters — rates, FX, commodity reference data</li>
+  </ul>
+  <p style="margin-top:10px; color:#484f58;">Data collected automatically. Verify before making any decision. &nbsp;|&nbsp; Generated 10 June 2026 ~06:55 BST.</p>
+</div>
+
+</body>
+</html>
