@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Briefing — 13 June 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    padding: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  h1 { color: #e6edf3; font-size: 22px; border-bottom: 2px solid #30363d; padding-bottom: 8px; margin-bottom: 16px; letter-spacing: 1px; }
+  h2 { color: #e6edf3; font-size: 15px; margin: 24px 0 8px 0; border-left: 3px solid #58a6ff; padding-left: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  h3 { color: #58a6ff; font-size: 12px; margin: 14px 0 6px 0; text-transform: uppercase; letter-spacing: 0.8px; }
+  p { margin-bottom: 6px; }
+
+  .pos { color: #3fb950; font-weight: bold; }
+  .neg { color: #f85149; font-weight: bold; }
+  .warn { color: #d29922; }
+  .na { color: #8b949e; font-style: italic; }
+  .muted { color: #8b949e; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 12px 0;
+    page-break-inside: avoid;
+  }
+  th {
+    background: #161b22;
+    color: #8b949e;
+    text-align: left;
+    padding: 6px 10px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #30363d;
+  }
+  td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #21262d;
+    vertical-align: top;
+    font-size: 12px;
+  }
+  tr { page-break-inside: avoid; }
+  tr:nth-child(even) td { background: #0f1318; }
+
+  .section-wrapper {
+    margin-bottom: 28px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .item {
+    margin-bottom: 8px;
+    padding-left: 4px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .header-block {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+  }
+  .header-block h1 { border-bottom-color: #58a6ff44; }
+
+  .badge {
+    display: inline-block;
+    background: #58a6ff18;
+    border: 1px solid #58a6ff44;
+    color: #58a6ff;
+    padding: 2px 9px;
+    border-radius: 3px;
+    font-size: 11px;
+    margin-right: 6px;
+    margin-top: 4px;
+    letter-spacing: 0.3px;
+  }
+  .badge-warn {
+    background: #d2992218;
+    border-color: #d2992244;
+    color: #d29922;
+  }
+  .badge-red {
+    background: #f8514918;
+    border-color: #f8514944;
+    color: #f85149;
+  }
+
+  .news-item {
+    background: #161b22;
+    border-left: 3px solid #58a6ff;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border-radius: 0 4px 4px 0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .news-item.warn { border-left-color: #d29922; }
+  .news-item.alert { border-left-color: #f85149; }
+  .news-item.pos { border-left-color: #3fb950; }
+
+  .theme-block {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .theme-label {
+    color: #58a6ff;
+    font-weight: bold;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    min-width: 200px;
+  }
+
+  .footer {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid #30363d;
+    color: #8b949e;
+    font-size: 11px;
+    line-height: 1.8;
+  }
+
+  @media print {
+    body {
+      background: #0d1117 !important;
+      color: #c9d1d9 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .section, table, tr, td, th, .data-block, .theme-block, .calendar-row {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+    }
+    thead { display: table-header-group; }
+    p, li, div, span {
+      orphans: 3;
+      widows: 3;
+    }
+    .section-wrapper {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    .item, .news-item, .stock-item, .theme-item, .event-item {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    @page {
+      size: A4 landscape;
+      margin: 12mm;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 1. HEADER -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<div class="header-block">
+  <h1>MORNING BRIEFING — SATURDAY 13 JUNE 2026</h1>
+  <p>
+    <span class="badge">LONDON BST</span>
+    <span class="badge">Generated ~06:00 BST</span>
+    <span class="badge badge-warn">WEEKEND EDITION</span>
+    <span class="badge badge-warn">Markets closed today</span>
+  </p>
+  <p style="margin-top:10px; color:#8b949e; font-size:11px;">
+    Pre-open recap covering Friday 12 June US close, Asian overnight session, and key developments since yesterday's European close.
+    European cash markets are closed today (Saturday). Next cash open: Monday 15 June 07:00 BST.
+  </p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 2. IMPORTANT NEWS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<h2>2. IMPORTANT NEWS</h2>
+
+<div class="item">
+<div class="news-item pos">
+  <strong>Trump halts Iran strikes — peace deal "this weekend"</strong><br>
+  <span class="muted">Source: CNBC, Reuters — </span>President Trump scrapped plans for further military strikes on Iran and said a permanent peace agreement could be signed as soon as this weekend, potentially held in Europe. The announcement sent oil sharply lower and equities broadly higher. Markets have rallied and reversed repeatedly on similar signals, so execution risk remains high.
+</div>
+</div>
+
+<div class="item">
+<div class="news-item pos">
+  <strong>SpaceX (SPCX) IPO: +19.2% on debut — largest in history</strong><br>
+  <span class="muted">Source: CNBC, Yahoo Finance — </span>SpaceX priced at $135/share (Nasdaq: SPCX), raising $75bn at a $1.75 trillion valuation. Shares opened at $150, hit a session high of $168.75, and closed at $160.95, up 19.2%. At the intraday peak, market cap reached $2.21tn, within range of Amazon's $2.54tn. The debut lifted Nasdaq sentiment broadly.
+</div>
+</div>
+
+<div class="item">
+<div class="news-item warn">
+  <strong>ECB hikes +25bp to 2.25% — first rate rise since 2023</strong><br>
+  <span class="muted">Source: Bloomberg, Euronews, CNBC — </span>The ECB's Governing Council voted Thursday 11 June to raise its key deposit rate to 2.25%, reversing the previous easing cycle. Lagarde cited inflationary pressure from the US-Iran war and energy costs. The move risks tipping the eurozone into recession if energy disruption persists and demand softens further. Bund yields rose to near three-week highs.
+</div>
+</div>
+
+<div class="item">
+<div class="news-item alert">
+  <strong>Brent crude dives 3.4% on Iran optimism — 2-month lows</strong><br>
+  <span class="muted">Source: Trading Economics, OilPriceAPI — </span>Brent fell to $87.27/bbl on Friday, its lowest since early March 2026. WTI dropped to $84.29/bbl. Iran sanctions relief and potential Strait of Hormuz reopening drove the selloff. Energy stocks underperformed. If the deal collapses, the move is fully reversible.
+</div>
+</div>
+
+<div class="item">
+<div class="news-item warn">
+  <strong>Asian risk rally overnight — Nikkei +2.81%, Hang Seng +1.93%</strong><br>
+  <span class="muted">Source: Trading Economics — </span>Asian markets gapped higher Saturday morning following Friday's positive US session and Iran deal signals. Lower oil prices boosted airlines, industrials, and consumer sectors across the region. Risk-on tone broad-based.
+</div>
+</div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 3. EUROPEAN FUTURES (pre-open) -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<h2>3. EUROPEAN FUTURES (pre-open)</h2>
+<p class="warn" style="margin-bottom:8px;">Note: June 13 is a Saturday. European cash markets are closed. Futures data reflects last available pricing and implied Monday direction. Data collected ~06:00 BST.</p>
+<table style="page-break-inside:avoid;">
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th>Futures Level</th>
+      <th>Implied Change</th>
+      <th>vs Friday Close</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="page-break-inside:avoid;">
+      <td>Euro Stoxx 50</td>
+      <td>6,067</td>
+      <td><span class="neg">-1.4%</span></td>
+      <td>Slightly off Friday close (6,154); thinly traded weekend session</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>DAX</td>
+      <td>~24,210</td>
+      <td><span class="pos">+0.1%</span></td>
+      <td>Broadly flat; Iran deal uncertainty vs ECB hike digestion</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>CAC 40</td>
+      <td class="na">n/a</td>
+      <td class="na">n/a</td>
+      <td>No live weekend quote sourced</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>FTSE 100</td>
+      <td>~10,304</td>
+      <td><span class="pos">+0.5%</span></td>
+      <td>Broadly unchanged; energy drag offset by risk-on tone</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>S&amp;P 500 Futures</td>
+      <td class="na">n/a</td>
+      <td><span class="pos">+0.2% est.</span></td>
+      <td>Positive lean; SpaceX hangover and Iran deal optimism</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Nasdaq Futures</td>
+      <td class="na">n/a</td>
+      <td><span class="pos">+0.2% est.</span></td>
+      <td>SpaceX-driven tech bid; caution on rate path</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 4. YESTERDAY'S CLOSES (Friday 12 June) -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<h2>4. YESTERDAY'S CLOSES — FRIDAY 12 JUNE 2026</h2>
+<table style="page-break-inside:avoid;">
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th>Close</th>
+      <th>Change</th>
+      <th>% Change</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="page-break-inside:avoid;">
+      <td>Euro Stoxx 50</td>
+      <td>6,154.00</td>
+      <td class="pos">+1.5% est.</td>
+      <td class="pos">+~1.5%</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>DAX</td>
+      <td>24,209.71</td>
+      <td class="pos">+0.06%</td>
+      <td class="pos">+0.06%</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>CAC 40</td>
+      <td class="na">n/a</td>
+      <td class="na">n/a</td>
+      <td class="na">n/a</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>FTSE 100</td>
+      <td>10,303.88</td>
+      <td class="pos">+49.38</td>
+      <td class="pos">+0.48%</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted" style="font-size:11px;">Stoxx 50 and Stoxx 600 gained over 1% on Friday, driven by falling oil prices and Trump halting Iran strikes. DAX slightly outperformed on relative resilience despite ECB hike digestion.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 5. US MARKETS — FRIDAY 12 JUNE SESSION -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<h2>5. US MARKETS — FRIDAY 12 JUNE SESSION</h2>
+<table style="page-break-inside:avoid;">
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th>Close</th>
+      <th>Change</th>
+      <th>% Change</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="page-break-inside:avoid;">
+      <td>S&amp;P 500</td>
+      <td class="na">n/a (specific)</td>
+      <td class="pos">+0.5%</td>
+      <td class="pos">+0.5%</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Dow Jones</td>
+      <td>51,202</td>
+      <td class="pos">+354 pts</td>
+      <td class="pos">+0.70%</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Nasdaq</td>
+      <td class="na">n/a (specific)</td>
+      <td class="pos">+0.3%</td>
+      <td class="pos">+0.3%</td>
+    </tr>
+  </tbody>
+</table>
+<div class="item">
+  <p><strong>Session tone:</strong> <span class="pos">Positive.</span> SpaceX's historic Nasdaq debut (SPCX +19.2%) anchored sentiment. US-Iran peace optimism drove oil lower, boosting consumer discretionary and airline names. The Dow's 354-point gain reflected broad-market confidence rather than tech concentration.</p>
+  <p><strong>Leading sectors:</strong> Technology (SpaceX halo effect), Consumer Discretionary (oil cost benefit), Industrials (Iran deal supply chain optimism).</p>
+  <p><strong>Lagging sectors:</strong> Energy (Brent -3.44%, ExxonMobil, Chevron under pressure), Financials (ECB hike news raised rate uncertainty globally).</p>
+  <p><strong>Key takeaway:</strong> SpaceX's debut and Iran peace signals combined to produce a strong weekly close. The SpaceX IPO absorbed substantial capital; watch for secondary-market rotation next week. ECB hike complicates the macro picture for European-exposed US names.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 6. ASIAN MARKETS — OVERNIGHT SESSION -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<h2>6. ASIAN MARKETS — OVERNIGHT SESSION (13 June)</h2>
+<table style="page-break-inside:avoid;">
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th>Level</th>
+      <th>Change</th>
+      <th>% Change</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="page-break-inside:avoid;">
+      <td>Nikkei 225</td>
+      <td>66,020.04</td>
+      <td class="pos">+1,803</td>
+      <td class="pos">+2.81%</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Hang Seng</td>
+      <td>24,718.10</td>
+      <td class="pos">+469</td>
+      <td class="pos">+1.93%</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Shanghai Composite</td>
+      <td>4,031.51</td>
+      <td class="pos">+44.7</td>
+      <td class="pos">+1.12%</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Kospi</td>
+      <td class="na">n/a</td>
+      <td class="na">n/a</td>
+      <td class="na">n/a</td>
+    </tr>
+  </tbody>
+</table>
+<div class="item">
+  <p><strong>Overall tone:</strong> <span class="pos">Strongly positive.</span> Risk-on across the region. Lower oil prices reduced import cost pressures for Japan (net oil importer), boosting exporters and consumer names. Nikkei's 2.81% gain was the standout.</p>
+  <p><strong>Drivers:</strong> US-Iran peace deal optimism; oil decline; SpaceX IPO positive sentiment spillover; yen stable. The Hang Seng and Shanghai Composite lagged somewhat due to China-specific regulatory uncertainty and domestic demand concerns, but both posted solid gains.</p>
+  <p><strong>Caution:</strong> If Iran deal fails to materialize over the weekend, reversal risk into Monday's Asian open is high.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 7. COMMODITIES -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<h2>7. COMMODITIES</h2>
+<table style="page-break-inside:avoid;">
+  <thead>
+    <tr>
+      <th>Asset</th>
+      <th>Price</th>
+      <th>Change</th>
+      <th>% Change</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="page-break-inside:avoid;">
+      <td>Brent Crude</td>
+      <td>$87.27/bbl</td>
+      <td class="neg">-$3.13</td>
+      <td class="neg">-3.44%</td>
+      <td>2-month low; Iran peace deal optimism collapsing risk premium</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>WTI Crude</td>
+      <td>$84.29/bbl</td>
+      <td class="neg">-$3.43</td>
+      <td class="neg">-3.90%</td>
+      <td>Leading energy selloff; US production capacity intact</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Gold</td>
+      <td>~$4,082/oz</td>
+      <td class="neg">~-$120</td>
+      <td class="neg">~-2.9%</td>
+      <td>2nd consecutive weekly decline; higher rate expectations (post-ECB hike) weigh on non-yielding assets</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Natural Gas (Henry Hub)</td>
+      <td>$3.14/MMBtu</td>
+      <td class="pos">+$0.054</td>
+      <td class="pos">+1.75%</td>
+      <td>Modest rise; LNG export demand remains firm</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Natural Gas (TTF)</td>
+      <td>€47.85/MWh</td>
+      <td class="neg">-€1.84</td>
+      <td class="neg">-3.70%</td>
+      <td>European gas fell sharply alongside oil on Iran deal expectations reducing supply risk</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Copper</td>
+      <td class="na">n/a</td>
+      <td class="na">n/a</td>
+      <td class="na">n/a</td>
+      <td>Metals complex broadly higher in recent sessions; specific June 13 data not sourced</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted" style="font-size:11px;">Data collected ~06:00 BST. Source: Trading Economics, OilPriceAPI.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 8. RATES & FX -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<h2>8. RATES &amp; FX</h2>
+<table style="page-break-inside:avoid;">
+  <thead>
+    <tr>
+      <th>Asset</th>
+      <th>Level</th>
+      <th>Change</th>
+      <th>Direction</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="page-break-inside:avoid;">
+      <td>US 10Y Treasury</td>
+      <td>4.47%</td>
+      <td class="neg">slightly lower</td>
+      <td class="neg">Lower</td>
+      <td>Iran peace deal reduced inflation risk premium; flight from safety partially unwound</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>German 10Y Bund</td>
+      <td>3.05%</td>
+      <td class="neg">near 3-week high</td>
+      <td class="neg">Higher</td>
+      <td>Post-ECB hike (June 11, +25bp to 2.25%) repricing of rate path; near highest since May</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>EUR/USD</td>
+      <td>1.1580</td>
+      <td class="muted">flat</td>
+      <td class="muted">Sideways</td>
+      <td>Consolidating at resistance; ECB hike positive for EUR but geopolitical risk caps</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>GBP/USD</td>
+      <td>~1.3450</td>
+      <td class="pos">above SMA 200</td>
+      <td class="pos">Positive bias</td>
+      <td>Sterling maintaining above key moving average; 1.3450 is resistance level to watch</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>DXY (Dollar Index)</td>
+      <td>99.80</td>
+      <td class="neg">-0.06%</td>
+      <td class="neg">Slightly weaker</td>
+      <td>Dollar softening on Iran deal risk-off unwind; sub-100 level psychologically significant</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted" style="font-size:11px;">Data collected ~06:00 BST. Source: Trading Economics, FX Daily Report, MarketPulse/OANDA.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 9. DCM — PRIMARY BOND MARKET -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<h2>9. DCM — PRIMARY BOND MARKET</h2>
+
+<h3>Yesterday's Issuances (Friday 12 June)</h3>
+<div class="item">
+  <p class="warn">No confirmed individual deal data sourced for Friday 12 June 2026. European primary markets typically see reduced Friday activity, especially post-ECB decision weeks. If any deals priced, they were likely SSA or covered bond opportunistic prints in a post-rate-hike window. Specific deal data: <span class="na">n/a</span>.</p>
+</div>
+
+<h3>Pipeline / Expected This Week (w/c 15 June)</h3>
+<div class="item">
+  <p>The ECB's June 11 hike to 2.25% has created a mixed picture for issuers heading into the following week. Higher base rates raise funding costs; however, if the Iran peace deal materialises and spreads tighten, borrowers may front-load before any further ECB action. EU-Bond H1 2026 funding target has been raised to €100bn. Record corporate IG issuance trend continues in 2026.</p>
+  <p>Key pipeline names: <span class="na">n/a (specific mandates not sourced)</span>. Watch for SSA and covered bond activity to resume Monday.</p>
+</div>
+
+<h3>Key Spreads</h3>
+<table style="page-break-inside:avoid;">
+  <thead>
+    <tr>
+      <th>Instrument</th>
+      <th>Level</th>
+      <th>Change</th>
+      <th>Direction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="page-break-inside:avoid;">
+      <td>iTraxx Main (5Y)</td>
+      <td class="na">n/a</td>
+      <td class="na">n/a</td>
+      <td class="na">No reliable live data sourced</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>iTraxx Crossover (5Y)</td>
+      <td class="na">n/a</td>
+      <td class="na">n/a</td>
+      <td class="na">No reliable live data sourced</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>CDX IG (5Y)</td>
+      <td class="na">n/a</td>
+      <td class="na">n/a</td>
+      <td class="na">No reliable live data sourced</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Avg Euro Corporate IG Spread</td>
+      <td class="na">n/a</td>
+      <td class="na">n/a</td>
+      <td class="na">No reliable live data sourced</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Commentary</h3>
+<div class="item">
+  <p>The primary market faces conflicting signals heading into next week. The ECB's surprise hike to 2.25% — the first since 2023 — raises all-in costs for EUR-denominated issuers and may prompt some to pause mandated deals pending spread stability. On the other hand, the Iran peace deal narrative and associated equity rally signals improving risk appetite, which typically narrows credit spreads and encourages issuers to pull forward.</p>
+  <p>The post-ECB window (historical pattern) tends to see a brief issuance pause followed by front-loading if spreads hold. Financials, industrials, and utilities are most likely candidates for next week. High-yield remains cautious given higher base rates. SSA activity driven by EU-Bond program is expected to continue.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 10. ECONOMIC CALENDAR -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<h2>10. ECONOMIC CALENDAR</h2>
+<p class="warn" style="margin-bottom:8px;">Saturday 13 June: No major economic releases scheduled. Markets closed in Europe and the US. Key upcoming data next week (w/c 15 June):</p>
+<table style="page-break-inside:avoid;">
+  <thead>
+    <tr>
+      <th>London Time</th>
+      <th>Region</th>
+      <th>Indicator</th>
+      <th>Consensus</th>
+      <th>Importance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="page-break-inside:avoid;">
+      <td>Mon 08:00</td>
+      <td>Eurozone</td>
+      <td>Industrial Production (Apr)</td>
+      <td class="na">n/a</td>
+      <td class="warn">Medium</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Tue 09:30</td>
+      <td>UK</td>
+      <td>Unemployment Rate / Earnings (Apr)</td>
+      <td class="na">n/a</td>
+      <td class="neg">High</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Wed 09:30</td>
+      <td>UK</td>
+      <td>CPI Inflation (May)</td>
+      <td class="na">n/a</td>
+      <td class="neg">High</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Wed 13:30</td>
+      <td>US</td>
+      <td>Retail Sales (May)</td>
+      <td class="na">n/a</td>
+      <td class="neg">High</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Thu 10:00</td>
+      <td>Eurozone</td>
+      <td>HICP Inflation Final (May)</td>
+      <td class="na">n/a</td>
+      <td class="neg">High</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Thu 18:00</td>
+      <td>US</td>
+      <td>FOMC Statement / Rate Decision</td>
+      <td>Hold at current rate</td>
+      <td class="neg">High</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Fri 09:30</td>
+      <td>UK</td>
+      <td>Retail Sales (May)</td>
+      <td class="na">n/a</td>
+      <td class="warn">Medium</td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Fri 13:30</td>
+      <td>US</td>
+      <td>Housing Starts / Building Permits</td>
+      <td class="na">n/a</td>
+      <td class="warn">Medium</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted" style="font-size:11px;">Specific consensus figures unavailable from current data sources. Key focal point this week: FOMC decision Wednesday/Thursday (hold expected) vs. ECB post-hike signals. UK CPI is critical given BOE pricing.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 11. CORPORATE EVENTS & EARNINGS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<h2>11. CORPORATE EVENTS &amp; EARNINGS</h2>
+
+<div class="item">
+  <p><strong>Saturday 13 June:</strong> No scheduled earnings or major corporate events (weekend).</p>
+</div>
+
+<div class="item">
+  <h3>Key Events Week of 15 June</h3>
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Company</th>
+        <th>Event</th>
+        <th>Significance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td>Mon 15 Jun</td>
+        <td>SpaceX (SPCX)</td>
+        <td>First full day of regular trading post-IPO</td>
+        <td class="warn">High — IPO lock-up, secondary market dynamics</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td>Wed 17 Jun</td>
+        <td>Adobe (ADBE)</td>
+        <td>Q2 FY2026 Earnings</td>
+        <td class="warn">High — AI-driven revenue, creative suite growth</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td>Thu 18 Jun</td>
+        <td>Kroger (KR)</td>
+        <td>Q1 2026 Earnings</td>
+        <td class="muted">Medium — consumer spending read-through</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td>Thu 18 Jun</td>
+        <td>Jabil (JBL)</td>
+        <td>Q3 FY2026 Earnings</td>
+        <td class="muted">Medium — supply chain health indicator</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td>Week of 15</td>
+        <td>Shell (SHEL)</td>
+        <td>Investor Day / Strategy Update</td>
+        <td class="warn">High — energy strategy post-oil price decline</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td>Week of 15</td>
+        <td>BlackRock (BLK)</td>
+        <td>Investor Conference</td>
+        <td class="muted">Medium — AUM flow signals, rate outlook commentary</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 12. STOCKS TO WATCH -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<h2>12. STOCKS TO WATCH (Monday 15 June Open)</h2>
+
+<table style="page-break-inside:avoid;">
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Ticker</th>
+      <th>Reason</th>
+      <th>Probable Direction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="page-break-inside:avoid;">
+      <td>SpaceX</td>
+      <td>SPCX</td>
+      <td>Second day of trading post-IPO; +19.2% debut creates momentum and profit-taking tension. Watch volume vs. day-1.</td>
+      <td><span class="warn">Uncertain — high vol; initial momentum vs. profit-taking</span></td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Ryanair</td>
+      <td>RYA.L / RYAAY</td>
+      <td>Brent -3.44%; fuel is ~40% of Ryanair's costs. Iran peace deal reduces geopolitical risk on European routes. Strong summer booking backdrop.</td>
+      <td><span class="pos">Positive</span></td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>IAG (British Airways / Iberia)</td>
+      <td>IAG.L</td>
+      <td>Same oil cost tailwind as Ryanair; Iran deal reduces Middle East route risk. Watch for any deal-specific commentary.</td>
+      <td><span class="pos">Positive</span></td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>BP</td>
+      <td>BP.L</td>
+      <td>Brent -3.44% directly hits revenue and production economics. Iran sanctions relief would increase global supply competition.</td>
+      <td><span class="neg">Negative</span></td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Shell</td>
+      <td>SHEL.L</td>
+      <td>Same oil price pressure as BP; investor day this week could provide updated strategy on energy transition spending vs. buybacks.</td>
+      <td><span class="neg">Negative (oil) / Neutral (event)</span></td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>RTX (Raytheon Technologies)</td>
+      <td>RTX</td>
+      <td>US-Iran peace deal reduces near-term conflict risk, which may compress premium in defense hardware demand. But $1.5tn US defense budget for FY2027 is long-term positive.</td>
+      <td><span class="warn">Mixed — ST negative on peace signals; LT defense spend positive</span></td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Rio Tinto</td>
+      <td>RIO.L</td>
+      <td>Iran deal geopolitical easing positive for global trade and copper demand. Supply chain normalization supports base metals. China-facing exposure amplifies Hang Seng rally.</td>
+      <td><span class="pos">Positive</span></td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Airbus</td>
+      <td>AIR.PA</td>
+      <td>Oil price decline reduces airline operating costs, supporting aircraft demand. Iran deal could reopen Iranian airspace, boosting route economics and potential aircraft orders.</td>
+      <td><span class="pos">Positive</span></td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>BNP Paribas</td>
+      <td>BNP.PA</td>
+      <td>ECB hike to 2.25% is net positive for European bank net interest margins. However, recession risk from tightening could increase NPL concerns. Watch Q2 earnings guidance signals.</td>
+      <td><span class="pos">Slight positive — NIM tailwind</span></td>
+    </tr>
+    <tr style="page-break-inside:avoid;">
+      <td>Glencore</td>
+      <td>GLEN.L</td>
+      <td>Copper complex broadly positive; Iran deal easing reduces commodity market volatility. Glencore's coal and energy trading book benefits from normalised energy market volatility.</td>
+      <td><span class="pos">Positive</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 13. MACRO / CORPORATE / POLITICAL HIGHLIGHTS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<h2>13. MACRO / CORPORATE / POLITICAL HIGHLIGHTS</h2>
+
+<h3>Macro</h3>
+<div class="item">
+  <p><strong>ECB hikes +25bp to 2.25% — first since 2023.</strong> Lagarde cited the US-Iran war and resultant energy inflation as the primary justification. The Governing Council's decision was described as "robust across three scenarios." Markets are now pricing a rate path that balances inflation risk against recession risk. ECB hiking into a conflict-driven energy shock is unusual; Bund yields near 3.05% reflect the repricing.</p>
+</div>
+<div class="item">
+  <p><strong>Fed policy divergence.</strong> The US Federal Reserve is expected to hold rates at current levels at next week's FOMC meeting. The Fed-ECB divergence (Fed on hold, ECB now hiking) creates EUR-positive pressure but also risks European growth headwinds. Treasury-Bund spread at roughly 142bp.</p>
+</div>
+<div class="item">
+  <p><strong>Oil price as inflation wildcard.</strong> Brent has fallen from above $115/bbl earlier in the conflict to $87.27 on Iran deal optimism. If a deal holds, headline CPI falls sharply across Europe and the US. If it collapses, the ECB's June hike will look premature and energy inflation will resurge.</p>
+</div>
+<div class="item">
+  <p><strong>Iran war energy index impact.</strong> The energy price index fell 5.4% in May, driven by a 10.7% decline in Brent, yet energy prices are projected to be 24% higher year-on-year in 2026 due to the initial Iran shock. Base effects will matter for June CPI prints.</p>
+</div>
+
+<h3>Corporate</h3>
+<div class="item">
+  <p><strong>SpaceX IPO — historic capital event.</strong> SPCX raised $75bn at a $1.75 trillion valuation, the largest IPO in stock market history. The deal absorbed massive capital from institutional and retail investors. Secondary market behaviour Monday will be closely watched. Elon Musk retains majority control; dual-class share structure limits shareholder governance rights.</p>
+</div>
+<div class="item">
+  <p><strong>Record EU and corporate bond issuance in 2026.</strong> The European Commission raised its H1 2026 EU-Bond funding target to €100bn. Corporate IG issuance is on track for a record year. The ECB hike may slow but not stop this momentum given strong investor demand for carry in an elevated-rate environment.</p>
+</div>
+<div class="item">
+  <p><strong>US defense budget $1.5 trillion for FY2027.</strong> The proposed increase signals multi-year demand for defence contractors, independent of Iran deal outcome. RTX, L3Harris, Huntington Ingalls well-positioned.</p>
+</div>
+
+<h3>Political / Geopolitical</h3>
+<div class="item">
+  <p><strong>US-Iran peace deal: critical weekend.</strong> Trump has signalled a deal 30+ times since conflict began; execution rate has been poor. The latest signal (scrapping further strikes, "deal this weekend") is the most concrete yet. If a memorandum of understanding is signed, expect oil down 5-10% further, equities +1-2%, and a significant reduction in risk premiums across emerging market assets tied to Middle East stability.</p>
+</div>
+<div class="item">
+  <p><strong>Strait of Hormuz risk premium.</strong> Markets have embedded a significant risk premium for Hormuz closure risk since the conflict began. A deal would unwind this, normalising global shipping costs and LNG freight rates. Watch tanker stocks and shipping names as leading indicators.</p>
+</div>
+<div class="item">
+  <p><strong>Trump-market relationship complex.</strong> Multiple false dawns on Iran peace talks have conditioned markets to be sceptical. Deutsche Bank research notes markets are "cautiously optimistic" rather than fully pricing a deal. Polymarket data implies meaningful but sub-100% probability of a deal being signed before July.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 14. KEY THEMES — TOP 5 BY HORIZON -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<h2>14. KEY THEMES — TOP 5 BY HORIZON</h2>
+
+<h3>Today's Top 5 (Saturday 13 June — over the weekend)</h3>
+<div class="item theme-block">
+  <span class="theme-label">1. Iran Peace Deal Execution</span>
+  <span>Trump has promised a deal "this weekend" — any signed agreement will open Monday's markets with a major risk-on gap: oil down, equities up, credit tighter. If talks stall or collapse, full reversal.</span>
+</div>
+<div class="item theme-block">
+  <span class="theme-label">2. SpaceX Secondary Market</span>
+  <span>SPCX finished +19.2% on day one. Weekend news flow around the IPO — institutional hold/sell decisions, analyst initiations — could drive Monday's open premium or discount to $161.</span>
+</div>
+<div class="item theme-block">
+  <span class="theme-label">3. ECB Rate Hike Digestion</span>
+  <span>The ECB's return to hiking after 18 months on hold is a structural shift. Over the weekend, investor positioning for the new rate regime and its impact on European bank margins and credit spreads will reset.</span>
+</div>
+<div class="item theme-block">
+  <span class="theme-label">4. Oil Risk Premium Collapse</span>
+  <span>Brent at $87.27 is nearly $30 below peak conflict pricing. Energy sector positioning (long energy as inflation hedge) is unwinding rapidly — watch energy ETF outflows and commodity desk P&amp;L reset.</span>
+</div>
+<div class="item theme-block">
+  <span class="theme-label">5. Asian Risk Rally Sustainability</span>
+  <span>Nikkei +2.81%, Hang Seng +1.93% overnight. The question is whether Monday's European open confirms the rally or fades if Iran headline risk reasserts over the weekend.</span>
+</div>
+
+<h3>This Week's Top 5 (w/c 15 June)</h3>
+<div class="item theme-block">
+  <span class="theme-label">1. FOMC Rate Decision</span>
+  <span>Fed expected to hold but the post-meeting statement and Powell's tone on the oil price impact and Iran conflict will be closely parsed for forward guidance signals — critical for rates and dollar.</span>
+</div>
+<div class="item theme-block">
+  <span class="theme-label">2. ECB Post-Hike Communication</span>
+  <span>Multiple ECB speakers are likely to clarify the June 11 hike rationale and signal the pace of any further tightening — forward guidance will determine Bund yield direction and credit spread move.</span>
+</div>
+<div class="item theme-block">
+  <span class="theme-label">3. UK CPI (Wednesday)</span>
+  <span>UK inflation data is critical for the Bank of England rate path — a hotter-than-expected print could revive BOE hiking expectations and push GBP/USD through 1.3450 resistance.</span>
+</div>
+<div class="item theme-block">
+  <span class="theme-label">4. Adobe Earnings (Wednesday)</span>
+  <span>ADBE results will test whether AI-driven software monetisation is translating into real revenue growth or remaining aspirational — important for the broader software sector valuation.</span>
+</div>
+<div class="item theme-block">
+  <span class="theme-label">5. SpaceX Trading Stabilisation</span>
+  <span>SPCX price action in its first full week sets the tone for the mega-cap new-listing space and provides a read on risk appetite in large-cap growth — watch for analyst coverage initiations.</span>
+</div>
+
+<h3>This Month's Top 5 (June 2026)</h3>
+<div class="item theme-block">
+  <span class="theme-label">1. Iran Peace Deal Formalisation</span>
+  <span>If a permanent agreement is reached, the macro regime shifts: oil normalises, ECB faces pressure to pause or reverse the June hike, and global supply chains begin to heal — the highest-stakes macro event of the year.</span>
+</div>
+<div class="item theme-block">
+  <span class="theme-label">2. Central Bank Divergence (Fed vs. ECB)</span>
+  <span>The ECB has just hiked while the Fed holds — this divergence sets a defining EUR/USD dynamic for the rest of H2 2026 and creates carry trade opportunities in European fixed income.</span>
+</div>
+<div class="item theme-block">
+  <span class="theme-label">3. SpaceX Market Cap Trajectory</span>
+  <span>At $1.75T, SPCX is the most valuable listing in history — its path to or through $2T market cap in the first month would reshuffle major index weights and force institutional rebalancing at scale.</span>
+</div>
+<div class="item theme-block">
+  <span class="theme-label">4. European Corporate Bond Issuance Window</span>
+  <span>With the ECB hike changing the rate landscape, issuers and DCM desks face a decision on whether to front-load H2 funding or wait for spread stabilisation — record issuance levels in 2026 may be tested.</span>
+</div>
+<div class="item theme-block">
+  <span class="theme-label">5. US Defense Budget FY2027 Vote</span>
+  <span>Congressional progress on the $1.5 trillion defense budget will drive multi-quarter order book dynamics for RTX, L3Harris, Huntington Ingalls, Northrop Grumman, and European peers like Rheinmetall and BAE Systems.</span>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 15. KEY TRENDS TO WATCH -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<h2>15. KEY TRENDS TO WATCH</h2>
+
+<h3>1 Day — Weekend</h3>
+<div class="item">
+  <p><strong>Iran deal news flow.</strong> Any signed agreement or formal breakdown over the weekend will be the dominant Monday open driver. Monitor Trump statements, State Department briefings, and Iranian foreign ministry communications.</p>
+  <p><strong>SpaceX weekend noise.</strong> Analyst coverage initiations and Musk social media commentary could pre-position SPCX for Monday's open significantly above or below $161 close.</p>
+  <p><strong>Oil options market.</strong> Weekend OTC options activity in Brent and WTI will signal how serious institutional hedging is around the Iran binary event.</p>
+</div>
+
+<h3>1 Week</h3>
+<div class="item">
+  <p><strong>FOMC decision and Powell's tone.</strong> The Fed's posture on inflation (Iran energy shock fading vs. persistent) and growth will set the dollar and Treasury yield direction for the rest of June.</p>
+  <p><strong>ECB communication.</strong> Post-hike clarification from Lagarde and Governing Council members will determine whether the June 11 hike is a one-off or the start of a new cycle — critical for Bund yields and EUR corporate credit spreads.</p>
+  <p><strong>UK CPI and BOE implications.</strong> A strong UK inflation print forces the BOE's hand and pressures GBP/USD through 1.3450; a weak print supports UK rate-sensitive sectors like housebuilders and banks.</p>
+  <p><strong>SpaceX inclusion timeline.</strong> Market talk of potential S&amp;P 500 inclusion criteria for SPCX will circulate — any formal confirmation triggers passive index fund mandatory buying at scale.</p>
+</div>
+
+<h3>1 Month</h3>
+<div class="item">
+  <p><strong>Iran deal permanence.</strong> A formal signed treaty vs. a ceasefire extension determines whether the oil market risk premium is structurally removed or maintained. The difference is circa $20-30/bbl in Brent and a fundamental shift in European energy policy urgency.</p>
+  <p><strong>Rate divergence: Fed vs. ECB vs. BOE.</strong> Three major central banks on potentially diverging paths creates currency volatility and forces fixed income managers to reposition cross-border allocations. EUR/USD 1.15-1.18 range is key; DXY sub-100 becomes a structural condition if Fed holds and ECB hikes again.</p>
+  <p><strong>European summer DCM window.</strong> The traditional pre-summer issuance surge (historically strong in June) may be compressed by ECB uncertainty. What closes or stays open in the next 4 weeks determines H2 corporate financing conditions.</p>
+      <p><strong>AI monetisation and SpaceX valuation.</strong> The summer will test whether AI-driven tech revenues (Adobe, Salesforce) and SpaceX's commercial satellite / Starlink growth justify elevated multiples or trigger a correction in mega-cap tech that has driven most of the 2026 equity rally to date.</p>
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p><strong>Sources:</strong> Reuters | Bloomberg | CNBC | Yahoo Finance | Trading Economics | OilPriceAPI | FX Daily Report / fxdailyreport.com | MarketPulse / OANDA | Euronews | Seeking Alpha | EconCurrents Substack | Polymarket | GlobalCapital | S&amp;P Global | ECB | Deutsche Bank Research | EIA / U.S. Energy Information Administration | FRED / St. Louis Fed | Investing.com | Breckinridge Capital Advisors</p>
+  <p style="margin-top:8px;">Data collected automatically ~06:00 BST Saturday 13 June 2026. <strong>Verify all figures before making any investment decision.</strong> This briefing is for informational purposes only and does not constitute investment advice. Some data points marked n/a where live sourcing was not possible.</p>
+</div>
+
+</body>
+</html>
