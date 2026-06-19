@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morning Briefing — 19 June 2026</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0d1117;
+      color: #c9d1d9;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 13px;
+      line-height: 1.55;
+      padding: 24px;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    h1 { color: #e6edf3; font-size: 24px; font-weight: 700; }
+    h2 {
+      color: #e6edf3;
+      font-size: 13px;
+      font-weight: 700;
+      margin: 22px 0 10px;
+      padding: 7px 12px;
+      background: #161b22;
+      border-left: 3px solid #58a6ff;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    h3 { color: #58a6ff; font-size: 12px; font-weight: 700; margin: 12px 0 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    p { margin: 5px 0; font-size: 13px; }
+    ul { margin: 6px 0 6px 18px; }
+    li { margin: 4px 0; }
+
+    .pos  { color: #3fb950; font-weight: 600; }
+    .neg  { color: #f85149; font-weight: 600; }
+    .warn { color: #d29922; }
+    .muted { color: #8b949e; }
+    .blue { color: #58a6ff; }
+    .na   { color: #484f58; font-style: italic; }
+    .tight { color: #3fb950; font-weight: 700; }
+    .wide  { color: #f85149; font-weight: 700; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0;
+      font-size: 12px;
+      page-break-inside: avoid;
+    }
+    th {
+      background: #161b22;
+      color: #8b949e;
+      padding: 5px 9px;
+      text-align: left;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 0.4px;
+      border-bottom: 1px solid #30363d;
+    }
+    td {
+      padding: 5px 9px;
+      border-bottom: 1px solid #21262d;
+    }
+    tr { page-break-inside: avoid; }
+    tr:hover td { background: #161b22; }
+
+    .section-wrapper {
+      margin-bottom: 20px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .item, .news-item, .stock-item, .theme-item, .event-item, .calendar-row {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .news-item {
+      padding: 8px 0;
+      border-bottom: 1px solid #21262d;
+    }
+    .news-item:last-child { border-bottom: none; }
+    .stock-item {
+      padding: 5px 0;
+      border-bottom: 1px solid #21262d;
+    }
+    .stock-item:last-child { border-bottom: none; }
+    .theme-item {
+      margin-bottom: 8px;
+      padding: 7px 10px;
+      border-left: 2px solid #30363d;
+    }
+    .data-block {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 4px;
+      padding: 10px 12px;
+      margin: 8px 0;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .theme-block { page-break-inside: avoid; break-inside: avoid; }
+
+    .header-bar {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin-bottom: 22px;
+    }
+    .header-meta { color: #8b949e; font-size: 12px; margin-top: 6px; }
+
+    .badge {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .badge-high { background: #f851491a; color: #f85149; border: 1px solid #f8514940; }
+    .badge-med  { background: #d299221a; color: #d29922;  border: 1px solid #d2992240; }
+    .badge-low  { background: #3fb9501a; color: #3fb950;  border: 1px solid #3fb95040; }
+    .badge-info { background: #58a6ff1a; color: #58a6ff;  border: 1px solid #58a6ff40; }
+
+    .footer {
+      margin-top: 30px;
+      padding: 14px 16px;
+      background: #161b22;
+      border-top: 2px solid #30363d;
+      color: #8b949e;
+      font-size: 11px;
+    }
+    .footer p { margin: 3px 0; font-size: 11px; }
+
+    .holiday-bar {
+      background: #d2992215;
+      border: 1px solid #d2992240;
+      border-radius: 4px;
+      padding: 8px 14px;
+      margin: 8px 0;
+      color: #d29922;
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    /* ===== PRINT / PDF ===== */
+    @media print {
+      body {
+        background: #0d1117 !important;
+        color: #c9d1d9 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .section, table, tr, td, th, .data-block, .theme-block, .calendar-row {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      thead { display: table-header-group; }
+      p, li, div, span { orphans: 3; widows: 3; }
+      .section-wrapper {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .item, .news-item, .stock-item, .theme-item, .event-item {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      @page {
+        size: A4 landscape;
+        margin: 12mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- =========================================================
+     SECTION 1 — HEADER
+     ========================================================= -->
+<div class="section-wrapper">
+  <div class="header-bar">
+    <h1>Morning Briefing</h1>
+    <div class="header-meta">
+      <strong>Friday, 19 June 2026</strong>
+      &nbsp;&bull;&nbsp;
+      Generated approx. 06:30 BST (London)
+      &nbsp;&bull;&nbsp;
+      <span class="warn">Pre-European open</span>
+      &nbsp;&bull;&nbsp;
+      Dominant themes:
+      <strong class="warn">US Juneteenth (markets closed)</strong>
+      &nbsp;|&nbsp;
+      <strong class="pos">Nikkei 52-week high</strong>
+      &nbsp;|&nbsp;
+      <strong class="neg">FOMC hawkish hangover</strong>
+      &nbsp;|&nbsp;
+      <strong class="blue">US-Iran deal / Intel-Apple chip pact</strong>
+    </div>
+  </div>
+
+  <div class="holiday-bar">
+    HOLIDAY ALERT — US equity and bond markets CLOSED today (Juneteenth, June 19). Reopen Monday June 22.
+    Hong Kong markets also CLOSED (Dragon Boat Festival). European markets open on normal schedule.
+  </div>
+</div>
+
+<!-- =========================================================
+     SECTION 2 — IMPORTANT NEWS
+     ========================================================= -->
+<div class="section-wrapper">
+  <h2>2. Important News</h2>
+
+  <div class="news-item item">
+    <strong class="warn">Fed holds, Warsh signals rate hike possible in 2026</strong>
+    &mdash; Kevin Warsh's first FOMC meeting as Fed Chair concluded June 17. Rates held at 3.5%-3.75%. Median dot moved to 3.8% (from 3.4% in March), with 9 of 18 officials now pencilling in at least one hike this year. Policy statement dropped language indicating a bias toward cuts. Markets sold off Wednesday; partial recovery Thursday.
+    <span class="muted">— CNBC, NPR, Kiplinger (Jun 17-18 2026)</span>
+  </div>
+
+  <div class="news-item item">
+    <strong class="pos">US-Iran interim peace deal digitally signed</strong>
+    &mdash; Washington and Tehran have digitally signed an interim agreement ending the 2026 Iran conflict, including a commitment to reopen the Strait of Hormuz within 30 days and lifting of the US naval blockade. Ceasefire had been in place since April 2026. Brent fell to ~$79, removing the geopolitical risk premium. IEA warned of potential supply glut (global supply +8 mb/d vs demand +2 mb/d by 2027).
+    <span class="muted">— Al Jazeera, Discovery Alert, IEA (Jun 17-18 2026)</span>
+  </div>
+
+  <div class="news-item item">
+    <strong class="pos">Trump confirms Apple-Intel chip manufacturing deal</strong>
+    &mdash; President Trump posted on Truth Social confirming Apple will partner with Intel to design and build chips in the US. Intel (INTC) surged 10.5% to $133.82 on Thursday. Trump noted the US government owns ~10% equity in Intel, which he said has appreciated from $100bn to $600bn in total valuation. Key product targeting remains undisclosed.
+    <span class="muted">— CBS News, Cult of Mac, AppleInsider (Jun 18 2026)</span>
+  </div>
+
+  <div class="news-item item">
+    <strong class="blue">SpaceX (SPCX) aftermarket rally continues</strong>
+    &mdash; SpaceX shares continue to trade near post-IPO highs at ~$174.90 (IPO: June 12, $135/share). Investor optimism fuelled by US-Iran deal, Starlink surpassing 12M active subscribers (2x year-on-year), and $6.4bn in new US Space Force contracts. SPCX reached all-time high $225.64 on June 16 before cooling.
+    <span class="muted">— CNBC, Investing.com, Investment Week (Jun 18-19 2026)</span>
+  </div>
+
+  <div class="news-item item">
+    <strong class="warn">US markets closed Friday (Juneteenth); thin European liquidity</strong>
+    &mdash; NYSE, Nasdaq, bond markets and US futures closed today. European indices trade normally but will lack the cushion of US S&P futures as a reference anchor. Expect lighter volumes. Next US market open: Monday June 22.
+    <span class="muted">— Yahoo Finance, EBC Financial, Fidelity (Jun 19 2026)</span>
+  </div>
+</div>
+
+<!-- =========================================================
+     SECTION 3 — EUROPEAN FUTURES (pre-open)
+     ========================================================= -->
+<div class="section-wrapper">
+  <h2>3. European Futures — Pre-Open</h2>
+  <p class="muted" style="margin-bottom:6px;">Data collected approx. 06:00-06:30 BST. US futures CLOSED (Juneteenth).</p>
+
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Futures Level</th>
+        <th>Change / Direction</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Euro Stoxx 50</strong></td>
+        <td>6,337</td>
+        <td><span class="pos">+0.4% vs prior open (~6,309)</span></td>
+        <td>Positive carry from Nikkei; US-Iran tailwind</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>DAX</strong></td>
+        <td><span class="na">n/a — no confirmed pre-open level</span></td>
+        <td><span class="na">—</span></td>
+        <td>June 18 cash close: 24,979</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>CAC 40</strong></td>
+        <td><span class="na">n/a — no confirmed pre-open level</span></td>
+        <td><span class="na">—</span></td>
+        <td>June 18 cash close: ~8,431</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>FTSE 100</strong></td>
+        <td><span class="na">n/a — no confirmed pre-open level</span></td>
+        <td><span class="na">—</span></td>
+        <td>June 18 cash close: 10,382 (energy drag expected)</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>S&amp;P 500 futures</strong></td>
+        <td colspan="3"><span class="warn">CLOSED — Juneteenth holiday. Reopen Sunday evening / Monday June 22.</span></td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Nasdaq futures</strong></td>
+        <td colspan="3"><span class="warn">CLOSED — Juneteenth holiday.</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- =========================================================
+     SECTION 4 — YESTERDAY'S CLOSES
+     ========================================================= -->
+<div class="section-wrapper">
+  <h2>4. Yesterday's European Closes — 18 June 2026</h2>
+  <p class="muted" style="margin-bottom:6px;">Closing levels as of European cash close, June 18, 2026.</p>
+
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Close</th>
+        <th>% Change</th>
+        <th>Session Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Euro Stoxx 50</strong></td>
+        <td>6,300</td>
+        <td><span class="pos">+0.68%</span></td>
+        <td>Supported by Iran deal relief and tech rebound</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>DAX</strong></td>
+        <td>24,979</td>
+        <td><span class="pos">+0.18%</span></td>
+        <td>Flat; industrials mixed, tech dragged by FOMC fears early</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>CAC 40</strong></td>
+        <td>8,431</td>
+        <td><span class="neg">-0.20%</span></td>
+        <td>Energy and luxury names weighed</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>FTSE 100</strong></td>
+        <td>10,382</td>
+        <td><span class="neg">-1.20%</span></td>
+        <td>Oil majors (BP, Shell) dragged lower on Brent slide; GBP strength added headwind</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- =========================================================
+     SECTION 5 — US MARKETS YESTERDAY
+     ========================================================= -->
+<div class="section-wrapper">
+  <h2>5. US Markets — Thursday 18 June 2026 Session</h2>
+  <p class="muted" style="margin-bottom:6px;">Last trading day before Juneteenth. Markets CLOSED Friday June 19.</p>
+
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Close</th>
+        <th>% Change</th>
+        <th>Points Change</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>S&amp;P 500</strong></td>
+        <td>7,500.58</td>
+        <td><span class="pos">+1.08%</span></td>
+        <td><span class="pos">+80 pts</span></td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Dow Jones</strong></td>
+        <td>51,564.70</td>
+        <td><span class="pos">+0.14%</span></td>
+        <td><span class="pos">+72 pts</span></td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Nasdaq Composite</strong></td>
+        <td>26,517.93</td>
+        <td><span class="pos">+1.91%</span></td>
+        <td><span class="pos">+497 pts</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="data-block item">
+    <h3>Session Narrative</h3>
+    <p><strong>Tone:</strong> <span class="pos">Risk-on recovery</span> after Wednesday's FOMC-driven selloff. Markets clawed back losses as investors digested Warsh's hawkish tilt and refocused on positives.</p>
+    <p><strong>Leading sectors:</strong> Technology (Intel +10.5% on Apple chip deal), semiconductors (chip stocks broadly rallied on Intel/Apple announcement), communication services (SpaceX/Starlink optimism).</p>
+    <p><strong>Lagging:</strong> Energy underperformed as Brent fell further on US-Iran deal supply fears; utilities soft on higher rate expectations from Warsh dot plot.</p>
+    <p><strong>Key takeaway:</strong> The Apple-Intel chip deal announcement and US-Iran peace progress offset the FOMC hawkish surprise. Nasdaq led on tech momentum. S&amp;P 500 at 7,500 represents a partial reversal of Wednesday's post-Fed losses. Next catalyst: PCE and Q1 GDP readings later in June; Micron (MU) and FedEx (FDX) earnings next week.</p>
+  </div>
+</div>
+
+<!-- =========================================================
+     SECTION 6 — ASIAN MARKETS OVERNIGHT
+     ========================================================= -->
+<div class="section-wrapper">
+  <h2>6. Asian Markets — Overnight Session, 19 June 2026</h2>
+
+  <div class="holiday-bar" style="font-size:11px;">
+    Hong Kong CLOSED — Dragon Boat Festival public holiday. No Hang Seng trade today.
+  </div>
+
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Market</th>
+        <th>Level</th>
+        <th>% Change</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Nikkei 225</strong></td>
+        <td>~71,952 (intraday high)</td>
+        <td><span class="pos">+1.75%</span></td>
+        <td>52-week high; real estate, banking, textiles led gains</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Hang Seng</strong></td>
+        <td><span class="warn">CLOSED</span></td>
+        <td><span class="warn">—</span></td>
+        <td>Dragon Boat Festival. Last close: 24,312 (Jun 18, -0.7%)</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Shanghai Composite</strong></td>
+        <td><span class="na">n/a</span></td>
+        <td><span class="na">—</span></td>
+        <td>Data not confirmed at generation time</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Kospi (S. Korea)</strong></td>
+        <td><span class="na">n/a</span></td>
+        <td><span class="na">—</span></td>
+        <td>Data not confirmed at generation time</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="data-block item">
+    <p><strong>Overnight tone:</strong> <span class="pos">Broadly positive</span>. Japan led Asian session gains driven by global relief on US-Iran peace deal, technology momentum (Intel/Apple chip announcement), and carry-over optimism from Thursday's Wall Street recovery. Nikkei 225 touching a new 52-week high at 71,952 is the key overnight signal for European bulls today. The Japan session was unimpeded by the US Juneteenth closure.</p>
+  </div>
+</div>
+
+<!-- =========================================================
+     SECTION 7 — COMMODITIES
+     ========================================================= -->
+<div class="section-wrapper">
+  <h2>7. Commodities</h2>
+  <p class="muted" style="margin-bottom:6px;">Levels as of approx. 06:00 BST. Sources: TradingEconomics, OilPrice.com, Investing.com.</p>
+
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Commodity</th>
+        <th>Level</th>
+        <th>Change</th>
+        <th>Context</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Brent Crude</strong></td>
+        <td>$79.24 /bbl</td>
+        <td><span class="neg">-$0.31 (-0.4%)</span></td>
+        <td>US-Iran deal removes geopolitical risk premium; IEA supply glut warning weighs</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>WTI Crude</strong></td>
+        <td>$76.59 /bbl</td>
+        <td><span class="neg">-0.3% approx.</span></td>
+        <td>Intraday range $74.60-$79.93; bearish bias on Hormuz reopening expectations</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Gold (XAU/USD)</strong></td>
+        <td>$4,168.65 /oz</td>
+        <td><span class="neg">-2.5% approx. from Wed high</span></td>
+        <td>Fed hawkish signal and Iran deal de-risking compress the safe-haven bid</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Natural Gas</strong></td>
+        <td>$3.21 /MMBtu</td>
+        <td><span class="pos">+0.05% vs prior day</span></td>
+        <td>Steady; US summer demand building; LNG export flows remain firm</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Copper</strong></td>
+        <td>~$6.40 /lb</td>
+        <td><span class="muted">Flat</span></td>
+        <td>Within June 2026 forecast range $5.93-$6.87; China stimulus backdrop supportive</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="data-block item">
+    <p><strong>Notable move:</strong> Brent has declined from a geopolitical risk premium well above $80 toward $79 on confirmation of the US-Iran peace deal. Analysts now model $78-$85 as a new Q4 2026 Brent range, versus prior $90-$95 forecasts. OPEC+ response to Iranian supply re-entry will be the key near-term variable. Energy stocks (BP, Shell, TotalEnergies) face continued headwinds.</p>
+  </div>
+</div>
+
+<!-- =========================================================
+     SECTION 8 — RATES & FX
+     ========================================================= -->
+<div class="section-wrapper">
+  <h2>8. Rates &amp; FX</h2>
+  <p class="muted" style="margin-bottom:6px;">June 18 close / pre-open June 19. Sources: TradingEconomics, Bloomberg, Investing.com.</p>
+
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Instrument</th>
+        <th>Level</th>
+        <th>Change</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>US 10Y Treasury Yield</strong></td>
+        <td>4.46%</td>
+        <td><span class="muted">Flat</span></td>
+        <td>Steady post-FOMC; market digesting Warsh dot shift; US market closed Friday</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>German 10Y Bund Yield</strong></td>
+        <td>2.93%</td>
+        <td><span class="muted">Flat</span></td>
+        <td>Spread vs US: ~153 bps; Bunds well bid amid European uncertainty</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>EUR/USD</strong></td>
+        <td>1.1466</td>
+        <td><span class="neg">-0.31%</span></td>
+        <td>Euro fell on Fed hawkish signal and broad USD strength; tested below 1.15 intraday</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>GBP/USD</strong></td>
+        <td><span class="na">n/a</span></td>
+        <td><span class="na">—</span></td>
+        <td>Estimated ~1.32-1.34 range; specific level not confirmed at generation time</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>DXY (Dollar Index)</strong></td>
+        <td>~100.5</td>
+        <td><span class="pos">+0.3% approx.</span></td>
+        <td>Dollar firmed post-FOMC; Warsh hawkish tilt vs ECB on hold supports USD</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="data-block item">
+    <p><strong>Key dynamic:</strong> EUR/USD fell sharply on the Fed signalling a potential 2026 hike. The median dot now at 3.8% vs ECB rates anchored lower represents a widening rate differential in USD's favour. The euro briefly dipped below 1.15, a level last seen in late March. EUR/USD direction today will be driven by European data and any ECB commentary, with no US market reference.</p>
+  </div>
+</div>
+
+<!-- =========================================================
+     SECTION 9 — DCM: PRIMARY BOND MARKET
+     ========================================================= -->
+<div class="section-wrapper">
+  <h2>9. DCM — Primary Bond Market</h2>
+
+  <h3>Yesterday's Issuances (18 June 2026)</h3>
+  <div class="data-block item">
+    <p>Confirmed new corporate issuances from June 18 could not be sourced at generation time from public wires. Specific deal terms should be verified via Bloomberg or IFR before markets open.</p>
+    <p class="muted">Note: ISS Global A/S EUR 500m 0.875% bond matured June 18, 2026 — this is a maturity, not a new issue.</p>
+    <p>EU high-yield corporate bond issuance is running 26% ahead of the prior year pace as of mid-June 2026, per ICMA data. Strong technical backdrop has underpinned primary market activity through Q2.</p>
+  </div>
+
+  <h3>Pipeline / Expected Today (19 June 2026)</h3>
+  <div class="data-block item">
+    <p>No confirmed new mandates or announced deals sourced at generation time for today. Friday sessions with a US holiday tend to see minimal or no primary supply. Any mandates expected for next week should emerge Monday.</p>
+    <p>European issuers likely held back pre-FOMC. The post-Warsh environment may delay new issuance until clarity on rate trajectory improves. Watch for SSA names (EU, KfW, EIB) or high-grade industrials opportunistically returning next week.</p>
+  </div>
+
+  <h3>Key Credit Spreads</h3>
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Level (bps)</th>
+        <th>Move</th>
+        <th>Direction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>iTraxx Europe Main</strong></td>
+        <td><span class="na">n/a</span></td>
+        <td><span class="na">—</span></td>
+        <td><span class="na">Not confirmed at generation time</span></td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>iTraxx Crossover</strong></td>
+        <td><span class="na">n/a</span></td>
+        <td><span class="na">—</span></td>
+        <td><span class="na">Not confirmed at generation time</span></td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>CDX IG (US)</strong></td>
+        <td><span class="na">n/a</span></td>
+        <td><span class="na">—</span></td>
+        <td><span class="na">Not confirmed at generation time</span></td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Avg Euro Corp IG Spread</strong></td>
+        <td><span class="na">n/a</span></td>
+        <td><span class="na">—</span></td>
+        <td><span class="na">Not confirmed at generation time</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>DCM Commentary</h3>
+  <div class="data-block item">
+    <p>The primary market window is effectively shut today. A US holiday Friday, combined with the FOMC shock from Wednesday, creates a pause in supply momentum. The Warsh hawkish pivot raises new execution risk for borrowers: investors will demand spread concessions to price through uncertainty about the rate path. The positive Iranian news may partially offset, as Iran deal relief compresses credit risk premia in energy and emerging market names. Conditions for next week's window will depend heavily on how spreads settle post-holiday and whether the Fed narrative stabilises. SSA, sovereign, and high-grade issuers (industrials, transport, energy) are best positioned to exploit any re-open. HY will remain cautious until credit spread levels are clearer. Full market return Monday June 22.</p>
+  </div>
+</div>
+
+<!-- =========================================================
+     SECTION 10 — ECONOMIC CALENDAR
+     ========================================================= -->
+<div class="section-wrapper">
+  <h2>10. Economic Calendar — 19 June 2026</h2>
+
+  <div class="holiday-bar" style="font-size:11px;">
+    US data releases suspended today (Juneteenth federal holiday). Major US data resumes from Monday June 22.
+  </div>
+
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Time (BST)</th>
+        <th>Region</th>
+        <th>Indicator</th>
+        <th>Consensus</th>
+        <th>Importance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td>All day</td>
+        <td>US</td>
+        <td>Juneteenth — all US market data suspended</td>
+        <td>—</td>
+        <td><span class="badge badge-high">HIGH</span></td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td>All day</td>
+        <td>HK</td>
+        <td>Dragon Boat Festival — HK markets closed</td>
+        <td>—</td>
+        <td><span class="badge badge-med">MED</span></td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><span class="na">n/a</span></td>
+        <td>Eurozone</td>
+        <td>No major confirmed releases today</td>
+        <td><span class="na">—</span></td>
+        <td><span class="badge badge-low">LOW</span></td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><span class="na">n/a</span></td>
+        <td>UK</td>
+        <td>No major confirmed releases today</td>
+        <td><span class="na">—</span></td>
+        <td><span class="badge badge-low">LOW</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="data-block item">
+    <p><strong>Upcoming (late June):</strong> US Q1 2026 GDP final revision and May PCE price index are the next major data anchors, expected in the coming week or two. These will test whether the Fed's hawkish pivot is validated by actual data. S&amp;P 500 Q1 2026 EPS growth of 28.4% (highest since Q4 2021, per FactSet) provides positive earnings backdrop heading into Q2 season.</p>
+  </div>
+</div>
+
+<!-- =========================================================
+     SECTION 11 — CORPORATE EVENTS & EARNINGS
+     ========================================================= -->
+<div class="section-wrapper">
+  <h2>11. Corporate Events &amp; Earnings</h2>
+
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Company / Ticker</th>
+        <th>Event</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Intel (INTC)</strong></td>
+        <td>Post-announcement follow-through</td>
+        <td>Apple-Intel chip deal confirmed by Trump (Jun 18). INTC +10.5% Thursday. Watch for further analyst commentary and target price upgrades. Stock at $133.82.</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Apple (AAPL)</strong></td>
+        <td>Chip partnership implications</td>
+        <td>Diversification of chip supply away from TSMC. Short-term cost implications and product timing unclear. Analyst notes expected.</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>SpaceX (SPCX)</strong></td>
+        <td>IPO aftermarket</td>
+        <td>Listed June 12 at $135. Trading ~$174.90. Starlink 12M subscribers. $6.4bn Space Force contracts. Next catalyst: Q2 operational update.</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>General Electric (GE)</strong></td>
+        <td>Board appointment</td>
+        <td>Judson Althoff (Microsoft Commercial CEO) joins GE board effective June 24. Board expanded to accommodate appointment.</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Boeing (BA)</strong></td>
+        <td>May delivery report noted</td>
+        <td>60 commercial aircraft delivered in May 2026 (51x 737 MAX, 6x 787 Dreamliner). Jefferies and Wells Fargo reiterated positive ratings citing demand visibility and production ramp.</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td><strong>Micron (MU), FedEx (FDX)</strong></td>
+        <td>Earnings (next week)</td>
+        <td>Key earnings expected next week; will set tone for Q2 reporting season. MU: DRAM/NAND demand signal. FDX: freight volumes and consumer economy health.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- =========================================================
+     SECTION 12 — STOCKS TO WATCH
+     ========================================================= -->
+<div class="section-wrapper">
+  <h2>12. Stocks to Watch — 19 June 2026</h2>
+  <p class="muted" style="margin-bottom:6px;">Skew: Aviation, Shipping, Metals &amp; Mining, Aerospace &amp; Defense, Banks, Energy. US names referenced for context given Juneteenth closure — European equivalents in focus today.</p>
+
+  <div class="stock-item item">
+    <strong class="warn">Intel (INTC) / Semiconductor sector</strong>
+    &nbsp;&mdash;&nbsp;
+    Apple-Intel chip deal catalyst. +10.5% Thursday. Expect continued analyst upgrades and sector rotation into chip hardware. European semiconductor proxy: ASML, BE Semiconductor (BESI).
+    &nbsp;<span class="pos">Direction: UP (US closed; European semis may follow)</span>
+  </div>
+
+  <div class="stock-item item">
+    <strong class="warn">BP, Shell, TotalEnergies</strong>
+    &nbsp;&mdash;&nbsp;
+    Brent at $79.24 and trending soft on US-Iran supply normalisation. FTSE 100's heavy energy weighting dragged the index -1.2% Thursday. Further Brent softness = continued headwind.
+    &nbsp;<span class="neg">Direction: DOWN / Underperform</span>
+  </div>
+
+  <div class="stock-item item">
+    <strong class="warn">Siemens Energy (ENR GY)</strong>
+    &nbsp;&mdash;&nbsp;
+    Net profit nearly tripled in recent results; shares surged more than 5%. Beneficiary of European energy infrastructure build-out and grid investment. Watch for continuation or profit-taking today.
+    &nbsp;<span class="pos">Direction: UP / Monitor closely</span>
+  </div>
+
+  <div class="stock-item item">
+    <strong class="warn">Aerospace &amp; Defense: Leonardo, Airbus, Rheinmetall, BAE Systems</strong>
+    &nbsp;&mdash;&nbsp;
+    Proposed US defense budget increase to $1.5 trillion for FY2027 underpins the sector. US-Iran peace may slightly reduce conflict-driven demand urgency, but structural European rearmament continues. Rheinmetall and BAE positioned for European defence spend acceleration.
+    &nbsp;<span class="pos">Direction: Neutral to slight UP; Rheinmetall, BAE strong catalysts intact</span>
+  </div>
+
+  <div class="stock-item item">
+    <strong class="warn">Boeing (BA) — US closed but reference</strong>
+    &nbsp;&mdash;&nbsp;
+    Recovering production ramp. 60 deliveries in May. Jefferies and Wells Fargo positive. Iran deal reopens potential Middle East aircraft orders. Airbus (AIR FP) in Europe as proxy.
+    &nbsp;<span class="pos">Direction: UP (Airbus as European play)</span>
+  </div>
+
+  <div class="stock-item item">
+    <strong class="warn">Commerzbank (CBK GY)</strong>
+    &nbsp;&mdash;&nbsp;
+    Shares fell 1.8% after recent results failed to impress despite record 2025 operating profit. Monitor for continued selling pressure or recovery on thin Friday volumes. Unicredit stake overhang remains a topic.
+    &nbsp;<span class="neg">Direction: Neutral to slightly DOWN — watch volume</span>
+  </div>
+
+  <div class="stock-item item">
+    <strong class="warn">Gold miners (Fresnillo, Polymetal)</strong>
+    &nbsp;&mdash;&nbsp;
+    Gold at $4,168/oz, off from recent highs as Iran deal reduces safe-haven demand and Warsh hawkish rate signal strengthens USD. Gold miners likely to soften in tandem.
+    &nbsp;<span class="neg">Direction: DOWN</span>
+  </div>
+
+  <div class="stock-item item">
+    <strong class="warn">Maersk (MAERSK B DC) / Shipping</strong>
+    &nbsp;&mdash;&nbsp;
+    Maersk June 2026 Europe market update highlighted trade flow shifts. Iran deal and Hormuz reopening normalises Red Sea-adjacent routes. Positive for shipping cost stability; monitor container rate direction.
+    &nbsp;<span class="pos">Direction: Neutral to slight UP (supply chain normalisation)</span>
+  </div>
+</div>
+
+<!-- =========================================================
+     SECTION 13 — MACRO / CORPORATE / POLITICAL HIGHLIGHTS
+     ========================================================= -->
+<div class="section-wrapper">
+  <h2>13. Macro / Corporate / Political Highlights</h2>
+
+  <h3>Macro</h3>
+  <ul>
+    <li class="item"><strong>Fed Warsh hawkish pivot (June 17-18):</strong> First FOMC meeting under Kevin Warsh. Rates held 3.5%-3.75%. Median dot moved to 3.8% from 3.4%, implying at least one hike this year. 9 of 18 members now lean toward a hike. Policy statement dropped cut-bias language. Markets priced partial selloff Wednesday; recovered Thursday. Dollar strength, EUR/USD under 1.15 at points.</li>
+    <li class="item"><strong>ECB divergence risk increasing:</strong> With the Fed shifting hawkish and ECB on hold, the rate differential widens in USD's favour. EUR/USD at 1.1466 reflects this. A further USD leg higher is possible if Warsh signals accelerate. Bund-Treasury spread at ~153 bps.</li>
+    <li class="item"><strong>Q1 2026 US earnings record:</strong> S&amp;P 500 EPS growth of 28.4% in Q1 2026, highest since Q4 2021 (FactSet). Provides a strong fundamental cushion even if rates rise modestly.</li>
+    <li class="item"><strong>IEA supply glut warning:</strong> Global oil supply projected to grow 8 mb/d vs demand +2 mb/d by 2027. Iran deal accelerates the timeline. OPEC+ credibility under pressure.</li>
+  </ul>
+
+  <h3>Corporate</h3>
+  <ul>
+    <li class="item"><strong>Apple-Intel semiconductor deal:</strong> Trump confirmed Apple will source chips from Intel manufactured in the US. Intel +10.5% on Thursday ($133.82). US government owns ~10% equity in Intel. Deal details (products, volumes, timeline) not yet disclosed.</li>
+    <li class="item"><strong>SpaceX post-IPO momentum:</strong> SPCX at $174.90 after June 12 IPO. Starlink at 12M subscribers (2x YoY). $6.4bn Space Force contracts. Company remains loss-making at the net level despite revenue growth.</li>
+    <li class="item"><strong>Boeing production ramp:</strong> 60 aircraft delivered in May 2026 (51x 737 MAX). Analysts at Jefferies and Wells Fargo positive. Iran deal may unlock Middle East order demand; Airbus is the European beneficiary.</li>
+    <li class="item"><strong>Siemens Energy profit surge:</strong> Net profit nearly tripled, stock +5%+. Strong validation of European energy infrastructure investment cycle.</li>
+  </ul>
+
+  <h3>Political / Geopolitical</h3>
+  <ul>
+    <li class="item"><strong>US-Iran interim peace deal digitally signed:</strong> After the April 2026 ceasefire, both parties formally signed the interim framework. Strait of Hormuz expected to reopen within 30 days. Oil risk premium partially removed; analysts revised Brent to $78-$85 range from $90-$95.</li>
+    <li class="item"><strong>US manufacturing nationalism:</strong> Trump's push for domestic chip and technology production continues (Apple-Intel deal, Nvidia and Tesla cited earlier). This represents a sustained policy theme affecting global supply chains and TSMC's market position.</li>
+    <li class="item"><strong>US defense budget FY2027:</strong> Proposed at $1.5 trillion. Provides long-term structural support for defense contractors (Northrop Grumman, General Dynamics, Raytheon/RTX, BAE, Rheinmetall).</li>
+  </ul>
+</div>
+
+<!-- =========================================================
+     SECTION 14 — KEY THEMES — TOP 5 BY HORIZON
+     ========================================================= -->
+<div class="section-wrapper">
+  <h2>14. Key Themes — Top 5 by Horizon</h2>
+
+  <h3>Today's Top 5 — Drivers of Friday's European Session</h3>
+
+  <div class="theme-item item theme-block">
+    <strong class="blue">1. US markets closed (Juneteenth) — reduced liquidity</strong><br>
+    European indices trade without US futures as reference. Expect thinner volumes and potentially amplified moves in either direction. Last EU close saw Euro Stoxx +0.68%, DAX +0.18%, but FTSE dragged by energy.
+  </div>
+  <div class="theme-item item theme-block">
+    <strong class="pos">2. Nikkei at 52-week high (+1.75%) — positive Asian handover</strong><br>
+    Japan's rally to 71,952 provides a bullish tone for European open. Real estate, banking, and textile sectors led, suggesting broad risk appetite rather than a sector-specific story.
+  </div>
+  <div class="theme-item item theme-block">
+    <strong class="neg">3. Energy sector under pressure — Brent $79.24 and softening</strong><br>
+    US-Iran deal supply normalisation and IEA supply glut warning cap oil prices. FTSE 100 has heaviest energy weighting among major European indices and faces continued drag from BP, Shell.
+  </div>
+  <div class="theme-item item theme-block">
+    <strong class="warn">4. FOMC hawkish hangover — dollar strength, EUR/USD 1.1466</strong><br>
+    Warsh's dot plot shift to 3.8% median adds upward pressure to USD. EUR/USD sub-1.15 potential if European data disappoints. Watch for any ECB speakers today to counter the narrative.
+  </div>
+  <div class="theme-item item theme-block">
+    <strong class="pos">5. Tech / semiconductor momentum (Intel-Apple deal carry)</strong><br>
+    European semiconductor exposure via ASML, BE Semiconductor (BESI), STMicroelectronics. Chip sector optimism from Apple-Intel pact may provide a positive overlay for European tech names today.
+  </div>
+
+  <h3>This Week's Top 5 — Structural Week Themes (w/c 16 June)</h3>
+
+  <div class="theme-item item theme-block">
+    <strong class="neg">1. Fed Warsh's first FOMC — hawkish pivot dominates the week</strong><br>
+    The shift in the median dot from 3.4% to 3.8% and removal of cut-bias language was the single biggest event. Defines rates narrative for Q3 2026.
+  </div>
+  <div class="theme-item item theme-block">
+    <strong class="pos">2. US-Iran peace deal digitally signed — risk premium unwound</strong><br>
+    Ceasefire since April, now formally inked. Strait of Hormuz timeline begins. Oil structural repricing to $78-$85 Brent target range.
+  </div>
+  <div class="theme-item item theme-block">
+    <strong class="blue">3. SpaceX (SPCX) IPO aftermarket performance</strong><br>
+    Listed June 12, SPCX reached $225 highs and trades ~$174. Defines investor risk appetite for high-growth / pre-profit technology names. Starlink and Space Force contract wins provide fundamental support.
+  </div>
+  <div class="theme-item item theme-block">
+    <strong class="pos">4. Apple-Intel US chip deal announced</strong><br>
+    Structural shift in semiconductor supply chain. US manufacturing push confirmed. Intel re-rating higher ($100bn to $600bn valuation cited by Trump). TSMC market share under long-term pressure.
+  </div>
+  <div class="theme-item item theme-block">
+    <strong class="warn">5. Thin liquidity Friday — Juneteenth + Dragon Boat Festival</strong><br>
+    US and HK both closed today, removing two major market anchors. European session trading in a partial vacuum; moves may overstate or understate real sentiment.
+  </div>
+
+  <h3>This Month's Top 5 — June 2026 Structural Themes</h3>
+
+  <div class="theme-item item theme-block">
+    <strong class="neg">1. Fed Warsh's June FOMC — rate hike risk back on the table</strong><br>
+    The first meeting under the new Chair reintroduced hike risk. Markets must now price the possibility of a 25 bps hike before year-end. This resets the entire rate-path pricing for bonds, equity valuations, and FX.
+  </div>
+  <div class="theme-item item theme-block">
+    <strong class="pos">2. US-Iran peace deal — Hormuz reopening timeline</strong><br>
+    30-day Hormuz reopening commitment begins. OPEC+ must respond to Iran's re-entry into export markets. Energy sector repricing underway. Winners: energy importers, airlines, industrials. Losers: E&amp;P, oil majors.
+  </div>
+  <div class="theme-item item theme-block">
+    <strong class="blue">3. SpaceX IPO (June 12) — new era for retail space investment</strong><br>
+    Largest US IPO of 2026 at $75bn raise. Creates a new publicly traded vehicle for space economy exposure. Benchmark for investor appetite in high-growth, mission-driven tech.
+  </div>
+  <div class="theme-item item theme-block">
+    <strong class="pos">4. Q1 2026 earnings wrap — strongest EPS growth since Q4 2021</strong><br>
+    S&amp;P 500 Q1 EPS growth of 28.4% provides a strong fundamental base. The market now looks to Q2 season (July) to confirm whether momentum holds amid higher rates.
+  </div>
+  <div class="theme-item item theme-block">
+    <strong class="warn">5. Late-June macro data: GDP Q1 final + May PCE</strong><br>
+    These releases will either validate or complicate the Warsh hawkish pivot. A hot PCE or upward GDP revision supports a hike. A miss opens the door to a more measured approach. Key market catalyst for late June.
+  </div>
+</div>
+
+<!-- =========================================================
+     SECTION 15 — KEY TRENDS TO WATCH
+     ========================================================= -->
+<div class="section-wrapper">
+  <h2>15. Key Trends to Watch</h2>
+
+  <h3>1 Day — What Could Move Today's European Session</h3>
+  <div class="data-block item">
+    <ul>
+      <li><strong>Euro Stoxx 50 open:</strong> Futures at ~6,337 suggest a modestly positive open. Watch whether the Nikkei 52-week high enthusiasm translates or fades as volumes thin.</li>
+      <li><strong>FTSE 100 vs energy:</strong> Oil at $79.24/bbl limits FTSE upside. Energy sector will define whether FTSE can reverse Thursday's -1.2%.</li>
+      <li><strong>EUR/USD at 1.1466:</strong> Any European data or ECB comment could amplify the Warsh dollar trade. Below 1.14 is next technical support.</li>
+      <li><strong>No US futures:</strong> Absence of S&amp;P futures as a reference could mean European indices drift or gap on any headline. Be prepared for volatility on thin order books.</li>
+      <li><strong>Semiconductor names (ASML, BESI, ST):</strong> European chip stocks may catch the Intel-Apple deal tailwind from the US Thursday session.</li>
+    </ul>
+  </div>
+
+  <h3>1 Week — Key Appointments and Themes (w/c 22 June)</h3>
+  <div class="data-block item">
+    <ul>
+      <li><strong>US market return Monday June 22:</strong> First full US session after Juneteenth. Markets will reset from a three-day period of incomplete pricing. Expect a directional move on open.</li>
+      <li><strong>Micron (MU) earnings:</strong> Semiconductor demand signal for DRAM and NAND. Critical read-across for AI infrastructure investment and chip cycle.</li>
+      <li><strong>FedEx (FDX) earnings:</strong> Freight volumes as a leading indicator for goods economy and consumer activity heading into Q3.</li>
+      <li><strong>Fed speakers:</strong> Post-FOMC speeches from FOMC members will clarify the extent of the hawkish consensus. Any dovish dissent could ease USD pressure.</li>
+      <li><strong>OPEC+ response to Iran deal:</strong> Production cut adjustments in response to Iran's market re-entry will determine whether Brent holds $78+ or breaks lower.</li>
+    </ul>
+  </div>
+
+  <h3>1 Month — Major Deadlines and Underlying Trends (through July)</h3>
+  <div class="data-block item">
+    <ul>
+      <li><strong>US Q1 GDP final &amp; May PCE (late June):</strong> Two of the most important macro releases of Q2. Will define whether the Fed is right to signal a 2026 hike. Hot PCE = hike risk confirmed.</li>
+      <li><strong>Q2 2026 earnings season (starts July):</strong> With Q1 at +28.4%, bar is high. Analysts will be watching for margin compression from higher input costs, any tariff impact, and labour cost trends.</li>
+      <li><strong>Strait of Hormuz reopening timeline:</strong> 30-day clock starts with Iran deal signing. Physical re-opening of Iran export volumes will structurally reset global oil supply. OPEC+ credibility at stake.</li>
+      <li><strong>Possible Fed hike timing:</strong> With 9 of 18 officials pencilling in a hike, Q3 or Q4 2026 remains live. July or September FOMC meetings are candidate dates depending on data. Bond market will price this progressively.</li>
+      <li><strong>SpaceX SPCX lock-up and analyst coverage initiation:</strong> Post-IPO dynamics will mature. Institutional analyst coverage initiations expected. First quarterly report as a public company will be closely watched.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<div class="section-wrapper">
+  <div class="footer">
+    <p><strong>Sources:</strong>
+      CNBC (Jun 17-18 2026) &bull;
+      NPR (Jun 17 2026) &bull;
+      TheStreet (Jun 18 2026) &bull;
+      Yahoo Finance / Markets (Jun 18-19 2026) &bull;
+      CBS News / AppleInsider / Cult of Mac (Jun 18 2026) &bull;
+      Al Jazeera (Jun 18 2026) &bull;
+      Discovery Alert / Intellectia AI &bull;
+      Investing.com (Brent, US 10Y, EUR/USD) &bull;
+      TradingEconomics (Bund yield, natural gas) &bull;
+      OilPrice.com / Barchart (WTI, Brent) &bull;
+      Yahoo Finance / Fortune (gold spot Jun 18-19 2026) &bull;
+      TradingView / Nikkei Indexes (Nikkei 225 Jun 19 2026) &bull;
+      Schwab Market Update (Jun 18 2026) &bull;
+      Kiplinger / Bloomberg (FOMC summary) &bull;
+      ICMA / Dealogic (DCM volumes) &bull;
+      FactSet (Q1 2026 EPS) &bull;
+      IEA (supply outlook) &bull;
+      Maersk Europe Market Update June 2026 &bull;
+      EBC Financial / Yahoo Finance (Juneteenth holiday schedule) &bull;
+      Trading Hours (HKEX Dragon Boat Festival)
+    </p>
+    <p style="margin-top:8px; color: #f85149; font-weight: 600;">
+      Data collected automatically. Verify before making any decision.
+      Several data points (iTraxx spreads, DAX/CAC/FTSE futures, GBP/USD, Shanghai, Kospi) were not confirmed at generation time and are marked n/a.
+    </p>
+    <p style="margin-top:4px;" class="muted">
+      Generated: Friday 19 June 2026, approx. 06:30 BST &bull; Next issue: Monday 22 June 2026 (US markets reopen)
+    </p>
+  </div>
+</div>
+
+</body>
+</html>
