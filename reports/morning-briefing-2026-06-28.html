@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morning Briefing — 28 June 2026</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-card: #161b22;
+      --bg-table-header: #1c2333;
+      --border: #30363d;
+      --text: #c9d1d9;
+      --text-bright: #e6edf3;
+      --text-muted: #8b949e;
+      --green: #3fb950;
+      --red: #f85149;
+      --amber: #d29922;
+      --blue: #58a6ff;
+      --accent: #388bfd;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      padding: 24px 20px;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-bright);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .header .meta {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 5px;
+    }
+    .section-wrapper {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+      margin-bottom: 14px;
+    }
+    .section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .section h2 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+    .section h3 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: var(--text-muted);
+      margin: 14px 0 7px;
+    }
+    .section h3:first-of-type { margin-top: 4px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    th {
+      background: var(--bg-table-header);
+      color: var(--text-muted);
+      font-weight: 600;
+      text-align: left;
+      padding: 6px 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 6px 8px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(56,139,253,0.04); }
+    .pos { color: var(--green); font-weight: 600; }
+    .neg { color: var(--red); font-weight: 600; }
+    .na { color: var(--text-muted); font-style: italic; }
+    .amber { color: var(--amber); font-weight: 600; }
+    .blue { color: var(--blue); }
+    .item {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .item:last-child { border-bottom: none; padding-bottom: 0; }
+    .news-item {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+      margin-bottom: 8px;
+      padding: 8px 10px;
+      background: rgba(56,139,253,0.04);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+    }
+    .news-item:last-child { margin-bottom: 0; }
+    .news-headline {
+      color: var(--text-bright);
+      font-weight: 600;
+      font-size: 12.5px;
+    }
+    .news-source {
+      color: var(--amber);
+      font-size: 11px;
+      margin-top: 2px;
+    }
+    .news-why {
+      color: var(--text-muted);
+      font-size: 11.5px;
+      margin-top: 3px;
+    }
+    .stock-item {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+      display: grid;
+      grid-template-columns: 140px 60px 1fr;
+      gap: 8px;
+      align-items: center;
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+    .stock-item:last-child { border-bottom: none; }
+    .stock-name { color: var(--text-bright); font-weight: 600; }
+    .theme-block {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    .theme-item {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 8px;
+      align-items: baseline;
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+    .theme-item:last-child { border-bottom: none; }
+    .theme-num {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .calendar-row {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    .data-block {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    .label {
+      color: var(--text-muted);
+      font-size: 11px;
+    }
+    .val {
+      color: var(--text-bright);
+      font-weight: 600;
+    }
+    .tag-high { color: var(--red); font-weight: 700; font-size: 11px; }
+    .tag-med { color: var(--amber); font-weight: 700; font-size: 11px; }
+    .tag-low { color: var(--text-muted); font-size: 11px; }
+    .dcm-deal {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+    .dcm-deal:last-child { border-bottom: none; }
+    .footer {
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+    .footer strong { color: var(--text); }
+
+    @media print {
+      body {
+        background: #0d1117 !important;
+        color: #c9d1d9 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .section, table, tr, td, th, .data-block, .theme-block, .calendar-row {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      thead { display: table-header-group; }
+      p, li, div, span {
+        orphans: 3;
+        widows: 3;
+      }
+      .section-wrapper {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .item, .news-item, .stock-item, .theme-item, .event-item {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      @page {
+        size: A4 landscape;
+        margin: 12mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     1. HEADER
+═══════════════════════════════════════════════════ -->
+<div class="header">
+  <h1>Morning Briefing — Sunday 28 June 2026</h1>
+  <div class="meta">
+    Generated: 07:05 BST (06:05 UTC) &nbsp;|&nbsp;
+    London (BST, UTC+1) &nbsp;|&nbsp;
+    Next European open: Monday 29 June 2026 &nbsp;|&nbsp;
+    Data as of 06:45 BST
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     2. IMPORTANT NEWS
+═══════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>2. Important News — Since Thursday European Close</h2>
+
+  <div class="news-item">
+    <div class="news-headline">Germany cancels €12.8bn F126 frigate programme — Rheinmetall crashes 18%</div>
+    <div class="news-source">Bloomberg / CNBC / Euronews — Wednesday 24 June</div>
+    <div class="news-why">Berlin shelved its six F126 frigate contract, citing delays and cost overruns, opting instead for eight smaller Meko A-200 vessels from TKMS. Rheinmetall fell as much as 18% on the day; Hensoldt -3.3%, Renk -7.2%, Saab -2.8%, Leonardo -4.7%. Raises broader questions about European defence procurement credibility and contractor revenue visibility.</div>
+  </div>
+
+  <div class="news-item">
+    <div class="news-headline">OpenAI weighs IPO delay to 2027 at $1trn valuation — AI and chip stocks rout</div>
+    <div class="news-source">New York Times / Yahoo Finance / CNBC — Friday 26 June</div>
+    <div class="news-why">Report that OpenAI advisers presented two options to Altman: wait until 2027 for a $1trn listing or accept a lower valuation now. Nasdaq posted its fifth consecutive losing session, finishing the week -4.6%. Philadelphia Semiconductor Index -4.8% on Friday. SoftBank fell 12%+ in Tokyo given its large OpenAI stake; Nikkei -4.2% for the session. Key risk: AI valuation de-rating ripples across European tech and semiconductor names (ASML, Infineon).</div>
+  </div>
+
+  <div class="news-item">
+    <div class="news-headline">US-Iran ceasefire framework holds — Brent back at pre-conflict levels near $75/bbl</div>
+    <div class="news-source">Al Jazeera / NPR / Axios — June 14–18</div>
+    <div class="news-why">Pakistan brokered a ceasefire extension between the US and Iran; Strait of Hormuz partially reopening. Brent shed ~13% from conflict-peak highs and now trades around $75.59/bbl, close to levels before the February 28 outbreak of hostilities. Sustained normalisation lowers energy inflation in Europe but pressures oil-sector equity earnings.</div>
+  </div>
+
+  <div class="news-item">
+    <div class="news-headline">ECB raised rates 25bps on 11 June to 2.25% deposit rate — first hike since 2023</div>
+    <div class="news-source">ECB / Euronews / InformedClearly — June 11</div>
+    <div class="news-why">ECB cited Middle East-driven inflation shock; eurozone CPI running at 3.2% in May with core at 2.5%. ECB projects headline at 3.0% for full-year 2026. Markets now price a further move in September. Higher policy rates increase borrowing costs across European corporate issuers and widen the ECB rate path divergence vs the on-hold Fed and BoE.</div>
+  </div>
+
+  <div class="news-item">
+    <div class="news-headline">EU Tech Sovereignty Package announced — Cloud &amp; AI Development Act, Chips Act 2</div>
+    <div class="news-source">European Commission / McKinsey / EY — 3 June</div>
+    <div class="news-why">Brussels proposed legislation reducing reliance on non-EU cloud and semiconductor providers. Moves seen as targeting US Big Tech. Escalation risk: Washington may respond with trade measures. Medium-term structural tailwind for EU semiconductor and cloud names; near-term risk of US-EU digital trade friction heading into Q3 summits.</div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     3. EUROPEAN FUTURES — PRE-OPEN (MONDAY 29 JUNE)
+═══════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>3. European Futures — Pre-Open (Monday 29 June)</h2>
+  <p class="label" style="margin-bottom:10px;">Data as of Friday 26 June close / early Sunday indication. Asian tech sell-off and defence sector weakness suggest negative European open bias.</p>
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Last Indication</th>
+        <th>vs Friday Close</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">Euro Stoxx 50</td>
+        <td>6,326</td>
+        <td class="neg">-0.8% bias</td>
+        <td>Futures range Fri 6,283–6,338; tech/defence drag</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">DAX</td>
+        <td>24,994.83</td>
+        <td class="neg">-0.7% bias</td>
+        <td>Defence sector (Rheinmetall, Hensoldt) weighing</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">CAC 40</td>
+        <td class="na">n/a</td>
+        <td class="na">n/a</td>
+        <td>Expected to follow Stoxx/DAX</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">FTSE 100</td>
+        <td>10,529.89</td>
+        <td class="neg">mild negative</td>
+        <td>Oil/commodity drag; less defence exposure</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">S&amp;P 500 Futures</td>
+        <td class="na">n/a</td>
+        <td class="na">n/a</td>
+        <td>S&amp;P settled 7,354.02 Fri; futures not sourced overnight</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">Nasdaq Futures</td>
+        <td class="na">n/a</td>
+        <td class="na">n/a</td>
+        <td>Nasdaq down 4.6% on week; futures not sourced overnight</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="label" style="margin-top:8px;">Source: Eurex / Barchart / Investing.com. Data collected approx. 06:45 BST.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     4. YESTERDAY'S CLOSES (FRIDAY 26 JUNE 2026)
+═══════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>4. Yesterday's Closes — Friday 26 June 2026 (Last European Session)</h2>
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Close</th>
+        <th>Change</th>
+        <th>Week</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">Euro Stoxx 50</td>
+        <td class="na">n/a</td>
+        <td class="na">n/a</td>
+        <td class="neg">-0.8% Fri indication</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">DAX</td>
+        <td>24,994.83</td>
+        <td class="pos">+1.03%</td>
+        <td class="neg">Defence drag late-week</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">CAC 40</td>
+        <td class="na">n/a</td>
+        <td class="na">n/a</td>
+        <td class="na">n/a</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">FTSE 100</td>
+        <td>10,529.89</td>
+        <td class="pos">+0.65%</td>
+        <td class="neg">Oil sector drag from Iran deal</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="label" style="margin-top:8px;">Sources: Investing.com / Barchart. Markets closed Saturday 27 June &amp; Sunday 28 June. Data collected approx. 06:45 BST.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     5. US MARKETS — FRIDAY 26 JUNE 2026
+═══════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>5. US Markets — Friday 26 June 2026 Session</h2>
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Close</th>
+        <th>Day Change</th>
+        <th>Week Change</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">S&amp;P 500</td>
+        <td>7,354.02</td>
+        <td class="neg">-0.05%</td>
+        <td class="neg">-2.0%</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">Dow Jones</td>
+        <td>51,876.11</td>
+        <td class="neg">-0.09% (-44.51 pts)</td>
+        <td class="neg">Modest negative</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">Nasdaq Composite</td>
+        <td>25,297.62</td>
+        <td class="neg">-0.24%</td>
+        <td class="neg">-4.6%</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">Philadelphia Semiconductor</td>
+        <td class="na">n/a</td>
+        <td class="neg">-4.8% Fri</td>
+        <td class="neg">Worst week since spring</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="item" style="margin-top:10px; font-size:12px;">
+    <strong>Session tone:</strong> Risk-off. Nasdaq posted its fifth consecutive losing session.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>Leading sector:</strong> Dow components relatively resilient; defensives and value names outperformed.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>Lagging sector:</strong> Technology and semiconductors. OpenAI IPO delay report triggered a broad AI/chip complex de-rating. SoftBank collapsed 12%+ in overseas trading.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>Key takeaway:</strong> Nasdaq lost 4.6% for the week as AI valuation confidence eroded. A broadly in-line PCE inflation print softened the dollar slightly but did not rescue risk appetite. Market focus shifts to whether Q2 earnings (starting mid-July) can re-anchor AI growth narratives.
+  </div>
+  <p class="label" style="margin-top:8px;">Sources: TheStreet / CNBC / Yahoo Finance. Data collected approx. 06:45 BST.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     6. ASIAN MARKETS — MOST RECENT SESSION
+═══════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>6. Asian Markets — Friday 26–27 June 2026 Session (Most Recent Completed)</h2>
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Level</th>
+        <th>Change</th>
+        <th>Driver</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">Nikkei 225</td>
+        <td>69,360.88</td>
+        <td class="neg">-4.15%</td>
+        <td>SoftBank -12%+ (OpenAI stake); chip complex sell-off</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">Hang Seng</td>
+        <td>22,671.86</td>
+        <td class="neg">-1.8% (-405 pts)</td>
+        <td>AI/semi stocks; broad risk-off; USD strength</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">Shanghai Composite</td>
+        <td>4,027.26</td>
+        <td class="neg">-2.26%</td>
+        <td>Tech sector; global risk-off; domestic demand caution</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">Kospi</td>
+        <td class="na">n/a</td>
+        <td class="na">n/a</td>
+        <td>Expected in line with regional trend</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="item" style="margin-top:10px; font-size:12px;">
+    <strong>Overall tone:</strong> Broad risk-off. The OpenAI IPO delay report was the dominant driver across Asia, with SoftBank's outsized decline amplifying the Nikkei's move. AI-related and semiconductor names were hit hardest. Hang Seng extended losses for a second straight session as the global tech de-rating spread to Hong Kong-listed tech names.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>Note:</strong> Asian markets will be in their Monday 29 June session as European markets open. Tone from Friday's sell-off sets a negative baseline; however, weekend developments on the Iran ceasefire could partially offset.
+  </div>
+  <p class="label" style="margin-top:8px;">Sources: CNBC Asia / Bloomberg / Investtech. Data collected approx. 06:45 BST.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     7. COMMODITIES
+═══════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>7. Commodities</h2>
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Commodity</th>
+        <th>Level</th>
+        <th>Change / Period</th>
+        <th>Context</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">Brent Crude</td>
+        <td>$75.59/bbl</td>
+        <td class="neg">-1.93% day; -13% from conflict peak</td>
+        <td>Back at pre-February 28 conflict levels; US-Iran ceasefire framework holds</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">WTI Crude</td>
+        <td>~$72.00/bbl</td>
+        <td class="neg">In line with Brent move</td>
+        <td>Strait of Hormuz partially reopening; further normalisation expected</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">Gold</td>
+        <td>~$4,000/oz</td>
+        <td class="neg">-~5% for week</td>
+        <td>Hawkish Fed signals and on-hold rhetoric; strong dollar pressured XAU; geopolitical risk premium fading with Iran deal</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">Natural Gas (Henry Hub)</td>
+        <td>$3.16/MMBtu</td>
+        <td class="neg">Modest decline</td>
+        <td>As of 22 June; geopolitical risk premium easing; summer demand moderate</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">Natural Gas (TTF Europe)</td>
+        <td>~$14.1/MBtu</td>
+        <td class="neg">Fell from $16.5 on 1 June</td>
+        <td>Storage improving; Middle East supply risk easing; price falling toward seasonal norms</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">Copper</td>
+        <td>~$6.10/lb</td>
+        <td class="neg">-3%+ recent session</td>
+        <td>Stronger USD and hawkish Fed expectations weighing; demand outlook mixed on global growth at 3.0%</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="label" style="margin-top:8px;">Sources: NPR / Al Jazeera / Global LNG Hub / Trading Economics. Data collected approx. 06:45 BST (oil as of Fri close; gas as of 22 June weekly update; gold as of Fri 26 June).</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     8. RATES & FX
+═══════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>8. Rates &amp; FX</h2>
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Instrument</th>
+        <th>Level</th>
+        <th>Change</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">US 10Y Treasury</td>
+        <td>4.39%</td>
+        <td class="neg">-7bps week</td>
+        <td>Broadly in-line PCE print; Fed on hold; 4-to-8 internal dissent on direction</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">German 10Y Bund</td>
+        <td>2.93%</td>
+        <td class="neg">Eased from 2.97% on Fri</td>
+        <td>Post-ECB hike; near lowest level since March 17; ECB deposit rate now 2.25%</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">US/DE 10Y Spread</td>
+        <td>~146bps</td>
+        <td>—</td>
+        <td>Structural divergence: Fed on hold vs ECB hiking</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">EUR/USD</td>
+        <td>1.1382</td>
+        <td class="pos">Dollar weakening</td>
+        <td>As of 23 June; DXY down on in-line PCE; ECB hike supportive of EUR</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">GBP/USD</td>
+        <td class="na">n/a</td>
+        <td class="na">n/a</td>
+        <td>BoE on hold at 3.75%; UK CPI 2.8% May; GBP expected range-bound</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">DXY (US Dollar Index)</td>
+        <td>101.1</td>
+        <td class="neg">Second session of losses</td>
+        <td>Fell on PCE; was at 100.7 high on June 19; EUR 57.6% weight dominant</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="label" style="margin-top:8px;">Sources: Trading Economics / World Government Bonds / Street Stats. Data collected approx. 06:45 BST. EUR/USD as of 23 June; DXY as of 26–27 June close.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     9. DCM — PRIMARY BOND MARKET
+═══════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>9. DCM — Primary Bond Market</h2>
+
+  <h3>Yesterday's Issuances (Friday 26 June)</h3>
+  <div class="dcm-deal">
+    <span class="amber">Note:</span> Specific deal-by-deal data for Friday 26 June not available from public web sources at time of collection. Late June is typically low-supply given Q2-end investor restrictions and issuers pre-positioning for summer blackout. IFR/GlobalCapital terminal required for granular deal flow. General market context: European Commission completed its H1 2026 target of €100bn in syndicated and auctioned long-term EU-Bonds by end-June, representing a record first-half supply run.
+  </div>
+
+  <h3>Pipeline / Expected Week of 29 June</h3>
+  <div class="dcm-deal">
+    <strong>SSA / European Commission:</strong> H1 2026 EU-Bond programme complete at €100bn. Q3 supply calendar expected to be announced shortly. Watch for EU social bond and green bond tranches in July.
+  </div>
+  <div class="dcm-deal">
+    <strong>Corporate IG:</strong> Late June/early July window historically thin. Issuers likely in pre-earnings quiet period; bulk of supply expected post-summer (September) or in the July window before earnings season starts mid-July. ECB hike adds ~25bps all-in funding cost pressure vs March levels.
+  </div>
+  <div class="dcm-deal">
+    <strong>HY/Crossover:</strong> No specific mandates sourced. Market tone cautious given credit spread widening risk from tech/defence sector events and ECB tightening trajectory.
+  </div>
+
+  <h3>Key Spreads</h3>
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Level</th>
+        <th>Change</th>
+        <th>Direction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">iTraxx Main (5Y)</td>
+        <td class="na">n/a</td>
+        <td class="na">n/a</td>
+        <td class="na">Not sourced — check Bloomberg/ICE</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">iTraxx Crossover (5Y)</td>
+        <td class="na">n/a</td>
+        <td class="na">n/a</td>
+        <td class="na">Not sourced — check Bloomberg/ICE</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">CDX IG (5Y)</td>
+        <td class="na">n/a</td>
+        <td class="na">n/a</td>
+        <td class="na">Not sourced — check Bloomberg/Markit</td>
+      </tr>
+      <tr style="page-break-inside:avoid;">
+        <td class="val">Euro HY OAS (ICE BofA)</td>
+        <td class="na">n/a</td>
+        <td class="na">n/a</td>
+        <td class="na">Not sourced — check FRED/Bloomberg</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Commentary</h3>
+  <div class="item" style="font-size:12px;">
+    The primary market heads into the final week of H1 2026 effectively closed for new corporate supply. Issuers are in the traditional pre-summer quiet zone, amplified this year by ECB rate uncertainty following the June 11 hike. Investor appetite remains structurally robust — Amundi and other large asset managers confirm strong demand into year-end — but the near-term pipeline will be light until September. The ECB hike adds incremental pressure on IG all-in yields; HY spreads may widen if the tech/AI correction broadens and hits European crossover names. The defence sector blow-up (Rheinmetall, Renk) does not directly affect primary bond markets but underlines sector-specific volatility risks.
+  </div>
+  <p class="label" style="margin-top:8px;">Sources: ICMA / European Commission / Amundi Research / ION Analytics / IFR context. Data collected approx. 06:45 BST.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     10. ECONOMIC CALENDAR — WEEK OF 29 JUNE
+═══════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>10. Economic Calendar — Key Releases This Week</h2>
+  <table style="page-break-inside:avoid;">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>London Time</th>
+        <th>Region</th>
+        <th>Indicator</th>
+        <th>Consensus / Note</th>
+        <th>Importance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside:avoid;" class="calendar-row">
+        <td>Mon 29 Jun</td>
+        <td>Light</td>
+        <td>Eurozone</td>
+        <td>Q1 2026 GDP Final (if revised)</td>
+        <td>Watch for revision vs +0.8% flash</td>
+        <td class="tag-med">MEDIUM</td>
+      </tr>
+      <tr style="page-break-inside:avoid;" class="calendar-row">
+        <td>Tue 30 Jun</td>
+        <td>~09:00</td>
+        <td>Eurozone</td>
+        <td>Eurozone CPI Flash Estimate (June)</td>
+        <td>Prior 3.2%; ECB watching closely post-hike</td>
+        <td class="tag-high">HIGH</td>
+      </tr>
+      <tr style="page-break-inside:avoid;" class="calendar-row">
+        <td>Tue 30 Jun</td>
+        <td>~09:55</td>
+        <td>Germany</td>
+        <td>Germany CPI Preliminary (June)</td>
+        <td>Key input to EZ flash; prior month print elevated</td>
+        <td class="tag-high">HIGH</td>
+      </tr>
+      <tr style="page-break-inside:avoid;" class="calendar-row">
+        <td>Tue 30 Jun</td>
+        <td>~15:00</td>
+        <td>US</td>
+        <td>US Consumer Confidence (June)</td>
+        <td>Sentiment under pressure from tech/energy price moves</td>
+        <td class="tag-med">MEDIUM</td>
+      </tr>
+      <tr style="page-break-inside:avoid;" class="calendar-row">
+        <td>Wed 1 Jul</td>
+        <td>~09:00</td>
+        <td>Eurozone</td>
+        <td>Eurozone Manufacturing PMI (June Final)</td>
+        <td>Contraction likely; prior flash below 50</td>
+        <td class="tag-high">HIGH</td>
+      </tr>
+      <tr style="page-break-inside:avoid;" class="calendar-row">
+        <td>Wed 1 Jul</td>
+        <td>~14:15</td>
+        <td>US</td>
+        <td>ADP Employment Change (June)</td>
+        <td>Private payrolls; precursor to NFP</td>
+        <td class="tag-med">MEDIUM</td>
+      </tr>
+      <tr style="page-break-inside:avoid;" class="calendar-row">
+        <td>Thu 2 Jul</td>
+        <td>~09:00</td>
+        <td>Eurozone</td>
+        <td>Services PMI (June Final)</td>
+        <td>Watch for signs of consumer slowdown post-ECB hike</td>
+        <td class="tag-high">HIGH</td>
+      </tr>
+      <tr style="page-break-inside:avoid;" class="calendar-row">
+        <td>Fri 4 Jul</td>
+        <td>US Holiday</td>
+        <td>US</td>
+        <td>Independence Day — US markets closed</td>
+        <td>Non-Farm Payrolls typically released prior Friday (4 Jul holiday) — check calendar</td>
+        <td class="tag-high">HIGH</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="label" style="margin-top:8px;">Note: Specific release times sourced from standard calendar conventions; verify exact times on Trading Economics / Econoday. Specific consensus figures not available at collection time. Data collected approx. 06:45 BST.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     11. CORPORATE EVENTS & EARNINGS — WEEK OF 29 JUNE
+═══════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>11. Corporate Events &amp; Earnings</h2>
+  <div class="item" style="font-size:12px;">
+    <strong>Q2 2026 earnings season:</strong> Major reporting begins in earnest during the second full week of July. Pre-announcements and guidance updates could surface this week from European companies ahead of Q2 close.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>KB Home (KBH US):</strong> Already reported — fiscal Q2 revenue $1.11bn vs $1.10bn estimate. Shares +17% on the print. Housing sector outperform.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>Rheinmetall (RHM GY):</strong> No earnings release. Management likely to address the F126 cancellation via press statement or analyst call during the week. Key question: how does the company fill the revenue gap from the lost €12.8bn contract?
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>TKMS (ThyssenKrupp Marine Systems):</strong> Likely to confirm its Meko A-200 frigate contract award. Not publicly listed but parent ThyssenKrupp (TKA GY) may see investor focus.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>SoftBank (9984 JT):</strong> Management may comment on OpenAI stake valuation given IPO delay news. Follow analyst notes and any investor day communications.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>European Commission:</strong> H1 EU-Bond issuance programme concludes. Q3 funding plan announcement expected in coming days.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>EU summit / Parliament:</strong> Watch for any EU-US trade friction statements related to the Tech Sovereignty Package.
+  </div>
+  <p class="label" style="margin-top:8px;">Sources: SEC EDGAR / Earnings Whispers / MarketScreener. Data collected approx. 06:45 BST.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     12. STOCKS TO WATCH — MONDAY 29 JUNE
+═══════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>12. Stocks to Watch — Monday 29 June</h2>
+  <div class="stock-item">
+    <span class="stock-name">Rheinmetall (RHM GY)</span>
+    <span class="neg">DOWN BIAS</span>
+    <span>F126 frigate contract cancelled (€12.8bn); stock -18% on 24 June; further re-rating risk as market digests revenue gap. Sell on rallies.</span>
+  </div>
+  <div class="stock-item">
+    <span class="stock-name">ThyssenKrupp (TKA GY)</span>
+    <span class="pos">UP BIAS</span>
+    <span>Parent of TKMS, the winner of the Meko A-200 frigate contract. Defence division re-rating likely; monitor official contract announcement.</span>
+  </div>
+  <div class="stock-item">
+    <span class="stock-name">Hensoldt (HAG GY)</span>
+    <span class="neg">DOWN BIAS</span>
+    <span>German defence electronics; fell 3.3% in sympathy with F126 cancellation. Sector-wide budget credibility under scrutiny.</span>
+  </div>
+  <div class="stock-item">
+    <span class="stock-name">Saab AB (SAAB B SS)</span>
+    <span class="neg">DOWN BIAS</span>
+    <span>Swedish defence; fell 2.8% on Germany news. European defence spending narrative being repriced; watch for further institutional selling.</span>
+  </div>
+  <div class="stock-item">
+    <span class="stock-name">ASML (ASML NA)</span>
+    <span class="neg">DOWN BIAS</span>
+    <span>European semiconductor bellwether; chip sector under pressure from OpenAI IPO delay and Philly Semi -4.8%. Key barometer for AI capex cycle.</span>
+  </div>
+  <div class="stock-item">
+    <span class="stock-name">Infineon (IFX GY)</span>
+    <span class="neg">DOWN BIAS</span>
+    <span>German chip maker tracking global semi weakness. AI demand uncertainty weighs on near-term order guidance expectations.</span>
+  </div>
+  <div class="stock-item">
+    <span class="stock-name">TotalEnergies (TTE FP)</span>
+    <span class="neg">MIXED / DOWN</span>
+    <span>Brent at $75.59 and falling toward pre-conflict levels; energy sector earnings compression. Watch dividend coverage rationale vs lower oil.</span>
+  </div>
+  <div class="stock-item">
+    <span class="stock-name">BP (BP/ LN)</span>
+    <span class="neg">DOWN BIAS</span>
+    <span>Same oil price pressure as TTE; UK-listed major with relatively higher breakeven sensitivity. FTSE 100 energy drag.</span>
+  </div>
+  <div class="stock-item">
+    <span class="stock-name">Lufthansa (LHA GY)</span>
+    <span class="pos">MONITOR</span>
+    <span>Aviation: lower fuel costs from oil normalisation positive for margins. Watch if sector benefits from energy tailwind offsetting macro headwinds.</span>
+  </div>
+  <div class="stock-item">
+    <span class="stock-name">Leonardo (LDO IM)</span>
+    <span class="neg">DOWN BIAS</span>
+    <span>Italian aerospace and defence; fell 4.7% on Germany F126 news. European defence procurement uncertainty persists into Q3.</span>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     13. MACRO / CORPORATE / POLITICAL HIGHLIGHTS
+═══════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>13. Macro / Corporate / Political Highlights</h2>
+
+  <h3>Macro</h3>
+  <div class="item" style="font-size:12px;">
+    <strong>ECB hike (June 11):</strong> Deposit rate now 2.25%. First hike since 2023. Inflation 3.0% forecast for 2026, core at 2.5%. Next ECB meeting September; market pricing further 25bps. Growth forecast cut to 0.8% for 2026.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>Fed paralysis:</strong> US Federal Reserve on hold with reported 4-to-8 internal dissent on direction. PCE broadly in line. Markets see limited probability of a cut or hike before year-end. US 10Y at 4.39%.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>Bank of England:</strong> On hold at 3.75% for the fourth consecutive month. UK CPI 2.8% in May; core 2.6%. GDP +0.6% Q1 2026, +0.7% to April. BoE concerned inflation stays elevated into Q4 (~3.25%).
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>Global growth:</strong> IMF/World Bank forecasts 3.0–3.1% for 2026; global inflation at 4.4–4.8%. War-driven energy shock a persistent drag; supply chain resilience investment adding cost without efficiency.
+  </div>
+
+  <h3>Corporate</h3>
+  <div class="item" style="font-size:12px;">
+    <strong>OpenAI IPO delay:</strong> Management considering 2027 listing at $1trn valuation vs faster listing at lower valuation. SpaceX post-IPO performance cited as cautionary tale. Triggered broad AI/chip sell-off; SoftBank -12%+.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>Germany F126 cancellation:</strong> Berlin shelved €12.8bn frigate programme; Rheinmetall -18%. Broader European defence sector re-rating underway. TKMS wins Meko A-200 alternative contract.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>US housing:</strong> KB Home Q2 revenue $1.11bn beat; stock +17%. Sector resilience despite higher mortgage rates signals still-tight housing supply.
+  </div>
+
+  <h3>Political / Geopolitical</h3>
+  <div class="item" style="font-size:12px;">
+    <strong>US-Iran ceasefire:</strong> Framework signed mid-June; Strait of Hormuz partially reopening. Oil prices now at pre-conflict levels ($75/bbl). Consumers may not see fuel price normalisation until 2027 even if ceasefire holds. Geopolitical risk premium in energy largely unwound.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>EU Tech Sovereignty Package:</strong> Cloud and AI Development Act + Chips Act 2 announced 3 June. Targets US tech dependence in cloud/AI. Potential source of US-EU digital trade friction; watch for Washington response in Q3 summits.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>Global tariff landscape:</strong> US tariffs and Chinese export controls treated as durable policy, not temporary negotiating tools. Supply chains restructuring toward resilience at higher cost. AI-related trade grew ~40% in 2025; structural tailwind even in risk-off.
+  </div>
+  <p class="label" style="margin-top:8px;">Sources: ECB / BoE / IMF / Al Jazeera / Bloomberg / CNBC / European Commission. Data collected approx. 06:45 BST.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     14. KEY THEMES — TOP 5 BY HORIZON
+═══════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>14. Key Themes — Top 5 by Horizon</h2>
+
+  <h3>Today's Top 5 — Drivers for Monday 29 June</h3>
+  <div class="theme-block">
+    <div class="theme-item">
+      <span class="theme-num">1</span>
+      <span><strong>Defence sector re-rating:</strong> Rheinmetall's -18% crash and European defence peers under pressure; Monday open will test whether the sell-off extends or stabilises. TKMS / ThyssenKrupp counter-narrative.</span>
+    </div>
+    <div class="theme-item">
+      <span class="theme-num">2</span>
+      <span><strong>AI/chip complex transmission:</strong> Nasdaq down 4.6% last week; Nikkei -4.2% Friday; ASML, Infineon, and European AI-adjacent names face downside pressure at open on OpenAI IPO delay fallout.</span>
+    </div>
+    <div class="theme-item">
+      <span class="theme-num">3</span>
+      <span><strong>Oil normalisation carry-through:</strong> Brent at $75.59, lowest since pre-conflict. Energy majors (BP, TTE, Shell) likely softer at open; aviation and transport names (Lufthansa, Ryanair) benefit from lower jet fuel.</span>
+    </div>
+    <div class="theme-item">
+      <span class="theme-num">4</span>
+      <span><strong>ECB post-hike data watch:</strong> Tuesday's Eurozone CPI flash for June is the week's dominant macro event; will determine if ECB's September hike is fully priced. EUR/USD and Bund yields both sensitive.</span>
+    </div>
+    <div class="theme-item">
+      <span class="theme-num">5</span>
+      <span><strong>Q2 end / month-end rebalancing:</strong> Last trading day of the quarter is Tuesday 30 June. Pension fund rebalancing, index reweights and window-dressing flows can amplify intraday volatility in either direction.</span>
+    </div>
+  </div>
+
+  <h3>This Week's Top 5 — Week of 29 June</h3>
+  <div class="theme-block">
+    <div class="theme-item">
+      <span class="theme-num">1</span>
+      <span><strong>Eurozone CPI Flash (Tue 30 Jun):</strong> Will June print confirm 3%+ inflation and cement a September ECB hike? EUR/USD, Bunds, and all-in IG spreads hinge on this number.</span>
+    </div>
+    <div class="theme-item">
+      <span class="theme-num">2</span>
+      <span><strong>US-Iran ceasefire durability:</strong> Any escalation in the Hormuz region over the weekend would spike oil and reverse the entire energy normalisation trade. Geopolitical monitoring critical.</span>
+    </div>
+    <div class="theme-item">
+      <span class="theme-num">3</span>
+      <span><strong>Eurozone PMI finals (Wed 1 Jul):</strong> Manufacturing and services PMIs confirm whether the ECB hike is landing into a contraction — major implications for the September rate debate.</span>
+    </div>
+    <div class="theme-item">
+      <span class="theme-num">4</span>
+      <span><strong>Chip sector stabilisation or further slide:</strong> After Philly Semi -4.8%, the question is whether Q2 earnings (mid-July) can anchor AI capex demand. ASML order data is a key proxy.</span>
+    </div>
+    <div class="theme-item">
+      <span class="theme-num">5</span>
+      <span><strong>European Commission Q3 bond issuance plan:</strong> H1 €100bn target met; Q3 calendar announcement expected. Supply volume and tenor will set the Bund spread trajectory for July.</span>
+    </div>
+  </div>
+
+  <h3>This Month's Top 5 — July 2026</h3>
+  <div class="theme-block">
+    <div class="theme-item">
+      <span class="theme-num">1</span>
+      <span><strong>Q2 2026 earnings season (starts mid-July):</strong> Will US mega-cap tech and European industrials confirm AI capex and order growth or disappoint? Entire risk-on / risk-off narrative pivots here.</span>
+    </div>
+    <div class="theme-item">
+      <span class="theme-num">2</span>
+      <span><strong>September ECB meeting preparation:</strong> Inflation data in June/July will either confirm or challenge another 25bp hike. The ECB's 2026 GDP forecast of 0.8% makes aggressive tightening difficult to justify.</span>
+    </div>
+    <div class="theme-item">
+      <span class="theme-num">3</span>
+      <span><strong>US-Iran peace deal formalisation:</strong> A full ceasefire would accelerate Hormuz reopening and oil supply restoration. Failure would spike energy prices back above $90/bbl and re-import inflation shock.</span>
+    </div>
+    <div class="theme-item">
+      <span class="theme-num">4</span>
+      <span><strong>OpenAI valuation reset / AI IPO market:</strong> Delay signals the $1trn AI valuation era faces investor scrutiny. Implications for European AI infrastructure names, cloud providers, and data centre REITs.</span>
+    </div>
+    <div class="theme-item">
+      <span class="theme-num">5</span>
+      <span><strong>EU Tech Sovereignty Package legislative progress:</strong> Industry and US government lobbying against Cloud/AI Act expected to intensify. Any transatlantic statement at July summits could move European tech.</span>
+    </div>
+  </div>
+  <p class="label" style="margin-top:8px;">Sources: Compiled from all sources listed in sections 2–13. Analytical framing by report author.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     15. KEY TRENDS TO WATCH
+═══════════════════════════════════════════════════ -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>15. Key Trends to Watch</h2>
+
+  <h3>1 Day — Monday 29 June</h3>
+  <div class="item" style="font-size:12px;">
+    <strong>European defence stocks:</strong> Will Rheinmetall find a floor or continue sliding? Sector-wide sentiment fragile. TKMS/ThyssenKrupp as offset.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>Asian tech sell-off transmission:</strong> ASML, Infineon, and ST Micro open in negative territory. Magnitude depends on any stabilisation in US pre-market futures.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>Oil / energy equities:</strong> Brent near $75; any weekend Iran news could create a gap up or gap down in energy names at open.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>Bund yields:</strong> Post-ECB hike trajectory; watch for any ECB speaker comments setting tone ahead of Tuesday's CPI flash.
+  </div>
+
+  <h3>1 Week — 29 June to 4 July</h3>
+  <div class="item" style="font-size:12px;">
+    <strong>Eurozone CPI flash (30 June):</strong> Single most important data release for European fixed income and equity risk appetite this week.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>PMI finals (1–3 July):</strong> Manufacturing still below 50; services resilience is the key variable. A weak services print would challenge ECB's tightening path.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>Iran ceasefire monitoring:</strong> Weekend and early-week geopolitical developments around the Hormuz Strait remain a binary risk for energy and broader equities.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>Quarter-end flows (Mon–Tue):</strong> Month-end and quarter-end rebalancing may create artificial intraday distortions; not fundamental signals.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>US Independence Day (Fri 4 Jul):</strong> Thin US liquidity from Thursday afternoon; European markets may drift without US participation.
+  </div>
+
+  <h3>1 Month — July 2026</h3>
+  <div class="item" style="font-size:12px;">
+    <strong>Q2 earnings (mid-July):</strong> JPMorgan, Goldman typically kick off in week 2 of July. European reporting follows. AI capex commentary from hyperscalers is the crucial data point for the chip sector.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>ECB September rate path:</strong> June CPI + July CPI will determine whether the ECB hikes again in September or pauses. Growth at 0.8% creates a stagflation tension; core at 2.5% sustains the case for tightening.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>Fed policy resolution:</strong> The 4-to-8 internal dissent suggests a potentially significant September FOMC. Any clarifying signal — cut, hold, or hike — will move dollar and cross-asset correlations.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>European defence budget credibility:</strong> Germany's F126 reversal is not isolated. Other NATO members' procurement announcements will be scrutinised for similar risk of project delays or cancellations.
+  </div>
+  <div class="item" style="font-size:12px;">
+    <strong>Oil supply restoration:</strong> Iran production ramp-up timeline post-ceasefire; OPEC+ response to falling prices; structural impact on energy sector equity multiples.
+  </div>
+  <p class="label" style="margin-top:8px;">Sources: Compiled from all sources in this report. Analytical context by report author.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER / SOURCES
+═══════════════════════════════════════════════════ -->
+<div class="footer">
+  <strong>Sources used in this report:</strong><br>
+  Reuters | Bloomberg | CNBC | TheStreet | Yahoo Finance | Al Jazeera | NPR | Axios | Euronews | IG UK | GuruFocus | XTB | MENAFN | Investing.com | Trading Economics | Global LNG Hub (EIA/ICE data) | Eurex | Barchart | ECB (ecb.europa.eu) | European Commission | ICMA | Amundi Research | ION Analytics / IFR | S&P Global Market Intelligence | Morningstar Europe | World Government Bonds | Street Stats Finance | Informedclearly.com | StatisticsOfTheWorld.com | CentralBank.watch | RBA Bulletin | McKinsey MGI | KPMG Economics | IMF Blog | EY Geostrategic Analysis | Rabobank | SEC EDGAR | Earnings Whispers | UK Finance / House of Commons Library / ONS<br><br>
+  <strong>Data collection time:</strong> All data collected between 06:00–07:00 BST on Sunday 28 June 2026 via automated web search. Some figures reflect last available close (Friday 26 June 2026) or most recent weekly update.<br><br>
+  <span class="amber">Data collected automatically. Cross-check all figures against live terminals before making any decision. This report is for informational purposes only and does not constitute investment advice.</span>
+</div>
+
+</body>
+</html>
