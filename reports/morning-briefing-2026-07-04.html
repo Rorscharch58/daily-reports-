@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Briefing — 4 July 2026</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg-card: #161b22;
+    --bg-table-header: #1c2333;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --heading: #e6edf3;
+    --text-muted: #8b949e;
+    --green: #3fb950;
+    --red: #f85149;
+    --blue: #58a6ff;
+    --yellow: #d29922;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0d1117;
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 24px 20px;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+  .header { border-bottom: 2px solid var(--blue); padding-bottom: 14px; margin-bottom: 20px; }
+  .header h1 { font-size: 20px; font-weight: 700; color: var(--heading); letter-spacing: 1px; text-transform: uppercase; }
+  .header .meta { color: var(--text-muted); font-size: 12px; margin-top: 6px; }
+  .banner {
+    background: rgba(210,153,34,0.12);
+    border: 1px solid var(--yellow);
+    color: var(--yellow);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 12px;
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+  .section-wrapper { margin-bottom: 14px; }
+  .section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px;
+  }
+  .section h2 {
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--blue); border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 12px;
+  }
+  .section h3 {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px;
+    color: var(--text-muted); margin: 14px 0 7px;
+  }
+  .section h3:first-of-type { margin-top: 4px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th {
+    background: var(--bg-table-header); color: var(--text-muted); text-align: left;
+    padding: 6px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;
+  }
+  td { padding: 5px 10px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .positive { color: var(--green); font-weight: 600; }
+  .negative { color: var(--red); font-weight: 600; }
+  .neutral { color: var(--text-muted); }
+  .nd { color: var(--text-muted); font-style: italic; }
+  .tag { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; vertical-align: middle; }
+  .tag-high { background: rgba(248,81,73,0.2); color: var(--red); }
+  .tag-med { background: rgba(210,153,34,0.2); color: var(--yellow); }
+  .tag-tighten { background: rgba(63,185,80,0.2); color: var(--green); }
+  .tag-widen { background: rgba(248,81,73,0.2); color: var(--red); }
+  .item { padding: 9px 0; border-bottom: 1px solid var(--border); }
+  .item:last-child { border-bottom: none; }
+  .news-title { font-weight: 600; color: var(--heading); font-size: 13px; }
+  .news-source { color: var(--blue); font-size: 11px; margin: 3px 0; }
+  .news-impact { color: var(--text-muted); font-size: 12px; line-height: 1.5; }
+  .commentary { color: var(--text); font-size: 12px; line-height: 1.6; }
+  .commentary p { margin-bottom: 6px; }
+  .commentary p:last-child { margin-bottom: 0; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .watch-item { display: grid; grid-template-columns: 150px 1fr 90px; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 12px; align-items: start; }
+  .watch-item:last-child { border-bottom: none; }
+  .watch-name { font-weight: 700; color: var(--heading); }
+  .theme-block h4 { font-size: 11px; color: var(--blue); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .theme-item { padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+  .theme-item:last-child { border-bottom: none; }
+  .theme-label { font-weight: 700; color: var(--heading); }
+  .calendar-row td { font-size: 12px; }
+  footer { color: var(--text-muted); font-size: 11px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); line-height: 1.7; }
+  a { color: var(--blue); }
+
+  @media print {
+    body { background: #0d1117 !important; color: #c9d1d9 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .section, table, tr, td, th, .data-block, .theme-block, .calendar-row { page-break-inside: avoid !important; break-inside: avoid !important; }
+    h1, h2, h3, h4, h5, h6 { page-break-after: avoid !important; break-after: avoid !important; }
+    thead { display: table-header-group; }
+    p, li, div, span { orphans: 3; widows: 3; }
+    .section-wrapper { page-break-inside: avoid !important; break-inside: avoid !important; }
+    .item, .news-item, .stock-item, .theme-item, .event-item { page-break-inside: avoid !important; break-inside: avoid !important; }
+    @page { size: A4 landscape; margin: 12mm; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Morning Briefing</h1>
+  <div class="meta">Saturday, 4 July 2026 &nbsp;|&nbsp; Generated 06:20 BST (London) &nbsp;|&nbsp; Data collected 04:30&ndash;06:15 GMT, 4 July 2026</div>
+  <div class="banner">
+    Markets are closed today and tomorrow (weekend). US exchanges were also shut Friday 3 July for Independence Day. This briefing previews the reopen for <strong>Monday 6 July</strong>, using Friday 3 July's European close (last European session) and Thursday 2 July's US and Asia closes (last sessions before the holiday weekend) as the reference points. All figures below are sourced from live web searches run this session; anything not reliably confirmed is marked n/a.
+  </div>
+</div>
+
+<div class="section-wrapper">
+<div class="section">
+<h2>1. Header</h2>
+<div class="commentary">
+<p>Morning Briefing for pre-open Monday 6 July 2026, London time. Report generated Saturday 4 July 2026, 06:20 BST, ahead of the weekend close. Next European cash equity open: Monday 6 July, 08:00 BST (LSE) / 09:00 CEST (Euronext, Deutsche B&ouml;rse).</p>
+</div>
+</div>
+</div>
+
+<div class="section-wrapper">
+<div class="section">
+<h2>2. Important News</h2>
+
+<div class="item">
+  <div class="news-title">US June payrolls miss sharply: +57,000 vs +113,000 expected, unemployment rate ticks up to 4.2%</div>
+  <div class="news-source">Source: CNBC, Reuters-sourced market wraps (2 Jul 2026)</div>
+  <div class="news-impact">Why it matters: cools near-term Fed rate-hike urgency, pushed the dollar and Treasury yields lower, and was the single biggest driver of Thursday's global equity rally and gold's push to record highs.</div>
+</div>
+
+<div class="item">
+  <div class="news-title">European shares close at a 52-week high; Stoxx 600 +0.69% Friday, fourth straight weekly gain</div>
+  <div class="news-source">Source: CNBC live markets blog, Investing.com (3 Jul 2026)</div>
+  <div class="news-impact">Why it matters: confirms broad-based European risk-on tone into the weekend, led by banks and cyclicals on rate-relief hopes from the US jobs miss.</div>
+</div>
+
+<div class="item">
+  <div class="news-title">Kospi plunges 7.89% and Shanghai Composite falls 2% as AI/semiconductor overcapacity fears hit Asia</div>
+  <div class="news-source">Source: Seoul Economic Daily, Yahoo Finance (2 Jul 2026)</div>
+  <div class="news-impact">Why it matters: sharpest sell-off of the week in Asia tech, a warning sign that the AI-capex doubts rattling US chip stocks (Teradyne, KLA, Lam Research) could spill into Monday's European and US sessions.</div>
+</div>
+
+<div class="item">
+  <div class="news-title">Tesla shares fall 7% despite beating Q2 delivery estimates; broad semiconductor sell-off deepens</div>
+  <div class="news-source">Source: CNBC (2 Jul 2026)</div>
+  <div class="news-impact">Why it matters: signals investors are looking past headline delivery beats toward margins and AI capex payoff, a read-through for growth/tech positioning into next week.</div>
+</div>
+
+<div class="item">
+  <div class="news-title">Strait of Hormuz tensions flare again: tit-for-tat US-Iran strikes over the weekend despite June 17 ceasefire MoU</div>
+  <div class="news-source">Source: Al Jazeera, Congress.gov CRS brief (late Jun/early Jul 2026)</div>
+  <div class="news-impact">Why it matters: keeps a geopolitical risk premium in oil and shipping; any escalation over the weekend is the key headline risk for Monday's open, even as commercial transits have been gradually recovering.</div>
+</div>
+
+</div>
+</div>
+
+<div class="section-wrapper">
+<div class="section">
+<h2>3. European Futures (Pre-Open)</h2>
+<p class="nd" style="margin-bottom:10px;">Markets are closed for the weekend; Eurex/ICE futures resume Sunday evening (~23:00 CET). No live pre-open pricing is available at the time of this briefing. Levels below are Friday 3 July reference closes, not futures quotes.</p>
+<table style="page-break-inside: avoid;">
+<thead><tr style="page-break-inside: avoid;"><th>Contract</th><th>Reference (Fri close)</th><th>Expected move</th></tr></thead>
+<tbody>
+<tr style="page-break-inside: avoid;"><td>Euro Stoxx 50 futures</td><td>~6,417 (cash, +0.9% Fri)</td><td class="nd">n/a &ndash; no weekend session</td></tr>
+<tr style="page-break-inside: avoid;"><td>DAX futures</td><td>~25,798 (cash, +0.85% Fri)</td><td class="nd">n/a &ndash; no weekend session</td></tr>
+<tr style="page-break-inside: avoid;"><td>CAC 40 futures</td><td>cash +0.48% Fri</td><td class="nd">n/a &ndash; no weekend session</td></tr>
+<tr style="page-break-inside: avoid;"><td>FTSE 100 futures</td><td>~10,673 (cash, +0.19% Fri)</td><td class="nd">n/a &ndash; no weekend session</td></tr>
+<tr style="page-break-inside: avoid;"><td>S&amp;P 500 futures (context)</td><td>cash 7,483.24 Thu (flat)</td><td class="nd">n/a &ndash; US closed Fri/Sat, reopens Mon</td></tr>
+<tr style="page-break-inside: avoid;"><td>Nasdaq futures (context)</td><td>Nasdaq Composite 25,832.67 Thu (-0.8%)</td><td class="nd">n/a &ndash; US closed Fri/Sat, reopens Mon</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="section-wrapper">
+<div class="section">
+<h2>4. Yesterday's Closes (European Indices, Friday 3 July)</h2>
+<table style="page-break-inside: avoid;">
+<thead><tr style="page-break-inside: avoid;"><th>Index</th><th>Close</th><th>Change</th></tr></thead>
+<tbody>
+<tr style="page-break-inside: avoid;"><td>Euro Stoxx 50</td><td>~6,417 (approx.)</td><td class="positive">+0.9%</td></tr>
+<tr style="page-break-inside: avoid;"><td>DAX</td><td>~25,798 (approx.)</td><td class="positive">+0.85%</td></tr>
+<tr style="page-break-inside: avoid;"><td>CAC 40</td><td class="nd">n/a (level)</td><td class="positive">+0.48%</td></tr>
+<tr style="page-break-inside: avoid;"><td>FTSE 100</td><td>~10,673 (approx.)</td><td class="positive">+0.19%</td></tr>
+<tr style="page-break-inside: avoid;"><td>Stoxx 600 (pan-European)</td><td>52-week high</td><td class="positive">+0.69%</td></tr>
+<tr style="page-break-inside: avoid;"><td>FTSE MIB (Italy, context)</td><td class="nd">n/a (level)</td><td class="positive">+0.77%</td></tr>
+</tbody>
+</table>
+<div class="commentary" style="margin-top:10px;">
+<p>Fourth consecutive weekly gain for the Stoxx 600. Approximate index levels are derived from the prior day's confirmed close plus the day's percentage move where an independent second source for the exact tick was not available; treat "approx." levels as indicative rather than to-the-point precise. Sources: CNBC live markets blog (3 Jul 2026), Investing.com/Trading Economics.</p>
+</div>
+</div>
+</div>
+
+<div class="section-wrapper">
+<div class="section">
+<h2>5. US Markets &mdash; Yesterday's Session (Thursday 2 July, last trading day)</h2>
+<table style="page-break-inside: avoid;">
+<thead><tr style="page-break-inside: avoid;"><th>Index</th><th>Close</th><th>Change</th></tr></thead>
+<tbody>
+<tr style="page-break-inside: avoid;"><td>Dow Jones Industrial Average</td><td>52,900.07</td><td class="positive">+1.14% (+594.83 pts) &ndash; record close</td></tr>
+<tr style="page-break-inside: avoid;"><td>S&amp;P 500</td><td>7,483.24</td><td class="neutral">~flat (+&lt;1 pt)</td></tr>
+<tr style="page-break-inside: avoid;"><td>Nasdaq Composite</td><td>25,832.67</td><td class="negative">-0.8%</td></tr>
+</tbody>
+</table>
+<div class="commentary" style="margin-top:10px;">
+<p><strong>Tone:</strong> split session. Soft June payrolls (+57k vs +113k expected) fuelled a rate-relief rally in cyclicals and pushed the Dow to a fresh record, while a second straight day of semiconductor selling capped the Nasdaq.</p>
+<p><strong>Leading:</strong> industrials and rate-sensitive cyclicals within the Dow. <strong>Lagging:</strong> semiconductors &ndash; Teradyne -13.6%, KLA -11.5%, Intel and Marvell both ~-9%; Tesla -7% despite beating Q2 delivery estimates.</p>
+<p><strong>Key takeaway:</strong> market is now trading a "soft landing / rate relief" narrative for cyclicals against a live AI-capex doubt narrative in semis &ndash; the two will need to reconcile once trading resumes Monday after the long weekend.</p>
+</div>
+</div>
+</div>
+
+<div class="section-wrapper">
+<div class="section">
+<h2>6. Asian Markets &mdash; Last Session (markets closed for the weekend)</h2>
+<table style="page-break-inside: avoid;">
+<thead><tr style="page-break-inside: avoid;"><th>Index</th><th>Close</th><th>Change</th></tr></thead>
+<tbody>
+<tr style="page-break-inside: avoid;"><td>Nikkei 225 (Fri 3 Jul)</td><td>69,744</td><td class="positive">+1.47%</td></tr>
+<tr style="page-break-inside: avoid;"><td>Hang Seng (Fri 3 Jul)</td><td>23,055</td><td class="positive">+0.8% (+174 pts)</td></tr>
+<tr style="page-break-inside: avoid;"><td>Shanghai Composite (Thu 2 Jul)</td><td>4,028.90</td><td class="negative">-2.0%</td></tr>
+<tr style="page-break-inside: avoid;"><td>Kospi (Thu 2 Jul)</td><td>7,648.09</td><td class="negative">-7.89% (-655.32 pts)</td></tr>
+</tbody>
+</table>
+<div class="commentary" style="margin-top:10px;">
+<p><strong>Tone:</strong> sharply divergent. Japan and Hong Kong extended gains on the softer-dollar, rate-relief trade following the US jobs miss, while Korea suffered its worst one-day drop of the year as the global semiconductor sell-off hit local chip heavyweights hardest. Shanghai also slipped on the same AI-overcapacity worries. Markets are closed through the weekend; next session opens Sunday evening/Monday local time.</p>
+</div>
+</div>
+</div>
+
+<div class="section-wrapper">
+<div class="section">
+<h2>7. Commodities</h2>
+<table style="page-break-inside: avoid;">
+<thead><tr style="page-break-inside: avoid;"><th>Commodity</th><th>Level</th><th>Change</th></tr></thead>
+<tbody>
+<tr style="page-break-inside: avoid;"><td>Brent crude</td><td>$71.56/bbl</td><td class="negative">-0.33%</td></tr>
+<tr style="page-break-inside: avoid;"><td>WTI crude</td><td>$68.32/bbl</td><td class="negative">-0.54%</td></tr>
+<tr style="page-break-inside: avoid;"><td>Gold</td><td>$4,186.89/oz</td><td class="positive">+1.48%</td></tr>
+<tr style="page-break-inside: avoid;"><td>Natural gas (Henry Hub)</td><td>$3.257/mmBtu</td><td class="positive">+1.91%</td></tr>
+<tr style="page-break-inside: avoid;"><td>Copper</td><td>$6.2208/lb</td><td class="positive">+0.84%</td></tr>
+</tbody>
+</table>
+<div class="commentary" style="margin-top:10px;">
+<p>Gold at record territory on the weaker dollar and softer US jobs data. Oil is holding a small pullback after ceasefire optimism, but remains sensitive to any weekend escalation around the Strait of Hormuz &ndash; commercial transits have been recovering but tit-for-tat strikes continued as recently as this week. Copper stays near multi-year highs on persistent supply-constraint concerns. Collection time: ~05:00&ndash;06:00 GMT, 4 Jul 2026 (weekend quotes reflect Friday settlement levels).</p>
+</div>
+</div>
+</div>
+
+<div class="section-wrapper">
+<div class="section">
+<h2>8. Rates &amp; FX</h2>
+<table style="page-break-inside: avoid;">
+<thead><tr style="page-break-inside: avoid;"><th>Instrument</th><th>Level</th><th>Change/context</th></tr></thead>
+<tbody>
+<tr style="page-break-inside: avoid;"><td>US 10Y Treasury yield</td><td>4.47%</td><td class="negative">Eased Thu 2 Jul on soft payrolls</td></tr>
+<tr style="page-break-inside: avoid;"><td>German 10Y Bund yield</td><td>2.95&ndash;2.96%</td><td class="positive">Near 2-week high (2 Jul)</td></tr>
+<tr style="page-break-inside: avoid;"><td>EUR/USD</td><td>~1.143</td><td class="positive">Euro firmer vs. softer USD</td></tr>
+<tr style="page-break-inside: avoid;"><td>GBP/USD</td><td>~1.34</td><td class="positive">Sterling firmer vs. softer USD</td></tr>
+<tr style="page-break-inside: avoid;"><td>DXY (dollar index)</td><td>~100.8</td><td class="negative">Declined on soft jobs report</td></tr>
+</tbody>
+</table>
+<div class="commentary" style="margin-top:10px;">
+<p>US 10Y yields fell alongside the dollar as the market-implied probability of a September Fed move dropped to roughly 50% from ~64% the day before, following the weak payrolls print. Bunds bucked the move, sitting near a two-week high, keeping the US-Germany spread compressed versus recent weeks. Fed Chair Kevin Warsh's Sintra remarks ("inflation too high", no pre-commitment) argue against reading too much dovishness into the yield move.</p>
+</div>
+</div>
+</div>
+
+<div class="section-wrapper">
+<div class="section">
+<h2>9. DCM &mdash; Primary Bond Market</h2>
+
+<h3>Yesterday's Issuances</h3>
+<p class="nd">n/a &ndash; the US Independence Day holiday (observed Friday 3 July) sharply thinned primary activity into the long weekend; no specific European IG/HY/SSA/financials deal terms for Thursday/Friday could be reliably sourced this session.</p>
+
+<h3>Pipeline / Expected This Week</h3>
+<div class="commentary">
+<p>General market commentary (Schwab, Nuveen fixed-income weekly notes) points to issuance typically slowing around the 4 July holiday window, with supply expected to resume in force from the week of 6 July as US desks return and the post-payrolls rate picture settles. No issuer-specific mandates could be confirmed as n/a for this session &ndash; check IFR/GlobalCapital directly Monday morning for firm mandates.</p>
+</div>
+
+<h3>Key Spreads</h3>
+<table style="page-break-inside: avoid;">
+<thead><tr style="page-break-inside: avoid;"><th>Index</th><th>Level</th><th>Direction</th></tr></thead>
+<tbody>
+<tr style="page-break-inside: avoid;"><td>iTraxx Main</td><td class="nd">n/a &ndash; latest confirmed print stale (52bps, Dec 2025)</td><td class="nd">n/a</td></tr>
+<tr style="page-break-inside: avoid;"><td>iTraxx Crossover</td><td class="nd">n/a &ndash; latest confirmed print stale (251bps, Dec 2025)</td><td class="nd">n/a</td></tr>
+<tr style="page-break-inside: avoid;"><td>CDX IG</td><td class="nd">n/a</td><td class="nd">n/a</td></tr>
+<tr style="page-break-inside: avoid;"><td>Avg. euro corporate IG spread</td><td class="nd">n/a</td><td class="nd">n/a</td></tr>
+</tbody>
+</table>
+
+<h3>Commentary</h3>
+<div class="commentary">
+<p>Current-session credit spread levels could not be reliably sourced and are marked n/a rather than estimated, per the no-invented-data rule. That said, the equity risk backdrop points to a tightening bias into next week: the Stoxx 600 hit a 52-week high on Friday and European bank stocks are up 21% for the quarter (Bloomberg), historically consistent with supportive, not defensive, credit conditions.</p>
+<p>Funding conditions should stay constructive as long as the "soft landing" read on US payrolls holds; the main swing factor is the Strait of Hormuz situation, where any fresh escalation would widen energy and transport-linked credit fastest. Primary window is effectively shut this weekend on the calendar (US holiday, no European session) and should reopen Monday with issuers looking to front-load supply ahead of summer conditions.</p>
+</div>
+</div>
+</div>
+
+<div class="section-wrapper">
+<div class="section">
+<h2>10. Economic Calendar</h2>
+<p class="nd" style="margin-bottom:8px;">No releases today (Saturday) or tomorrow (Sunday). Calendar below covers the week starting Monday 6 July, London time.</p>
+<table style="page-break-inside: avoid;">
+<thead><tr style="page-break-inside: avoid;"><th>Time (London)</th><th>Indicator</th><th>Consensus</th><th>Importance</th></tr></thead>
+<tbody>
+<tr class="calendar-row" style="page-break-inside: avoid;"><td>Mon 6 Jul, AM</td><td>Eurozone retail sales</td><td class="nd">n/a</td><td><span class="tag tag-med">Medium</span></td></tr>
+<tr class="calendar-row" style="page-break-inside: avoid;"><td>Mon 6 Jul, PM</td><td>US ISM Services PMI</td><td class="nd">n/a</td><td><span class="tag tag-high">High</span></td></tr>
+<tr class="calendar-row" style="page-break-inside: avoid;"><td>Wed 8 Jul</td><td>FOMC June meeting minutes</td><td class="nd">n/a</td><td><span class="tag tag-high">High</span></td></tr>
+<tr class="calendar-row" style="page-break-inside: avoid;"><td>Wed 8 Jul</td><td>RBNZ interest rate decision</td><td class="nd">n/a</td><td><span class="tag tag-med">Medium</span></td></tr>
+<tr class="calendar-row" style="page-break-inside: avoid;"><td>Thu 9 Jul</td><td>China CPI</td><td class="nd">n/a</td><td><span class="tag tag-med">Medium</span></td></tr>
+<tr class="calendar-row" style="page-break-inside: avoid;"><td>Fri 10 Jul</td><td>Germany CPI</td><td class="nd">n/a</td><td><span class="tag tag-med">Medium</span></td></tr>
+<tr class="calendar-row" style="page-break-inside: avoid;"><td>Fri 10 Jul</td><td>Canada labour market data (June)</td><td class="nd">n/a</td><td><span class="tag tag-med">Medium</span></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="section-wrapper">
+<div class="section">
+<h2>11. Corporate Events &amp; Earnings</h2>
+<div class="item"><span class="watch-name">Mon 6 Jul:</span> No major US or European earnings scheduled.</div>
+<div class="item"><span class="watch-name">Thu 9 Jul:</span> PepsiCo (PEP) reports Q2 results pre-market. Consensus: EPS $2.21 (+4.2% YoY), revenue ~$24bn (+5.7% YoY).</div>
+<div class="item"><span class="watch-name">Fri 10 Jul:</span> Delta Air Lines (DAL) reports Q2 results pre-market, unofficially opening US earnings season. Consensus: EPS $1.47 (-30% YoY), revenue ~$18.9bn (+13.2% YoY).</div>
+<div class="item"><span class="watch-name">Later in July:</span> Farnborough International Airshow, 20&ndash;24 July &ndash; largest commercial aviation trade event of the summer, key venue for aircraft order announcements.</div>
+</div>
+</div>
+
+<div class="section-wrapper">
+<div class="section">
+<h2>12. Stocks to Watch</h2>
+
+<div class="watch-item"><div class="watch-name">Delta Air Lines (DAL)</div><div>Reports Q2 earnings Fri 10 Jul, first major airline print of the season; consensus EPS down 30% YoY despite revenue growth &ndash; sets the tone for the sector.</div><div class="neutral">Volatile</div></div>
+
+<div class="watch-item"><div class="watch-name">Tesla (TSLA)</div><div>Fell 7% Thursday despite beating Q2 delivery estimates; margin/AI narrative in focus into next week.</div><div class="negative">Downside risk</div></div>
+
+<div class="watch-item"><div class="watch-name">AeroVironment (AVAV)</div><div>Awarded $500m US Army counter-drone (C-UAS) contract, announced 1 Jul &ndash; positive order-flow read for defense-tech names.</div><div class="positive">Upside</div></div>
+
+<div class="watch-item"><div class="watch-name">Teradyne / KLA / Lam Research / Applied Materials / Intel / Marvell</div><div>Semiconductor complex hit hardest this week (Teradyne -13.6%, KLA -11.5%, Intel/Marvell ~-9%) on AI-capex overcapacity doubts; watch for stabilisation or further de-rating Monday.</div><div class="negative">Downside risk</div></div>
+
+<div class="watch-item"><div class="watch-name">Rivian (RIVN)</div><div>Jumped ~5% after raising 2026 delivery guidance on strong EV demand.</div><div class="positive">Upside</div></div>
+
+<div class="watch-item"><div class="watch-name">European banks (sector: e.g. UniCredit, BNP Paribas)</div><div>Stoxx 600 Banks +21% in Q2, sector's best run in years, with renewed Italian consolidation talk supporting the group.</div><div class="positive">Upside</div></div>
+
+<div class="watch-item"><div class="watch-name">Container shipping lines (sector: e.g. Maersk, Hapag-Lloyd)</div><div>Drewry World Container Index +9% to $4,530/40ft (2 Jul) on Transpacific/Asia-Europe rate surge and ~30 blank sailings over the next 5 weeks &ndash; supportive for freight-linked earnings.</div><div class="positive">Upside</div></div>
+
+<div class="watch-item"><div class="watch-name">Oil majors &amp; tankers (sector: e.g. Shell, TotalEnergies, Frontline)</div><div>Brent holding near $71-72 with a live Strait of Hormuz risk premium after fresh tit-for-tat US-Iran strikes; headline-sensitive into Monday.</div><div class="neutral">Volatile</div></div>
+
+<div class="watch-item"><div class="watch-name">Copper miners (sector: e.g. Glencore, Antofagasta)</div><div>Copper near multi-year highs (~$6.22/lb) on persistent supply-constraint narrative.</div><div class="positive">Upside</div></div>
+
+<div class="watch-item"><div class="watch-name">Gold miners (sector: e.g. Newmont, Barrick)</div><div>Gold at record levels (~$4,187/oz, +1.48%) on a weaker dollar and softer US jobs data.</div><div class="positive">Upside</div></div>
+
+</div>
+</div>
+
+<div class="section-wrapper">
+<div class="section">
+<h2>13. Macro / Corporate / Political Highlights</h2>
+<div class="three-col">
+
+<div>
+<h3 style="margin-top:0;">Macro</h3>
+<div class="theme-item">US June payrolls: +57,000 vs +113,000 expected; unemployment rate 4.2%, easing near-term hike urgency.</div>
+<div class="theme-item">Fed funds held at 3.50&ndash;3.75% (effective 3.63%) for a 4th straight meeting; new Chair Kevin Warsh (in office since May 2026) says inflation "too high," resists political pressure to cut. Dot plot still implies a hike to 3.75&ndash;4.00% by year-end.</div>
+<div class="theme-item">ECB visibly split at the Sintra forum over further tightening after its emergency Iran-war rate hike; Lagarde flags Europe lagging on AI investment.</div>
+</div>
+
+<div>
+<h3 style="margin-top:0;">Corporate</h3>
+<div class="theme-item">European banks: Stoxx 600 Banks index +21% in Q2, sector's second-best quarterly performer after tech.</div>
+<div class="theme-item">Defense: AeroVironment wins $500m US Army counter-drone contract; H1 2026 aerospace &amp; defense M&amp;A tracking toward a ~$32bn annual pace.</div>
+<div class="theme-item">Shipping: Drewry World Container Index +9% to $4,530/FEU on Transpacific and Asia-Europe rate surge.</div>
+<div class="theme-item">Tech/semis: broad chip-sector sell-off (Teradyne, KLA, Lam Research, Applied Materials, Intel, Marvell) on AI-capex overcapacity doubts; Tesla -7% despite a Q2 delivery beat.</div>
+</div>
+
+<div>
+<h3 style="margin-top:0;">Political / Geopolitical</h3>
+<div class="theme-item">US-Iran: tit-for-tat strikes over the weekend despite the 17 June ceasefire MoU; Iran seeking recognised control and toll rights over the Strait of Hormuz.</div>
+<div class="theme-item">Ukraine-Russia: Ukraine showcasing long-range drone strikes on Russian refineries; regional fuel-supply strain prompting Kyrgyzstan to seek help from neighbouring states.</div>
+<div class="theme-item">A Trump-Xi summit is anticipated, with China seen holding relative leverage; tariff decisions on value-added vs. commodity-grade copper products remain a live trade-policy swing factor.</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="section-wrapper">
+<div class="section">
+<h2>14. Key Themes &mdash; Top 5 by Horizon</h2>
+<div class="three-col">
+
+<div class="theme-block">
+<h4>Today's Top 5 (Monday reopen)</h4>
+<div class="theme-item"><span class="theme-label">US reopen:</span> first reaction to Thursday's soft payrolls print and the week's chip-sector rout.</div>
+<div class="theme-item"><span class="theme-label">Fed positioning:</span> markets squaring up ahead of Wednesday's FOMC June minutes.</div>
+<div class="theme-item"><span class="theme-label">Hormuz risk:</span> any weekend escalation is the key wildcard for oil and risk sentiment at the European open.</div>
+<div class="theme-item"><span class="theme-label">Europe's record run:</span> test of follow-through demand after four straight weekly gains and a 52-week Stoxx 600 high.</div>
+<div class="theme-item"><span class="theme-label">Asia tech spillover:</span> whether Kospi's -7.89% slide extends into Monday's European and US tech trading.</div>
+</div>
+
+<div class="theme-block">
+<h4>This Week's Top 5</h4>
+<div class="theme-item"><span class="theme-label">FOMC minutes (Wed):</span> insight into the Fed's internal rate-hike divide.</div>
+<div class="theme-item"><span class="theme-label">US ISM Services (Mon):</span> first post-payrolls economic momentum read.</div>
+<div class="theme-item"><span class="theme-label">RBNZ decision (Wed).</span></div>
+<div class="theme-item"><span class="theme-label">China CPI (Thu):</span> global reflation/deflation signal.</div>
+<div class="theme-item"><span class="theme-label">Earnings season opens:</span> PepsiCo (Thu), Delta Air Lines (Fri).</div>
+</div>
+
+<div class="theme-block">
+<h4>This Month's Top 5</h4>
+<div class="theme-item"><span class="theme-label">Q2 earnings season:</span> banks, industrials and tech report through July.</div>
+<div class="theme-item"><span class="theme-label">FOMC decision, 28&ndash;29 Jul:</span> first real test of whether Warsh's Fed delivers the year-end hike implied by the dot plot.</div>
+<div class="theme-item"><span class="theme-label">Farnborough Airshow, 20&ndash;24 Jul:</span> aerospace order-flow catalyst.</div>
+<div class="theme-item"><span class="theme-label">Iran ceasefire durability:</span> ongoing tail risk for oil and shipping.</div>
+<div class="theme-item"><span class="theme-label">Trump-Xi summit:</span> trade and tariff implications, including pending metals tariff decisions.</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="section-wrapper">
+<div class="section">
+<h2>15. Key Trends to Watch</h2>
+<div class="three-col">
+
+<div class="theme-block">
+<h4>1 Day</h4>
+<div class="theme-item">Reopen reaction to soft US jobs data and the semiconductor sell-off.</div>
+<div class="theme-item">Weekend Strait of Hormuz headlines.</div>
+<div class="theme-item">Whether Europe's record Friday close carries through to Monday's open.</div>
+</div>
+
+<div class="theme-block">
+<h4>1 Week</h4>
+<div class="theme-item">FOMC June minutes and US ISM Services PMI.</div>
+<div class="theme-item">Start of Q2 earnings season (Pepsi, Delta).</div>
+<div class="theme-item">China CPI and RBNZ decision.</div>
+</div>
+
+<div class="theme-block">
+<h4>1 Month</h4>
+<div class="theme-item">Full Q2 earnings season and the 28&ndash;29 July FOMC decision.</div>
+<div class="theme-item">Farnborough Airshow order flow.</div>
+<div class="theme-item">Iran ceasefire durability and a potential Trump-Xi summit on trade/tariffs.</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<footer>
+  Sources: CNBC, Reuters-sourced market wraps, Bloomberg, Investing.com, Trading Economics, Yahoo Finance, Seoul Economic Daily, Al Jazeera, Congress.gov (CRS), Drewry, Lloyd's List, Schwab, Nuveen, Federal Reserve, ECB.<br>
+  Data collected automatically. Verify before making any decision.
+</footer>
+
+</body>
+</html>
