@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Briefing — 6 July 2026</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h1 { font-size: 22px; color: #e6edf3; margin-bottom: 4px; }
+  h2 { font-size: 15px; color: #58a6ff; border-bottom: 1px solid #30363d; padding-bottom: 4px; margin: 22px 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; }
+  h3 { font-size: 12px; color: #d29922; margin: 12px 0 6px 0; text-transform: uppercase; letter-spacing: 0.04em; }
+  h4 { font-size: 12px; color: #8b949e; margin: 8px 0 4px 0; }
+
+  .header-meta { color: #8b949e; font-size: 12px; margin-bottom: 4px; }
+  .header-note { background: #161b22; border-left: 3px solid #d29922; padding: 6px 10px; font-size: 12px; color: #d29922; margin: 8px 0 16px 0; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 4px; }
+  th { background: #161b22; color: #8b949e; text-align: left; padding: 5px 8px; font-weight: 600; border-bottom: 1px solid #30363d; }
+  td { padding: 4px 8px; border-bottom: 1px solid #21262d; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #161b22; }
+
+  .pos { color: #3fb950; font-weight: 600; }
+  .neg { color: #f85149; font-weight: 600; }
+  .neu { color: #8b949e; }
+  .warn { color: #d29922; }
+  .hi { color: #e6edf3; font-weight: 600; }
+  .na { color: #484f58; }
+
+  .badge { display: inline-block; padding: 1px 6px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+  .badge-high { background: #3d1d1d; color: #f85149; }
+  .badge-medium { background: #2d2a1d; color: #d29922; }
+  .badge-low { background: #1d2a1d; color: #3fb950; }
+
+  .news-item { border-left: 3px solid #30363d; padding: 6px 10px; margin-bottom: 8px; background: #161b22; }
+  .news-headline { color: #e6edf3; font-weight: 600; font-size: 13px; }
+  .news-meta { color: #58a6ff; font-size: 11px; margin: 1px 0; }
+  .news-why { color: #8b949e; font-size: 12px; }
+
+  .stock-item { border-left: 3px solid #21262d; padding: 5px 10px; margin-bottom: 6px; }
+  .stock-name { color: #e6edf3; font-weight: 600; }
+  .stock-ticker { color: #58a6ff; font-size: 11px; }
+  .stock-reason { color: #c9d1d9; font-size: 12px; }
+  .stock-dir { font-size: 11px; font-weight: 600; }
+
+  .theme-block { background: #161b22; border: 1px solid #30363d; border-radius: 4px; padding: 8px 12px; margin-bottom: 6px; }
+  .theme-label { color: #e6edf3; font-weight: 600; font-size: 13px; }
+  .theme-body { color: #8b949e; font-size: 12px; margin-top: 2px; }
+
+  .trend-block { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .trend-col { background: #161b22; border: 1px solid #30363d; border-radius: 4px; padding: 10px 12px; }
+  .trend-label { color: #58a6ff; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; border-bottom: 1px solid #30363d; padding-bottom: 4px; }
+  .trend-item { color: #c9d1d9; font-size: 12px; margin-bottom: 4px; padding-left: 8px; border-left: 2px solid #30363d; }
+
+  .cal-row { display: grid; grid-template-columns: 80px 200px 80px 60px auto; gap: 8px; align-items: center; padding: 4px 0; border-bottom: 1px solid #21262d; font-size: 12px; }
+  .cal-header { color: #8b949e; font-weight: 600; font-size: 11px; padding: 4px 0 6px 0; border-bottom: 1px solid #30363d; display: grid; grid-template-columns: 80px 200px 80px 60px auto; gap: 8px; }
+
+  .macro-point { padding: 4px 0; font-size: 12px; color: #c9d1d9; border-bottom: 1px solid #21262d; }
+  .macro-point:last-child { border-bottom: none; }
+
+  .dcm-card { background: #161b22; border: 1px solid #30363d; border-radius: 4px; padding: 10px 12px; margin-bottom: 10px; }
+  .dcm-title { color: #8b949e; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .dcm-deal { padding: 4px 0; border-bottom: 1px solid #21262d; font-size: 12px; }
+  .dcm-deal:last-child { border-bottom: none; }
+
+  .footer { margin-top: 30px; padding-top: 14px; border-top: 1px solid #30363d; font-size: 11px; color: #484f58; }
+  .footer a { color: #58a6ff; }
+
+  .section-wrapper { margin-bottom: 24px; }
+
+  @media print {
+    body {
+      background: #0d1117 !important;
+      color: #c9d1d9 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .section, table, tr, td, th, .data-block, .theme-block, .calendar-row {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+    }
+    thead { display: table-header-group; }
+    p, li, div, span {
+      orphans: 3;
+      widows: 3;
+    }
+    .section-wrapper {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    .item, .news-item, .stock-item, .theme-item, .event-item {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    @page {
+      size: A4 landscape;
+      margin: 12mm;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== SECTION 1: HEADER ===== -->
+<div class="section-wrapper">
+  <h1>Morning Briefing</h1>
+  <div class="header-meta">Monday, 6 July 2026 &nbsp;|&nbsp; Generated ~06:45 BST &nbsp;|&nbsp; London timezone</div>
+  <div class="header-meta">Data covers: US session Thu 2 Jul (US closed Fri 3 Jul for Independence Day) + European close Fri 3 Jul + Asian overnight Sun–Mon</div>
+  <div class="header-note">Post-holiday edition. US markets were closed Friday 3 July. This is the first full trading day back for both US and European markets after the long weekend.</div>
+</div>
+
+<!-- ===== SECTION 2: IMPORTANT NEWS ===== -->
+<div class="section-wrapper">
+  <h2>2. Important News</h2>
+
+  <div class="item">
+    <div class="news-item">
+      <div class="news-headline">SpaceX officially joins the Nasdaq-100 index Monday</div>
+      <div class="news-meta">Reuters / Bloomberg — 6 Jul 2026</div>
+      <div class="news-why">Index funds tracking the Nasdaq-100 must reallocate to include SPCX, a mechanical buy-flow event. SPCX remains volatile post-IPO; watch for outsized moves on rebalancing volume.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="news-item">
+      <div class="news-headline">OpenAI leaning toward delaying IPO to 2027 after SpaceX's rocky debut</div>
+      <div class="news-meta">Yahoo Finance / Motley Fool — 2 Jul 2026</div>
+      <div class="news-why">CFO Sarah Friar reportedly urging a wait given cash burn and compute commitments. Removes a near-term AI-sector catalyst; keeps pressure on AI infrastructure valuations (NVDA, AMD, memory names) into this week.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="news-item">
+      <div class="news-headline">Rio Tinto and Glencore resume talks on $260bn mega-merger; copper hits all-time high near $13,000/t</div>
+      <div class="news-meta">CNBC / Mining.com / S&amp;P Global — 3 Jul 2026</div>
+      <div class="news-why">Glencore shares +10% Friday on the news. Would create the world's largest miner, focused on securing copper supply for the energy transition. Sector-wide re-rating risk for M&amp;A-adjacent mining names this week.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="news-item">
+      <div class="news-headline">Getty Images terminates $3.7bn Shutterstock merger after UK regulator obstacle</div>
+      <div class="news-meta">CNBC — 6 Jul 2026</div>
+      <div class="news-why">Getty's board voted unanimously not to proceed; deal formally terminates by 6 July. Shutterstock shares plunged in premarket Friday. Watch for break-fee disclosure and standalone strategy commentary today.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="news-item">
+      <div class="news-headline">US jobs report miss reshapes Fed rate-hike odds; weaker payrolls lift Asian equities, pressure dollar</div>
+      <div class="news-meta">Bloomberg / Reuters — 3 Jul 2026</div>
+      <div class="news-why">June nonfarm payrolls added just 57,000, well below the ~110,000 forecast. Fed funds futures now imply roughly 50% odds of a September hike, down from ~67% pre-release. DXY slipped to ~100.8; gold extended its rally toward $4,190/oz.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 3: EUROPEAN FUTURES ===== -->
+<div class="section-wrapper">
+  <h2>3. European Futures — Pre-Open</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: Reuters premarket wrap, Eurex. Data collected ~06:45 BST Mon 6 Jul. Absolute futures levels not reliably sourced; directional moves per Reuters/Bloomberg premarket commentary.</p>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Last Futures Level</th>
+        <th>Expected Move (Mon)</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Euro Stoxx 50</td>
+        <td class="na">n/a</td>
+        <td class="pos">~+0.5%</td>
+        <td>Premarket futures +0.5% per Reuters; extends Friday record run</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Stoxx 600</td>
+        <td class="na">n/a</td>
+        <td class="pos">~+0.3%</td>
+        <td>Futures indicated higher; risk-on carryover from Asia</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">DAX</td>
+        <td class="na">n/a</td>
+        <td class="pos">Positive</td>
+        <td>Fourth straight record session Friday; momentum intact</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">CAC 40</td>
+        <td class="na">n/a</td>
+        <td class="pos">Positive</td>
+        <td>Mining/miners in focus on Rio Tinto-Glencore news</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">FTSE 100</td>
+        <td class="na">n/a</td>
+        <td class="pos">Positive</td>
+        <td>Glencore +10% Friday; miners to lead post-holiday open</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">S&amp;P 500 E-Mini</td>
+        <td class="na">n/a</td>
+        <td class="pos">Slightly positive</td>
+        <td>Futures holding onto Friday's gains per Bloomberg</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Nasdaq 100</td>
+        <td class="na">n/a</td>
+        <td class="neu">Mixed</td>
+        <td>Tech rebound continuing but fund outflows from AI names persist; SPCX index-inclusion flows today</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ===== SECTION 4: YESTERDAY'S CLOSES ===== -->
+<div class="section-wrapper">
+  <h2>4. Yesterday's Closes — Friday 3 July 2026</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: Trading Economics, Investing.com. European markets traded Friday even though US markets were closed for Independence Day.</p>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Level</th>
+        <th>Change</th>
+        <th>% Change</th>
+        <th>Session Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Euro Stoxx 50</td>
+        <td>6,417</td>
+        <td class="pos">▲</td>
+        <td class="pos">+0.9%</td>
+        <td>Fresh record high; AI-trade bounce plus miners</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">DAX</td>
+        <td>25,779.31</td>
+        <td class="pos">+198.4</td>
+        <td class="pos">+0.78%</td>
+        <td>Fourth consecutive record close</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">CAC 40</td>
+        <td class="na">n/a</td>
+        <td class="pos">▲</td>
+        <td class="pos">+1.07%</td>
+        <td>Miners and luxury supportive</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">FTSE 100</td>
+        <td>10,679.03</td>
+        <td class="pos">+26.16</td>
+        <td class="pos">+0.25%</td>
+        <td>Glencore +10% on Rio Tinto merger talk revival</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Stoxx 600</td>
+        <td>653</td>
+        <td class="pos">▲</td>
+        <td class="pos">+0.7%</td>
+        <td>52-week high; broad-based advance</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:11px; color:#8b949e; margin-top:6px;">European stocks rose to new records Friday on an improving macro backdrop, a bounce in AI-exposed names, and the Rio Tinto/Glencore mining M&amp;A story lifting Glencore +10%.</p>
+</div>
+
+<!-- ===== SECTION 5: US MARKETS ===== -->
+<div class="section-wrapper">
+  <h2>5. US Markets — Thursday 2 July 2026 Session</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: TheStreet, Washington Post, Yahoo Finance. US markets were closed Friday 3 July for Independence Day, so Thursday 2 July is the most recent completed session.</p>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Close</th>
+        <th>Change (pts)</th>
+        <th>% Change</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">S&amp;P 500</td>
+        <td>7,483.23</td>
+        <td class="neg">-16.13</td>
+        <td class="neg">-0.22%</td>
+        <td>Broad market slightly lower into holiday</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Nasdaq Composite</td>
+        <td>26,040.03</td>
+        <td class="neg">-173.69</td>
+        <td class="neg">-0.66%</td>
+        <td>Tech-led decline; semiconductors weak</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Dow Jones</td>
+        <td>52,305.24</td>
+        <td class="neg">-13.96</td>
+        <td class="neg">-0.03%</td>
+        <td>Effectively flat; record high touched intraday</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:10px; font-size:12px;">
+    <div class="macro-point"><span class="hi">Session tone:</span> Cautious into the long weekend. Dow briefly hit a fresh record before fading to flat; broader market drifted lower on thin pre-holiday volume.</div>
+    <div class="macro-point"><span class="hi">Leading sectors:</span> Communication Services (XLC +2.4%) and Financials (XLF +2.2%) were the top gainers; 7 of 11 S&amp;P sectors closed positive.</div>
+    <div class="macro-point"><span class="hi">Lagging sectors:</span> Technology (XLK -2.6%), the worst-performing sector, as chip names extended recent weakness ahead of the holiday.</div>
+    <div class="macro-point"><span class="hi">Key takeaway:</span> Rotation out of mega-cap tech into financials/communication services continued. The June jobs report (57k vs ~110k forecast), released Thursday, lowered September rate-hike odds and supported the rotation.</div>
+  </div>
+</div>
+
+<!-- ===== SECTION 6: ASIAN MARKETS ===== -->
+<div class="section-wrapper">
+  <h2>6. Asian Markets — Overnight Session (Mon 6 Jul)</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: Bloomberg, CNBC Asia, Investtech. Data collected ~06:45 BST. Note: sources show some disagreement on Kospi's Monday direction — flagged below.</p>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Level</th>
+        <th>Change</th>
+        <th>% Change</th>
+        <th>Session Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Nikkei 225</td>
+        <td>~69,500</td>
+        <td class="neg">▼</td>
+        <td class="neg">-0.35%</td>
+        <td>Tech rebound from last week losing steam; Friday's session was +1.47%</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Kospi</td>
+        <td>~8,020</td>
+        <td class="warn">Conflicting</td>
+        <td class="warn">-0.85% / +1.8% (sources disagree)</td>
+        <td>Bloomberg reports Kospi leading regional gains +1.8% on tech rebound; other sources show -0.85%. Won began 24-hour trading Monday. Treat with caution pending confirmation.</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Hang Seng</td>
+        <td>~23,495</td>
+        <td class="pos">▲</td>
+        <td class="pos">~+0.6%</td>
+        <td>Modest gains; opened 23,364</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Shanghai Composite</td>
+        <td>4,046.71</td>
+        <td class="pos">▲</td>
+        <td class="pos">+0.08%</td>
+        <td>Broadly flat</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:8px; font-size:12px; color:#8b949e;">
+    <strong style="color:#e6edf3;">Tone:</strong> MSCI Asia Pacific Index +0.3% Monday per Bloomberg, with the region mostly firmer as US equity futures held Friday's gains and tech extended its rebound. Fund flow data shows US stock funds seeing their fastest AI-related outflows since March, a caution flag for the broader tech trade even as Asian tech names bounced.
+  </div>
+</div>
+
+<!-- ===== SECTION 7: COMMODITIES ===== -->
+<div class="section-wrapper">
+  <h2>7. Commodities</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: Trading Economics, Investing.com, JM Bullion, Mining.com. Data collected ~06:45 BST Mon 6 Jul.</p>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Commodity</th>
+        <th>Price</th>
+        <th>Change</th>
+        <th>% Change</th>
+        <th>Context</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Brent Crude</td>
+        <td>$71.92 /bbl</td>
+        <td class="neg">-$0.20</td>
+        <td class="neg">-0.3%</td>
+        <td>Range-bound; Hormuz shipping remains subdued post-ceasefire</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">WTI Crude</td>
+        <td>$68.78 /bbl</td>
+        <td class="pos">+$0.09</td>
+        <td class="pos">+0.1%</td>
+        <td>Little changed overnight</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Gold</td>
+        <td>~$4,189 /oz</td>
+        <td class="pos">▲</td>
+        <td class="pos">+1.15% (Fri)</td>
+        <td>Extending rally on weaker jobs data and lower rate-hike odds; near record highs</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Natural Gas (Henry Hub)</td>
+        <td>$3.24 /mmBtu</td>
+        <td class="pos">+$0.05</td>
+        <td class="pos">+1.5%</td>
+        <td>Modest gain overnight</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Copper (LME 3M)</td>
+        <td>~$13,000 /t</td>
+        <td class="pos">▲</td>
+        <td class="pos">All-time high</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:8px; font-size:12px; color:#8b949e;">
+    <strong style="color:#d29922;">Notable:</strong> Copper's push to an all-time high near $13,000/t is the standout commodity story, driven both by structural energy-transition demand and this week's Rio Tinto-Glencore merger talk. Gold continues to grind higher as softer US labor data pulls forward rate-cut/lower-hike-odds pricing.
+  </div>
+</div>
+
+<!-- ===== SECTION 8: RATES & FX ===== -->
+<div class="section-wrapper">
+  <h2>8. Rates &amp; FX</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: Trading Economics, Federal Reserve H.15, Bundesbank. Data as of ~06:45 BST Mon 6 Jul; US 10Y level is Thursday 2 Jul close (US closed Friday).</p>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Instrument</th>
+        <th>Level</th>
+        <th>Change</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">US 10Y Treasury Yield</td>
+        <td>4.46%</td>
+        <td class="neg">-2bp</td>
+        <td>Fell on weaker June payrolls (57k vs ~110k forecast)</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">German 10Y Bund Yield</td>
+        <td>~2.90%</td>
+        <td class="neu">Steady</td>
+        <td>Holding just above 2.9% on softer Eurozone inflation, reduced ECB hike bets</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">EUR/USD</td>
+        <td>~1.143</td>
+        <td class="neu">Stable</td>
+        <td>Dollar softer post-payrolls; range-bound</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">GBP/USD</td>
+        <td>~1.34</td>
+        <td class="neu">Stable</td>
+        <td>Little changed</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">DXY (Dollar Index)</td>
+        <td>100.8</td>
+        <td class="neg">Weak</td>
+        <td>Slipped after soft jobs report cut September hike odds to ~50% from ~67%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:8px; font-size:12px; color:#8b949e;">
+    The June US jobs miss is the dominant rates story: it pulled the 10Y down 2bp to 4.46% and knocked the dollar index to 100.8. Fed Chair Kevin Warsh has declined to signal a July move but continues to flag inflation as "too high," keeping a hawkish tail risk alive despite the softer labour print.
+  </div>
+</div>
+
+<!-- ===== SECTION 9: DCM ===== -->
+<div class="section-wrapper">
+  <h2>9. DCM — Primary Bond Market</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: GlobalCapital, general market commentary. No subscriber-level deal terms were accessible via search; levels below marked n/a where unconfirmed.</p>
+
+  <div class="dcm-card item">
+    <div class="dcm-title">Yesterday's Issuances (Fri 3 Jul 2026)</div>
+    <div class="dcm-deal"><span class="warn">Note:</span> Friday 3 July was a US holiday (Independence Day) and the final session before a long weekend in Europe — typically among the lightest primary windows of the month. No individual deal terms were sourced.</div>
+    <div class="dcm-deal"><span class="na">EUR Corporate IG:</span> <span class="na">n/a — no deal terms sourced</span></div>
+    <div class="dcm-deal"><span class="na">EUR HY:</span> <span class="na">n/a</span></div>
+    <div class="dcm-deal"><span class="na">SSA / Sovereign:</span> <span class="na">n/a</span></div>
+    <div class="dcm-deal"><span class="na">Financials:</span> <span class="na">n/a</span></div>
+  </div>
+
+  <div class="dcm-card item">
+    <div class="dcm-title">Pipeline / Expected Today &amp; This Week (w/c 6 Jul)</div>
+    <div class="dcm-deal"><span class="hi">Corporate IG:</span> Recent GlobalCapital coverage notes rarer issuers (e.g. Lufthansa, Oncor, TP, EWE) holding investor calls for potential euro deals — a sign issuers are testing the reopened window post-holiday.</div>
+    <div class="dcm-deal"><span class="hi">SSA:</span> Frontloading expected to continue given elevated 2026 fiscal deficits (notably Germany, France); gross EGB/SSA supply projected near €1.4tn for the year, keeping the primary calendar busy through H2.</div>
+    <div class="dcm-deal"><span class="hi">Financials:</span> Likely early movers this week as issuers look to lock in funding while EUR IG spreads remain near historical tights.</div>
+  </div>
+
+  <div class="dcm-card item">
+    <div class="dcm-title">Key Spreads</div>
+    <table style="page-break-inside: avoid;">
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>Level</th>
+          <th>Move</th>
+          <th>Direction</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="page-break-inside: avoid;">
+          <td>iTraxx Main (5Y)</td>
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+          <td class="na">No reliable intraday source</td>
+        </tr>
+        <tr style="page-break-inside: avoid;">
+          <td>iTraxx Crossover (5Y)</td>
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+          <td class="na">No reliable intraday source</td>
+        </tr>
+        <tr style="page-break-inside: avoid;">
+          <td>CDX IG (5Y)</td>
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+          <td class="na">No reliable intraday source</td>
+        </tr>
+        <tr style="page-break-inside: avoid;">
+          <td>Euro IG Corp Avg OAS</td>
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+          <td class="warn">Broadly described as near historically tight levels</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="dcm-card item">
+    <div class="dcm-title">Commentary</div>
+    <p style="font-size:12px; color:#c9d1d9; line-height:1.6;">
+      The EUR primary market re-opens today after the US Independence Day long weekend into a constructive backdrop: European equities at record highs, spreads described by dealers as near historical tights, and softer US payrolls reducing rate-hike tail risk. Expect issuance to pick up pace through the week as corporates and SSAs look to lock in funding while conditions remain favourable.<br><br>
+      Watch financials and industrials as likely first movers, with energy and transport issuers more selective given ongoing volatility in oil prices and freight rates. The window looks open but is not being used aggressively yet on the first day back — a fuller pipeline is more likely from Tuesday.
+    </p>
+  </div>
+</div>
+
+<!-- ===== SECTION 10: ECONOMIC CALENDAR ===== -->
+<div class="section-wrapper">
+  <h2>10. Economic Calendar</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: Eurostat, Trading Economics, LiteFinance weekly calendar. Times approximate; confirm exact release times before trading.</p>
+
+  <div class="cal-header item">
+    <span>Time (BST)</span>
+    <span>Indicator</span>
+    <span>Consensus</span>
+    <span>Import.</span>
+    <span>Notes</span>
+  </div>
+
+  <div class="item">
+    <div class="cal-row">
+      <span class="neu">~10:00</span>
+      <span class="hi">Eurozone Retail Sales (May)</span>
+      <span class="na">n/a</span>
+      <span><span class="badge badge-medium">MED</span></span>
+      <span>Prior (April) was -0.4% MoM, weaker than the -0.3% forecast</span>
+    </div>
+    <div class="cal-row">
+      <span class="neu">All day</span>
+      <span class="hi">SpaceX joins Nasdaq-100</span>
+      <span class="na">—</span>
+      <span><span class="badge badge-medium">MED</span></span>
+      <span>Mechanical index-fund reallocation flows into SPCX today</span>
+    </div>
+    <div class="cal-row">
+      <span class="neu">Wed 8 Jul</span>
+      <span class="hi">FOMC June Meeting Minutes</span>
+      <span class="na">—</span>
+      <span><span class="badge badge-high">HIGH</span></span>
+      <span>Market will parse for hints on Warsh's rate-path thinking after soft payrolls</span>
+    </div>
+    <div class="cal-row">
+      <span class="neu">7–8 Jul</span>
+      <span class="hi">NATO Ankara Summit</span>
+      <span class="na">—</span>
+      <span><span class="badge badge-medium">MED</span></span>
+      <span>Saab GlobalEye surveillance platform selection expected; defense-sector relevant</span>
+    </div>
+    <div class="cal-row">
+      <span class="neu">Fri 10 Jul</span>
+      <span class="hi">Germany CPI (final, Jun)</span>
+      <span class="na">n/a</span>
+      <span><span class="badge badge-medium">MED</span></span>
+      <span>Confirms flash reading; relevant to ECB inflation path</span>
+    </div>
+    <div class="cal-row">
+      <span class="neu">Fri 10 Jul</span>
+      <span class="hi">Delta Air Lines Q2 earnings</span>
+      <span class="na">—</span>
+      <span><span class="badge badge-medium">MED</span></span>
+      <span>Opens US Q2 earnings season; airline demand/fuel cost read-through</span>
+    </div>
+  </div>
+
+  <p style="font-size:11px; color:#8b949e; margin-top:8px;">Context: this is a lighter data week following the US holiday. The bigger swing factor remains follow-through from Thursday's soft June payrolls report and any Fed commentary reacting to it.</p>
+</div>
+
+<!-- ===== SECTION 11: CORPORATE EVENTS & EARNINGS ===== -->
+<div class="section-wrapper">
+  <h2>11. Corporate Events &amp; Earnings</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: Earnings Whispers, Kiplinger, company announcements. 25 companies scheduled to report today per Earnings Whispers; below are the most market-relevant.</p>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Event</th>
+        <th>Date</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Getty Images / Shutterstock</td>
+        <td>Merger termination effective</td>
+        <td>6 Jul</td>
+        <td>$3.7bn tie-up collapses after UK regulator obstacle</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">SpaceX (SPCX)</td>
+        <td>Nasdaq-100 index inclusion</td>
+        <td>6 Jul</td>
+        <td>First session as an index constituent</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Delta Air Lines</td>
+        <td>Q2 2026 earnings</td>
+        <td>10 Jul</td>
+        <td>Opens US Q2 earnings season</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">JPMorgan Chase</td>
+        <td>Q2 2026 earnings</td>
+        <td>14 Jul</td>
+        <td>Consensus EPS ~$5.44, up 9.7% YoY; kicks off bank earnings</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Netflix / Taiwan Semiconductor</td>
+        <td>Q2 2026 earnings</td>
+        <td>16 Jul</td>
+        <td>Key AI/streaming demand read-throughs</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">NATO members</td>
+        <td>Ankara Summit</td>
+        <td>7–8 Jul</td>
+        <td>Saab GlobalEye platform decision expected; defense-sector relevant</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ===== SECTION 12: STOCKS TO WATCH ===== -->
+<div class="section-wrapper">
+  <h2>12. Stocks to Watch — Monday 6 July</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: CNBC, Mining.com, S&amp;P Global, analyst notes.</p>
+
+  <div class="item">
+    <div class="stock-item" style="border-color:#3fb950;">
+      <div><span class="stock-name">Glencore</span> <span class="stock-ticker">(GLEN.L)</span> &nbsp; <span class="stock-dir pos">Upside momentum</span></div>
+      <div class="stock-reason">+10% Friday on renewed $260bn merger talks with Rio Tinto to create the world's largest miner; copper hit an all-time high near $13,000/t on the back of the story.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="stock-item" style="border-color:#3fb950;">
+      <div><span class="stock-name">Rio Tinto</span> <span class="stock-ticker">(RIO)</span> &nbsp; <span class="stock-dir pos">Upside bias</span></div>
+      <div class="stock-reason">Counterparty to the Glencore merger talks; copper-exposure and consolidation premium in focus. Watch for confirmatory statements today.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="stock-item" style="border-color:#f85149;">
+      <div><span class="stock-name">Shutterstock</span> <span class="stock-ticker">(SSTK)</span> &nbsp; <span class="stock-dir neg">Downside risk</span></div>
+      <div class="stock-reason">$3.7bn Getty Images merger formally terminated by 6 July after a UK regulator obstacle; shares already plunged premarket Friday, standalone strategy questions today.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="stock-item" style="border-color:#58a6ff;">
+      <div><span class="stock-name">SpaceX</span> <span class="stock-ticker">(SPCX)</span> &nbsp; <span class="stock-dir neu">Watch — mechanical flows</span></div>
+      <div class="stock-reason">Joins the Nasdaq-100 today, forcing index-tracking funds to buy in; stock has round-tripped most of its post-IPO spike and trades near listing price.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="stock-item" style="border-color:#d29922;">
+      <div><span class="stock-name">Palantir Technologies</span> <span class="stock-ticker">(PLTR)</span> &nbsp; <span class="stock-dir pos">Watch — upgrade</span></div>
+      <div class="stock-reason">DA Davidson upgraded to Buy with a $175 price target, citing growth and the recent dip as a buying opportunity.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="stock-item" style="border-color:#d29922;">
+      <div><span class="stock-name">Robinhood</span> <span class="stock-ticker">(HOOD)</span> &nbsp; <span class="stock-dir pos">Watch — target raised</span></div>
+      <div class="stock-reason">Goldman Sachs raised its price target after record June trading activity and stronger user/revenue growth.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="stock-item" style="border-color:#8b949e;">
+      <div><span class="stock-name">NVIDIA / AMD / Micron</span> <span class="stock-ticker">(NVDA / AMD / MU)</span> &nbsp; <span class="stock-dir neg">Downside pressure</span></div>
+      <div class="stock-reason">OpenAI's likely IPO delay to 2027 removes a near-term AI catalyst; US stock funds seeing fastest AI-related outflows since March.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="stock-item" style="border-color:#8b949e;">
+      <div><span class="stock-name">Eli Lilly</span> <span class="stock-ticker">(LLY)</span> &nbsp; <span class="stock-dir neu">Watch</span></div>
+      <div class="stock-reason">Traders watching the $50 Medicare obesity-drug deal and the first generic tirzepatide filings as US markets reopen.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="stock-item" style="border-color:#8b949e;">
+      <div><span class="stock-name">Rheinmetall / Saab / Leonardo</span> <span class="stock-ticker">(RHM / SAAB-B / LDO)</span> &nbsp; <span class="stock-dir neu">Watch</span></div>
+      <div class="stock-reason">NATO's Ankara summit (7-8 Jul) expected to select Saab's GlobalEye surveillance platform; defense procurement newsflow likely to build through the week.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 13: MACRO/CORPORATE/POLITICAL ===== -->
+<div class="section-wrapper">
+  <h2>13. Macro / Corporate / Political Highlights</h2>
+
+  <h3>Macro</h3>
+  <div class="item">
+    <div class="macro-point"><span class="hi">US June jobs report:</span> Nonfarm payrolls +57,000, well below the ~110,000 forecast and the fewest in four months. Fed funds futures now price roughly 50% odds of a September hike, down from ~67% before the release.</div>
+    <div class="macro-point"><span class="hi">Fed:</span> Chair Kevin Warsh declined to hint at a July decision at the ECB Forum but reiterated that inflation remains "too high," keeping the door open to further tightening despite the softer jobs print.</div>
+    <div class="macro-point"><span class="hi">ECB:</span> Raised its three key rates by 25bp in June (deposit facility to 2.25%, MRO to 2.40%, MLF to 2.65%), the first hike of this cycle. Eurosystem staff project headline inflation averaging 3.0% in 2026, easing to 2.3% in 2027 and 2.0% in 2028, with the Middle East conflict cited as an inflation driver.</div>
+    <div class="macro-point"><span class="hi">Eurozone PMI:</span> Manufacturing PMI eased to 51.3 in June from 51.6 in May, still in expansion for a fifth month but growth slowing as Middle East-linked supply disruption persists. Composite PMI improved to 49.5, a three-month high, pointing to a smaller contraction in private-sector activity.</div>
+  </div>
+
+  <h3>Corporate</h3>
+  <div class="item">
+    <div class="macro-point"><span class="hi">Rio Tinto / Glencore:</span> Resumed talks on a ~$260bn merger to form the world's largest miner, centred on securing copper supply for the energy transition. Glencore +10% Friday.</div>
+    <div class="macro-point"><span class="hi">OpenAI:</span> Leaning toward delaying its IPO from 2026 to 2027 given the volatile public tech market and SpaceX's post-IPO slide; CFO reportedly cited ongoing cash burn and compute infrastructure commitments.</div>
+    <div class="macro-point"><span class="hi">Getty Images / Shutterstock:</span> $3.7bn merger formally terminated after a UK regulatory obstacle; Getty's board voted unanimously not to proceed.</div>
+    <div class="macro-point"><span class="hi">SpaceX:</span> Joins the Nasdaq-100 today; the stock has given up most of its post-IPO gains and trades near its $135 listing price after a volatile first three weeks.</div>
+  </div>
+
+  <h3>Political / Geopolitical</h3>
+  <div class="item">
+    <div class="macro-point"><span class="hi">Strait of Hormuz:</span> Shipping traffic remains around 5% of pre-conflict levels even with the Iran ceasefire holding; energy markets continue to price in structural Middle East risk premium.</div>
+    <div class="macro-point"><span class="hi">NATO Ankara Summit (7-8 Jul):</span> Expected to formally select Saab's GlobalEye surveillance platform, a defense-sector-relevant procurement decision this week.</div>
+    <div class="macro-point"><span class="hi">South Korea won trading reform:</span> Seoul launched 24-hour won trading Monday as part of a push to secure developed-market status from MSCI, a structural positive for South Korean market access.</div>
+  </div>
+</div>
+
+<!-- ===== SECTION 14: KEY THEMES ===== -->
+<div class="section-wrapper">
+  <h2>14. Key Themes — Top 5 by Horizon</h2>
+
+  <h3>Today's Top 5 (Monday 6 July)</h3>
+  <div class="item"><div class="theme-block"><div class="theme-label">1. Post-Holiday Reopening — US Back From Independence Day</div><div class="theme-body">First full trading day for the US since Wednesday. Volume and price discovery normalize; watch for any catch-up moves following Thursday's soft jobs report.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">2. Rio Tinto-Glencore Mega-Merger Follow-Through</div><div class="theme-body">Glencore +10% Friday; today tests whether the mining sector sustains the M&amp;A premium or fades. Copper near record $13,000/t is directly tied to this story.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">3. SpaceX Nasdaq-100 Inclusion</div><div class="theme-body">Mechanical index-fund buying today. Given SPCX's volatility since its June IPO, flows could produce an outsized intraday move independent of fundamentals.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">4. AI/Tech Sentiment After OpenAI IPO Delay Signal</div><div class="theme-body">Reports of a 2027 IPO delay, plus the fastest AI-fund outflows since March, keep pressure on chip and AI infrastructure names even as Asian tech saw an overnight bounce.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">5. Getty-Shutterstock Deal Collapse</div><div class="theme-body">Formal termination today after a UK regulatory obstacle. Watch for break-fee details and standalone guidance from both companies.</div></div></div>
+
+  <h3>This Week's Top 5 (w/c 6 July)</h3>
+  <div class="item"><div class="theme-block"><div class="theme-label">1. FOMC June Minutes (Wed 8 Jul)</div><div class="theme-body">Markets will parse for how seriously the Fed weighed the softer labour data and what it implies for September.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">2. NATO Ankara Summit (7-8 Jul)</div><div class="theme-body">Expected Saab GlobalEye platform selection; a live catalyst for European defense names this week.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">3. Germany CPI Final (Fri 10 Jul)</div><div class="theme-body">Confirms the June flash reading; feeds directly into the ECB's inflation outlook and rate path.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">4. Q2 Earnings Season Kicks Off (Delta, Fri 10 Jul)</div><div class="theme-body">First major US corporate read on demand, costs and guidance heading into the bulk of Q2 reporting the following week.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">5. Rio Tinto/Glencore Deal Progress</div><div class="theme-body">Any confirmation, denial, or formal announcement this week would be a major mining-sector catalyst given the scale ($260bn) of the proposed tie-up.</div></div></div>
+
+  <h3>This Month's Top 5 (July 2026)</h3>
+  <div class="item"><div class="theme-block"><div class="theme-label">1. US Q2 Earnings Season — Banks First, Then AI Capex Guidance</div><div class="theme-body">JPMorgan (14 Jul) opens bank earnings; Netflix and Taiwan Semiconductor (16 Jul) will be closely watched for AI-demand signals after OpenAI's IPO wobble.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">2. Fed Rate Path After the Jobs Miss</div><div class="theme-body">September hike odds have fallen to ~50%; incoming data through July will determine whether the softer labour market becomes a trend or a one-off.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">3. Rio Tinto-Glencore Mega-Merger</div><div class="theme-body">A ~$260bn deal would be the largest in mining history and reshape the global copper supply landscape; expect continued newsflow through July.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">4. OpenAI IPO Timeline Decision</div><div class="theme-body">A firm decision on delaying to 2027 (from 2026) would be a significant read on public-market appetite for AI mega-cap listings.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">5. NATO Defense Procurement Follow-Through</div><div class="theme-body">The Ankara Summit outcomes and subsequent contract announcements will shape sentiment across European defense names for the rest of the month.</div></div></div>
+</div>
+
+<!-- ===== SECTION 15: KEY TRENDS ===== -->
+<div class="section-wrapper">
+  <h2>15. Key Trends to Watch</h2>
+
+  <div class="trend-block item">
+    <div class="trend-col">
+      <div class="trend-label">1 Day — Monday 6 Jul</div>
+      <div class="trend-item">US markets reopen after the holiday; watch for catch-up volatility on Thursday's jobs miss</div>
+      <div class="trend-item">Glencore/Rio Tinto merger-talk momentum: does the mining sector hold Friday's gains?</div>
+      <div class="trend-item">SpaceX's Nasdaq-100 inclusion triggers mechanical index-fund buy flows</div>
+      <div class="trend-item">Getty Images-Shutterstock merger termination formalizes; standalone strategy questions</div>
+      <div class="trend-item">Kospi direction disputed across sources — confirm before trading South Korea exposure</div>
+    </div>
+
+    <div class="trend-col">
+      <div class="trend-label">1 Week — 6-12 Jul</div>
+      <div class="trend-item">FOMC June minutes (Wed) parsed for how the Fed is weighing the softer labour data</div>
+      <div class="trend-item">NATO Ankara Summit (7-8 Jul): expected Saab GlobalEye platform decision, defense-sector relevant</div>
+      <div class="trend-item">Germany CPI final (Fri) confirms June flash reading, feeds ECB outlook</div>
+      <div class="trend-item">Delta Air Lines (Fri) opens US Q2 earnings season</div>
+      <div class="trend-item">EUR primary market reopens post-holiday; watch for the first wave of new mandates</div>
+    </div>
+
+    <div class="trend-col">
+      <div class="trend-label">1 Month — July 2026</div>
+      <div class="trend-item">US Q2 earnings: banks (14 Jul), then Netflix/TSMC (16 Jul) as key AI-demand signals</div>
+      <div class="trend-item">Fed rate path: September hike odds near 50% after the June jobs miss, likely to swing on incoming data</div>
+      <div class="trend-item">Rio Tinto-Glencore ~$260bn merger: confirmation or collapse would be the month's biggest mining-sector event</div>
+      <div class="trend-item">OpenAI IPO timeline decision (2026 vs 2027) — a bellwether for AI mega-cap listing appetite</div>
+      <div class="trend-item">Ongoing Strait of Hormuz risk premium: shipping still ~5% of pre-conflict levels despite the ceasefire</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer section-wrapper">
+  <p><strong style="color:#e6edf3;">Sources used in this report:</strong></p>
+  <ul style="margin: 6px 0 0 16px; line-height: 1.8;">
+    <li>Bloomberg — bloomberg.com (US live updates, Asia Pacific markets)</li>
+    <li>CNBC Markets — cnbc.com (US and Asia market updates, gold price, Getty-Shutterstock)</li>
+    <li>TheStreet — thestreet.com (Dow/S&amp;P/Nasdaq close detail, sector performance)</li>
+    <li>The Washington Post — washingtonpost.com (US index closes, 2 Jul)</li>
+    <li>Yahoo Finance — finance.yahoo.com (sector detail, OpenAI IPO reporting)</li>
+    <li>Trading Economics — tradingeconomics.com (Brent, WTI, natural gas, copper, Bund yield, DXY, EUR/USD, PMI)</li>
+    <li>Investing.com — investing.com (FTSE 100 close detail, commodities)</li>
+    <li>Mining.com / S&amp;P Global — mining.com, spglobal.com (Rio Tinto-Glencore merger, copper)</li>
+    <li>JM Bullion / Forbes Advisor — gold spot price</li>
+    <li>Baltic Exchange / theedgemalaysia.com — dry bulk and tanker freight rates</li>
+    <li>Federal Reserve — federalreserve.gov (H.15 rates, Warsh comments)</li>
+    <li>European Central Bank — ecb.europa.eu (June rate decision, inflation projections)</li>
+    <li>Eurostat / LiteFinance weekly calendar — economic calendar items</li>
+    <li>Earnings Whispers / Kiplinger — earnings calendar</li>
+    <li>Motley Fool / TradingKey — OpenAI IPO delay reporting</li>
+  </ul>
+  <p style="margin-top:12px; color:#d29922;">Data collected automatically between approximately 06:00-06:45 BST, Monday 6 July 2026. Verify all figures before making any trading or investment decision. Figures marked n/a could not be reliably sourced; the Kospi direction for Monday's session is explicitly disputed across sources and should be confirmed via Bloomberg or Reuters Eikon before use.</p>
+</div>
+
+</body>
+</html>
