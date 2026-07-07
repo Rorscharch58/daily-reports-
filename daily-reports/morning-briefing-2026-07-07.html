@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Briefing — 7 July 2026</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h1 { font-size: 22px; color: #e6edf3; margin-bottom: 4px; }
+  h2 { font-size: 15px; color: #58a6ff; border-bottom: 1px solid #30363d; padding-bottom: 4px; margin: 22px 0 10px 0; text-transform: uppercase; letter-spacing: 0.05em; }
+  h3 { font-size: 12px; color: #d29922; margin: 12px 0 6px 0; text-transform: uppercase; letter-spacing: 0.04em; }
+  h4 { font-size: 12px; color: #8b949e; margin: 8px 0 4px 0; }
+
+  .header-meta { color: #8b949e; font-size: 12px; margin-bottom: 4px; }
+  .header-note { background: #161b22; border-left: 3px solid #d29922; padding: 6px 10px; font-size: 12px; color: #d29922; margin: 8px 0 16px 0; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 4px; }
+  th { background: #161b22; color: #8b949e; text-align: left; padding: 5px 8px; font-weight: 600; border-bottom: 1px solid #30363d; }
+  td { padding: 4px 8px; border-bottom: 1px solid #21262d; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #161b22; }
+
+  .pos { color: #3fb950; font-weight: 600; }
+  .neg { color: #f85149; font-weight: 600; }
+  .neu { color: #8b949e; }
+  .warn { color: #d29922; }
+  .hi { color: #e6edf3; font-weight: 600; }
+  .na { color: #484f58; }
+
+  .badge { display: inline-block; padding: 1px 6px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+  .badge-high { background: #3d1d1d; color: #f85149; }
+  .badge-medium { background: #2d2a1d; color: #d29922; }
+  .badge-low { background: #1d2a1d; color: #3fb950; }
+
+  .news-item { border-left: 3px solid #30363d; padding: 6px 10px; margin-bottom: 8px; background: #161b22; }
+  .news-headline { color: #e6edf3; font-weight: 600; font-size: 13px; }
+  .news-meta { color: #58a6ff; font-size: 11px; margin: 1px 0; }
+  .news-why { color: #8b949e; font-size: 12px; }
+
+  .stock-item { border-left: 3px solid #21262d; padding: 5px 10px; margin-bottom: 6px; }
+  .stock-name { color: #e6edf3; font-weight: 600; }
+  .stock-ticker { color: #58a6ff; font-size: 11px; }
+  .stock-reason { color: #c9d1d9; font-size: 12px; }
+  .stock-dir { font-size: 11px; font-weight: 600; }
+
+  .theme-block { background: #161b22; border: 1px solid #30363d; border-radius: 4px; padding: 8px 12px; margin-bottom: 6px; }
+  .theme-label { color: #e6edf3; font-weight: 600; font-size: 13px; }
+  .theme-body { color: #8b949e; font-size: 12px; margin-top: 2px; }
+
+  .trend-block { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .trend-col { background: #161b22; border: 1px solid #30363d; border-radius: 4px; padding: 10px 12px; }
+  .trend-label { color: #58a6ff; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; border-bottom: 1px solid #30363d; padding-bottom: 4px; }
+  .trend-item { color: #c9d1d9; font-size: 12px; margin-bottom: 4px; padding-left: 8px; border-left: 2px solid #30363d; }
+
+  .cal-row { display: grid; grid-template-columns: 80px 200px 80px 60px auto; gap: 8px; align-items: center; padding: 4px 0; border-bottom: 1px solid #21262d; font-size: 12px; }
+  .cal-header { color: #8b949e; font-weight: 600; font-size: 11px; padding: 4px 0 6px 0; border-bottom: 1px solid #30363d; display: grid; grid-template-columns: 80px 200px 80px 60px auto; gap: 8px; }
+
+  .macro-point { padding: 4px 0; font-size: 12px; color: #c9d1d9; border-bottom: 1px solid #21262d; }
+  .macro-point:last-child { border-bottom: none; }
+
+  .dcm-card { background: #161b22; border: 1px solid #30363d; border-radius: 4px; padding: 10px 12px; margin-bottom: 10px; }
+  .dcm-title { color: #8b949e; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .dcm-deal { padding: 4px 0; border-bottom: 1px solid #21262d; font-size: 12px; }
+  .dcm-deal:last-child { border-bottom: none; }
+
+  .footer { margin-top: 30px; padding-top: 14px; border-top: 1px solid #30363d; font-size: 11px; color: #484f58; }
+  .footer a { color: #58a6ff; }
+
+  .section-wrapper { margin-bottom: 24px; }
+
+  @media print {
+    body {
+      background: #0d1117 !important;
+      color: #c9d1d9 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .section, table, tr, td, th, .data-block, .theme-block, .calendar-row {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+    }
+    thead { display: table-header-group; }
+    p, li, div, span {
+      orphans: 3;
+      widows: 3;
+    }
+    .section-wrapper {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    .item, .news-item, .stock-item, .theme-item, .event-item {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    @page {
+      size: A4 landscape;
+      margin: 12mm;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== SECTION 1: HEADER ===== -->
+<div class="section-wrapper">
+  <h1>Morning Briefing</h1>
+  <div class="header-meta">Tuesday, 7 July 2026 &nbsp;|&nbsp; Generated ~07:15 BST &nbsp;|&nbsp; London timezone</div>
+  <div class="header-meta">Data covers: US session Mon 6 Jul + European close Mon 6 Jul + Asian overnight Mon night into Tue morning</div>
+  <div class="header-note">Samsung posted a record preliminary Q2 profit but its shares fell on profit-taking, clouding the Asian tech tone into the European open. NATO's Ankara Summit (day 1 of 2) is a live defense-sector catalyst today.</div>
+</div>
+
+<!-- ===== SECTION 2: IMPORTANT NEWS ===== -->
+<div class="section-wrapper">
+  <h2>2. Important News</h2>
+
+  <div class="item">
+    <div class="news-item">
+      <div class="news-headline">Samsung Electronics posts record Q2 operating profit (89.4tn won, +19x YoY) but shares fall over 6%</div>
+      <div class="news-meta">CNBC / KoreaJoongAng Daily / TradingKey — 7 Jul 2026</div>
+      <div class="news-why">Preliminary operating profit of ~$58.4bn beat the 84.4tn won consensus on AI/HBM memory demand, but revenue missed forecasts and the stock sold off on profit-taking. Sets a cautious tone for Asian chip names and the broader AI-capex trade today.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="news-item">
+      <div class="news-headline">NATO set to confirm Saab's GlobalEye over US planes at Ankara Summit, defying Trump pressure</div>
+      <div class="news-meta">Reuters / AeroTime / Global Defense Corp — 7 Jul 2026</div>
+      <div class="news-why">Would be the largest order in the GlobalEye program's history, replacing NATO's ageing E-3A Sentry AWACS fleet. A European-vs-US defense-procurement flashpoint; Saab-sector relevant on day one of the two-day summit (7-8 Jul).</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="news-item">
+      <div class="news-headline">Tencent sells $1.55bn stake in Kuaishou via block trade, cutting holding to 9.37%</div>
+      <div class="news-meta">Bloomberg / Reuters — 6 Jul 2026</div>
+      <div class="news-why">Shares priced at a 3.2-6.2% discount to Monday's close; drops Tencent below the 10% "substantial shareholder" threshold. Kuaishou fell 9.6% Tuesday on the overhang even as the company ran a concurrent HK$8.35bn buyback.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="news-item">
+      <div class="news-headline">Microsoft cuts 4,800 jobs (~2% of workforce); Xbox absorbs the bulk in "most significant restructure" in its history</div>
+      <div class="news-meta">GeekWire / CNBC / TechCrunch — 6 Jul 2026</div>
+      <div class="news-why">Roughly 1,600 of the cuts are in Xbox, with total gaming-division reductions expected near 3,200 (~20% of Xbox staff) this fiscal year; four studios (Ninja Theory, Undead Labs, Compulsion, Double Fine) are being divested or returned. AI-driven cost discipline continues at a mega-cap.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="news-item">
+      <div class="news-headline">Rio Tinto-Glencore ~$260bn merger talk resurfaces again as copper hits fresh record near $13,700/t</div>
+      <div class="news-meta">CNBC / Investing News Network — ongoing, latest 3 Jul</div>
+      <div class="news-why">Glencore +10% Friday on the revived talks. Caution: this saga has restarted and collapsed more than once already in 2026 (January restart, February collapse); treat any confirmation as unverified until an official joint statement.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 3: EUROPEAN FUTURES ===== -->
+<div class="section-wrapper">
+  <h2>3. European Futures — Pre-Open</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: Reuters/CNBC premarket wrap, Eurex. Data collected ~07:15 BST Tue 7 Jul. Absolute futures levels for today's pre-open session were not reliably sourced; directional read-through below combines Monday's strong European/US close against overnight Asian tech weakness.</p>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Last Futures Level</th>
+        <th>Expected Move (Tue)</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Euro Stoxx 50</td>
+        <td class="na">n/a</td>
+        <td class="warn">Cautious / mixed</td>
+        <td>No reliable pre-open print sourced; Samsung-led Asian tech weakness is a headwind after Monday's slight Euro Stoxx dip</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Stoxx 600</td>
+        <td class="na">n/a</td>
+        <td class="warn">Mixed</td>
+        <td>Index near 52-week highs; watch for follow-through on Monday's broad gains</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">DAX</td>
+        <td class="na">n/a</td>
+        <td class="warn">Mixed</td>
+        <td>Fresh records this week; chip-linked names may lag on Samsung read-through</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">CAC 40</td>
+        <td class="na">n/a</td>
+        <td class="neu">Little changed</td>
+        <td>Momentum from Monday's +0.51% session</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">FTSE 100</td>
+        <td class="na">n/a</td>
+        <td class="pos">Constructive</td>
+        <td>Miners (Glencore, Rio Tinto) remain in focus on the merger-talk/copper story</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">S&amp;P 500 E-Mini</td>
+        <td class="na">n/a</td>
+        <td class="neu">Little changed</td>
+        <td>Holding near Monday's record Dow close (53,055.91)</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Nasdaq 100</td>
+        <td class="na">n/a</td>
+        <td class="warn">Mixed</td>
+        <td>US chip names (Intel) rebounding premarket even as Samsung sells off in Asia</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ===== SECTION 4: YESTERDAY'S CLOSES ===== -->
+<div class="section-wrapper">
+  <h2>4. Yesterday's Closes — Monday 6 July 2026</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: ETF Trends World Markets Watchlist, CNBC, Trading Economics, ADVFN. Levels marked "~" are estimated from the prior confirmed close plus the sourced % change; treat as approximate.</p>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Level</th>
+        <th>Change</th>
+        <th>% Change</th>
+        <th>Session Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Euro Stoxx 50</td>
+        <td>6,398</td>
+        <td class="neg">▼</td>
+        <td class="neg">-0.2%</td>
+        <td>Slight pullback after Friday's record; pan-European Stoxx 600 still up ~0.1% on the day</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">DAX</td>
+        <td>~25,880</td>
+        <td class="pos">▲</td>
+        <td class="pos">+0.39%</td>
+        <td>Extends the record run</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">CAC 40</td>
+        <td class="na">n/a</td>
+        <td class="pos">▲</td>
+        <td class="pos">+0.51%</td>
+        <td>Strongest of the majors on the day</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">FTSE 100</td>
+        <td>~10,722</td>
+        <td class="pos">+43</td>
+        <td class="pos">+0.41%</td>
+        <td>Miners supportive on Rio Tinto/Glencore copper story</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:11px; color:#8b949e; margin-top:6px;">European bourses were broadly firmer Monday, led by the CAC 40, with the Euro Stoxx 50 the lone laggard on a modest pullback from Friday's record. Miners outperformed on the revived Rio Tinto-Glencore merger talk and record copper.</p>
+</div>
+
+<!-- ===== SECTION 5: US MARKETS ===== -->
+<div class="section-wrapper">
+  <h2>5. US Markets — Monday 6 July 2026 Session</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: TheStreet, Yahoo Finance, CNBC. Data as of Monday's close.</p>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Close</th>
+        <th>Change (pts)</th>
+        <th>% Change</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">S&amp;P 500</td>
+        <td>7,537.43</td>
+        <td class="pos">▲</td>
+        <td class="pos">+0.72%</td>
+        <td>Broad-based rally on revived AI optimism</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Nasdaq Composite</td>
+        <td>26,121.16</td>
+        <td class="pos">▲</td>
+        <td class="pos">+1.12%</td>
+        <td>Tech-led; chip stocks shook off the late-June dip</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Dow Jones</td>
+        <td>53,055.91</td>
+        <td class="pos">+155.84</td>
+        <td class="pos">+0.29%</td>
+        <td>First close above 53,000</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:10px; font-size:12px;">
+    <div class="macro-point"><span class="hi">Session tone:</span> Broadly risk-on. Dow closed above 53,000 for the first time; Nasdaq and S&amp;P rallied as pressure eased on the tech sector after last week's chip-stock wobble.</div>
+    <div class="macro-point"><span class="hi">Leading names/sectors:</span> Big Tech (Alphabet, Apple, Meta, Tesla) rallied; IBM +3%+ on a Bank of America price-target raise to $330 from $315; Foxconn's stronger-than-expected quarterly sales (reported Sunday) reinforced the AI-demand narrative.</div>
+    <div class="macro-point"><span class="hi">Lagging:</span> JetBlue downgraded by analysts on weak fundamentals; ZIM Integrated Shipping fell 6.8% on Israeli-government-related concerns.</div>
+    <div class="macro-point"><span class="hi">Key takeaway:</span> The AI trade found renewed footing after the late-June/early-July chip selloff, helped by Foxconn's sales beat. Note the same optimism did not carry through fully to Asia overnight, where Samsung's own record results triggered profit-taking rather than a rally.</div>
+  </div>
+</div>
+
+<!-- ===== SECTION 6: ASIAN MARKETS ===== -->
+<div class="section-wrapper">
+  <h2>6. Asian Markets — Overnight Session (Tue 7 Jul)</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: BigGo Finance, JIJI Press, ETF Trends, CNBC, KED Global. Monday's confirmed closes shown; today's (Tuesday) intraday index-level moves were not reliably sourced as a clean set at ~07:15 BST collection time — stock-specific moves below are corroborated, but confirm index closes via Bloomberg/Reuters before trading.</p>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Level (Mon close)</th>
+        <th>Change</th>
+        <th>% Change</th>
+        <th>Session Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Nikkei 225</td>
+        <td>69,737.69</td>
+        <td class="neu">▼</td>
+        <td class="neu">-0.01%</td>
+        <td>Effectively flat Monday; TOPIX hit a fresh record closing high the same session</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Hang Seng</td>
+        <td>23,616.32</td>
+        <td class="pos">+266.29</td>
+        <td class="pos">+1.14%</td>
+        <td>Gained Monday; Tuesday overhang risk from the Tencent-Kuaishou block trade</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Shanghai Composite</td>
+        <td>4,041.24</td>
+        <td class="neg">-2.41</td>
+        <td class="neg">-0.06%</td>
+        <td>Broadly flat</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Kospi</td>
+        <td>~8,170</td>
+        <td class="pos">▲</td>
+        <td class="pos">+1%</td>
+        <td>Monday's close; Samsung and SK Hynix rebound continued ahead of earnings</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:8px; font-size:12px; color:#8b949e;">
+    <strong style="color:#e6edf3;">Tone Tuesday:</strong> Samsung Electronics shares fell over 6% despite guiding to a record preliminary Q2 operating profit of 89.4tn won (+19x YoY, beating consensus), as investors took profits on an AI/HBM-memory-driven number that had been well flagged. SK Hynix trades with reference to the same theme ahead of its own results and a planned $29bn Nasdaq depositary-receipt listing. Kuaishou fell 9.6% on the Tencent stake-sale overhang. Confirm today's Kospi/Nikkei/Hang Seng closing levels before trading — a clean, consistent same-day print could not be sourced at collection time.
+  </div>
+</div>
+
+<!-- ===== SECTION 7: COMMODITIES ===== -->
+<div class="section-wrapper">
+  <h2>7. Commodities</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: Trading Economics, Investing.com, Kitco. Data collected ~07:15 BST Tue 7 Jul.</p>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Commodity</th>
+        <th>Price</th>
+        <th>Change</th>
+        <th>% Change</th>
+        <th>Context</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Brent Crude</td>
+        <td>$72.16 /bbl</td>
+        <td class="pos">+$0.24</td>
+        <td class="pos">~+0.3%</td>
+        <td>Little changed; Hormuz shipping flows continuing to normalise</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">WTI Crude</td>
+        <td>~$68.7 /bbl</td>
+        <td class="neu">Flat</td>
+        <td class="neu">~flat</td>
+        <td>Trading below $69, near its lowest since late February, as Hormuz flows recover and OPEC+ signals higher supply</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Gold</td>
+        <td>~$4,150-4,163 /oz</td>
+        <td class="neg">▼</td>
+        <td class="neg">Pulling back from Friday's ~$4,189</td>
+        <td>Still near record territory after last week's rally on soft US jobs data</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Natural Gas (Henry Hub)</td>
+        <td>$3.255 /mmBtu</td>
+        <td class="neu">Flat</td>
+        <td class="neu">~flat</td>
+        <td>Little changed overnight</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Copper (LME/futures)</td>
+        <td>~$13,600-13,700 /t (~$6.20-6.24/lb)</td>
+        <td class="pos">▲</td>
+        <td class="pos">Fresh all-time high</td>
+        <td>Driven by structural supply-shortfall forecasts and the Rio Tinto-Glencore merger story</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:8px; font-size:12px; color:#8b949e;">
+    <strong style="color:#d29922;">Notable:</strong> Copper continues to set fresh records, above $13,300/t and reported as high as ~$13,700/t this week, on both the energy-transition demand story and the Rio Tinto-Glencore speculation. Gold is consolidating just off its highs after last week's jobs-data-driven spike; oil remains soft on improving Hormuz shipping flows and OPEC+ supply signals.
+  </div>
+</div>
+
+<!-- ===== SECTION 8: RATES & FX ===== -->
+<div class="section-wrapper">
+  <h2>8. Rates &amp; FX</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: Trading Economics, Federal Reserve, Bundesbank. Data as of ~07:15 BST Tue 7 Jul. EUR/USD and GBP/USD current-session prints were not reliably sourced; last confirmed levels shown (mid/late-June) with staleness flagged.</p>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Instrument</th>
+        <th>Level</th>
+        <th>Change</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">US 10Y Treasury Yield</td>
+        <td>~4.48%</td>
+        <td class="pos">+~2bp</td>
+        <td>Edged up from Thursday's 4.46% post-jobs-miss low</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">German 10Y Bund Yield</td>
+        <td>~2.92%</td>
+        <td class="neu">Steady</td>
+        <td>Holding just above 2.9%</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">EUR/USD</td>
+        <td class="warn">~1.143 (stale)</td>
+        <td class="na">n/a</td>
+        <td>Last reliably sourced level; confirm intraday before use</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">GBP/USD</td>
+        <td class="warn">~1.34 (stale)</td>
+        <td class="na">n/a</td>
+        <td>Last reliably sourced level; confirm intraday before use</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">DXY (Dollar Index)</td>
+        <td>100.85</td>
+        <td class="neg">-0.03%</td>
+        <td>Holding below 101, pressured since the June jobs miss</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:8px; font-size:12px; color:#8b949e;">
+    The dollar remains on the back foot below the 101 handle as markets keep discounting the odds of a September Fed hike after the soft June payrolls print. The US 10Y has ticked back up modestly from Thursday's low. The next FOMC decision is 28-29 July; minutes from the June 16-17 meeting (Warsh's first as Chair, rates held at 3.50-3.75%) are due Wednesday 8 July.
+  </div>
+</div>
+
+<!-- ===== SECTION 9: DCM ===== -->
+<div class="section-wrapper">
+  <h2>9. DCM — Primary Bond Market</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: GlobalCapital headlines, FRED (ICE BofA spread series). Most subscriber-level deal terms were not accessible via search; levels marked n/a where unconfirmed.</p>
+
+  <div class="dcm-card item">
+    <div class="dcm-title">Yesterday's Issuances (Mon 6 Jul)</div>
+    <div class="dcm-deal"><span class="na">EUR Corporate IG:</span> <span class="na">No individual deal terms sourced for Monday specifically.</span></div>
+    <div class="dcm-deal"><span class="na">EUR HY:</span> <span class="na">n/a</span></div>
+    <div class="dcm-deal"><span class="na">SSA / Sovereign:</span> <span class="na">n/a</span></div>
+    <div class="dcm-deal"><span class="na">Financials:</span> <span class="na">n/a</span></div>
+  </div>
+
+  <div class="dcm-card item">
+    <div class="dcm-title">Pipeline / Expected Today &amp; This Week (w/c 6 Jul)</div>
+    <div class="dcm-deal"><span class="hi">Corporate IG:</span> Couche-Tard and Louis Dreyfus are lining up seven-year euro trades, with Roquette adding to the hybrid queue, per GlobalCapital — a sign the corporate pipeline is swelling again post-holiday, though execution is described as dependent on a "shaky" backdrop.</div>
+    <div class="dcm-deal"><span class="hi">Sterling IG:</span> GlobalCapital reports the IG corporate market "eyeing a rebound in sterling issuance" this period.</div>
+    <div class="dcm-deal"><span class="hi">SSA:</span> Frontloading continues given elevated 2026 fiscal deficits (Germany, France); full-year gross EGB/SSA supply still projected near €1.4tn.</div>
+  </div>
+
+  <div class="dcm-card item">
+    <div class="dcm-title">Key Spreads</div>
+    <table style="page-break-inside: avoid;">
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>Level</th>
+          <th>Move</th>
+          <th>Direction</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="page-break-inside: avoid;">
+          <td>iTraxx Main (5Y)</td>
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+          <td class="na">No reliable intraday source</td>
+        </tr>
+        <tr style="page-break-inside: avoid;">
+          <td>iTraxx Crossover (5Y)</td>
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+          <td class="na">No reliable intraday source</td>
+        </tr>
+        <tr style="page-break-inside: avoid;">
+          <td>CDX IG (5Y)</td>
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+          <td class="na">No reliable intraday source</td>
+        </tr>
+        <tr style="page-break-inside: avoid;">
+          <td>Euro IG Corp Avg OAS</td>
+          <td class="na">n/a</td>
+          <td class="na">n/a</td>
+          <td class="warn">Described as near historically tight levels; 82.5% of IG bonds priced week of 2 Jul came inside/at issue spread (BVAL)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="dcm-card item">
+    <div class="dcm-title">Commentary</div>
+    <p style="font-size:12px; color:#c9d1d9; line-height:1.6;">
+      The euro primary market continues to reopen after last week's US holiday, with the corporate pipeline building (Couche-Tard, Louis Dreyfus, Roquette) and sterling issuance also expected to pick up. Investor demand remains strong: the week ending 2 July saw 45 new public bond offerings, with the large majority of IG deals pricing inside or at initial spread guidance per BVAL data, consistent with spreads being described as near historical tights.<br><br>
+      The tone is constructive but not yet aggressive — issuers appear to be testing the window rather than flooding it. Financials and industrials remain the likeliest early movers this week; energy and transport issuers look more selective given ongoing oil-price and freight-rate volatility.
+    </p>
+  </div>
+</div>
+
+<!-- ===== SECTION 10: ECONOMIC CALENDAR ===== -->
+<div class="section-wrapper">
+  <h2>10. Economic Calendar</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: Trading Economics, Kiplinger, Reuters/AeroTime. Times approximate; confirm exact release times before trading.</p>
+
+  <div class="cal-header item">
+    <span>Time (BST)</span>
+    <span>Indicator</span>
+    <span>Consensus</span>
+    <span>Import.</span>
+    <span>Notes</span>
+  </div>
+
+  <div class="item">
+    <div class="cal-row">
+      <span class="neu">All day</span>
+      <span class="hi">NATO Ankara Summit (day 1 of 2)</span>
+      <span class="na">—</span>
+      <span><span class="badge badge-high">HIGH</span></span>
+      <span>Saab GlobalEye AWACS-replacement selection expected to be confirmed</span>
+    </div>
+    <div class="cal-row">
+      <span class="neu">Today</span>
+      <span class="hi">Vera Therapeutics FDA PDUFA decision (atacicept)</span>
+      <span class="na">—</span>
+      <span><span class="badge badge-medium">MED</span></span>
+      <span>Binary regulatory catalyst for IgA nephropathy treatment; shares +6% Monday into the decision</span>
+    </div>
+    <div class="cal-row">
+      <span class="neu">This week</span>
+      <span class="hi">Germany Industrial Production (May)</span>
+      <span class="na">n/a</span>
+      <span><span class="badge badge-medium">MED</span></span>
+      <span>April rose +0.4% MoM; exact release day this week not confirmed via search</span>
+    </div>
+    <div class="cal-row">
+      <span class="neu">Wed 8 Jul</span>
+      <span class="hi">FOMC June Meeting Minutes</span>
+      <span class="na">—</span>
+      <span><span class="badge badge-high">HIGH</span></span>
+      <span>First meeting under Chair Warsh; market will parse tone after the soft June jobs report</span>
+    </div>
+    <div class="cal-row">
+      <span class="neu">Thu 9 Jul</span>
+      <span class="hi">PepsiCo Q2 earnings</span>
+      <span class="na">Cons. EPS $2.21</span>
+      <span><span class="badge badge-medium">MED</span></span>
+      <span>Opens the consumer leg of US Q2 earnings season</span>
+    </div>
+    <div class="cal-row">
+      <span class="neu">Fri 10 Jul</span>
+      <span class="hi">Delta Air Lines Q2 earnings</span>
+      <span class="na">Cons. EPS $1.47</span>
+      <span><span class="badge badge-medium">MED</span></span>
+      <span>Airline demand/fuel-cost read-through</span>
+    </div>
+  </div>
+
+  <p style="font-size:11px; color:#8b949e; margin-top:8px;">Context: a lighter data week overall. The two live swing factors are the NATO Ankara Summit outcome and any Fed commentary reacting to Wednesday's June minutes.</p>
+</div>
+
+<!-- ===== SECTION 11: CORPORATE EVENTS & EARNINGS ===== -->
+<div class="section-wrapper">
+  <h2>11. Corporate Events &amp; Earnings</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: CNBC, KuCoin, Yahoo Finance, Kiplinger.</p>
+
+  <table style="page-break-inside: avoid;">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Event</th>
+        <th>Date</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Samsung Electronics</td>
+        <td>Q2 2026 preliminary guidance</td>
+        <td>7 Jul</td>
+        <td>Record 89.4tn won operating profit (+19x YoY); shares fell &gt;6% on the print</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Vera Therapeutics</td>
+        <td>FDA PDUFA decision (atacicept)</td>
+        <td>7 Jul</td>
+        <td>Accelerated-approval BLA for IgA nephropathy</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">SK Hynix</td>
+        <td>Nasdaq depositary-receipt listing (planned)</td>
+        <td>Ongoing</td>
+        <td>~$29bn planned DR listing; stock volatile ahead of own Q2 results</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">PepsiCo</td>
+        <td>Q2 2026 earnings</td>
+        <td>9 Jul</td>
+        <td>Cons. EPS $2.21 (+4.2% YoY), revenue ~$24bn (+5.7% YoY)</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Delta Air Lines</td>
+        <td>Q2 2026 earnings</td>
+        <td>10 Jul</td>
+        <td>Cons. EPS $1.47 (-30% YoY), revenue ~$18.9bn (+13.2% YoY)</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">JPMorgan Chase</td>
+        <td>Q2 2026 earnings</td>
+        <td>14 Jul</td>
+        <td>Cons. EPS ~$5.44, +9.7% YoY; opens bank earnings</td>
+      </tr>
+      <tr style="page-break-inside: avoid;">
+        <td class="hi">Netflix / Taiwan Semiconductor</td>
+        <td>Q2 2026 earnings</td>
+        <td>16 Jul</td>
+        <td>Key AI/streaming demand read-throughs</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ===== SECTION 12: STOCKS TO WATCH ===== -->
+<div class="section-wrapper">
+  <h2>12. Stocks to Watch — Tuesday 7 July</h2>
+  <p style="font-size:11px; color:#484f58; margin-bottom:8px;">Source: CNBC, Bloomberg, TradingKey, Reuters, Yahoo Finance.</p>
+
+  <div class="item">
+    <div class="stock-item" style="border-color:#f85149;">
+      <div><span class="stock-name">Samsung Electronics</span> <span class="stock-ticker">(005930.KS)</span> &nbsp; <span class="stock-dir neg">Downside — sell the news</span></div>
+      <div class="stock-reason">Record preliminary Q2 operating profit (89.4tn won, +19x YoY, beat consensus) but shares fell &gt;6% on profit-taking; revenue missed forecasts.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="stock-item" style="border-color:#8b949e;">
+      <div><span class="stock-name">SK Hynix</span> <span class="stock-ticker">(000660.KS)</span> &nbsp; <span class="stock-dir neu">Watch — AI-memory read-through</span></div>
+      <div class="stock-reason">Trading off the Samsung print ahead of its own results; planned ~$29bn Nasdaq depositary-receipt listing adds a separate catalyst.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="stock-item" style="border-color:#3fb950;">
+      <div><span class="stock-name">Saab AB</span> <span class="stock-ticker">(SAAB-B.ST)</span> &nbsp; <span class="stock-dir pos">Upside — NATO order</span></div>
+      <div class="stock-reason">NATO expected to confirm GlobalEye as its AWACS replacement at the Ankara Summit — the largest order in the program's history.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="stock-item" style="border-color:#f85149;">
+      <div><span class="stock-name">Kuaishou Technology</span> <span class="stock-ticker">(1024.HK)</span> &nbsp; <span class="stock-dir neg">Downside — shareholder overhang</span></div>
+      <div class="stock-reason">Fell 9.6% Tuesday after Tencent sold a $1.55bn block, even as Kuaishou ran a concurrent HK$8.35bn buyback.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="stock-item" style="border-color:#d29922;">
+      <div><span class="stock-name">Vera Therapeutics</span> <span class="stock-ticker">(VERA)</span> &nbsp; <span class="stock-dir warn">Watch — binary FDA event</span></div>
+      <div class="stock-reason">FDA PDUFA decision today on atacicept for IgA nephropathy; shares +6% Monday into the readout.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="stock-item" style="border-color:#8b949e;">
+      <div><span class="stock-name">Rio Tinto / Glencore</span> <span class="stock-ticker">(RIO / GLEN.L)</span> &nbsp; <span class="stock-dir neu">Watch — merger talk, treat cautiously</span></div>
+      <div class="stock-reason">Renewed $260bn merger talk alongside record copper prices; this exact story has already restarted and collapsed once in 2026 — await an official statement before trading the headline.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="stock-item" style="border-color:#f85149;">
+      <div><span class="stock-name">ZIM Integrated Shipping</span> <span class="stock-ticker">(ZIM)</span> &nbsp; <span class="stock-dir neg">Downside risk</span></div>
+      <div class="stock-reason">Fell 6.8% Monday after Israeli government officials expressed concerns; shipping-sector relevant.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="stock-item" style="border-color:#8b949e;">
+      <div><span class="stock-name">Microsoft</span> <span class="stock-ticker">(MSFT)</span> &nbsp; <span class="stock-dir neu">Watch — restructuring</span></div>
+      <div class="stock-reason">Cutting 4,800 jobs; Xbox undergoing its largest-ever restructure with four studios divested or returned to management.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="stock-item" style="border-color:#3fb950;">
+      <div><span class="stock-name">Intel</span> <span class="stock-ticker">(INTC)</span> &nbsp; <span class="stock-dir pos">Upside — chip rebound</span></div>
+      <div class="stock-reason">+3% premarket Monday as US chip stocks rebounded from recent weakness; contrasts with Samsung's Asian-session sell-off.</div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="stock-item" style="border-color:#3fb950;">
+      <div><span class="stock-name">IBM</span> <span class="stock-ticker">(IBM)</span> &nbsp; <span class="stock-dir pos">Watch — target raised</span></div>
+      <div class="stock-reason">+3%+ Monday after Bank of America raised its price target to $330 from $315.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 13: MACRO/CORPORATE/POLITICAL ===== -->
+<div class="section-wrapper">
+  <h2>13. Macro / Corporate / Political Highlights</h2>
+
+  <h3>Macro</h3>
+  <div class="item">
+    <div class="macro-point"><span class="hi">US June jobs report:</span> Nonfarm payrolls +57,000, well below the ~110,000 forecast. Fed funds futures imply roughly 50% odds of a September hike, down from ~67% pre-release.</div>
+    <div class="macro-point"><span class="hi">Fed:</span> Chair Kevin Warsh has not signalled a near-term move; next FOMC decision is 28-29 July, with June meeting minutes due Wednesday 8 July.</div>
+    <div class="macro-point"><span class="hi">ECB:</span> Raised its three key rates 25bp in June (deposit facility to 2.25%), the first hike of this cycle. Staff project headline inflation averaging 3.0% in 2026, easing to 2.3% in 2027.</div>
+    <div class="macro-point"><span class="hi">Eurozone data:</span> German industrial production (May) and Eurozone retail sales due this week; April industrial production had risen +0.4% MoM.</div>
+  </div>
+
+  <h3>Corporate</h3>
+  <div class="item">
+    <div class="macro-point"><span class="hi">Samsung Electronics:</span> Record preliminary Q2 operating profit of 89.4tn won (+19x YoY) on AI/HBM memory demand; shares fell &gt;6% on profit-taking despite the beat.</div>
+    <div class="macro-point"><span class="hi">Microsoft:</span> Cutting 4,800 jobs (~2% of workforce); Xbox's most significant restructuring in its 25-year history, with four studios divested.</div>
+    <div class="macro-point"><span class="hi">Tencent / Kuaishou:</span> Tencent sold a $1.55bn block of Kuaishou shares, cutting its stake to 9.37% from 15.68%; Kuaishou fell 9.6% despite a concurrent buyback.</div>
+    <div class="macro-point"><span class="hi">Rio Tinto / Glencore:</span> Renewed ~$260bn merger talk alongside record copper prices; the same talks have already restarted and collapsed once this year.</div>
+  </div>
+
+  <h3>Political / Geopolitical</h3>
+  <div class="item">
+    <div class="macro-point"><span class="hi">NATO Ankara Summit (7-8 Jul):</span> Alliance expected to confirm Saab's GlobalEye as its AWACS replacement, opting for a European platform over US alternatives despite reported pressure from President Trump for allies to buy American equipment.</div>
+    <div class="macro-point"><span class="hi">Strait of Hormuz:</span> Shipping traffic continuing to normalise post-ceasefire, helping cap oil prices near multi-month lows.</div>
+    <div class="macro-point"><span class="hi">ZIM / Israel:</span> Israeli government officials expressed concerns weighing on ZIM Integrated Shipping shares Monday; details of the specific concern were not corroborated via search and should be treated as preliminary.</div>
+  </div>
+</div>
+
+<!-- ===== SECTION 14: KEY THEMES ===== -->
+<div class="section-wrapper">
+  <h2>14. Key Themes — Top 5 by Horizon</h2>
+
+  <h3>Today's Top 5 (Tuesday 7 July)</h3>
+  <div class="item"><div class="theme-block"><div class="theme-label">1. Samsung's Record Profit, Sold on the News</div><div class="theme-body">A 19-fold YoY operating-profit surge failed to lift the stock, which fell &gt;6%. Tests whether the AI-memory rally has further room or is due a pause.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">2. NATO Ankara Summit — Saab GlobalEye Decision</div><div class="theme-body">Expected confirmation of the largest order in the GlobalEye program's history, a live defense-sector and transatlantic-relations catalyst.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">3. Tencent-Kuaishou Stake Sale Fallout</div><div class="theme-body">A $1.55bn block trade knocked Kuaishou down 9.6% despite a concurrent buyback; watch for read-through to other Tencent-linked holdings.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">4. Vera Therapeutics FDA Decision</div><div class="theme-body">A binary PDUFA readout on atacicept for IgA nephropathy; shares already up 6% into the event.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">5. US Chip Rebound vs Asian Chip Wobble</div><div class="theme-body">Intel and IBM strength Monday contrasts with Samsung's Tuesday sell-off, an inconsistency worth watching for direction into the European open.</div></div></div>
+
+  <h3>This Week's Top 5 (w/c 6 July)</h3>
+  <div class="item"><div class="theme-block"><div class="theme-label">1. FOMC June Minutes (Wed 8 Jul)</div><div class="theme-body">First minutes under Chair Warsh; markets will parse how seriously the Fed weighed the soft June jobs data.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">2. NATO Ankara Summit Conclusion (Wed 8 Jul)</div><div class="theme-body">Full outcomes and any contract-level detail on the Saab GlobalEye award due by the summit's close.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">3. PepsiCo Opens Q2 Earnings Season (Thu 9 Jul)</div><div class="theme-body">First major US consumer-name read on demand and margins ahead of the bulk of Q2 reporting later in the month.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">4. Delta Air Lines Earnings (Fri 10 Jul)</div><div class="theme-body">Airline demand and fuel-cost commentary, also relevant to the ZIM/shipping and broader transport read-through this week.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">5. EUR Primary Market Pipeline Build</div><div class="theme-body">Couche-Tard, Louis Dreyfus and Roquette queuing euro trades; a fuller corporate calendar is likely to develop through the week.</div></div></div>
+
+  <h3>This Month's Top 5 (July 2026)</h3>
+  <div class="item"><div class="theme-block"><div class="theme-label">1. US Q2 Earnings Season — Banks From 14 Jul</div><div class="theme-body">JPMorgan opens bank earnings; Netflix and Taiwan Semiconductor (16 Jul) are the key AI-demand signals to watch after the Samsung profit-but-sell-off episode.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">2. Fed Rate Path After the Jobs Miss</div><div class="theme-body">September hike odds near 50%; the 28-29 July FOMC meeting is the next hard decision point.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">3. AI-Memory Supercycle vs Valuation Concerns</div><div class="theme-body">Samsung's record profit met with a sell-off crystallises the tension between strong fundamentals and stretched AI-capex valuations across the memory chain.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">4. Rio Tinto-Glencore Mega-Merger</div><div class="theme-body">A ~$260bn deal would be the largest in mining history; given the on-again-off-again pattern this year, only a formal announcement should move positioning materially.</div></div></div>
+  <div class="item"><div class="theme-block"><div class="theme-label">5. NATO Defense Procurement Follow-Through</div><div class="theme-body">The Ankara Summit's GlobalEye decision and the broader Europe-vs-US procurement debate will shape defense-sector sentiment through the month.</div></div></div>
+</div>
+
+<!-- ===== SECTION 15: KEY TRENDS ===== -->
+<div class="section-wrapper">
+  <h2>15. Key Trends to Watch</h2>
+
+  <div class="trend-block item">
+    <div class="trend-col">
+      <div class="trend-label">1 Day — Tuesday 7 Jul</div>
+      <div class="trend-item">Samsung -6%+ despite record profit: does the AI-memory trade wobble spread to SK Hynix and US chip names at the open?</div>
+      <div class="trend-item">NATO Ankara Summit day 1: Saab GlobalEye confirmation watch</div>
+      <div class="trend-item">Kuaishou/Tencent overhang: any further block-trade or ownership-disclosure follow-through</div>
+      <div class="trend-item">Vera Therapeutics FDA PDUFA decision — binary event</div>
+      <div class="trend-item">Confirm today's Asian index closing levels independently — a clean same-day print was not available at collection time</div>
+    </div>
+
+    <div class="trend-col">
+      <div class="trend-label">1 Week — 6-12 Jul</div>
+      <div class="trend-item">FOMC June minutes (Wed) and NATO summit conclusion (Wed), both on the same day</div>
+      <div class="trend-item">PepsiCo (Thu) and Delta Air Lines (Fri) open US Q2 earnings season</div>
+      <div class="trend-item">EUR primary market pipeline building — Couche-Tard, Louis Dreyfus, Roquette</div>
+      <div class="trend-item">German industrial production (May) due this week, exact day unconfirmed</div>
+      <div class="trend-item">Rio Tinto/Glencore: watch for any official confirmation or denial</div>
+    </div>
+
+    <div class="trend-col">
+      <div class="trend-label">1 Month — July 2026</div>
+      <div class="trend-item">US Q2 earnings: banks from 14 Jul, then Netflix/TSMC (16 Jul) as key AI-demand signals</div>
+      <div class="trend-item">Fed rate path: next hard decision point is the 28-29 July FOMC meeting</div>
+      <div class="trend-item">AI-memory supercycle vs valuation risk, crystallised by Samsung's profit-but-sell-off</div>
+      <div class="trend-item">Rio Tinto-Glencore ~$260bn merger: resolution one way or the other would be the month's biggest mining event</div>
+      <div class="trend-item">NATO defense procurement follow-through from the Ankara Summit</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer section-wrapper">
+  <p><strong style="color:#e6edf3;">Sources used in this report:</strong></p>
+  <ul style="margin: 6px 0 0 16px; line-height: 1.8;">
+    <li>CNBC Markets — cnbc.com (US/Asia live updates, Samsung earnings, premarket movers)</li>
+    <li>Bloomberg — bloomberg.com (Tencent-Kuaishou, Kospi/Samsung coverage, FX/rates)</li>
+    <li>Reuters / AeroTime / Global Defense Corp — NATO Ankara Summit, Saab GlobalEye</li>
+    <li>TheStreet / Yahoo Finance — US index closes, sector detail</li>
+    <li>ETF Trends World Markets Watchlist / BigGo Finance / JIJI Press — Asian index closes (Mon 6 Jul)</li>
+    <li>KED Global / Korea Times / KuCoin / TradingKey / KoreaJoongAng Daily — Kospi, Samsung Q2 guidance</li>
+    <li>Trading Economics — commodities, Bund/Treasury yields, DXY, industrial production</li>
+    <li>Investing.com / Kitco — commodities pricing detail</li>
+    <li>CNBC / Investing News Network — Rio Tinto-Glencore merger talk</li>
+    <li>GeekWire / TechCrunch / CNN Business — Microsoft/Xbox layoffs</li>
+    <li>GlobalCapital — EUR corporate bond pipeline commentary</li>
+    <li>FRED (St. Louis Fed) — ICE BofA credit spread series</li>
+    <li>Federal Reserve — federalreserve.gov (FOMC calendar, June statement)</li>
+    <li>European Central Bank — ecb.europa.eu (June rate decision, inflation projections)</li>
+    <li>Kiplinger / Earnings Whispers — earnings calendar</li>
+  </ul>
+  <p style="margin-top:12px; color:#d29922;">Data collected automatically ~06:45-07:15 BST, Tuesday 7 July 2026. Verify all figures before making any trading or investment decision. Figures marked n/a could not be reliably sourced. Today's same-day Asian index closing levels and current EUR/USD, GBP/USD prints could not be confirmed at collection time and should be checked via Bloomberg or Reuters Eikon before use.</p>
+</div>
+
+</body>
+</html>
