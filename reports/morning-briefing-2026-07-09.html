@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Briefing — 9 July 2026</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg-card: #161b22;
+    --bg-table-header: #1c2333;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --heading: #e6edf3;
+    --text-muted: #8b949e;
+    --green: #3fb950;
+    --red: #f85149;
+    --amber: #d29922;
+    --blue: #58a6ff;
+    --accent: #388bfd;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 24px 20px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  .header { border-bottom: 2px solid var(--accent); padding-bottom: 14px; margin-bottom: 20px; }
+  .header h1 { font-size: 20px; font-weight: 700; color: var(--heading); letter-spacing: 1px; text-transform: uppercase; }
+  .header .meta { color: var(--text-muted); font-size: 12px; margin-top: 6px; }
+  .section-wrapper { margin-bottom: 14px; }
+  .section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px;
+  }
+  .section h2 {
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 12px;
+  }
+  .section h3 {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px;
+    color: var(--text-muted); margin: 14px 0 7px;
+  }
+  .section h3:first-of-type { margin-top: 4px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th {
+    background: var(--bg-table-header); color: var(--text-muted); text-align: left;
+    padding: 6px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;
+  }
+  td { padding: 5px 10px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .positive { color: var(--green); font-weight: 600; }
+  .negative { color: var(--red); font-weight: 600; }
+  .neutral { color: var(--text-muted); }
+  .nd { color: var(--text-muted); font-style: italic; }
+  .tag { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; vertical-align: middle; }
+  .tag-high { background: rgba(248,81,73,0.2); color: var(--red); }
+  .tag-med { background: rgba(210,153,34,0.2); color: var(--amber); }
+  .tag-tighten { background: rgba(63,185,80,0.2); color: var(--green); }
+  .tag-widen { background: rgba(248,81,73,0.2); color: var(--red); }
+  .item, .news-item, .stock-item, .theme-item, .event-item { padding: 9px 0; border-bottom: 1px solid var(--border); }
+  .item:last-child, .news-item:last-child, .stock-item:last-child, .theme-item:last-child, .event-item:last-child { border-bottom: none; }
+  .news-title, .stock-name, .theme-label { font-weight: 600; color: var(--heading); font-size: 13px; }
+  .src { color: var(--blue); font-size: 11px; }
+  .why { color: var(--text-muted); font-size: 12px; margin-top: 2px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .commentary { font-size: 12px; color: var(--text); margin-top: 8px; }
+  footer { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 11px; }
+  a { color: var(--blue); }
+
+  @media print {
+    body { background: #0d1117 !important; color: #c9d1d9 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .section, table, tr, td, th, .data-block, .theme-block, .calendar-row { page-break-inside: avoid !important; break-inside: avoid !important; }
+    h1, h2, h3, h4, h5, h6 { page-break-after: avoid !important; break-after: avoid !important; }
+    thead { display: table-header-group; }
+    p, li, div, span { orphans: 3; widows: 3; }
+    .section-wrapper { page-break-inside: avoid !important; break-inside: avoid !important; }
+    .item, .news-item, .stock-item, .theme-item, .event-item { page-break-inside: avoid !important; break-inside: avoid !important; }
+    @page { size: A4 landscape; margin: 12mm; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Morning Briefing — Thursday 9 July 2026</h1>
+  <div class="meta">Generated 06:45 London time (BST) &middot; Data collected 05:30&ndash;06:40 BST, 9 July 2026</div>
+</div>
+
+<!-- 2. IMPORTANT NEWS -->
+<div class="section-wrapper"><div class="section">
+  <h2>2. Important News</h2>
+  <div class="news-item">
+    <div class="news-title">Trump declares Iran ceasefire "over", US hits Kharg Island and strikes Strait of Hormuz targets</div>
+    <div class="why"><span class="src">CENTCOM / Al Jazeera / Britannica, 7&ndash;8 Jul</span> &mdash; the interim truce has collapsed. Kharg Island is Iran's main oil export terminal; IEA calls the disruption the largest in oil market history.</div>
+  </div>
+  <div class="news-item">
+    <div class="news-title">Iran retaliates, firing at Bahrain, Kuwait and Qatar</div>
+    <div class="why"><span class="src">AP via Yahoo Finance, 9 Jul</span> &mdash; conflict widening to Gulf states raises contagion and shipping-lane risk beyond Iran itself.</div>
+  </div>
+  <div class="news-item">
+    <div class="news-title">Brent spikes over 5% to $77.70/bbl on supply-shock fears</div>
+    <div class="why"><span class="src">Reuters / oilprice.com, 8 Jul</span> &mdash; biggest single input into today's inflation and rate-path debate.</div>
+  </div>
+  <div class="news-item">
+    <div class="news-title">Wall Street sells off on Iran headlines: Dow -1.09%, S&amp;P -0.28%, Nasdaq +0.20%</div>
+    <div class="why"><span class="src">CNBC, 8 Jul</span> &mdash; chip-led Nasdaq resilience diverges from broader risk-off in cyclicals and industrials.</div>
+  </div>
+  <div class="news-item">
+    <div class="news-title">Fed Chair Kevin Warsh: inflation "too high", declines to guide on rate path</div>
+    <div class="why"><span class="src">CNBC, 1 Jul</span> &mdash; September hike odds jumped to 69% from 58% as oil-driven inflation fears build ahead of the 31 July FOMC.</div>
+  </div>
+</div></div>
+
+<!-- 3. EUROPEAN FUTURES -->
+<div class="section-wrapper"><div class="section">
+  <h2>3. European Futures (Pre-Open)</h2>
+  <table style="page-break-inside: avoid;">
+    <thead><tr><th>Instrument</th><th>Level / Move</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td>Euro Stoxx 50 futures</td><td class="neutral">6,326 (range 6,283&ndash;6,338)</td><td>Roughly flat vs prior cash close; Eurex/Investing.com, ~06:00 BST</td></tr>
+      <tr style="page-break-inside: avoid;"><td>DAX futures</td><td class="negative">Soft bias, indicative -2.0%</td><td>TradingView/Barchart pre-open read; exact contract level n/a</td></tr>
+      <tr style="page-break-inside: avoid;"><td>CAC 40 futures</td><td class="nd">n/a</td><td>Not reliably sourced this session; soft bias expected after -1.7% Wed close</td></tr>
+      <tr style="page-break-inside: avoid;"><td>FTSE 100 futures</td><td class="negative">Soft bias, indicative -1.4%</td><td>TradingView/Barchart pre-open read; exact contract level n/a</td></tr>
+      <tr style="page-break-inside: avoid;"><td>S&amp;P 500 futures</td><td class="positive">+0.13%</td><td>CNBC, pre-market 9 Jul</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Nasdaq 100 futures</td><td class="positive">+0.1%</td><td>CNBC, pre-market 9 Jul</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Dow futures</td><td class="positive">+70 pts (~+0.1%)</td><td>CNBC, pre-market 9 Jul</td></tr>
+      <tr style="page-break-inside: avoid;"><td>VIX</td><td class="negative">18.08 (+12.1%)</td><td>Elevated volatility signal into the European open</td></tr>
+    </tbody>
+  </table>
+  <div class="commentary">US futures point to a stabilising, near-flat open after Wednesday's selloff. European futures carry a softer bias into the cash open as the Iran/Hormuz story continues to develop overnight.</div>
+</div></div>
+
+<!-- 4. YESTERDAY'S CLOSES -->
+<div class="section-wrapper"><div class="section">
+  <h2>4. Yesterday's Closes &mdash; European Indices (8 Jul 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <thead><tr><th>Index</th><th>Close</th><th>Change</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td>Euro Stoxx 50</td><td class="nd">n/a</td><td class="nd">n/a</td><td>Date-clean close level not reliably sourced this session</td></tr>
+      <tr style="page-break-inside: avoid;"><td>DAX</td><td class="nd">n/a level</td><td class="negative">-1.7%</td><td>Yahoo Finance / CNBC</td></tr>
+      <tr style="page-break-inside: avoid;"><td>CAC 40</td><td class="nd">n/a level</td><td class="negative">-1.7%</td><td>Yahoo Finance / CNBC</td></tr>
+      <tr style="page-break-inside: avoid;"><td>FTSE 100</td><td class="nd">n/a level</td><td class="negative">-0.9%</td><td>Yahoo Finance / CNBC</td></tr>
+    </tbody>
+  </table>
+  <div class="commentary">All three national benchmarks fell as escalating Middle East tensions weighed on sentiment; DAX and CAC led the decline.</div>
+</div></div>
+
+<!-- 5. US MARKETS -->
+<div class="section-wrapper"><div class="section">
+  <h2>5. US Markets — Yesterday's Session (8 Jul 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <thead><tr><th>Index</th><th>Close</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td>S&amp;P 500</td><td>7,482.71</td><td class="negative">-0.28%</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Dow Jones</td><td>52,348.39</td><td class="negative">-1.09% (-576.76 pts)</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Nasdaq Composite</td><td>25,870.65</td><td class="positive">+0.20%</td></tr>
+    </tbody>
+  </table>
+  <div class="commentary">Tone: risk-off after Trump said the Iran ceasefire was "over"; oil's 5%+ jump hit cyclicals and industrials. Leading: energy majors on the crude spike. Lagging: airlines (fuel cost exposure) and industrials. Nasdaq bucked the trend on a partial chip-stock rebound. Key takeaway: geopolitical risk premium back in the market, reviving Fed hike bets via the oil-inflation channel. Source: CNBC, TheStreet.</div>
+</div></div>
+
+<!-- 6. ASIAN MARKETS -->
+<div class="section-wrapper"><div class="section">
+  <h2>6. Asian Markets — Overnight Session (9 Jul 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <thead><tr><th>Index</th><th>Level</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td>Nikkei 225</td><td>67,849.98</td><td class="positive">+1.6%</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Hang Seng</td><td>23,762.00</td><td class="nd">n/a</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Shanghai Composite</td><td>3,995.17</td><td class="positive">+0.12%</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Kospi</td><td>7,616.96</td><td class="negative">-0.51%</td></tr>
+    </tbody>
+  </table>
+  <div class="commentary">Mixed/resilient overnight despite fresh Iran-US strikes. Tokyo led on a tech rebound (Tokyo Electron +5%, SoftBank +0.4%), offsetting broader oil-driven caution; Kospi softer. Source: CNBC, Yahoo Finance.</div>
+</div></div>
+
+<!-- 7. COMMODITIES -->
+<div class="section-wrapper"><div class="section">
+  <h2>7. Commodities</h2>
+  <table style="page-break-inside: avoid;">
+    <thead><tr><th>Commodity</th><th>Level</th><th>Change</th><th>Context</th></tr></thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td>Brent crude</td><td>$77.70/bbl</td><td class="negative">+5% (Wed)</td><td>Kharg Island strike; IEA: largest oil supply disruption on record</td></tr>
+      <tr style="page-break-inside: avoid;"><td>WTI crude</td><td>$74.04/bbl</td><td class="negative">+5.12%</td><td>Tracks Brent on Hormuz risk</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Gold</td><td>~$4,050/oz</td><td class="negative">-1%+ (Wed)</td><td>Fell despite war risk as dollar strength/Fed hike bets dominate; well off Jan 2026 record of $5,597.23</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Natural gas (TTF)</td><td>~€49.3/MWh</td><td class="negative">+5%+ (Tue, prior close €46.6)</td><td>Northwest Europe heatwave demand plus Hormuz LNG disruption fears</td></tr>
+      <tr style="page-break-inside: avoid;"><td>Copper</td><td>$6.02/lb</td><td class="positive">-2.53%</td><td>Stronger dollar, weaker manufacturing outlook</td></tr>
+    </tbody>
+  </table>
+</div></div>
+
+<!-- 8. RATES & FX -->
+<div class="section-wrapper"><div class="section">
+  <h2>8. Rates &amp; FX</h2>
+  <table style="page-break-inside: avoid;">
+    <thead><tr><th>Instrument</th><th>Level</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td>US 10Y Treasury</td><td>4.58&ndash;4.59%</td><td class="negative">Highest since June 2026</td></tr>
+      <tr style="page-break-inside: avoid;"><td>German 10Y Bund</td><td>2.92%</td><td class="neutral">Steady; +8bp last week</td></tr>
+      <tr style="page-break-inside: avoid;"><td>EUR/USD</td><td>~1.143</td><td class="negative">Softer on dollar strength</td></tr>
+      <tr style="page-break-inside: avoid;"><td>GBP/USD</td><td>~1.34</td><td class="neutral">Relatively resilient vs EUR</td></tr>
+      <tr style="page-break-inside: avoid;"><td>DXY</td><td>101.11</td><td class="positive">+0.09%</td></tr>
+    </tbody>
+  </table>
+  <div class="commentary">Fed September hike probability jumped to 69% (from 58%) on oil-driven inflation concern, pushing US yields to their highest since June.</div>
+</div></div>
+
+<!-- 9. DCM -->
+<div class="section-wrapper"><div class="section">
+  <h2>9. DCM — Primary Bond Market</h2>
+  <h3>Yesterday's Issuances</h3>
+  <div class="item"><span class="nd">Deal-level pricing for 8 Jul not reliably sourced this session &mdash; n/a.</span> Context: Honda Motor's inaugural euro bond (priced 3 Jul) helped push weekly euro corporate issuance to &euro;26.7bn; week of 29 Jun&ndash;3 Jul saw 45 new public deals price, 40 IG / 3 HY, with 82.5% of IG deals pricing flat-to-tight vs IPT (BVAL data via GuruFocus).</div>
+  <h3>Pipeline / Expected Today</h3>
+  <div class="item"><span class="nd">No specific mandates reliably sourced this session &mdash; n/a.</span> Issuers typically look to front-load supply ahead of summer blackouts; watch for a slower session given the overnight vol spike.</div>
+  <h3>Key Spreads</h3>
+  <table style="page-break-inside: avoid;">
+    <thead><tr><th>Index</th><th>Last confirmed level</th><th>As of</th><th>Direction</th></tr></thead>
+    <tbody>
+      <tr style="page-break-inside: avoid;"><td>iTraxx Crossover 5Y</td><td>315&ndash;320bp</td><td>Mid-May 2026 (stale)</td><td><span class="tag tag-widen">Risk: widening</span></td></tr>
+      <tr style="page-break-inside: avoid;"><td>iBoxx EUR HY OAS</td><td>340bp</td><td>Mid-May 2026 (stale)</td><td class="nd">n/a today</td></tr>
+      <tr style="page-break-inside: avoid;"><td>CDX.NA.HY 5Y</td><td>358bp</td><td>Mid-May 2026 (stale)</td><td class="nd">n/a today</td></tr>
+      <tr style="page-break-inside: avoid;"><td>iTraxx Main / CDX IG</td><td class="nd">n/a</td><td class="nd">n/a</td><td class="nd">n/a</td></tr>
+    </tbody>
+  </table>
+  <div class="commentary">Current-day spread prints were not available via web search this session; all levels above are last-confirmed and flagged stale. Given VIX at 18.08 (+12%) and the overnight oil shock, expect a more selective primary window today, wider new-issue concessions and slower drive-bys, particularly for energy-adjacent and transport credits.</div>
+</div></div>
+
+<!-- 10. ECONOMIC CALENDAR -->
+<div class="section-wrapper"><div class="section">
+  <h2>10. Economic Calendar (9 Jul 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <thead><tr><th>London time</th><th>Indicator</th><th>Consensus</th><th>Importance</th></tr></thead>
+    <tbody>
+      <tr class="calendar-row" style="page-break-inside: avoid;"><td class="nd">n/a</td><td class="nd">No releases reliably sourced this session</td><td class="nd">n/a</td><td><span class="tag tag-med">n/a</span></td></tr>
+    </tbody>
+  </table>
+  <div class="commentary">Next confirmed central bank dates: ECB rate decision 23 Jul 2026, 13:45 CET (non-projection meeting, Lagarde presser 14:30 CET); Fed FOMC rate decision 31 Jul 2026.</div>
+</div></div>
+
+<!-- 11. CORPORATE EVENTS & EARNINGS -->
+<div class="section-wrapper"><div class="section">
+  <h2>11. Corporate Events &amp; Earnings</h2>
+  <div class="event-item"><span class="news-title">PepsiCo (PEP) — Q2 earnings, 9 Jul</span><div class="why">Lowered market expectations after price-target cuts from JPMorgan, UBS, TD Cowen, Barclays and Bernstein; focus on Frito-Lay North America volumes. Source: TradingKey.</div></div>
+  <div class="event-item"><span class="news-title">~13 earnings scheduled across US markets today</span><div class="why">Per Yahoo Finance earnings calendar; individual European names not reliably identified this session &mdash; n/a.</div></div>
+</div></div>
+
+<!-- 12. STOCKS TO WATCH -->
+<div class="section-wrapper"><div class="section">
+  <h2>12. Stocks to Watch</h2>
+  <div class="stock-item"><span class="stock-name">Lockheed Martin / Northrop Grumman / Kratos / AeroVironment</span> — <span class="positive">Up</span><div class="why">Defense names rallying on renewed Iran conflict; Lockheed hit an all-time high. Source: Forbes, Euronews.</div></div>
+  <div class="stock-item"><span class="stock-name">Exxon Mobil / Chevron / Occidental / Diamondback Energy / APA Corp</span> — <span class="positive">Up</span><div class="why">US energy majors and E&amp;Ps gaining on the Brent/WTI spike. Source: Yahoo Finance.</div></div>
+  <div class="stock-item"><span class="stock-name">Equinor / Repsol / Woodside Energy / PetroChina</span> — <span class="positive">Up</span><div class="why">Non-US energy majors extending gains alongside the crude rally.</div></div>
+  <div class="stock-item"><span class="stock-name">American Airlines / United / Delta / Southwest / JetBlue</span> — <span class="negative">Down</span><div class="why">Airlines pressured by fuel-cost exposure as the ceasefire collapse repriced oil risk; American down ~4%, United ~2.5%.</div></div>
+  <div class="stock-item"><span class="stock-name">Tokyo Electron / SoftBank</span> — <span class="positive">Up</span><div class="why">Leading the Nikkei's overnight tech rebound (+5% and +0.4% respectively).</div></div>
+  <div class="stock-item"><span class="stock-name">Shipping / tanker operators</span> — <span class="tag tag-med">Watch</span><div class="why">War-risk insurance for Hormuz transits up to ~4,000x pre-crisis levels; tanker traffic through the strait down ~95% since late Feb. Specific listed names not reliably sourced this session &mdash; n/a.</div></div>
+  <div class="stock-item"><span class="stock-name">PepsiCo (PEP)</span> — <span class="tag tag-med">Watch</span><div class="why">Q2 print today; multiple sell-side target cuts set a low bar into the release.</div></div>
+</div></div>
+
+<!-- 13. MACRO / CORPORATE / POLITICAL -->
+<div class="section-wrapper"><div class="section">
+  <h2>13. Macro / Corporate / Political Highlights</h2>
+  <div class="grid3">
+    <div>
+      <h3>Macro</h3>
+      <div class="item">Fed Chair Kevin Warsh: inflation "too high", no July guidance given.</div>
+      <div class="item">September Fed hike odds jumped to 69% from 58% on oil-driven inflation risk.</div>
+      <div class="item">US 10Y yield at its highest since June 2026 (4.58&ndash;4.59%).</div>
+    </div>
+    <div>
+      <h3>Corporate</h3>
+      <div class="item">Honda's inaugural euro bond helped drive weekly euro issuance to &euro;26.7bn.</div>
+      <div class="item">PepsiCo reports Q2 today against a lowered bar.</div>
+      <div class="item">Energy majors (Exxon, Chevron, Equinor, Repsol) extending gains on the oil spike.</div>
+    </div>
+    <div>
+      <h3>Political / Geopolitical</h3>
+      <div class="item">Iran ceasefire declared "over"; US strikes Kharg Island and Hormuz-area targets.</div>
+      <div class="item">Iran retaliates against Bahrain, Kuwait and Qatar — regional widening risk.</div>
+      <div class="item">Strait of Hormuz transit down ~95% since 28 Feb; US government backstopping war-risk insurance.</div>
+    </div>
+  </div>
+</div></div>
+
+<!-- 14. KEY THEMES -->
+<div class="section-wrapper"><div class="section">
+  <h2>14. Key Themes — Top 5 by Horizon</h2>
+  <h3>Today's Top 5</h3>
+  <div class="theme-block">
+    <div class="theme-item"><span class="theme-label">1. Iran-US escalation follow-through</span> — further strikes or retaliation could reignite yesterday's selloff.</div>
+    <div class="theme-item"><span class="theme-label">2. PepsiCo Q2 earnings</span> — read-through for consumer staples demand into a soft macro backdrop.</div>
+    <div class="theme-item"><span class="theme-label">3. Oil price path</span> — Brent above $77 tests inflation and rate-path assumptions.</div>
+    <div class="theme-item"><span class="theme-label">4. US futures stabilisation</span> — watch whether the calm pre-market tone holds into the cash open.</div>
+    <div class="theme-item"><span class="theme-label">5. Credit primary market</span> — will issuers price into a VIX-at-18 backdrop, or does the window shut?</div>
+  </div>
+  <h3>This Week's Top 5</h3>
+  <div class="theme-block">
+    <div class="theme-item"><span class="theme-label">1. Hormuz shipping/insurance developments</span> — war-risk premiums and traffic data are a live inflation and freight-cost input.</div>
+    <div class="theme-item"><span class="theme-label">2. US macro data flow</span> — specific releases n/a this session; treat as a watch item pending confirmation.</div>
+    <div class="theme-item"><span class="theme-label">3. European earnings ramp</span> — pace picking up toward the end-of-July peak.</div>
+    <div class="theme-item"><span class="theme-label">4. Fed commentary</span> — speakers positioning ahead of the 31 Jul FOMC.</div>
+    <div class="theme-item"><span class="theme-label">5. Euro IG/HY primary pace</span> — following the Honda-led &euro;26.7bn week.</div>
+  </div>
+  <h3>This Month's Top 5</h3>
+  <div class="theme-block">
+    <div class="theme-item"><span class="theme-label">1. ECB rate decision, 23 Jul</span> — non-projection meeting; statement and Lagarde presser are the only communication tools.</div>
+    <div class="theme-item"><span class="theme-label">2. Fed FOMC, 31 Jul</span> — decision under Chair Warsh amid rising hike-probability pricing.</div>
+    <div class="theme-item"><span class="theme-label">3. Peak Q2 earnings season</span> — over 90% of Stoxx 600 market cap due to report by end-August; last week of July busiest.</div>
+    <div class="theme-item"><span class="theme-label">4. Iran war / Hormuz resolution risk</span> — the single largest swing factor for oil, gas and inflation expectations.</div>
+    <div class="theme-item"><span class="theme-label">5. Credit spread direction</span> — whether iTraxx/CDX levels re-price wider if oil stays elevated.</div>
+  </div>
+</div></div>
+
+<!-- 15. KEY TRENDS TO WATCH -->
+<div class="section-wrapper"><div class="section">
+  <h2>15. Key Trends to Watch</h2>
+  <h3>1 Day</h3>
+  <div class="item">Iran conflict headlines, oil follow-through, PepsiCo earnings reaction, and whether the soft European futures bias holds into the cash open.</div>
+  <h3>1 Week</h3>
+  <div class="item">Hormuz shipping/insurance market evolution, pace of primary bond issuance, Fed speakers ahead of the 31 Jul FOMC, and the European earnings ramp.</div>
+  <h3>1 Month</h3>
+  <div class="item">ECB (23 Jul) and Fed (31 Jul) decisions, peak Q2 earnings season, the resolution path of the Iran conflict and its inflation/growth implications, and credit spread direction if oil stays elevated.</div>
+</div></div>
+
+<footer>
+  Sources: Reuters, CNBC, Bloomberg, Yahoo Finance, TheStreet, Al Jazeera, CENTCOM, Britannica, GuruFocus, Forbes, Euronews, TradingKey, Investing.com, TradingView, Eurex, Barchart, oilprice.com, LiteFinance, Fortune.<br>
+  Data collected automatically. Verify before making any decision.
+</footer>
+
+</body>
+</html>
