@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Briefing — 16 July 2026</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg-card: #161b22;
+    --bg-table-header: #1c2333;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --heading: #e6edf3;
+    --text-muted: #8b949e;
+    --green: #3fb950;
+    --red: #f85149;
+    --blue: #58a6ff;
+    --yellow: #d29922;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 13px;
+    line-height: 1.55;
+    padding: 24px 20px;
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+  .header {
+    border-bottom: 2px solid var(--blue);
+    padding-bottom: 14px;
+    margin-bottom: 20px;
+  }
+  .header h1 {
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--heading);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .header .meta {
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-top: 6px;
+  }
+  .section-wrapper { margin-bottom: 14px; }
+  .section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px;
+  }
+  .section h2 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--blue);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+  .section h3 {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--heading);
+    margin: 16px 0 8px;
+  }
+  .section h3:first-of-type { margin-top: 4px; }
+  .item {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .item:last-child { border-bottom: none; }
+  .item .label { color: var(--heading); font-weight: 700; }
+  .item .src { color: var(--text-muted); font-size: 11px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+  th {
+    background: var(--bg-table-header);
+    color: var(--text-muted);
+    text-align: left;
+    padding: 6px 10px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  td {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  .positive { color: var(--green); font-weight: 700; }
+  .negative { color: var(--red); font-weight: 700; }
+  .neutral { color: var(--text-muted); }
+  .nd { color: var(--text-muted); font-style: italic; }
+  .warn { color: var(--yellow); }
+  .tag {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    vertical-align: middle;
+  }
+  .tag-high { background: rgba(248,81,73,0.18); color: var(--red); }
+  .tag-med { background: rgba(210,153,34,0.18); color: var(--yellow); }
+  .tag-tighten { background: rgba(63,185,80,0.18); color: var(--green); }
+  .tag-widen { background: rgba(248,81,73,0.18); color: var(--red); }
+  .col2 { columns: 2; column-gap: 24px; }
+  .col3 { columns: 3; column-gap: 20px; }
+  .col3 > div, .col2 > div { break-inside: avoid; margin-bottom: 10px; }
+  .theme-block h4 {
+    font-size: 11px;
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .theme-item { margin-bottom: 8px; font-size: 12px; }
+  .theme-item .num { color: var(--yellow); font-weight: 700; margin-right: 4px; }
+  footer {
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.6;
+  }
+  a { color: var(--blue); }
+
+  @media print {
+    body {
+      background: #0d1117 !important;
+      color: #c9d1d9 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .section, table, tr, td, th, .data-block, .theme-block, .calendar-row {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+    }
+    thead { display: table-header-group; }
+    p, li, div, span {
+      orphans: 3;
+      widows: 3;
+    }
+    .section-wrapper {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    .item, .news-item, .stock-item, .theme-item, .event-item {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    @page {
+      size: A4 landscape;
+      margin: 12mm;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Morning Briefing</h1>
+  <div class="meta">Thursday 16 July 2026 &nbsp;|&nbsp; Generated ~08:45 London time (BST) &nbsp;|&nbsp; Pre-European-open</div>
+</div>
+
+<!-- 2. IMPORTANT NEWS -->
+<div class="section-wrapper">
+<div class="section">
+<h2>2. Important News</h2>
+
+<div class="item news-item">
+  <div class="label">1. US revokes Iran oil sanctions waiver; Hormuz tensions escalate further</div>
+  <div>US and Iranian forces exchanged strikes near the Strait of Hormuz over the weekend; Washington revoked the waiver allowing Iranian oil sales, effective 00:01 EDT 17 July. Brent has risen for a fourth straight session (~$85/bbl in Asian trade). The Strait handles ~20% of global oil flow, making this the dominant tail risk for energy prices and risk assets into the European open.</div>
+  <div class="src">Source: CNBC, Al Jazeera — collected ~06:30 BST</div>
+</div>
+
+<div class="item news-item">
+  <div class="label">2. Asia semiconductor rout deepens overnight, Kospi sidecar triggered</div>
+  <div>Kospi opened -4.45% and fell as much as ~7% intraday, triggering a sell-side sidecar circuit-breaker (37th of 2026); SK Hynix -11%, Samsung -7%. Nikkei 225 fell ~2.6% in sympathy (Advantest, SoftBank, Tokyo Electron -5 to -7%). Signals growing doubt the AI-capex rally can sustain current valuations ahead of TSMC's results today.</div>
+  <div class="src">Source: Korea JoongAng Daily, CNBC — collected ~07:00 BST</div>
+</div>
+
+<div class="item news-item">
+  <div class="label">3. Wall Street closed higher on soft PPI, Apple record high, ASML outlook</div>
+  <div>S&amp;P 500 +0.38% to 7,572.40; Nasdaq +0.62% to 26,269.23; Dow +0.29% to 52,658.64. Apple hit a record high on reports of Chinese approval for generative-AI features; June PPI came in softer than expected (core +0.2% m/m). Chip stocks were the exception, with Micron -8%. Confirms a split market — mega-cap tech strength vs. memory-chip weakness.</div>
+  <div class="src">Source: Yahoo Finance, Bloomberg — 15 July close</div>
+</div>
+
+<div class="item news-item">
+  <div class="label">4. TSMC Q2 results due today — key AI-capex bellwether</div>
+  <div>Reports 07:00 BST (14:00 Taipei). Consensus revenue ~$40bn (+~33% y/y), EPS ~$3.80-3.83/ADR. Investors focused on CoWoS packaging capacity and 2nm ramp commentary. Given the overnight chip selloff, guidance will likely set the tone for European tech trading today.</div>
+  <div class="src">Source: Yahoo Finance, TechTimes</div>
+</div>
+
+<div class="item news-item">
+  <div class="label">5. Fed Chair Warsh's credibility test continues after first congressional testimony</div>
+  <div>In testimony on 14 July, Warsh pledged "no tolerance for persistently elevated inflation" while cautioning against declaring "mission accomplished" despite June CPI easing to 3.5% y/y. Markets are recalibrating the rate path around his tone into the 28-29 July FOMC.</div>
+  <div class="src">Source: CBS News, CNBC</div>
+</div>
+
+</div>
+</div>
+
+<!-- 3. EUROPEAN FUTURES -->
+<div class="section-wrapper">
+<div class="section">
+<h2>3. European Futures (Pre-Open)</h2>
+<table style="page-break-inside: avoid;">
+<thead><tr><th>Instrument</th><th>Level</th><th>Vs. yesterday's close</th></tr></thead>
+<tbody>
+<tr style="page-break-inside: avoid;"><td>Euro Stoxx 50 futures</td><td>~6,326</td><td class="positive">≈ +0.9%</td></tr>
+<tr style="page-break-inside: avoid;"><td>DAX futures</td><td>~25,114</td><td class="positive">≈ +0.5%</td></tr>
+<tr style="page-break-inside: avoid;"><td>CAC 40 futures</td><td>~8,360.5</td><td class="negative">≈ -0.26%</td></tr>
+<tr style="page-break-inside: avoid;"><td>FTSE 100 futures</td><td>~10,425.1</td><td class="negative">≈ -0.86%</td></tr>
+<tr style="page-break-inside: avoid;"><td>S&amp;P 500 futures (context)</td><td>n/a level</td><td class="positive">+0.1%</td></tr>
+<tr style="page-break-inside: avoid;"><td>Nasdaq 100 futures (context)</td><td>n/a level</td><td class="positive">+0.1%</td></tr>
+</tbody>
+</table>
+<div class="item">US futures nudged higher early Thursday on carry-over from Wednesday's cooler-inflation rally, but gains are capped by fresh Iran-strike headlines. European futures point to a mixed-to-softer open, weighed by the overnight Asian chip/tech rout. <span class="warn">Note: DAX futures % move is internally inconsistent across sources — treat as indicative.</span></div>
+<div class="src">Sources: Investing.com, Eurex, CNBC, Benzinga — collected pre-open, 16 July</div>
+</div>
+</div>
+
+<!-- 4. YESTERDAY'S CLOSES -->
+<div class="section-wrapper">
+<div class="section">
+<h2>4. Yesterday's Closes — Europe (15 July 2026)</h2>
+<table style="page-break-inside: avoid;">
+<thead><tr><th>Index</th><th>Close</th><th>Change</th></tr></thead>
+<tbody>
+<tr style="page-break-inside: avoid;"><td>Euro Stoxx 50</td><td>6,267</td><td class="negative">-0.2%</td></tr>
+<tr style="page-break-inside: avoid;"><td>DAX</td><td>24,999.53</td><td class="negative">-0.59%</td></tr>
+<tr style="page-break-inside: avoid;"><td>CAC 40</td><td>8,382.43</td><td class="positive">+0.19%</td></tr>
+<tr style="page-break-inside: avoid;"><td>FTSE 100</td><td>10,515.92</td><td class="negative">-0.13%</td></tr>
+<tr style="page-break-inside: avoid;"><td>STOXX Europe 600 (context)</td><td>~643</td><td class="positive">+0.1%</td></tr>
+</tbody>
+</table>
+<div class="item">European shares closed mixed Wednesday, caution over escalating US-Iran tensions offsetting strong corporate earnings (Richemont, ASML). Commodity/mining and oil stocks led FTSE 100 losses (Shell -0.5%, BP -1.6%); Milan underperformed (-0.85%); Paris was the lone gainer among the big four.</div>
+<div class="src">Sources: Investing.com, Trading Economics, Proactive Investors, CNBC</div>
+</div>
+</div>
+
+<!-- 5. US MARKETS -->
+<div class="section-wrapper">
+<div class="section">
+<h2>5. US Markets — Yesterday's Session (15 July 2026)</h2>
+<table style="page-break-inside: avoid;">
+<thead><tr><th>Index</th><th>Close</th><th>Change</th></tr></thead>
+<tbody>
+<tr style="page-break-inside: avoid;"><td>S&amp;P 500</td><td>7,572.40</td><td class="positive">+0.38%</td></tr>
+<tr style="page-break-inside: avoid;"><td>Dow Jones Industrial Average</td><td>52,658.64</td><td class="positive">+0.29% (+150.37 pts)</td></tr>
+<tr style="page-break-inside: avoid;"><td>Nasdaq Composite</td><td>26,269.23</td><td class="positive">+0.62% (+162.22 pts)</td></tr>
+</tbody>
+</table>
+<div class="item"><span class="label">Tone:</span> Risk-on. Cooler-than-expected June PPI lowered near-term Fed-tightening expectations and drove a broad mega-cap tech rally, even as Brent extended gains on US-Iran strikes.</div>
+<div class="item"><span class="label">Leading:</span> Technology (XLK +1.3%), Communication Services (XLC +1.1%), Energy (XLE +0.4%). Apple +4% to a fresh record high; Alphabet +3.2%, Meta +3.1%, Amazon +3.0%, Microsoft +2.8%.</div>
+<div class="item"><span class="label">Lagging:</span> Health Care (XLV -1.9%). Chipmakers diverged from the broader rally: Micron -8%, Lam Research -3%, AMD -3%.</div>
+<div class="item"><span class="label">Key takeaway:</span> Soft inflation data powered an Apple-led mega-cap rally that offset healthcare weakness and chipmaker profit-taking — a split that foreshadowed the sharper semiconductor reversal seen overnight in Asia.</div>
+<div class="src">Sources: Yahoo Finance, TheStreet, Bloomberg</div>
+</div>
+</div>
+
+<!-- 6. ASIAN MARKETS -->
+<div class="section-wrapper">
+<div class="section">
+<h2>6. Asian Markets — Overnight Session (16 July 2026)</h2>
+<table style="page-break-inside: avoid;">
+<thead><tr><th>Index</th><th>Level</th><th>Change</th></tr></thead>
+<tbody>
+<tr style="page-break-inside: avoid;"><td>Nikkei 225</td><td>~66,960</td><td class="negative">-2.6%</td></tr>
+<tr style="page-break-inside: avoid;"><td>Kospi</td><td class="nd">Close n/a — opened -4.45%, intraday low ≈ -7.2%, sell-side sidecar triggered</td><td class="negative warn">Plunging (halted)</td></tr>
+<tr style="page-break-inside: avoid;"><td>Hang Seng</td><td class="nd">n/a for 16 Jul — last confirmed 24,681.10 (15 Jul)</td><td class="positive">+1.40% (15 Jul, for reference)</td></tr>
+<tr style="page-break-inside: avoid;"><td>Shanghai Composite</td><td class="nd">n/a for 16 Jul — last confirmed 3,955.58 (15 Jul)</td><td class="negative">-0.30% (15 Jul, for reference)</td></tr>
+</tbody>
+</table>
+<div class="item">A sharp, semiconductor-led selloff dominated the overnight session, contrasting with Wall Street's inflation-driven rally. Kospi's sidecar was its 37th trigger of 2026, with SK Hynix -10.95% and Samsung -7.33% reversing Wednesday's gains on renewed AI/chip-valuation jitters. Nikkei fell in sympathy, led down by Kioxia (-8.7%), Tokyo Electron (-5.2%) and SoftBank (-5.9%). Escalating US-Iran tensions add a risk-off layer alongside the chip unwind. <span class="warn">Hong Kong and Shanghai same-day closes could not be confirmed at collection time — recommend a live check before the report goes out.</span></div>
+<div class="src">Sources: Korea JoongAng Daily, Asia Business Daily, Trading Economics, BBNTimes, BigGo Finance — collected ~07:15 BST</div>
+</div>
+</div>
+
+<!-- 7. COMMODITIES -->
+<div class="section-wrapper">
+<div class="section">
+<h2>7. Commodities</h2>
+<table style="page-break-inside: avoid;">
+<thead><tr><th>Commodity</th><th>Level</th><th>Change</th></tr></thead>
+<tbody>
+<tr style="page-break-inside: avoid;"><td>Brent crude (ICE front-month)</td><td>~$84.73/bbl</td><td class="positive">+0.01% (flat into close)</td></tr>
+<tr style="page-break-inside: avoid;"><td>WTI crude</td><td>~$80.17/bbl</td><td class="positive">+1.05%</td></tr>
+<tr style="page-break-inside: avoid;"><td>Gold (spot XAU/USD)</td><td>$4,000–4,100/oz (sources vary)</td><td class="negative">≈ -0.7%</td></tr>
+<tr style="page-break-inside: avoid;"><td>Natural gas — TTF (EU benchmark)</td><td>€54.53/MWh</td><td class="positive">+2.56%</td></tr>
+<tr style="page-break-inside: avoid;"><td>Natural gas — Henry Hub</td><td class="nd">n/a (stale, last $3.29/MMBtu on 6 Jul)</td><td class="nd">n/a</td></tr>
+<tr style="page-break-inside: avoid;"><td>Copper (COMEX)</td><td>$6.15–6.33/lb (sources conflict)</td><td class="neutral">≈ flat to +1.2%</td></tr>
+</tbody>
+</table>
+<div class="item">Brent up a fourth straight session (~7% over the past month, &gt;23% y/y) after the US struck Iran and reinstated a naval posture near the Strait of Hormuz; shipping tracker MarineTraffic reports Hormuz transits down &gt;50% w/w. TTF gas at its highest in over three months on European LNG-supply security concerns. Gold pulled back from Tuesday's high near $4,100 as the oil rally revived inflation/rate-outlook concerns, offsetting some safe-haven bid.</div>
+<div class="src">Sources: Trading Economics, Al Jazeera, CNBC, Fortune — 15 July close/session</div>
+</div>
+</div>
+
+<!-- 8. RATES & FX -->
+<div class="section-wrapper">
+<div class="section">
+<h2>8. Rates &amp; FX</h2>
+<table style="page-break-inside: avoid;">
+<thead><tr><th>Instrument</th><th>Level</th><th>Change</th></tr></thead>
+<tbody>
+<tr style="page-break-inside: avoid;"><td>US 10-year Treasury yield</td><td>~4.59%</td><td class="neutral">Little changed</td></tr>
+<tr style="page-break-inside: avoid;"><td>German 10-year Bund yield</td><td>~3.05–3.09%</td><td class="positive">Highest since 21 May</td></tr>
+<tr style="page-break-inside: avoid;"><td>EUR/USD</td><td>~1.1469</td><td class="positive">Strongest since 19 June</td></tr>
+<tr style="page-break-inside: avoid;"><td>GBP/USD</td><td>~1.3548</td><td class="positive">+0.54%</td></tr>
+<tr style="page-break-inside: avoid;"><td>DXY (dollar index)</td><td>100.79</td><td class="negative">-0.13%</td></tr>
+</tbody>
+</table>
+<div class="item">Two cross-asset drivers dominate: an escalating US-Iran conflict (oil up, gold safe-haven bid, Bund yields pressured by inflation risk) crossing with a softer-than-expected June US CPI print (dollar down, front-end Fed-hike bets pared back). GBP strength reflects rising BoE rate-hike expectations (November hike now fully priced) after the oil-driven inflation scare, plus a reduced UK political-risk premium.</div>
+<div class="src">Sources: CNBC, Trading Economics, ECB, TradingKey, Vantage Markets — 15 July close/session</div>
+</div>
+</div>
+
+<!-- 9. DCM -->
+<div class="section-wrapper">
+<div class="section">
+<h2>9. DCM — Primary Bond Market</h2>
+
+<h3>Yesterday's Issuances (15 July 2026)</h3>
+<table style="page-break-inside: avoid;">
+<thead><tr><th>Issuer</th><th>Size</th><th>Maturity</th><th>Coupon/Spread</th><th>IPT-to-pricing</th></tr></thead>
+<tbody>
+<tr style="page-break-inside: avoid;"><td>Goldman Sachs Group (FIG) — 3-tranche EUR senior unsecured</td><td>€5bn</td><td class="nd">n/a</td><td class="nd">n/a</td><td class="nd">n/a</td></tr>
+</tbody>
+</table>
+<div class="item">Goldman priced €5bn in euros the day after a $10bn USD deal — over $15bn-equivalent raised in ~24 hours post-Q2 earnings, reportedly conceding "juicy" new-issue premiums. Deal-level blotter detail (individual tranches, coupons, tightening in bps) sits behind IFR/GlobalCapital paywalls and could not be confirmed — all other 15 July European IG/HY/SSA/FIG pricing detail is <span class="nd">n/a</span>.</div>
+
+<h3>Pipeline / Expected Today &amp; This Week</h3>
+<div class="item">GlobalCapital flags issuers "eyeing a window" in Europe's IG corporate market and a possible rebound in sterling issuance, but specific mandated names, sizes and timing are <span class="nd">n/a</span> (paywalled). Seasonally, July-August is typically slower for SSA syndication in Europe; EU Commission continues its H2 funding programme (€80bn planned July-December) with no specific 16 July syndication confirmed.</div>
+
+<h3>Key Spreads</h3>
+<table style="page-break-inside: avoid;">
+<thead><tr><th>Index</th><th>Level</th><th>Move</th><th>Direction</th></tr></thead>
+<tbody>
+<tr style="page-break-inside: avoid;"><td>iTraxx Main (5Y)</td><td class="nd">n/a for 16 Jul</td><td class="nd">n/a</td><td class="nd">n/a</td></tr>
+<tr style="page-break-inside: avoid;"><td>iTraxx Crossover (5Y)</td><td class="nd">n/a for 16 Jul (last dated point: 246bp, 9 Jul)</td><td class="nd">n/a</td><td class="nd">n/a</td></tr>
+<tr style="page-break-inside: avoid;"><td>CDX IG</td><td class="nd">n/a</td><td class="nd">n/a</td><td class="nd">n/a</td></tr>
+<tr style="page-break-inside: avoid;"><td>Avg. euro corporate IG spread</td><td class="nd">n/a</td><td class="nd">n/a</td><td class="nd">n/a</td></tr>
+</tbody>
+</table>
+<div class="item"><span class="warn">Intraday credit-index levels are not reliably indexed by search engines same-day; do not treat stale reference points as current. Recommend a live terminal check (Bloomberg/Markit) before publication.</span></div>
+
+<h3>Commentary</h3>
+<div class="item">Tone into 16 July is constructive but selective: Goldman's willingness to pay real new-issue premium to print €5bn signals the window is open for well-known FIG names, consistent with a recurring "NIPs climbing as books thin" narrative through 2026. Summer seasonality is expected to thin broader issuance, so activity this week likely stays front-loaded by financials rather than a broad industrials/transport/energy push — sector-specific appetite claims for the latter are unconfirmed.</div>
+<div class="src">Sources: Bloomberg, GlobalCapital, EIB, Gate.com — collected 16 July</div>
+</div>
+</div>
+
+<!-- 10. ECONOMIC CALENDAR -->
+<div class="section-wrapper">
+<div class="section">
+<h2>10. Economic Calendar — Today (16 July 2026)</h2>
+<table style="page-break-inside: avoid;">
+<thead><tr><th>London time</th><th>Region</th><th>Indicator</th><th>Consensus</th><th>Importance</th></tr></thead>
+<tbody>
+<tr class="calendar-row" style="page-break-inside: avoid;"><td>13:30</td><td>US</td><td>Retail Sales (June)</td><td>+0.2% m/m</td><td><span class="tag tag-high">High</span></td></tr>
+<tr class="calendar-row" style="page-break-inside: avoid;"><td>13:30</td><td>US</td><td>Initial Jobless Claims (w/e 11 Jul)</td><td>216K</td><td><span class="tag tag-med">Medium</span></td></tr>
+<tr class="calendar-row" style="page-break-inside: avoid;"><td>13:30</td><td>US</td><td>Continuing Jobless Claims</td><td>1,820K</td><td><span class="tag tag-med">Medium</span></td></tr>
+<tr class="calendar-row" style="page-break-inside: avoid;"><td>13:30</td><td>US</td><td>Philadelphia Fed Manufacturing Index (July)</td><td class="nd">n/a</td><td><span class="tag tag-med">Medium</span></td></tr>
+<tr class="calendar-row" style="page-break-inside: avoid;"><td>n/a</td><td>US</td><td>Iran oil sanctions waiver expiry (00:01 EDT 17 Jul / ~05:01 BST)</td><td class="nd">n/a</td><td><span class="tag tag-high">High</span></td></tr>
+<tr class="calendar-row" style="page-break-inside: avoid;"><td>n/a</td><td>Eurozone</td><td>No major release today — final June HICP due tomorrow, 17 Jul (flash: 2.8% y/y, core 2.4%)</td><td class="nd">n/a</td><td class="nd">n/a</td></tr>
+<tr class="calendar-row" style="page-break-inside: avoid;"><td>n/a</td><td>UK</td><td>No confirmed major release today — verify DMO/ONS calendar directly</td><td class="nd">n/a</td><td class="nd">n/a</td></tr>
+</tbody>
+</table>
+<div class="item"><span class="warn">"Pending Home Sales" timing found in search results looked inconsistent with the series' usual schedule — omitted rather than published unverified. UK-specific data point for today could not be confirmed; check ONS/DMO calendars directly.</span></div>
+<div class="src">Sources: Investing.com, Trading Economics, Eurostat, ECB, ONS</div>
+</div>
+</div>
+
+<!-- 11. CORPORATE EVENTS & EARNINGS -->
+<div class="section-wrapper">
+<div class="section">
+<h2>11. Corporate Events &amp; Earnings — Today</h2>
+<div class="item event-item"><span class="label">Before US open:</span> UnitedHealth Group, GE Aerospace, Abbott Laboratories (consensus EPS ~$1.28) — all Q2 earnings.</div>
+<div class="item event-item"><span class="label">Asia session:</span> TSMC Q2 earnings conference, 07:00 BST — consensus revenue ~$40bn, EPS ~$3.80-3.83/ADR.</div>
+<div class="item event-item"><span class="label">After US close:</span> Netflix Q2 earnings, ~21:01 BST.</div>
+<div class="item event-item"><span class="label">Europe:</span> No confirmed major FTSE/DAX/CAC earnings or AGMs identified for today specifically — recommend a final Sharecast/MarketScreener company-diary check closer to the open.</div>
+<div class="src">Sources: FX Leaders, Alphastreet, Yahoo Finance, TechTimes</div>
+</div>
+</div>
+
+<!-- 12. STOCKS TO WATCH -->
+<div class="section-wrapper">
+<div class="section">
+<h2>12. Stocks to Watch</h2>
+<table style="page-break-inside: avoid;">
+<thead><tr><th>Company</th><th>Reason</th><th>Direction</th></tr></thead>
+<tbody>
+<tr style="page-break-inside: avoid;"><td>United Airlines</td><td>Q2 beat, raised FY26 EPS guide; but Q3 guidance missed on a ~$6bn higher fuel bill</td><td class="negative">Down</td></tr>
+<tr style="page-break-inside: avoid;"><td>easyJet</td><td>Apollo tabled a rival 715p/share bid vs. Castlelake's agreed 690p; shares near 2022 highs but below top bid</td><td class="neutral">Up/volatile</td></tr>
+<tr style="page-break-inside: avoid;"><td>IAG / Lufthansa / Ryanair</td><td>Jet fuel spot prices up &gt;120% since the conflict began; Lufthansa -16%, Ryanair -10% on margin fears</td><td class="negative">Down</td></tr>
+<tr style="page-break-inside: avoid;"><td>Segro</td><td>Prologis's £12.6bn hostile approach live; Rule 2.6(a) "put up or shut up" deadline 22 July</td><td class="neutral">Up/volatile</td></tr>
+<tr style="page-break-inside: avoid;"><td>Samsung Electronics / SK Hynix</td><td>Renewed AI-capex-peak fears triggered fresh Kospi rout; chipmakers ~half of Kospi weight</td><td class="negative">Down</td></tr>
+<tr style="page-break-inside: avoid;"><td>ASML</td><td>Q2 revenue €9.33bn beat, FY26 guidance raised sharply to €43-45bn; positive read-through for chip-equipment suppliers</td><td class="positive">Up</td></tr>
+<tr style="page-break-inside: avoid;"><td>Richemont</td><td>Q1 sales growth nearly double consensus; lifting LVMH and Hermès in sympathy</td><td class="positive">Up</td></tr>
+<tr style="page-break-inside: avoid;"><td>Morgan Stanley / BlackRock</td><td>MS record Q2 profit (+58% y/y) on equities-trading surge; BLK beat on AUM gains — sets tone for European financials</td><td class="positive">Up</td></tr>
+<tr style="page-break-inside: avoid;"><td>ExxonMobil</td><td>Cleanest pure-play on the oil shock, with Brent volatile on US-Iran/Hormuz tensions</td><td class="positive">Up</td></tr>
+<tr style="page-break-inside: avoid;"><td>Hapag-Lloyd / Maersk</td><td>Hapag-Lloyd raised FY26 EBITDA guidance on strong spot rates, but shares fell on plans to resume Suez/Red Sea routing (capacity-relief, rate-normalization risk)</td><td class="neutral">Mixed</td></tr>
+</tbody>
+</table>
+<div class="src">Sources: Bloomberg, Fortune, CNBC, TradingKey, The Loadstar</div>
+</div>
+</div>
+
+<!-- 13. MACRO / CORPORATE / POLITICAL HIGHLIGHTS -->
+<div class="section-wrapper">
+<div class="section">
+<h2>13. Macro / Corporate / Political Highlights</h2>
+<div class="col3">
+<div>
+<h3>Macro</h3>
+<div class="item">US June CPI cooled to 3.5% y/y (vs 3.8% expected); headline -0.4% m/m on falling energy prices.</div>
+<div class="item">China Q2 GDP +4.3% y/y, slowest since late 2022; weak consumption (retail sales +1.3%) offsetting AI/export-driven manufacturing strength.</div>
+<div class="item">ECB hiked to 2.25% on 11 June on Iran-driven energy inflation; next meeting 24 July. BoE held at 3.75% on 18 June (7-2 vote); next meeting 30 July with new Monetary Policy Report.</div>
+<div class="item">Next FOMC 28-29 July; consensus is a hold at 3.50-3.75%.</div>
+</div>
+<div>
+<h3>Corporate</h3>
+<div class="item">Q2 bank earnings season in full swing: JPMorgan, Goldman, BofA, Wells Fargo, Citi (14 Jul); Morgan Stanley, BlackRock, ASML, Richemont, PNC, Elevance (15-16 Jul).</div>
+<div class="item">M&amp;A: Prologis's £12.6bn hostile Segro approach (deadline 22 Jul); Apollo vs. Castlelake bidding war for easyJet (~£5.4bn); Novartis to acquire Myricx Bio ($1.1bn upfront).</div>
+<div class="item">European Q2 earnings tracking to the best since 2021 for the STOXX 600 (+15.3%), but almost entirely energy-driven — ex-energy growth only ~6%, well below the S&amp;P 500's ~19.6%.</div>
+</div>
+<div>
+<h3>Political / Geopolitical</h3>
+<div class="item">US-Iran conflict: sanctions waiver on Iranian oil revoked (cutoff 17 Jul); fragile ceasefire, repeated strikes near the Strait of Hormuz.</div>
+<div class="item">Trump tariffs: Section 301 investigation (proposed 12.5% duties on 46 countries) due to conclude 20 July; Section 122 authority expires 24 July; pharma-onshoring deadline 31 July.</div>
+<div class="item">NATO summit (Ankara) produced &gt;€50bn in new defense procurement, benefiting RTX, Lockheed Martin, Northrop Grumman, Rheinmetall, Thales, Leonardo.</div>
+</div>
+</div>
+<div class="src">Sources: NPR, IBTimes UK, CBS News, Bloomberg, ECB, Bank of England</div>
+</div>
+</div>
+
+<!-- 14. KEY THEMES -->
+<div class="section-wrapper">
+<div class="section">
+<h2>14. Key Themes — Top 5 by Horizon</h2>
+<div class="col3">
+<div class="theme-block">
+<h4>Today's Top 5</h4>
+<div class="theme-item"><span class="num">1.</span>Iran oil sanctions waiver expiry (17 Jul) — last day of legally sanctioned Iranian oil sales; crude positioning.</div>
+<div class="theme-item"><span class="num">2.</span>US bank/insurer earnings wave (MS, BLK, PNC, Elevance) shaping sentiment into the European open.</div>
+<div class="theme-item"><span class="num">3.</span>United Airlines' soft Q3 guidance — read-through for European airline fuel-cost margins.</div>
+<div class="theme-item"><span class="num">4.</span>China's Q2 GDP miss (4.3%) weighing on commodity- and EM-exposed names.</div>
+<div class="theme-item"><span class="num">5.</span>Segro/Prologis takeover saga — positioning ahead of the 22 July deadline.</div>
+</div>
+<div class="theme-block">
+<h4>This Week's Top 5</h4>
+<div class="theme-item"><span class="num">1.</span>Peak Q2 earnings week across banks, ASML, Richemont, Netflix (17th).</div>
+<div class="theme-item"><span class="num">2.</span>US CPI aftermath — markets digesting the cooler June print ahead of the 28-29 July FOMC.</div>
+<div class="theme-item"><span class="num">3.</span>Iran-Israel-US conflict trajectory and the oil-waiver cutoff (17th).</div>
+<div class="theme-item"><span class="num">4.</span>Section 301 tariff deadline (20 July) — proposed duties on 46 countries.</div>
+<div class="theme-item"><span class="num">5.</span>easyJet takeover resolution — Apollo vs. Castlelake.</div>
+</div>
+<div class="theme-block">
+<h4>This Month's Top 5</h4>
+<div class="theme-item"><span class="num">1.</span>FOMC meeting, 28-29 July — consensus hold at 3.50-3.75%.</div>
+<div class="theme-item"><span class="num">2.</span>ECB meeting, 24 July — first decision since the June hike, energy inflation still live.</div>
+<div class="theme-item"><span class="num">3.</span>Tariff deadline cluster — Section 301 (20th), Section 122 expiry (24th), pharma onshoring (31st).</div>
+<div class="theme-item"><span class="num">4.</span>BoE meeting, 30 July — new Monetary Policy Report; hawkish dissent building.</div>
+<div class="theme-item"><span class="num">5.</span>Prologis/Segro "put up or shut up" deadline, 22 July — bellwether for UK REIT M&amp;A.</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 15. KEY TRENDS TO WATCH -->
+<div class="section-wrapper">
+<div class="section">
+<h2>15. Key Trends to Watch</h2>
+<div class="col3">
+<div>
+<h3>1 Day</h3>
+<div class="item">Crude positioning ahead of the Iran oil-waiver expiry.</div>
+<div class="item">Reaction to US bank/insurer earnings feeding into European financials.</div>
+<div class="item">Chip-sector cross-currents: Samsung/SK Hynix weakness vs. ASML's strong guidance.</div>
+<div class="item">Airline sector pressure from United's soft guidance and elevated jet fuel costs.</div>
+</div>
+<div>
+<h3>1 Week</h3>
+<div class="item">Netflix earnings tonight (17th).</div>
+<div class="item">Section 301 tariff deadline (20th).</div>
+<div class="item">Ongoing Middle East ceasefire/escalation headlines driving oil and safe-haven flows.</div>
+<div class="item">easyJet bid outcome.</div>
+</div>
+<div>
+<h3>1 Month</h3>
+<div class="item">FOMC (28-29 Jul), ECB (24 Jul), BoE (30 Jul) — three central bank decisions clustered late in the month.</div>
+<div class="item">Tariff deadlines: Section 122 expiry (24th), pharma onshoring (31st).</div>
+<div class="item">Q2 earnings progression — STOXX 600 profit growth heavily energy-skewed vs. the S&amp;P 500.</div>
+<div class="item">NATO's &gt;$57bn defense procurement wave feeding order books for RTX, Lockheed Martin, Rheinmetall, Thales, Leonardo.</div>
+</div>
+</div>
+</div>
+</div>
+
+<footer>
+  <div><strong>Sources:</strong> Reuters, Bloomberg, FT, CNBC, Yahoo Finance, Trading Economics, Investing.com, Al Jazeera, CBS News, GlobalCapital, IFR, ECB, Bank of England, ONS, Eurostat, Korea JoongAng Daily, BigGo Finance, Proactive Investors, TradingKey, Vantage Markets, The Loadstar.</div>
+  <div style="margin-top:6px;">Data collected automatically. Verify before making any decision.</div>
+</footer>
+
+</body>
+</html>
