@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morning Briefing — 28 July 2026</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-card: #161b22;
+      --bg-table-header: #1c2333;
+      --border: #30363d;
+      --text: #c9d1d9;
+      --heading: #e6edf3;
+      --text-muted: #8b949e;
+      --green: #3fb950;
+      --red: #f85149;
+      --amber: #d29922;
+      --blue: #58a6ff;
+      --accent: #58a6ff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      padding: 24px 20px;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+    .header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--heading);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .header .meta {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 5px;
+      line-height: 1.6;
+    }
+    .section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    .section h2 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--heading);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+    .section h3 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: var(--text-muted);
+      margin: 14px 0 7px;
+    }
+    .section h3:first-of-type { margin-top: 4px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    th {
+      background: var(--bg-table-header);
+      color: var(--text-muted);
+      text-align: left;
+      padding: 6px 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    td {
+      padding: 5px 10px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.025); }
+    .positive { color: var(--green); font-weight: 600; }
+    .negative { color: var(--red); font-weight: 600; }
+    .neutral { color: var(--text-muted); }
+    .nd { color: var(--text-muted); font-style: italic; }
+    .tag {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      vertical-align: middle;
+    }
+    .tag-high { background: rgba(248,81,73,0.2); color: var(--red); }
+    .tag-med { background: rgba(210,153,34,0.2); color: var(--amber); }
+    .tag-warn { background: rgba(210,153,34,0.2); color: var(--amber); }
+    .news-item {
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .news-item:last-child { border-bottom: none; }
+    .news-title { font-weight: 600; color: var(--heading); font-size: 13px; }
+    .news-source { color: var(--accent); font-size: 11px; margin: 2px 0; }
+    .news-impact { color: var(--text-muted); font-size: 12px; line-height: 1.5; }
+    .commentary { color: var(--text); font-size: 12px; line-height: 1.6; }
+    .commentary p { margin-bottom: 6px; }
+    .commentary p:last-child { margin-bottom: 0; }
+    .commentary strong { color: var(--heading); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .watch-item {
+      display: grid;
+      grid-template-columns: 170px 1fr 130px;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      align-items: start;
+    }
+    .watch-item:last-child { border-bottom: none; }
+    .watch-name { font-weight: 700; color: var(--heading); }
+    .watch-reason { color: var(--text-muted); line-height: 1.4; }
+    .watch-direction { text-align: right; font-size: 11px; font-weight: 600; }
+    .theme-item, .theme-block { padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+    .theme-item:last-child { border-bottom: none; }
+    .theme-title { font-weight: 600; color: var(--heading); margin-bottom: 2px; }
+    .theme-desc { color: var(--text-muted); line-height: 1.4; }
+    .subcard {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 12px;
+    }
+    .subcard h3 { margin-top: 0; }
+    .separator-row td {
+      background: rgba(88,166,255,0.06);
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 11px;
+    }
+    .footer {
+      margin-top: 20px;
+      padding: 14px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .footer .sources-title {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 8px;
+      color: var(--heading);
+      font-size: 11px;
+    }
+    .footer ul { padding-left: 16px; line-height: 1.7; }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .warning {
+      margin-top: 12px;
+      padding: 8px 12px;
+      background: rgba(248,81,73,0.08);
+      border-left: 3px solid var(--red);
+      color: var(--text-muted);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    @media (max-width: 750px) {
+      .two-col, .three-col { grid-template-columns: 1fr; }
+      .watch-item { grid-template-columns: 1fr; }
+      .watch-direction { text-align: left; }
+    }
+    @media print {
+      body {
+        background: #0d1117 !important;
+        color: #c9d1d9 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .section, table, tr, td, th, .data-block, .theme-block, .calendar-row {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      thead { display: table-header-group; }
+      p, li, div, span { orphans: 3; widows: 3; }
+      .section-wrapper { page-break-inside: avoid !important; break-inside: avoid !important; }
+      .item, .news-item, .stock-item, .theme-item, .event-item {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      @page { size: A4 landscape; margin: 12mm; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== 1. HEADER ========== -->
+<div class="header">
+  <h1>Morning Briefing &mdash; Tuesday 28 July 2026</h1>
+  <div class="meta">
+    Generated 28 July 2026 &bull; 07:15 BST (London) &bull;
+    Data collected between 05:20 and 07:10 BST via open web sources &bull;
+    Reference timezone: Europe/London (BST = UTC+1)
+  </div>
+</div>
+
+<!-- ========== 2. IMPORTANT NEWS ========== -->
+<div class="section section-wrapper">
+  <h2>2. Important News</h2>
+
+  <div class="news-item item">
+    <div class="news-title">AI-chip selloff sweeps Asia; Kospi plunges over 9%, circuit breaker triggered, as Samsung and SK Hynix slump 10-14%</div>
+    <div class="news-source">CNBC / Bloomberg / Korea JoongAng Daily &bull; ~06:45 BST</div>
+    <div class="news-impact">Kospi closed down 632.02 points (&#8722;9.36%) at 6,123.73, having earlier triggered a 20-minute trading halt after falling more than 8%. Samsung Electronics and SK Hynix, which together make up nearly half the index, fell as much as 10% and 13-14% respectively. The rout reflects mounting doubts over returns on massive AI infrastructure spending and fresh concern over China's chipmaking advances, including a report that China's Shanghai Yuliangsheng has begun mass-producing EUV lithography tools, technology previously the preserve of ASML. Directly sets up a sharply weaker European open for chip-equipment and tech names.</div>
+  </div>
+
+  <div class="news-item item">
+    <div class="news-title">Selloff extends to Wall Street and Europe; Nvidia, AMD, Sandisk lead US chip names lower in pre-market</div>
+    <div class="news-source">CNBC / Yahoo Finance &bull; ~06:30 BST</div>
+    <div class="news-impact">US futures traded lower Tuesday as fresh concerns that circular AI-financing arrangements could unravel if hyperscalers scale back capex weighed on chipmakers: Nvidia &#8722;5%, AMD &#8722;5.2%, Sandisk &#8722;11%, Micron &#8722;2.3%, SK Hynix's US-listed shares &#8722;7.5% in early trading. European chip-equipment names (ASML, ASM International, BE Semiconductor) fell roughly 6% in recent sessions on the same read-through and are exposed again this morning. Lands right before this week's FOMC decision and peak Big Tech earnings.</div>
+  </div>
+
+  <div class="news-item item">
+    <div class="news-title">Wall Street closed mixed Monday: Dow +0.5%, S&amp;P 500 flat, Nasdaq -0.2%, as oil retreated on eased US-Iran tension</div>
+    <div class="news-source">Washington Post / Yahoo Finance / Motley Fool &bull; ~06:15 BST</div>
+    <div class="news-impact">Dow Jones +262.83pts (+0.51%) to 52,210.08; S&amp;P 500 +0.02% to 7,413.18; Nasdaq Composite &#8722;0.18% to 24,932.08. Oil fell sharply (Brent roughly &#8722;4%) as the US and Iran were reported to have paused strikes, easing the geopolitical risk premium. Nvidia announced a $500bn AI-memory supply agreement with SK Hynix, a headline that briefly supported chip sentiment intraday before broader capex-sustainability doubts reasserted themselves into the close and overnight.</div>
+  </div>
+
+  <div class="news-item item">
+    <div class="news-title">SoftBank and Arm Holdings hit hard as AI-bubble concerns build into Wednesday's Arm earnings</div>
+    <div class="news-source">Bloomberg / 247wallst.com &bull; overnight</div>
+    <div class="news-impact">Arm Holdings is down roughly 28% over the past month; SoftBank, for which Arm represents an estimated 47.8% of net asset value, has fallen nearly a third over the same period. Founder Masayoshi Son has dismissed AI-bubble talk as "an insult" to the technology, but the stock reaction shows the market pricing real doubt ahead of Arm's results, expected Wednesday 29 July, the same day as the FOMC decision.</div>
+  </div>
+
+  <div class="news-item item">
+    <div class="news-title">Broader Asia session: Nikkei down almost 4%, Kioxia -18%, Shanghai and Hang Seng comparatively resilient</div>
+    <div class="news-source">Bloomberg / MarketScreener / TradingKey &bull; ~06:45 BST</div>
+    <div class="news-impact">Nikkei 225 fell around 3.9-4% to roughly 62,350, with flash-memory maker Kioxia slumping nearly 18% and SoftBank down over 6%. Mainland China (Shanghai Composite &#8722;0.4% to &#8722;1%) and Hong Kong (Hang Seng roughly flat) were comparatively insulated, suggesting the selloff is concentrated in AI/memory-chip supply-chain names rather than a broad regional risk-off move. Sets a cautious, chip-led tone into the European cash open.</div>
+  </div>
+</div>
+
+<!-- ========== 3. EUROPEAN FUTURES (PRE-OPEN) ========== -->
+<div class="section section-wrapper">
+  <h2>3. European Futures (Pre-Open)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Contract</th>
+      <th>Level</th>
+      <th>Implied move</th>
+      <th>Collection time</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Euro Stoxx 50 futures (FESX)</td>
+      <td class="nd">n/a</td>
+      <td class="negative">Negative, chip-led (qualitative)</td>
+      <td>06:50-07:10 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DAX futures (FDAX)</td>
+      <td class="nd">n/a</td>
+      <td class="negative">Lower, AEX/tech-heavy peers hit hardest</td>
+      <td>06:50-07:10 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CAC 40 futures (FCE)</td>
+      <td class="nd">n/a</td>
+      <td class="negative">Lower, indicative</td>
+      <td>06:50-07:10 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>FTSE 100 futures (Z)</td>
+      <td class="nd">n/a</td>
+      <td class="neutral">Modestly lower, less semi-exposed</td>
+      <td>06:50-07:10 BST</td>
+    </tr>
+    <tr class="separator-row" style="page-break-inside: avoid;">
+      <td colspan="4">US context — futures pre-market</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>S&amp;P 500 e-mini</td>
+      <td class="nd">n/a</td>
+      <td class="negative">Lower, chip-led</td>
+      <td>07:00 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nasdaq 100 e-mini</td>
+      <td class="nd">n/a</td>
+      <td class="negative">Lower, underperforming S&amp;P futures</td>
+      <td>07:00 BST</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Precise point levels for European and US index futures could not be reliably confirmed via open web sources this morning; live-quote pages were not accessible. The qualitative signal is consistent and strong across multiple sources, however: European and US futures are pointing lower, led by chip and chip-equipment names (ASML, ASM International, BE Semiconductor, Infineon, STMicroelectronics) following the overnight Kospi rout and a second consecutive session of AI-financing doubts on Wall Street. FTSE 100, with lighter tech weighting and heavier commodity/financials exposure, should underperform the selloff relative to DAX and AEX. Recommend a live-terminal spot-check of exact futures levels just before the 08:00 BST cash open.</p>
+  </div>
+</div>
+
+<!-- ========== 4. YESTERDAY'S CLOSES ========== -->
+<div class="section section-wrapper">
+  <h2>4. Yesterday's Closes &mdash; European Indices (Monday 27 July 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Index</th>
+      <th>Close</th>
+      <th>Change</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Euro Stoxx 50</td>
+      <td class="nd">n/a</td>
+      <td class="positive">Higher (qualitative, in line with DAX/CAC)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DAX 40</td>
+      <td>~25,099</td>
+      <td class="positive">+1.28% to +1.36% (+336 pts, source range)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CAC 40</td>
+      <td>~8,372</td>
+      <td class="positive">+0.70% to +0.88% (+73 pts, source range)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>FTSE 100</td>
+      <td>~10,736</td>
+      <td class="positive">+0.66% to +0.91% (+97 pts, source range)</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>European indices closed higher Monday, with the FTSE MIB +0.54% and the pan-European Stoxx 600 +0.27%. The gains came as investor sentiment improved on reports the US and Iran had suspended strikes against each other, and as oil prices dropped sharply, easing inflation and rate-outlook concerns. Small variance between sources on exact closing levels and percentage moves reflects intraday-vs-close snapshot timing; direction and broad magnitude are consistent across sources. This constructive session was overtaken overnight by the AI-chip selloff, which is the dominant factor into today's open.</p>
+  </div>
+</div>
+
+<!-- ========== 5. US MARKETS — YESTERDAY'S SESSION ========== -->
+<div class="section section-wrapper">
+  <h2>5. US Markets &mdash; Yesterday's Session (Monday 27 July 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Index</th>
+      <th>Close</th>
+      <th>Change</th>
+      <th>Note</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>S&amp;P 500</td>
+      <td>7,413.18</td>
+      <td class="positive">+0.02% (essentially flat)</td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Dow Jones Industrial Average</td>
+      <td>52,210.08</td>
+      <td class="positive">+0.51% (+262.83 pts)</td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nasdaq Composite</td>
+      <td>24,932.08</td>
+      <td class="negative">&#8722;0.18%</td>
+      <td>—</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Mixed, choppy session. The Dow outperformed on the retreat in oil prices as US-Iran tensions eased, while the Nasdaq lagged as chip stocks resumed selling into the close. Nvidia's announced $500bn AI-memory supply agreement with SK Hynix briefly supported sentiment but could not offset broader doubts about the durability of AI-related capital spending.</p>
+    <p><strong>Leading sectors:</strong> Energy-sensitive cyclicals and industrials benefited from the oil pullback (qualitative &mdash; precise sector-level breakdown not confirmed via open sources this morning). <strong>Lagging sector:</strong> Technology/semiconductors, with SanDisk down roughly 11% intraday on memory-market weakness cited by the Motley Fool's midday coverage.</p>
+    <p><strong>Key takeaway:</strong> the Dow/S&amp;P's Monday resilience masked a chip-sector rotation that fully broke out overnight in Asia and is carrying into today's European and US pre-market, with FOMC (29 Jul) and peak Big Tech earnings this week as the next catalysts.</p>
+  </div>
+</div>
+
+<!-- ========== 6. ASIAN MARKETS — OVERNIGHT SESSION ========== -->
+<div class="section section-wrapper">
+  <h2>6. Asian Markets &mdash; Overnight Session (Tuesday 28 July 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Index</th>
+      <th>Level</th>
+      <th>Change</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nikkei 225</td>
+      <td>~62,350</td>
+      <td class="negative">&#8722;3.9% to &#8722;4.0%</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Hang Seng</td>
+      <td>~25,178</td>
+      <td class="neutral">~&#8722;0.1%, roughly flat</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Shanghai Composite</td>
+      <td>~3,820</td>
+      <td class="negative">&#8722;0.4% to &#8722;1.0%</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Kospi (South Korea)</td>
+      <td>6,123.73 (closed)</td>
+      <td class="negative">&#8722;9.36% (intraday low beyond &#8722;10%; circuit breaker triggered)</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Sharp, chip-led risk-off session, concentrated in memory and AI-supply-chain names rather than broad-based. South Korea bore the brunt: Samsung Electronics and SK Hynix, which together account for nearly half the Kospi, fell as much as 10% and 13-14% respectively, triggering a 20-minute market-wide circuit breaker after the index fell more than 8%. Japan's Nikkei fell almost 4% with flash-memory maker Kioxia down nearly 18% and SoftBank off more than 6% on Arm-linked AI-bubble concerns. Mainland China and Hong Kong were comparatively insulated &mdash; Shanghai down modestly and Hang Seng little changed &mdash; with one contributing factor a report that a Chinese firm (Shanghai Yuliangsheng) has begun mass-producing EUV lithography tools, intensifying the "China competition" strand of the selloff alongside "AI financing sustainability" doubts. Sets a clearly negative tone into the European open, concentrated in tech/semis.</p>
+  </div>
+</div>
+
+<!-- ========== 7. COMMODITIES ========== -->
+<div class="section section-wrapper">
+  <h2>7. Commodities</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Commodity</th>
+      <th>Level</th>
+      <th>Change</th>
+      <th>Time</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Brent (ICE, USD/bbl)</td>
+      <td class="nd">n/a same-day; Monday ~&#8722;4% pullback confirmed</td>
+      <td class="negative">Lower vs last week's highs</td>
+      <td>Last confirmed: 27 Jul</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>WTI (NYMEX, USD/bbl)</td>
+      <td class="nd">n/a same-day</td>
+      <td class="negative">Tracking Brent lower</td>
+      <td>Last confirmed: 27 Jul</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Gold (XAU/USD, USD/oz)</td>
+      <td>~4,074-4,157</td>
+      <td class="neutral">Range-bound, source estimates vary</td>
+      <td>06:15-07:10 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Natural gas (Henry Hub, USD/MMBtu)</td>
+      <td class="nd">n/a</td>
+      <td class="nd">—</td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Natural gas (European TTF, EUR/MWh)</td>
+      <td>~58-67 (wide source range, low confidence)</td>
+      <td class="positive">Higher vs Monday's ~58</td>
+      <td>06:15-07:10 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Copper (COMEX, USD/lb)</td>
+      <td>6.30-6.31</td>
+      <td class="negative">&#8722;0.69% to &#8722;0.70%</td>
+      <td>06:15-07:10 BST</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Oil pulled back sharply Monday (Brent roughly &#8722;4%) as reports emerged the US and Iran had paused mutual strikes, easing the Middle East risk premium that had driven crude to six-week highs last week; same-day Tuesday levels could not be confirmed via open sources this morning and should be spot-checked before the open. Gold estimates vary by source (roughly $4,070-4,160/oz) with no reliable single same-day print; the wide range should be treated as low-confidence. Copper is modestly softer, tracking the broader risk-off tone from the chip-sector selloff rather than any commodity-specific driver. European TTF gas figures were inconsistent across sources this morning (one showing ~€58, a forecast source showing ~€67) and should not be relied upon without a live-terminal check.</p>
+  </div>
+</div>
+
+<!-- ========== 8. RATES & FX ========== -->
+<div class="section section-wrapper">
+  <h2>8. Rates &amp; FX</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Instrument</th>
+      <th>Level</th>
+      <th>Change</th>
+      <th>Time</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>US Treasury 10-year</td>
+      <td>~4.67-4.70%</td>
+      <td class="neutral">Little changed, source range</td>
+      <td>Last confirmed: 24-25 Jul</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>German Bund 10-year</td>
+      <td>&lt;3.2%</td>
+      <td class="neutral">Eased slightly, near multi-year high</td>
+      <td>Late Jul, exact date n/a</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>EUR/USD</td>
+      <td>~1.1397</td>
+      <td class="positive">+0.27% (as of 27 Jul)</td>
+      <td>Last confirmed: 27 Jul</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>GBP/USD</td>
+      <td class="nd">n/a</td>
+      <td class="nd">—</td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DXY (Dollar Index)</td>
+      <td>~101.5</td>
+      <td class="neutral">&#8722;0.01%, little changed</td>
+      <td>06:15-07:10 BST</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Rates and FX were comparatively quiet overnight relative to the violence of the equity move in chip stocks &mdash; the selloff has so far been read as sector-specific rather than a broad risk-off/flight-to-quality event, with Treasury and Bund yields little changed from recent levels. The dollar index is holding just above 101.5, near a one-month high. The dominant near-term rates catalyst is the FOMC decision on Wednesday 29 July, where markets price an 83-85% probability of a hold at 3.50-3.75%; the Bank of England and Bank of Japan both meet Thursday 30/Thursday-Friday 30-31 July respectively, making this a rare same-week cluster of the three largest central banks.</p>
+  </div>
+</div>
+
+<!-- ========== 9. DCM — PRIMARY BOND MARKET ========== -->
+<div class="section section-wrapper">
+  <h2>9. DCM &mdash; Primary Bond Market</h2>
+
+  <h3>Yesterday's Issuances (Monday 27 July 2026)</h3>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Issuer</th>
+      <th>Currency</th>
+      <th>Size</th>
+      <th>Maturity</th>
+      <th>Coupon/Spread</th>
+      <th>Notes</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td colspan="6" class="nd">No SSA mandates were announced Monday 27 July, and no specific EUR or USD corporate IG/HY, SSA or financials deal was confirmed as priced that day via open sources. GlobalCapital described the euro primary market as facing its first genuinely empty week of the year. n/a &mdash; not fabricated.</td>
+    </tr>
+  </table>
+
+  <h3>Pipeline / Expected Today &amp; This Week</h3>
+  <div class="commentary">
+    <p>GlobalCapital's own coverage frames this as a deliberately quiet stretch: with no SSA mandates announced Monday, market participants expect issuance to stay muted through the next few weeks before firing "on all cylinders" from around 17 August as excess bonds from the pre-summer rush are absorbed and desks return from the August lull. No specific mandate or pipeline deal was confirmed for today (28 July) via open sources. Today's AI-chip equity selloff, if it persists into the session, is a modest additional headwind for any opportunistic issuer considering a print this week, on top of the seasonal August pause already in train.</p>
+  </div>
+
+  <h3>Key Spreads</h3>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Index</th>
+      <th>Level</th>
+      <th>Move / Direction</th>
+      <th>As of</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>iTraxx Europe Crossover 5yr</td>
+      <td class="nd">n/a same-day</td>
+      <td class="nd">Reference only: ~318 bp mid-May 2026</td>
+      <td>Stale &mdash; not day-of</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>iTraxx Europe Main 5yr</td>
+      <td class="nd">n/a</td>
+      <td class="nd">—</td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CDX IG 5yr (USD)</td>
+      <td class="nd">n/a</td>
+      <td class="nd">—</td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Avg euro corporate IG spread</td>
+      <td class="nd">n/a</td>
+      <td class="nd">—</td>
+      <td>—</td>
+    </tr>
+  </table>
+  <div style="margin-top:6px; font-size:11px; color:var(--text-muted); font-style:italic;">Current-day iTraxx Main, iTraxx Crossover, CDX IG and average euro corporate IG spread levels could not be sourced via open web access this morning &mdash; Bloomberg Terminal or ICE data required for same-day confirmation. Widening risk into today's open should be assumed directionally, given the equity-market chip selloff, but is not independently confirmed.</div>
+
+  <h3>Commentary</h3>
+  <div class="commentary">
+    <p>The euro primary market enters its quietest stretch of the year, with GlobalCapital flagging the first entirely empty SSA week of 2026 and no fresh corporate mandates confirmed. This is largely seasonal &mdash; issuers and investors alike are stepping back ahead of the August lull &mdash; rather than a reaction to the overnight equity selloff, though the chip-driven risk-off adds a further reason for issuers to stay on the sidelines this week rather than test a wobbly market. Expect the window to stay effectively shut through the FOMC/BoE/BoJ cluster (29-31 July) and reopen more meaningfully from mid-August. Sector skew for when the window does reopen remains industrials, transport and financials on recent-months' form; energy issuers may be more cautious given oil's sharp Monday pullback. Recommend a live IFR/GlobalCapital and Bloomberg spread check before publication.</p>
+  </div>
+</div>
+
+<!-- ========== 10. ECONOMIC CALENDAR ========== -->
+<div class="section section-wrapper">
+  <h2>10. Economic Calendar (Today, 28 July 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Time (BST)</th>
+      <th>Region</th>
+      <th>Indicator</th>
+      <th>Consensus</th>
+      <th>Importance</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>13:30</td>
+      <td>US</td>
+      <td>Wholesale inventories (June, preliminary)</td>
+      <td class="nd">Consensus n/a</td>
+      <td><span class="tag tag-med">Medium</span></td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>14:00</td>
+      <td>US</td>
+      <td>S&amp;P/Case-Shiller Home Price Index (May)</td>
+      <td class="nd">Consensus n/a</td>
+      <td><span class="tag tag-med">Medium</span></td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>15:00</td>
+      <td>US</td>
+      <td>Richmond Fed Manufacturing Index (July)</td>
+      <td class="nd">Consensus n/a</td>
+      <td><span class="tag tag-med">Medium</span></td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>15:00</td>
+      <td>US</td>
+      <td>Conference Board Consumer Confidence (July)</td>
+      <td class="nd">Prior (Jun): 129.3</td>
+      <td><span class="tag tag-high">High</span></td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>All day</td>
+      <td>US / Global</td>
+      <td>FOMC meeting begins (decision Wed 29 Jul, 19:00 BST)</td>
+      <td class="nd">Hold expected at 3.50-3.75% (83-85% priced)</td>
+      <td><span class="tag tag-high">High</span></td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>No major scheduled Eurozone or UK data releases were confirmed for today via open sources; the eurozone/UK calendar is comparatively light until Eurozone and German GDP and UK's Bank of England decision later this week (Thursday 30 July). Today's US calendar is data-dense but second-tier ahead of the main event: the FOMC's two-day meeting begins today, with the rate decision due tomorrow (Wednesday 29 July) and a hold heavily priced. Consumer Confidence is the highest-profile release of the day given its read on US household resilience into a chip-driven equity wobble.</p>
+  </div>
+</div>
+
+<!-- ========== 11. CORPORATE EVENTS & EARNINGS ========== -->
+<div class="section section-wrapper">
+  <h2>11. Corporate Events &amp; Earnings</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Company</th>
+      <th>Market</th>
+      <th>Event</th>
+      <th>Time</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Barclays</td>
+      <td>LSE (FTSE 100)</td>
+      <td>Q2 2026 results</td>
+      <td>Pre-European open</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Novartis</td>
+      <td>SIX (Swiss)</td>
+      <td>Q2 results (recently reported, beat on core operating profit)</td>
+      <td>Recent, exact date n/a</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Other Q2 European/US reporters</td>
+      <td>Various</td>
+      <td>Full list not reliably confirmed via open sources this morning</td>
+      <td class="nd">n/a</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Barclays is the clearest confirmed European print today, reporting before the London open. A complete day-of earnings list for both European and US names could not be reliably confirmed via open web sources this morning; Earnings Whispers' dedicated calendar page for 28 July returned no readable snippet-level detail. This week's dominant corporate-calendar story is Wednesday's Arm Holdings results (29 Jul, same day as FOMC), and the run of Big Tech prints (Microsoft, Meta on 29 Jul; Apple, Amazon on 30 Jul) &mdash; all direct tests of the AI-capex narrative now roiling chip stocks. Recommend a live earnings-calendar check (Seeking Alpha, Kiplinger, or Bloomberg) before publication for full day-of coverage.</p>
+  </div>
+</div>
+
+<!-- ========== 12. STOCKS TO WATCH ========== -->
+<div class="section section-wrapper">
+  <h2>12. Stocks to Watch</h2>
+
+  <div class="watch-item item">
+    <div class="watch-name">ASML (ASML.AS) &mdash; AEX, semiconductors</div>
+    <div class="watch-reason">Directly exposed to the overnight Kospi rout and the "China EUV breakthrough" headline undercutting its lithography moat narrative. European chip-equipment names already down roughly 6% in recent sessions; further downside likely at the open.</div>
+    <div class="watch-direction negative">Bearish</div>
+  </div>
+
+  <div class="watch-item item">
+    <div class="watch-name">ASM International / BE Semiconductor (ASM.AS / BESI.AS) &mdash; AEX, chip equipment</div>
+    <div class="watch-reason">Same read-through as ASML from the Asian memory-chip selloff and US pre-market weakness in Nvidia, AMD, Micron and Sandisk.</div>
+    <div class="watch-direction negative">Bearish</div>
+  </div>
+
+  <div class="watch-item item">
+    <div class="watch-name">Infineon / STMicroelectronics &mdash; DAX / Euronext Paris, semiconductors</div>
+    <div class="watch-reason">Broader European semiconductor complex likely to trade in sympathy with the Samsung/SK Hynix rout and Nvidia/AMD pre-market weakness.</div>
+    <div class="watch-direction negative">Bearish</div>
+  </div>
+
+  <div class="watch-item item">
+    <div class="watch-name">Barclays (BARC.L) &mdash; FTSE 100, banks</div>
+    <div class="watch-reason">Reports Q2 2026 results before the open; sector read-through for European banks' rates-sensitive income into the FOMC/BoE decision cluster this week.</div>
+    <div class="watch-direction neutral">Neutral / watch</div>
+  </div>
+
+  <div class="watch-item item">
+    <div class="watch-name">SoftBank Group (9984.T) &mdash; Tokyo, tech/AI</div>
+    <div class="watch-reason">Down over 6% overnight and nearly a third in the past month on Arm-linked AI-bubble concerns; Arm represents an estimated 47.8% of SoftBank's NAV. Highly sensitive into Wednesday's Arm earnings.</div>
+    <div class="watch-direction negative">Bearish</div>
+  </div>
+
+  <div class="watch-item item">
+    <div class="watch-name">Shell / BP / TotalEnergies &mdash; energy majors</div>
+    <div class="watch-reason">Oil's sharp Monday pullback (Brent roughly &#8722;4%) on eased US-Iran tension is a headwind after last week's rally; watch for reversal of last week's energy-led outperformance.</div>
+    <div class="watch-direction negative">Bearish / watch</div>
+  </div>
+
+  <div class="watch-item item">
+    <div class="watch-name">Anglo American / Rio Tinto &mdash; FTSE 100, metals &amp; mining</div>
+    <div class="watch-reason">Broader risk-off tone from the chip selloff, together with softer copper (&#8722;0.7% overnight), is a mild headwind; no company-specific news confirmed for today via open sources.</div>
+    <div class="watch-direction neutral">Neutral / watch</div>
+  </div>
+
+  <div class="watch-item item">
+    <div class="watch-name">Airbus / Rolls-Royce &mdash; aerospace &amp; defense</div>
+    <div class="watch-reason">Likely to be comparatively insulated from the chip-specific selloff given non-tech end markets; a candidate for relative outperformance/rotation destination if investors de-risk out of semis today. No company-specific catalyst confirmed for today.</div>
+    <div class="watch-direction neutral">Neutral (relative-value watch)</div>
+  </div>
+
+  <div class="watch-item item">
+    <div class="watch-name">Maersk / Hapag-Lloyd &mdash; shipping</div>
+    <div class="watch-reason">Freight-rate support from prior Red Sea/Hormuz risk may fade as oil retreats and Middle East tensions ease; no fresh company-specific news confirmed for today.</div>
+    <div class="watch-direction neutral">Neutral / watch</div>
+  </div>
+
+</div>
+
+<!-- ========== 13. MACRO / CORPORATE / POLITICAL HIGHLIGHTS ========== -->
+<div class="section section-wrapper">
+  <h2>13. Macro / Corporate / Political Highlights</h2>
+
+  <h3>Macro</h3>
+  <div class="commentary">
+    <p><strong>FOMC meeting begins today, decision Wednesday 29 July:</strong> markets price an 83-85% probability of a hold at 3.50-3.75%, Fed Chair Kevin Warsh's fourth consecutive hold, with a non-SEP meeting (no updated dot plot). No press-conference tone shift is expected to be signalled ahead of the decision itself.</p>
+    <p><strong>Central-bank cluster this week:</strong> Bank of England (Thursday 30 July) and Bank of Japan (Thursday-Friday 30-31 July) both meet the same week as the Fed &mdash; a rare simultaneous cluster of the three largest developed-market central banks.</p>
+    <p><strong>US data today:</strong> Case-Shiller home prices, Richmond Fed manufacturing and Conference Board Consumer Confidence (prior 129.3) are all due, second-tier but relevant for gauging US household and business resilience into the equity wobble.</p>
+    <p><strong>Eurozone/UK GDP due Thursday 30 July:</strong> German and Eurozone Q2 GDP land later this week, alongside the BoE decision &mdash; the first hard eurozone growth read since last week's flash PMIs.</p>
+  </div>
+
+  <h3>Corporate</h3>
+  <div class="commentary">
+    <p><strong>AI-financing sustainability in question:</strong> the dominant corporate story overnight and this morning is a broad reassessment of whether hyperscaler AI capital spending can sustain current chip-sector valuations, hitting Nvidia, AMD, Micron, Sandisk in the US and Samsung, SK Hynix, Kioxia in Asia. Nvidia's newly announced $500bn AI-memory supply deal with SK Hynix has, so far, not offset the broader doubt.</p>
+    <p><strong>China competition:</strong> a report that China's Shanghai Yuliangsheng has begun mass-producing EUV lithography equipment &mdash; technology previously exclusive to ASML &mdash; is compounding the selloff with a structural, not just cyclical, concern for Western chip-equipment names.</p>
+    <p><strong>Arm/SoftBank:</strong> Arm Holdings down roughly 28% over the past month; SoftBank down nearly a third on its heavy Arm exposure. Arm reports Wednesday 29 July, the same day as the FOMC decision &mdash; a potentially volatile overlap.</p>
+    <p><strong>Barclays</strong> reports Q2 results today, the clearest confirmed European corporate event of the session.</p>
+  </div>
+
+  <h3>Political / Geopolitical</h3>
+  <div class="commentary">
+    <p><strong>US-Iran de-escalation:</strong> reports emerged Monday that the US and Iran had paused mutual strikes amid renewed diplomatic efforts, sharply reversing last week's oil-driven risk premium (Brent roughly &#8722;4% Monday). This is a live, fast-moving situation and should be re-verified before use; any resumption of strikes would likely reverse the oil move quickly.</p>
+    <p><strong>US fiscal/trade backdrop:</strong> no material new developments confirmed overnight; the broader 2026 backdrop (EU-US trade deal in effect since 1 July, US-China tariff truce extended to 10 November) remains unchanged as of this morning's sources.</p>
+  </div>
+</div>
+
+<!-- ========== 14. KEY THEMES — TOP 5 BY HORIZON ========== -->
+<div class="section section-wrapper">
+  <h2>14. Key Themes &mdash; Top 5 by Horizon</h2>
+  <div class="three-col">
+
+    <div class="subcard theme-block">
+      <h3>Today's Top 5</h3>
+      <div class="theme-item item">
+        <div class="theme-title">1. AI-chip selloff carrying into the European open</div>
+        <div class="theme-desc">Overnight Kospi rout (&#8722;9.36%, circuit breaker) and continued US pre-market chip weakness are the dominant driver for European tech/semis today.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">2. FOMC meeting begins (decision tomorrow, 29 Jul)</div>
+        <div class="theme-desc">A hold is heavily priced (83-85%); today's meeting start adds a headline-risk backdrop to an already volatile session.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">3. Oil's sharp Monday reversal on US-Iran de-escalation reports</div>
+        <div class="theme-desc">Brent roughly &#8722;4% Monday; a fast-moving, reversible situation with direct read-through to energy majors and inflation expectations.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">4. Barclays Q2 results</div>
+        <div class="theme-desc">The clearest confirmed European earnings print today; sector read for banks into the BoE decision later this week.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">5. US Conference Board Consumer Confidence (15:00 BST)</div>
+        <div class="theme-desc">Highest-profile US data point of the day, testing household resilience into the equity wobble.</div>
+      </div>
+    </div>
+
+    <div class="subcard theme-block">
+      <h3>This Week's Top 5</h3>
+      <div class="theme-item item">
+        <div class="theme-title">1. FOMC decision, Wednesday 29 July</div>
+        <div class="theme-desc">Consensus hold at 3.50-3.75%; Chair Warsh's tone is the swing factor for the rate path into year-end.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">2. Arm Holdings earnings, Wednesday 29 July</div>
+        <div class="theme-desc">Direct test of the AI-capex narrative now driving the chip-sector selloff; falls the same day as the FOMC decision.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">3. Peak Big Tech earnings: Microsoft &amp; Meta (29 Jul), Apple &amp; Amazon (30 Jul)</div>
+        <div class="theme-desc">Further, larger-scale tests of AI-capex-vs-returns sentiment following the chip-sector rout.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">4. Bank of England and Bank of Japan decisions, 30-31 July</div>
+        <div class="theme-desc">Same week as the Fed &mdash; a rare simultaneous cluster of the three largest developed-market central banks.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">5. German &amp; Eurozone Q2 GDP, Thursday 30 July</div>
+        <div class="theme-desc">First hard eurozone growth signal since last week's flash PMIs, landing alongside the BoE decision.</div>
+      </div>
+    </div>
+
+    <div class="subcard theme-block">
+      <h3>This Month's Top 5</h3>
+      <div class="theme-item item">
+        <div class="theme-title">1. AI-capex sustainability debate</div>
+        <div class="theme-desc">Now the dominant global-markets theme; this week's Big Tech earnings and Fed decision will materially shape sentiment into August.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">2. US July jobs report, expected ~7 August</div>
+        <div class="theme-desc">First major post-FOMC data point, key for the rate path under Chair Warsh.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">3. Euro DCM primary market reopening from mid-August</div>
+        <div class="theme-desc">GlobalCapital expects issuance to pick up meaningfully from around 17 August after the current empty-calendar lull.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">4. US-Iran situation trajectory</div>
+        <div class="theme-desc">Monday's reported pause in strikes is a fast-moving, reversible development with direct implications for oil and European energy names.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">5. China chip-tooling competition (EUV lithography reports)</div>
+        <div class="theme-desc">A structural overhang for ASML and Western chip-equipment makers beyond this week's cyclical selloff.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ========== 15. KEY TRENDS TO WATCH ========== -->
+<div class="section section-wrapper">
+  <h2>15. Key Trends to Watch</h2>
+  <div class="three-col">
+
+    <div class="subcard">
+      <h3>1 Day</h3>
+      <div class="commentary">
+        <p><strong>Chip-sector open:</strong> whether European semis (ASML, ASMI, BESI, Infineon, STMicro) stabilise or extend the overnight Asian rout.</p>
+        <p><strong>Oil price action:</strong> confirmation (or reversal) of the reported US-Iran strike pause.</p>
+        <p><strong>Barclays earnings reaction</strong> and read-through for European bank sentiment into the BoE decision.</p>
+        <p><strong>US Consumer Confidence (15:00 BST)</strong> for a read on household resilience into a volatile week.</p>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>1 Week</h3>
+      <div class="commentary">
+        <p><strong>29 July:</strong> FOMC decision and Arm Holdings earnings, same day &mdash; a potentially volatile overlap for rates and tech sentiment together.</p>
+        <p><strong>29-30 July:</strong> Microsoft, Meta, Apple and Amazon earnings &mdash; the decisive test of the AI-capex narrative.</p>
+        <p><strong>30-31 July:</strong> Bank of England and Bank of Japan decisions, plus German/Eurozone Q2 GDP.</p>
+        <p><strong>Ongoing:</strong> whether this week's chip selloff is a durable repricing or a sharp-but-temporary AI-sentiment wobble.</p>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>1 Month</h3>
+      <div class="commentary">
+        <p><strong>~7 August:</strong> US July jobs report, first major post-FOMC data point.</p>
+        <p><strong>~17 August:</strong> expected reopening of the euro DCM primary market after the current lull.</p>
+        <p><strong>27-29 August:</strong> Jackson Hole Economic Symposium, closely watched for Chair Warsh's policy framing given this month's AI-capex volatility.</p>
+        <p><strong>Ongoing through August:</strong> AI infrastructure spending sustainability as the dominant cross-asset theme, alongside the US-Iran situation as a live geopolitical tail risk for oil.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<div class="footer">
+  <div class="sources-title">Sources</div>
+  <ul>
+    <li>CNBC &mdash; chip selloff live coverage, Kospi circuit breaker, US futures, Consumer Confidence release timing</li>
+    <li>Bloomberg &mdash; Korean chip stocks/Kospi rout, US market live updates, DAX/CAC/FTSE close context</li>
+    <li>Reuters (via Investing.com/Yahoo Finance syndication) &mdash; Samsung/SK Hynix slide, chip financing concerns</li>
+    <li>Korea JoongAng Daily / Asia Business Daily (asiae.co.kr) / KSAT &mdash; Kospi circuit breaker, closing level</li>
+    <li>MarketScreener / TradingKey &mdash; Nikkei, Kioxia, SoftBank, broader Asia selloff detail</li>
+    <li>Washington Post / Yahoo Finance / The Motley Fool &mdash; US index closes, 27 July 2026, SanDisk weakness</li>
+    <li>Advisor Perspectives (dshort) / ETF Trends &mdash; World Markets Watchlist, European index closing levels</li>
+    <li>BBNTimes &mdash; Hang Seng level context</li>
+    <li>Trading Economics &mdash; commodities, rates, FX reference levels</li>
+    <li>247wallst.com &mdash; Arm Holdings monthly performance</li>
+    <li>Cambridge Currencies / Finance Calendar / FedRateCalc &mdash; FOMC meeting date and rate-hold consensus</li>
+    <li>GlobalCapital &mdash; DCM primary market colour, empty SSA week</li>
+    <li>Earnings Whispers / MarketBeat &mdash; earnings calendar, Barclays Q2 date</li>
+    <li>Investing.com / CB Consumer Confidence economic-calendar listing &mdash; US data schedule for 28 July</li>
+  </ul>
+  <div class="warning">
+    Data collected automatically between approximately 05:20 and 07:10 BST on 28 July 2026 via open web search. Several figures marked <em>n/a</em> could not be obtained reliably and would require Bloomberg Terminal, Refinitiv Eikon or ICE access for confirmation; European and US pre-open futures point levels, same-day oil/gas prints, and DCM spread figures fall into this category and should be re-verified against a live terminal before use. The US-Iran strike-pause report is a fast-moving situation and should also be re-checked before use. Verify before making any decision. This document is not investment advice.
+  </div>
+</div>
+
+</body>
+</html>
