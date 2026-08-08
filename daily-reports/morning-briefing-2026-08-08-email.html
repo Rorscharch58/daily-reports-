@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morning Briefing — 8 August 2026</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-card: #161b22;
+      --bg-table-header: #1c2333;
+      --border: #30363d;
+      --text: #c9d1d9;
+      --heading: #e6edf3;
+      --text-muted: #8b949e;
+      --green: #3fb950;
+      --red: #f85149;
+      --amber: #d29922;
+      --blue: #58a6ff;
+      --accent: #58a6ff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0d1117;
+      color: #c9d1d9;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      padding: 24px 20px;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+    .header {
+      border-bottom: 2px solid #58a6ff;
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #e6edf3;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .header .meta {
+      color: #8b949e;
+      font-size: 12px;
+      margin-top: 5px;
+      line-height: 1.6;
+    }
+    .header .weekend-note {
+      margin-top: 8px;
+      padding: 7px 10px;
+      background: rgba(210,153,34,0.1);
+      border-left: 3px solid #d29922;
+      color: #d29922;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .section {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    .section h2 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #e6edf3;
+      border-bottom: 1px solid #30363d;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+    .section h3 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: #8b949e;
+      margin: 14px 0 7px;
+    }
+    .section h3:first-of-type { margin-top: 4px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    th {
+      background: #1c2333;
+      color: #8b949e;
+      text-align: left;
+      padding: 6px 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    td {
+      padding: 5px 10px;
+      border-bottom: 1px solid #30363d;
+      color: #c9d1d9;
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.025); }
+    .positive { color: #3fb950; font-weight: 600; }
+    .negative { color: #f85149; font-weight: 600; }
+    .neutral { color: #8b949e; }
+    .nd { color: #8b949e; font-style: italic; }
+    .tag {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      vertical-align: middle;
+    }
+    .tag-high { background: rgba(248,81,73,0.2); color: #f85149; }
+    .tag-med { background: rgba(210,153,34,0.2); color: #d29922; }
+    .tag-low { background: rgba(139,148,158,0.2); color: #8b949e; }
+    .news-item {
+      padding: 9px 0;
+      border-bottom: 1px solid #30363d;
+    }
+    .news-item:last-child { border-bottom: none; }
+    .news-title { font-weight: 600; color: #e6edf3; font-size: 13px; }
+    .news-source { color: #58a6ff; font-size: 11px; margin: 2px 0; }
+    .news-impact { color: #8b949e; font-size: 12px; line-height: 1.5; }
+    .commentary { color: #c9d1d9; font-size: 12px; line-height: 1.6; }
+    .commentary p { margin-bottom: 6px; }
+    .commentary p:last-child { margin-bottom: 0; }
+    .commentary strong { color: #e6edf3; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .watch-item {
+      display: grid;
+      grid-template-columns: 190px 1fr 150px;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid #30363d;
+      font-size: 12px;
+      align-items: start;
+    }
+    .watch-item:last-child { border-bottom: none; }
+    .watch-name { font-weight: 700; color: #e6edf3; }
+    .watch-reason { color: #8b949e; line-height: 1.4; }
+    .watch-direction { text-align: right; font-size: 11px; font-weight: 600; }
+    .theme-item, .theme-block { padding: 7px 0; border-bottom: 1px solid #30363d; font-size: 12px; }
+    .theme-item:last-child { border-bottom: none; }
+    .theme-title { font-weight: 600; color: #e6edf3; margin-bottom: 2px; }
+    .theme-desc { color: #8b949e; line-height: 1.4; }
+    .subcard {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid #30363d;
+      border-radius: 4px;
+      padding: 12px;
+    }
+    .subcard h3 { margin-top: 0; }
+    .separator-row td {
+      background: rgba(88,166,255,0.06);
+      color: #8b949e;
+      font-style: italic;
+      font-size: 11px;
+    }
+    .footer {
+      margin-top: 20px;
+      padding: 14px 16px;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      font-size: 11px;
+      color: #8b949e;
+    }
+    .footer .sources-title {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 8px;
+      color: #e6edf3;
+      font-size: 11px;
+    }
+    .footer ul { padding-left: 16px; line-height: 1.7; }
+    .footer a { color: #58a6ff; text-decoration: none; }
+    .warning {
+      margin-top: 12px;
+      padding: 8px 12px;
+      background: rgba(248,81,73,0.08);
+      border-left: 3px solid #f85149;
+      color: #8b949e;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    @media (max-width: 750px) {
+      .two-col, .three-col { grid-template-columns: 1fr; }
+      .watch-item { grid-template-columns: 1fr; }
+      .watch-direction { text-align: left; }
+    }
+    @media print {
+      body {
+        background: #0d1117 !important;
+        color: #c9d1d9 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .section, table, tr, td, th, .data-block, .theme-block, .calendar-row {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      thead { display: table-header-group; }
+      p, li, div, span { orphans: 3; widows: 3; }
+      .section-wrapper { page-break-inside: avoid !important; break-inside: avoid !important; }
+      .item, .news-item, .stock-item, .theme-item, .event-item {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      @page { size: A4 landscape; margin: 12mm; }
+    }
+  </style>
+</head>
+<body style='background:#0d1117; color:#c9d1d9; font-family:"Segoe UI", system-ui, -apple-system, sans-serif; font-size:13px; line-height:1.5; padding:24px 20px; max-width:1160px; margin:0 auto'>
+
+<!-- ========== 1. HEADER ========== -->
+<div class="header" style="border-bottom:2px solid #58a6ff; padding-bottom:14px; margin-bottom:20px">
+  <h1 style="font-size:20px; font-weight:700; color:#e6edf3; letter-spacing:1px; text-transform:uppercase">Morning Briefing — Saturday 8 August 2026</h1>
+  <div class="meta" style="color:#8b949e; font-size:12px; margin-top:5px; line-height:1.6">
+    Generated 8 August 2026 • 06:25 BST (London) •
+    Data collected between 05:00 and 06:20 BST via open web sources •
+    Reference timezone: Europe/London (BST = UTC+1)
+  </div>
+  <div class="weekend-note" style="margin-top:8px; padding:7px 10px; background:rgba(210, 153, 34, 0.1); border-left:3px solid #d29922; color:#d29922; font-size:12px; font-weight:600">Weekend edition. European, US and Asian markets are all closed Saturday and Sunday. Next trading day: Monday 10 August 2026. All closing levels below are Friday 7 August 2026 unless stated otherwise; futures levels for Monday's open were not available at data-collection time.</div>
+</div>
+
+<!-- ========== 2. IMPORTANT NEWS ========== -->
+<div class="section section-wrapper" style="background:#161b22; border:1px solid #30363d; border-radius:6px; padding:16px; margin-bottom:14px">
+  <h2 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#e6edf3; border-bottom:1px solid #30363d; padding-bottom:8px; margin-bottom:12px">2. Important News</h2>
+
+  <div class="news-item item" style="padding:9px 0; border-bottom:1px solid #30363d">
+    <div class="news-title" style="font-weight:600; color:#e6edf3; font-size:13px">Shock July US jobs report: payrolls fall 23,000 vs +80,000 expected, with 103,000 of downward revisions</div>
+    <div class="news-source" style="color:#58a6ff; font-size:11px; margin:2px 0">Bloomberg / BLS / Quartz • Fri 7 Aug</div>
+    <div class="news-impact" style="color:#8b949e; font-size:12px; line-height:1.5">Nonfarm payrolls unexpectedly fell 23,000 in July against a consensus gain of roughly 80,000, and May-June prints were revised down a combined 103,000. The unemployment rate printed 4.1%, though sources disagree on the direction of the move (some describe a decline from June, others a rise) — treat the direction as unconfirmed, the level as reliable. Markets read this as reducing the odds the Fed will need to keep hiking, the dominant driver of Friday's rally and the single biggest input into Monday's open.</div>
+  </div>
+
+  <div class="news-item item" style="padding:9px 0; border-bottom:1px solid #30363d">
+    <div class="news-title" style="font-weight:600; color:#e6edf3; font-size:13px">S&amp;P 500 and Nasdaq close at fresh records; best week since April</div>
+    <div class="news-source" style="color:#58a6ff; font-size:11px; margin:2px 0">CNBC / AP-Washington Post / TheStreet • Fri 7 Aug</div>
+    <div class="news-impact" style="color:#8b949e; font-size:12px; line-height:1.5">S&amp;P 500 +0.62% to a record 7,757.64; Nasdaq Composite +1.3% to a record 26,690.62; Dow +0.28% to 54,036.93. Weekly gains: S&amp;P +3.6%, Nasdaq +5.2% — the strongest week for both since mid-April. Confirms broad risk-on momentum heading into Monday; record closes raise the bar for follow-through.</div>
+  </div>
+
+  <div class="news-item item" style="padding:9px 0; border-bottom:1px solid #30363d">
+    <div class="news-title" style="font-weight:600; color:#e6edf3; font-size:13px">September Fed hike odds tumble on the jobs miss</div>
+    <div class="news-source" style="color:#58a6ff; font-size:11px; margin:2px 0">CNBC / Reuters • Fri 7 Aug</div>
+    <div class="news-impact" style="color:#8b949e; font-size:12px; line-height:1.5">Rate-futures pricing for a September Fed hike fell from roughly 57-58% to roughly 42-44%; Kalshi prediction markets showed around 65% odds of a hold. Note this cycle's Fed has carried a tightening bias on tariff-driven inflation, so this is a story of hike odds falling, not cut odds rising — a nuance worth keeping straight through Monday's session.</div>
+  </div>
+
+  <div class="news-item item" style="padding:9px 0; border-bottom:1px solid #30363d">
+    <div class="news-title" style="font-weight:600; color:#e6edf3; font-size:13px">Gold pushes toward record territory, dollar posts worst week in three months</div>
+    <div class="news-source" style="color:#58a6ff; font-size:11px; margin:2px 0">CNBC / Fortune / TradingEconomics • Fri 7 Aug</div>
+    <div class="news-impact" style="color:#8b949e; font-size:12px; line-height:1.5">Gold rose to roughly $4,350/oz (+2.6% on the day) as the weak jobs print reinforced Fed rate-hold expectations; DXY fell to roughly 99.5, its worst week in three months. EUR/USD touched a seven-week high above 1.156. A weaker dollar and firmer gold both carry directly into Monday's FX and rates open.</div>
+  </div>
+
+  <div class="news-item item" style="padding:9px 0; border-bottom:none">
+    <div class="news-title" style="font-weight:600; color:#e6edf3; font-size:13px">Strait of Hormuz tension escalates over the weekend; Saudi warns of imminent coordinated attacks</div>
+    <div class="news-source" style="color:#58a6ff; font-size:11px; margin:2px 0">CNN / Middle East Eye / Republic World — Fri-Sat 7-8 Aug</div>
+    <div class="news-impact" style="color:#8b949e; font-size:12px; line-height:1.5">Houthis claimed an eighth Saudi-tanker strike (the NCC Wafa) in the Gulf of Aden, and Saudi officials warned of imminent coordinated attacks on energy infrastructure, ports and airports from Iraqi militias and the Houthis. Trump separately said a US-Iran-Oman deal to reopen the Strait of Hormuz could be close. Unverified weekend reports (low-reliability aggregator only, not corroborated by major wires as of data collection) describe a further tanker/drone incident near Oman and Kuwait intercepting Iranian drones on 8 August — flagged here as unconfirmed and requiring Monday-morning verification. Oil and gold remain highly sensitive to any escalation or de-escalation over the weekend.</div>
+  </div>
+
+</div>
+
+<!-- ========== 3. EUROPEAN FUTURES (PRE-OPEN) ========== -->
+<div class="section section-wrapper" style="background:#161b22; border:1px solid #30363d; border-radius:6px; padding:16px; margin-bottom:14px">
+  <h2 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#e6edf3; border-bottom:1px solid #30363d; padding-bottom:8px; margin-bottom:12px">3. European Futures (Pre-Open)</h2>
+  <table style="width:100%; border-collapse:collapse; font-size:12px; page-break-inside:avoid" width="100%">
+    <tr style="page-break-inside: avoid;">
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Contract</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Level</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Implied move</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Collection time</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Euro Stoxx 50 futures</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">n/a — no weekend reopen data available</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">European index futures do not trade over the weekend; last reference is Friday cash close</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">05:00-06:20 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">DAX futures</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">n/a — no weekend reopen data available</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">See Friday DAX cash close, Section 4</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">05:00-06:20 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">CAC 40 futures</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">n/a — no weekend reopen data available</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">See Friday CAC 40 cash close, Section 4</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">05:00-06:20 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">FTSE 100 futures</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">n/a — no weekend reopen data available</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">See Friday FTSE cash close, Section 4</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">05:00-06:20 BST</td>
+    </tr>
+    <tr class="separator-row" style="page-break-inside: avoid;">
+      <td colspan="4" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; background:rgba(88, 166, 255, 0.06); font-style:italic; font-size:11px" valign="top">US context — futures reopen Sunday evening ET</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">S&amp;P 500 e-mini</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">n/a — not yet reopened at data-collection time</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">US futures reopen Sunday ~18:00 ET (23:00 BST); no confirmed level found for this specific weekend</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">05:00-06:20 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Nasdaq 100 e-mini</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">n/a — not yet reopened at data-collection time</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">Same as above</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">05:00-06:20 BST</td>
+    </tr>
+  </table>
+  <div class="commentary" style="color:#c9d1d9; font-size:12px; line-height:1.6; margin-top:9px">
+    <p style="margin-bottom:0">No genuine Monday pre-open futures levels exist yet at this weekend collection time — European cash futures do not trade Saturday/Sunday and US e-minis had not yet reopened for Sunday evening at the point of writing. This section will only carry real data once futures resume; recommend checking a live terminal or CME/Investing.com futures pages directly after the Sunday 18:00 ET (23:00 BST) US reopen. Directionally, Friday's record US closes, falling September Fed-hike odds, and a weaker dollar are all consistent with a firmer bias heading into Monday, but this is inference from Friday's session, not a confirmed futures print.</p>
+  </div>
+</div>
+
+<!-- ========== 4. YESTERDAY'S CLOSES ========== -->
+<div class="section section-wrapper" style="background:#161b22; border:1px solid #30363d; border-radius:6px; padding:16px; margin-bottom:14px">
+  <h2 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#e6edf3; border-bottom:1px solid #30363d; padding-bottom:8px; margin-bottom:12px">4. Yesterday's Closes — European Indices (Friday 7 August 2026)</h2>
+  <table style="width:100%; border-collapse:collapse; font-size:12px; page-break-inside:avoid" width="100%">
+    <tr style="page-break-inside: avoid;">
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Index</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Close</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Change</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Euro Stoxx 50</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">6,523.86</td>
+      <td class="positive" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#3fb950; vertical-align:top; font-weight:600" valign="top">+0.33%</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">STOXX 600 (pan-European, context)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">660.25 (record close)</td>
+      <td class="positive" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#3fb950; vertical-align:top; font-weight:600" valign="top">+0.3% — 4th consecutive record close</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">DAX 40</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">26,319</td>
+      <td class="positive" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#3fb950; vertical-align:top; font-weight:600" valign="top">+0.69% (+179 pts) — fresh record high</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">CAC 40</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">n/a — sources conflict on exact close</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">Reported variously +0.2% to +0.38% across sources; direction (higher) is the one consistent read</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">FTSE 100</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">n/a — sources conflict</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">One source: +0.39% to ~10,910. Another: intraday record high 10,989.45, then closed lower at 10,868.05 (roughly flat to slightly down on the day, +1.2% on the week). Direction of the daily close is genuinely unresolved</td>
+    </tr>
+  </table>
+  <div class="commentary" style="color:#c9d1d9; font-size:12px; line-height:1.6; margin-top:9px">
+    <p style="margin-bottom:0">Continental Europe closed the week firmly higher, with the STOXX 600 notching its fourth consecutive record close and the DAX hitting a fresh all-time high, both lifted by the weak US jobs print reducing Fed-hike odds. DAX and Euro Stoxx 50 figures above are reasonably well corroborated; CAC 40 and FTSE 100 exact closing levels could not be reliably confirmed — one source describes the FTSE pulling back from an intraday record high to close roughly flat-to-lower on the day despite a strong week (+1.2%). Treat both as directionally positive-to-flat pending live-terminal confirmation.</p>
+  </div>
+</div>
+
+<!-- ========== 5. US MARKETS — YESTERDAY'S SESSION ========== -->
+<div class="section section-wrapper" style="background:#161b22; border:1px solid #30363d; border-radius:6px; padding:16px; margin-bottom:14px">
+  <h2 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#e6edf3; border-bottom:1px solid #30363d; padding-bottom:8px; margin-bottom:12px">5. US Markets — Yesterday's Session (Friday 7 August 2026)</h2>
+  <table style="width:100%; border-collapse:collapse; font-size:12px; page-break-inside:avoid" width="100%">
+    <tr style="page-break-inside: avoid;">
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Index</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Close</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Change</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Note</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">S&amp;P 500</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">7,757.64</td>
+      <td class="positive" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#3fb950; vertical-align:top; font-weight:600" valign="top">+0.62% (+47.68 pts)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Record close; +3.6% on the week</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Dow Jones Industrial Average</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">54,036.93</td>
+      <td class="positive" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#3fb950; vertical-align:top; font-weight:600" valign="top">+0.28% (+151.83 pts)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Nasdaq Composite</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">26,690.62</td>
+      <td class="positive" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#3fb950; vertical-align:top; font-weight:600" valign="top">+1.3% (+342.26 pts)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Record close; +5.2% on the week</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Russell 2000 (context)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">3,034.49</td>
+      <td class="positive" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#3fb950; vertical-align:top; font-weight:600" valign="top">+1.1% (+32.95 pts)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Small-caps outperformed</td>
+    </tr>
+  </table>
+  <div class="commentary" style="color:#c9d1d9; font-size:12px; line-height:1.6; margin-top:9px">
+    <p style="margin-bottom:6px">Corroborated across three independent outlets (AP/Washington Post, TheStreet, CNBC). A fourth source (vittarthi.com) showed materially different closes and is treated as an outlier/stale snapshot rather than used. Wall Street logged its strongest week since mid-April on a "bad news is good news" read of Friday's weak jobs report. <strong style="color:#e6edf3">Leading sectors:</strong> rate-sensitive and defensive groups — homebuilders, mortgage-related names, high-dividend payers (utilities, REITs, telecom) — plus technology and materials/mining. <strong style="color:#e6edf3">Lagging sectors:</strong> energy and financials, both modestly weaker. <strong style="color:#e6edf3">Notable movers:</strong> Coherent Corp (COHR) +43.5% over five sessions on peer results and a JPMorgan price-target hike to $435; Atlassian (TEAM) surged roughly 30-35% on a blowout Q4 (profit $139m vs a $24m loss a year earlier, cloud revenue +31% YoY), with co-founder Mike Cannon-Brookes buying up to $250m more stock.</p>
+    <p style="margin-bottom:0"><strong style="color:#e6edf3">Key takeaway:</strong> A surprisingly weak July jobs report reignited hopes the Fed will hold off on further hikes, sending the S&amp;P and Nasdaq to fresh records and capping the best week since mid-April — but the report's downward revisions (103,000) also raise genuine questions about underlying labour-market strength heading into next week's data.</p>
+  </div>
+</div>
+
+<!-- ========== 6. ASIAN MARKETS — OVERNIGHT SESSION ========== -->
+<div class="section section-wrapper" style="background:#161b22; border:1px solid #30363d; border-radius:6px; padding:16px; margin-bottom:14px">
+  <h2 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#e6edf3; border-bottom:1px solid #30363d; padding-bottom:8px; margin-bottom:12px">6. Asian Markets — Last Session (Friday 7 August 2026)</h2>
+  <table style="width:100%; border-collapse:collapse; font-size:12px; page-break-inside:avoid" width="100%">
+    <tr style="page-break-inside: avoid;">
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Index</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Close</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Change</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Nikkei 225</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">65,606.71</td>
+      <td class="negative" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#f85149; vertical-align:top; font-weight:600" valign="top">−0.12% (−76.55 pts)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Hang Seng</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">25,668.03</td>
+      <td class="positive" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#3fb950; vertical-align:top; font-weight:600" valign="top">+0.54% (+137.75 pts)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Shanghai Composite</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">3,940.04</td>
+      <td class="positive" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#3fb950; vertical-align:top; font-weight:600" valign="top">+1.02% (+39.69 pts)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Kospi (South Korea)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">6,258.77</td>
+      <td class="negative" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#f85149; vertical-align:top; font-weight:600" valign="top">−0.60% (−37.61 pts)</td>
+    </tr>
+  </table>
+  <div class="commentary" style="color:#c9d1d9; font-size:12px; line-height:1.6; margin-top:9px">
+    <p style="margin-bottom:0">Asia is closed over the weekend; Friday was the region's last completed session and Monday's Asian open (Sunday night/Monday morning UK time) will be the next available read, ahead of the European open. Friday itself was mixed: China (Shanghai +1.02%) and Hong Kong (Hang Seng +0.54%) led gains on bargain-hunting and resilient earnings, while Japan and South Korea slipped on tech/semiconductor profit-taking ahead of the US jobs release — SK Hynix fell nearly 5% in Seoul. With the jobs report now out and read as dovish for the Fed, watch whether Monday's Asian session extends Friday's tech weakness or reverses it; direct read-through risk for European semiconductor names (ASML, Infineon, STMicroelectronics) either way.</p>
+  </div>
+</div>
+
+<!-- ========== 7. COMMODITIES ========== -->
+<div class="section section-wrapper" style="background:#161b22; border:1px solid #30363d; border-radius:6px; padding:16px; margin-bottom:14px">
+  <h2 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#e6edf3; border-bottom:1px solid #30363d; padding-bottom:8px; margin-bottom:12px">7. Commodities</h2>
+  <table style="width:100%; border-collapse:collapse; font-size:12px; page-break-inside:avoid" width="100%">
+    <tr style="page-break-inside: avoid;">
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Commodity</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Level</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Change</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Time</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Brent (ICE, USD/bbl)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">~$82-83 (source range $82.15-$86)</td>
+      <td class="neutral" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top" valign="top">Mixed reads: one reference shows −0.41% to ~$82.15; another shows +0.97% to ~$83.29 with an intraday spike toward $86 on Hormuz-tension headlines</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Fri 7 Aug</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">WTI (NYMEX, USD/bbl)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">~$78.1</td>
+      <td class="positive" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#3fb950; vertical-align:top; font-weight:600" valign="top">~+1% d/d; building on prior-session gains on renewed Strait of Hormuz shipping-risk concern</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Fri 7 Aug</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Gold (XAU/USD, USD/oz)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">~$4,350</td>
+      <td class="positive" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#3fb950; vertical-align:top; font-weight:600" valign="top">+2.61% d/d; pushing toward record territory</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Fri 7 Aug</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Natural gas (Henry Hub, USD/MMBtu)</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">n/a for 7 Aug; ~$2.6-2.8 as of end-July</td>
+      <td class="neutral" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top" valign="top">Sharp July decline from ~$3.22-3.35 on record production and softer LNG feedgas demand</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">End-Jul 2026 (stale)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Natural gas (European TTF, EUR/MWh)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">~€52-54</td>
+      <td class="negative" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#f85149; vertical-align:top; font-weight:600" valign="top">~−2.6% d/d (source range €52.14-€54.33)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Fri 7 Aug</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Copper (COMEX, USD/lb / LME, USD/tonne)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">~$6.56-6.66/lb / $13,411/MT (LME)</td>
+      <td class="negative" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#f85149; vertical-align:top; font-weight:600" valign="top">Pulling back from an all-time high near $6.90/lb set 6 Aug on US-China supply-squeeze dynamics</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Fri 7 Aug</td>
+    </tr>
+  </table>
+  <div class="commentary" style="color:#c9d1d9; font-size:12px; line-height:1.6; margin-top:9px">
+    <p style="margin-bottom:0">Oil stayed bid into the weekend on renewed Strait of Hormuz risk — a fresh Houthi tanker-strike claim and Saudi warnings of imminent coordinated attacks on energy infrastructure — though source figures for Brent's exact Friday level disagree materially (a $4/bbl spread between references); treat the level as fluid pending Monday confirmation. Gold continued its push toward record highs as the weak jobs print reinforced Fed-hold expectations. Copper eased from Thursday's all-time high but remains historically elevated on US-China supply dynamics. European TTF gas eased on the day but remains well above year-ago levels given ongoing Mideast-linked LNG disruption risk.</p>
+  </div>
+</div>
+
+<!-- ========== 8. RATES & FX ========== -->
+<div class="section section-wrapper" style="background:#161b22; border:1px solid #30363d; border-radius:6px; padding:16px; margin-bottom:14px">
+  <h2 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#e6edf3; border-bottom:1px solid #30363d; padding-bottom:8px; margin-bottom:12px">8. Rates &amp; FX</h2>
+  <table style="width:100%; border-collapse:collapse; font-size:12px; page-break-inside:avoid" width="100%">
+    <tr style="page-break-inside: avoid;">
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Instrument</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Level</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Change</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Time</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">US Treasury 10-year</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">~4.60%</td>
+      <td class="positive" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#3fb950; vertical-align:top; font-weight:600" valign="top">Fell ~7bp from ~4.67% pre-jobs-report</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Fri 7 Aug</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">German Bund 10-year</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">~3.14%</td>
+      <td class="negative" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#f85149; vertical-align:top; font-weight:600" valign="top">+~2bp</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Fri 7 Aug</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">EUR/USD</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">&gt;1.157 (7-week high 1.1567)</td>
+      <td class="positive" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#3fb950; vertical-align:top; font-weight:600" valign="top">Dollar weakened sharply post-jobs-report</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Fri 7 Aug</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">GBP/USD</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">1.3478</td>
+      <td class="positive" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#3fb950; vertical-align:top; font-weight:600" valign="top">+0.17%</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Fri 7 Aug</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">DXY (Dollar Index)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">~99.5</td>
+      <td class="negative" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#f85149; vertical-align:top; font-weight:600" valign="top">−0.3% to −0.45%; worst week in three months</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Fri 7 Aug</td>
+    </tr>
+  </table>
+  <div class="commentary" style="color:#c9d1d9; font-size:12px; line-height:1.6; margin-top:9px">
+    <p style="margin-bottom:0">The dollar had its worst week in three months as the weak jobs report cut September Fed hike odds roughly in half, pulling the 10-year Treasury yield down and pushing EUR/USD to a seven-week high. The Bund yield firmed modestly, keeping the US-German spread compressed versus recent levels. All figures are Friday closes; no genuine Monday pre-open prints exist yet at weekend collection time — re-verify against a live terminal before the 08:00 BST cash open.</p>
+  </div>
+</div>
+
+<!-- ========== 9. DCM — PRIMARY BOND MARKET ========== -->
+<div class="section section-wrapper" style="background:#161b22; border:1px solid #30363d; border-radius:6px; padding:16px; margin-bottom:14px">
+  <h2 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#e6edf3; border-bottom:1px solid #30363d; padding-bottom:8px; margin-bottom:12px">9. DCM — Primary Bond Market</h2>
+
+  <h3 style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.7px; color:#8b949e; margin:14px 0 7px">Recent Issuances (week of 3-7 August 2026)</h3>
+  <table style="width:100%; border-collapse:collapse; font-size:12px; page-break-inside:avoid" width="100%">
+    <tr style="page-break-inside: avoid;">
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Issuer</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Currency</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Size</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Maturity</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Coupon/Spread</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Notes</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">AT&amp;T Inc.</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">EUR + GBP (5-part)</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">Conflicting: €2bn vs €4.1bn reported across sources, plus £550m sterling tranche</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">4/8/12/19-year EUR + 26-year GBP</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">IPT only: 4yr ~ms+95bp area, 19yr ~ms+200bp area. Final priced spreads/coupons not confirmed via open sources</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Books opened 27 Jul, priced ~3 Aug. Rare large "reverse Yankee" print described as stirring the typically quiet summer market</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td colspan="6" class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">No other EUR-denominated corporate IG, HY, SSA or financials deal could be confirmed as pricing in the 3-7 August window via open sources — consistent with the seasonal August lull. GlobalCapital headlines note euro corporate new-issue concessions climbed to a 2026 high in July (exact bp figure paywalled) and that banks are "leaving it to corporate issuers" to reopen the credit primary market, but no further deal-level detail was accessible.</td>
+    </tr>
+  </table>
+
+  <h3 style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.7px; color:#8b949e; margin:14px 0 7px">Pipeline / Expected Week of 10 August</h3>
+  <div class="commentary" style="color:#c9d1d9; font-size:12px; line-height:1.6">
+    <p style="margin-bottom:0">No mandated or rumoured deal was found for the week of 10 August via open search. Market commentary (LBBW fixed income research, GlobalCapital) points to a substantive primary reopening more likely in September than early-to-mid August — Q3 net euro government/SSA supply is projected up roughly 5% to just under €110bn, with about half of that increase concentrated in September specifically. Isolated opportunistic prints (in the style of AT&amp;T's) cannot be ruled out, but no specific issuer is confirmed as mandated or roadshowing for Monday.</p>
+  </div>
+
+  <h3 style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.7px; color:#8b949e; margin:14px 0 7px">Key Spreads</h3>
+  <table style="width:100%; border-collapse:collapse; font-size:12px; page-break-inside:avoid" width="100%">
+    <tr style="page-break-inside: avoid;">
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Index</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Level</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Move / Direction</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">As of</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">iTraxx Europe Main 5yr</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">n/a — not found via open sources</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">—</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">iTraxx Europe Crossover 5yr</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">~315-320bp (STALE — mid-May reference, Series 45 traded 318bp)</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">Tightened from 410bp (Oct 2025) but ~80bp wider than 2024 lows; no August-dated level found</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Mid-May 2026</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">CDX IG 5yr (USD)</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">n/a — not found via open sources</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">CDX.NA.HY 5yr context only: 358bp (mid-May, stale)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Avg euro corporate IG spread (OAS proxy)</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">~77-81bp (STALE)</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">Described as "fully valued"; no August-dated figure found</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Early Jul / Q2 2026</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Euro HY (ICE BofA ex-fin, context)</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">Yield 5.66%, spread 296bp (STALE)</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">—</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Early Jul 2026</td>
+    </tr>
+  </table>
+  <div style="margin-top:6px; font-size:11px; color:#8b949e; font-style:italic;">No current-week (4-8 August) iTraxx Main, Crossover, CDX IG or euro OAS level could be sourced via open web access — Bloomberg, GlobalCapital, cbonds and FRED pages were paywalled or blocked to direct fetch this session. All spread figures above are 1-3 months stale and should not be presented as current; a live terminal is required for same-day confirmation before Monday's open.</div>
+
+  <h3 style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.7px; color:#8b949e; margin:14px 0 7px">Commentary</h3>
+  <div class="commentary" style="color:#c9d1d9; font-size:12px; line-height:1.6">
+    <p style="margin-bottom:0">Euro primary remains in its quietest, most seasonal stretch, with essentially one large opportunistic corporate (AT&amp;T) crossing the market against an otherwise empty week — consistent with trade-press framing of early August as an intentional pause. GlobalCapital separately reports euro corporate new-issue concessions climbed to a 2026 high in July, a sign issuers are paying up more than earlier in the year even in thin volume, and flags rate volatility as clouding investor appetite for long-dated euro corporate paper. Reverse Yankee issuance (US corporates tapping EUR/GBP funding on a persistent cost advantage) remains the standout structural 2026 theme. FIG/bank issuance stayed on the sidelines this week, with corporates left to lead any reopening; SSA issuers are described as aware of a growing post-summer funding task, weighted toward September. No sector skew toward industrials, transport or energy could be established given the lack of confirmed prints this week. Recommend a live IFR/GlobalCapital and Bloomberg spread check before Monday's open.</p>
+  </div>
+</div>
+
+<!-- ========== 10. ECONOMIC CALENDAR ========== -->
+<div class="section section-wrapper" style="background:#161b22; border:1px solid #30363d; border-radius:6px; padding:16px; margin-bottom:14px">
+  <h2 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#e6edf3; border-bottom:1px solid #30363d; padding-bottom:8px; margin-bottom:12px">10. Economic Calendar (Monday 10 August 2026)</h2>
+  <table style="width:100%; border-collapse:collapse; font-size:12px; page-break-inside:avoid" width="100%">
+    <tr style="page-break-inside: avoid;">
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Time (BST)</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Region</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Indicator</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Consensus</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Importance</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">~15:00</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">US</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Conference Board Employment Trends Index (July)</td>
+      <td class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">No consensus published; prior (June) 106.69, down from 106.90 — second straight monthly decline</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top"><span class="tag tag-low" style="display:inline-block; padding:1px 6px; border-radius:4px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; vertical-align:middle; background:rgba(139, 148, 158, 0.2); color:#8b949e" valign="middle">Low</span></td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td colspan="5" class="nd" style="padding:5px 10px; border-bottom:1px solid #30363d; color:#8b949e; vertical-align:top; font-style:italic" valign="top">No high-importance Eurozone or UK release, and no named ECB/BoE/Fed speaker event, could be confirmed for Monday 10 August specifically. This is a genuinely thin calendar day.</td>
+    </tr>
+  </table>
+  <div class="commentary" style="color:#c9d1d9; font-size:12px; line-height:1.6; margin-top:9px">
+    <p style="margin-bottom:0">Monday itself is quiet by design ahead of a busier week: <strong style="color:#e6edf3">Tuesday 11 Aug</strong> brings the RBA rate decision; <strong style="color:#e6edf3">Wednesday 12 Aug</strong> brings German final HICP (July) and US CPI (July, high importance — flagged by aggregators as the week's key event, consensus n/a); <strong style="color:#e6edf3">Thursday 13 Aug</strong> brings UK Q2 GDP (high importance, date provisional) and US PPI (July); <strong style="color:#e6edf3">Friday 14 Aug</strong> brings US Retail Sales (July) and the University of Michigan consumer sentiment survey. With September Fed-hike odds already repriced sharply lower on Friday's jobs miss, Wednesday's US CPI print is shaping up as the week's dominant single catalyst.</p>
+  </div>
+</div>
+
+<!-- ========== 11. CORPORATE EVENTS & EARNINGS ========== -->
+<div class="section section-wrapper" style="background:#161b22; border:1px solid #30363d; border-radius:6px; padding:16px; margin-bottom:14px">
+  <h2 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#e6edf3; border-bottom:1px solid #30363d; padding-bottom:8px; margin-bottom:12px">11. Corporate Events &amp; Earnings (Monday 10 August 2026)</h2>
+  <table style="width:100%; border-collapse:collapse; font-size:12px; page-break-inside:avoid" width="100%">
+    <tr style="page-break-inside: avoid;">
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Company</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Market</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Event</th>
+      <th style="background:#1c2333; color:#8b949e; text-align:left; padding:6px 10px; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap" align="left">Time</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Barrick Mining Corp (NYSE/TSX: B/ABX)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">US/Canada</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Q2 2026 results; consensus revenue ~$4,487.7m (+21.9% YoY), EPS $1.16 (cut 10.15% over the past 30 days)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Before market open</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Ferguson Enterprises Inc (NYSE: FERG)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">US</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Q2 2026 results; FY2026 consensus EPS $11.11, revenue $32.59bn (quarter-specific consensus n/a)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Before open; call 8:30am ET</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Simon Property Group (NYSE: SPG)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">US</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Q2 2026 results; consensus EPS ~$3.18 (+4.3% YoY), revenue ~$1.71bn (+14.4% YoY)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">After US close</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Rocket Lab Corp (NASDAQ: RKLB)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">US</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">Q2 2026 results; consensus revenue ~$231.6m (+~60% YoY), EPS loss of $0.06 (improved from −$0.13 prior year)</td>
+      <td style="padding:5px 10px; border-bottom:1px solid #30363d; color:#c9d1d9; vertical-align:top" valign="top">After US close</td>
+    </tr>
+  </table>
+  <div class="commentary" style="color:#c9d1d9; font-size:12px; line-height:1.6; margin-top:9px">
+    <p style="margin-bottom:0">Monday's confirmed slate is US-led and relatively light on European large-caps. Aggregator estimates suggest roughly 140 US companies report Monday overall, but only the four above had confirmed timing and consensus figures via open sources. AstraZeneca and GSK, mentioned in some week-ahead summaries, in fact already reported H1/Q2 results on 27 and 28 July respectively and are not reporting this week; TUI's next report (Q3) is expected Wednesday 12 August, not Monday. Later in the week, CNBC's outlook flags Super Micro Computer, Lumentum and Cardinal Health (Tuesday) and Applied Materials and Tapestry (Thursday) as other names to watch.</p>
+  </div>
+</div>
+
+<!-- ========== 12. STOCKS TO WATCH ========== -->
+<div class="section section-wrapper" style="background:#161b22; border:1px solid #30363d; border-radius:6px; padding:16px; margin-bottom:14px">
+  <h2 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#e6edf3; border-bottom:1px solid #30363d; padding-bottom:8px; margin-bottom:12px">12. Stocks to Watch — Monday 10 August</h2>
+
+  <div class="watch-item item" style="display:grid; grid-template-columns:190px 1fr 150px; gap:10px; padding:7px 0; border-bottom:1px solid #30363d; font-size:12px; align-items:start">
+    <div class="watch-name" style="font-weight:700; color:#e6edf3">Barrick Mining (NYSE/TSX: B/ABX) — Metals &amp; Mining</div>
+    <div class="watch-reason" style="color:#8b949e; line-height:1.4">Reports Q2 results before Monday's open. Revenue consensus up ~22% YoY, but EPS estimate ($1.16) was cut 10% over the past 30 days — sets up genuine beat/miss swing risk.</div>
+    <div class="watch-direction neutral" style="color:#8b949e; text-align:right; font-size:11px; font-weight:600" align="right">Event-risk, two-sided</div>
+  </div>
+
+  <div class="watch-item item" style="display:grid; grid-template-columns:190px 1fr 150px; gap:10px; padding:7px 0; border-bottom:1px solid #30363d; font-size:12px; align-items:start">
+    <div class="watch-name" style="font-weight:700; color:#e6edf3">Glencore (LSE: GLEN) / Rio Tinto (LSE: RIO) — Metals &amp; Mining, M&amp;A</div>
+    <div class="watch-reason" style="color:#8b949e; line-height:1.4">The six-month UK takeover-rules standstill that followed Rio Tinto's walk-away from ~$260bn merger talks (5 Feb 2026) expired around 4 August. Rio has signalled "no rush" to revive talks, but the lapsed standstill keeps deal speculation live into the new week.</div>
+    <div class="watch-direction neutral" style="color:#8b949e; text-align:right; font-size:11px; font-weight:600" align="right">Event-risk, headline-sensitive</div>
+  </div>
+
+  <div class="watch-item item" style="display:grid; grid-template-columns:190px 1fr 150px; gap:10px; padding:7px 0; border-bottom:1px solid #30363d; font-size:12px; align-items:start">
+    <div class="watch-name" style="font-weight:700; color:#e6edf3">Rocket Lab (NASDAQ: RKLB) — Aerospace / Space</div>
+    <div class="watch-reason" style="color:#8b949e; line-height:1.4">Reports after Monday's close; options market pricing a roughly 15-17% post-earnings share move. Strong Buy consensus heading in (14 buy, 4 hold).</div>
+    <div class="watch-direction positive" style="color:#3fb950; font-weight:600; text-align:right; font-size:11px" align="right">Event-risk, bullish positioning</div>
+  </div>
+
+  <div class="watch-item item" style="display:grid; grid-template-columns:190px 1fr 150px; gap:10px; padding:7px 0; border-bottom:1px solid #30363d; font-size:12px; align-items:start">
+    <div class="watch-name" style="font-weight:700; color:#e6edf3">Frontline (NYSE/Oslo: FRO) / tanker names — Shipping</div>
+    <div class="watch-reason" style="color:#8b949e; line-height:1.4">Renewed Strait of Hormuz tension over the weekend (fresh tanker-strike claims, Saudi warnings of imminent attacks) is a fresh security-risk premium for crude/product tankers; Frontline has also seen recent price-target increases on strong tanker-market performance.</div>
+    <div class="watch-direction positive" style="color:#3fb950; font-weight:600; text-align:right; font-size:11px" align="right">Bullish bias on freight/geopolitical premium</div>
+  </div>
+
+  <div class="watch-item item" style="display:grid; grid-template-columns:190px 1fr 150px; gap:10px; padding:7px 0; border-bottom:1px solid #30363d; font-size:12px; align-items:start">
+    <div class="watch-name" style="font-weight:700; color:#e6edf3">BAE Systems (LSE: BA.) / Rolls-Royce (LSE: RR.) — Aerospace &amp; Defense</div>
+    <div class="watch-reason" style="color:#8b949e; line-height:1.4">BAE hiked FY2026 underlying-earnings growth guidance to 10-12% after H1 underlying earnings jumped 46% to £2.53bn; both names running on NATO/defence-spending tailwinds and, for Rolls-Royce, data-centre power-systems demand. No confirmed Monday-specific catalyst — momentum watch, not a hard trigger.</div>
+    <div class="watch-direction positive" style="color:#3fb950; font-weight:600; text-align:right; font-size:11px" align="right">Bullish momentum</div>
+  </div>
+
+  <div class="watch-item item" style="display:grid; grid-template-columns:190px 1fr 150px; gap:10px; padding:7px 0; border-bottom:1px solid #30363d; font-size:12px; align-items:start">
+    <div class="watch-name" style="font-weight:700; color:#e6edf3">IAG (LSE: IAG) / easyJet (LSE: EZJ) — Aviation</div>
+    <div class="watch-reason" style="color:#8b949e; line-height:1.4">IATA cut its 2026 global airline profit forecast to $23bn from $45bn on Middle East-linked fuel-cost pressure; JPMorgan named IAG its top sector pick while turning negative on easyJet on intra-European short-haul oversupply concerns. Weekend oil-price moves tied to Hormuz risk are a direct jet-fuel read-through into Monday.</div>
+    <div class="watch-direction neutral" style="color:#8b949e; text-align:right; font-size:11px; font-weight:600" align="right">Mixed — IAG bullish bias, easyJet bearish bias</div>
+  </div>
+
+  <div class="watch-item item" style="display:grid; grid-template-columns:190px 1fr 150px; gap:10px; padding:7px 0; border-bottom:1px solid #30363d; font-size:12px; align-items:start">
+    <div class="watch-name" style="font-weight:700; color:#e6edf3">HSBC (LSE: HSBA) / Barclays (LSE: BARC) — Banks</div>
+    <div class="watch-reason" style="color:#8b949e; line-height:1.4">Not reporting Monday, but both remain in focus after a record run. HSBC hit a record high on capital-return optimism even as BNP Paribas cut it to Underperform on 4 August; Barclays is up 43.9% over six months versus HSBC's 33.6%, both outpacing the sector's ~26% rally.</div>
+    <div class="watch-direction neutral" style="color:#8b949e; text-align:right; font-size:11px; font-weight:600" align="right">Momentum names, watch for profit-taking</div>
+  </div>
+
+  <div class="watch-item item" style="display:grid; grid-template-columns:190px 1fr 150px; gap:10px; padding:7px 0; border-bottom:none; font-size:12px; align-items:start">
+    <div class="watch-name" style="font-weight:700; color:#e6edf3">Ferguson Enterprises (NYSE: FERG) — Industrials</div>
+    <div class="watch-reason" style="color:#8b949e; line-height:1.4">Reports before Monday's open. FY2026 consensus EPS $11.11 / revenue $32.59bn cited by aggregators, but no quarter-specific figure found — genuine event-risk into the print.</div>
+    <div class="watch-direction neutral" style="color:#8b949e; text-align:right; font-size:11px; font-weight:600" align="right">Event-risk</div>
+  </div>
+
+</div>
+
+<!-- ========== 13. MACRO / CORPORATE / POLITICAL HIGHLIGHTS ========== -->
+<div class="section section-wrapper" style="background:#161b22; border:1px solid #30363d; border-radius:6px; padding:16px; margin-bottom:14px">
+  <h2 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#e6edf3; border-bottom:1px solid #30363d; padding-bottom:8px; margin-bottom:12px">13. Macro / Corporate / Political Highlights</h2>
+
+  <h3 style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.7px; color:#8b949e; margin:14px 0 7px">Macro</h3>
+  <div class="commentary" style="color:#c9d1d9; font-size:12px; line-height:1.6">
+    <p style="margin-bottom:6px"><strong style="color:#e6edf3">July payrolls shock:</strong> nonfarm payrolls fell 23,000 versus a roughly +80,000 consensus, with a combined 103,000 of downward revisions to May and June. Unemployment printed 4.1%, though sources disagree on whether that was up or down versus June — a genuine unresolved data point. This single report reshaped Fed pricing for the week ahead.</p>
+    <p style="margin-bottom:6px"><strong style="color:#e6edf3">September Fed hike odds roughly halved:</strong> from the high-50s% to the low-40s%, on a Fed that has been running a tightening bias this cycle on tariff-driven inflation. Kalshi markets put hold odds around 65%.</p>
+    <p style="margin-bottom:6px"><strong style="color:#e6edf3">ECB holding, but flagging a possible September hike:</strong> the ECB kept its main rate at 2.25% in late July, with traders pricing a possible September hike given an energy-price spike linked to the Iran conflict and inflation seen staying above target into H1 2027 — a hawkish-leaning ECB set against a softening Fed narrative is a live policy-divergence theme into Monday's European open.</p>
+    <p style="margin-bottom:0"><strong style="color:#e6edf3">US CPI (Wednesday 12 Aug)</strong> is now the week's dominant single catalyst, given how sharply Friday's jobs data already moved rate expectations.</p>
+  </div>
+
+  <h3 style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.7px; color:#8b949e; margin:14px 0 7px">Corporate</h3>
+  <div class="commentary" style="color:#c9d1d9; font-size:12px; line-height:1.6">
+    <p style="margin-bottom:6px"><strong style="color:#e6edf3">Atlassian (TEAM)</strong> surged roughly 30-35% on a blowout Q4: $139m profit versus a $24m loss a year earlier, cloud revenue +31% YoY, with co-founder Mike Cannon-Brookes buying up to $250m more stock.</p>
+    <p style="margin-bottom:6px"><strong style="color:#e6edf3">Coherent Corp (COHR)</strong> rose 43.5% over five sessions on peer results, reports of tighter US restrictions on Chinese optical transceivers, and a JPMorgan price-target hike to $435.</p>
+    <p style="margin-bottom:6px"><strong style="color:#e6edf3">Chip-sector strength</strong> has been a repeated theme through the week (Intel, AMD, Broadcom, Nvidia all higher around the 4 August reporting window), feeding into Friday's Nasdaq record, though Friday itself saw Asian chip names (SK Hynix) pull back on profit-taking.</p>
+    <p style="margin-bottom:0"><strong style="color:#e6edf3">Rio Tinto/Glencore</strong> standstill agreement lapsed around 4 August; Rio has signalled no rush to revive merger talks, but headline risk remains live into the new week.</p>
+  </div>
+
+  <h3 style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.7px; color:#8b949e; margin:14px 0 7px">Political / Geopolitical</h3>
+  <div class="commentary" style="color:#c9d1d9; font-size:12px; line-height:1.6">
+    <p style="margin-bottom:6px"><strong style="color:#e6edf3">Strait of Hormuz:</strong> the US-Israel-Iran conflict, ongoing since 28 February 2026, remains the dominant tail risk. Trump said a US-Iran-Oman deal to reopen the strait could come "pretty soon," while Houthis claimed an eighth Saudi-tanker strike and Saudi officials warned of imminent coordinated attacks on energy infrastructure, ports and airports from Iraqi militias and the Houthis. Neither the reopening deal nor the specific weekend escalation reports (a further tanker/drone incident, Kuwait intercepting Iranian drones) are confirmed by major financial wires as of data collection — both need Monday-morning verification.</p>
+    <p style="margin-bottom:0"><strong style="color:#e6edf3">US-China tariffs:</strong> a new 12.5% Section 301 tariff on Chinese goods took effect 24 July over forced-labour enforcement; the broader tariff truce runs to 10 November 2026, so there is no imminent August deadline, though a Section 301 "excess capacity" investigation into 60 countries remains an open overhang.</p>
+  </div>
+</div>
+
+<!-- ========== 14. KEY THEMES — TOP 5 BY HORIZON ========== -->
+<div class="section section-wrapper" style="background:#161b22; border:1px solid #30363d; border-radius:6px; padding:16px; margin-bottom:14px">
+  <h2 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#e6edf3; border-bottom:1px solid #30363d; padding-bottom:8px; margin-bottom:12px">14. Key Themes — Top 5 by Horizon</h2>
+  <div class="three-col" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px">
+
+    <div class="subcard theme-block" style="padding:12px; border-bottom:1px solid #30363d; font-size:12px; background:rgba(255, 255, 255, 0.03); border:1px solid #30363d; border-radius:4px">
+      <h3 style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.7px; color:#8b949e; margin:14px 0 7px; margin-top:0">Today's Top 5 (Monday 10 August)</h3>
+      <div class="theme-item item" style="padding:7px 0; border-bottom:1px solid #30363d; font-size:12px">
+        <div class="theme-title" style="font-weight:600; color:#e6edf3; margin-bottom:2px">1. Whether Friday's rally carries into Monday</div>
+        <div class="theme-desc" style="color:#8b949e; line-height:1.4">Record US and European closes Friday, plus lower Fed hike odds, set a firmer bias — but no confirmed futures print exists yet to validate it.</div>
+      </div>
+      <div class="theme-item item" style="padding:7px 0; border-bottom:1px solid #30363d; font-size:12px">
+        <div class="theme-title" style="font-weight:600; color:#e6edf3; margin-bottom:2px">2. Strait of Hormuz weekend developments</div>
+        <div class="theme-desc" style="color:#8b949e; line-height:1.4">Unconfirmed weekend escalation reports need verification; any confirmation or de-escalation is the single biggest swing factor for oil and gold at the open.</div>
+      </div>
+      <div class="theme-item item" style="padding:7px 0; border-bottom:1px solid #30363d; font-size:12px">
+        <div class="theme-title" style="font-weight:600; color:#e6edf3; margin-bottom:2px">3. Barrick Mining and Ferguson earnings, before the open</div>
+        <div class="theme-desc" style="color:#8b949e; line-height:1.4">Two names with cut or unconfirmed consensus estimates, setting up genuine event-risk into Monday's session.</div>
+      </div>
+      <div class="theme-item item" style="padding:7px 0; border-bottom:1px solid #30363d; font-size:12px">
+        <div class="theme-title" style="font-weight:600; color:#e6edf3; margin-bottom:2px">4. Asian session read-through</div>
+        <div class="theme-desc" style="color:#8b949e; line-height:1.4">Whether Friday's chip-sector weakness in Japan/Korea extends or reverses on Monday's Asian open, ahead of Europe.</div>
+      </div>
+      <div class="theme-item item" style="padding:7px 0; border-bottom:none; font-size:12px">
+        <div class="theme-title" style="font-weight:600; color:#e6edf3; margin-bottom:2px">5. Positioning ahead of Wednesday's US CPI</div>
+        <div class="theme-desc" style="color:#8b949e; line-height:1.4">With Fed pricing already sharply repriced by Friday's jobs miss, Monday's flows likely reflect early positioning for the week's dominant data point.</div>
+      </div>
+    </div>
+
+    <div class="subcard theme-block" style="padding:12px; border-bottom:1px solid #30363d; font-size:12px; background:rgba(255, 255, 255, 0.03); border:1px solid #30363d; border-radius:4px">
+      <h3 style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.7px; color:#8b949e; margin:14px 0 7px; margin-top:0">This Week's Top 5</h3>
+      <div class="theme-item item" style="padding:7px 0; border-bottom:1px solid #30363d; font-size:12px">
+        <div class="theme-title" style="font-weight:600; color:#e6edf3; margin-bottom:2px">1. US CPI, Wednesday 12 August</div>
+        <div class="theme-desc" style="color:#8b949e; line-height:1.4">The week's dominant single catalyst for rate expectations, sharpened by Friday's payrolls shock.</div>
+      </div>
+      <div class="theme-item item" style="padding:7px 0; border-bottom:1px solid #30363d; font-size:12px">
+        <div class="theme-title" style="font-weight:600; color:#e6edf3; margin-bottom:2px">2. UK Q2 GDP, Thursday 13 August</div>
+        <div class="theme-desc" style="color:#8b949e; line-height:1.4">High-importance UK growth data (date provisional), alongside US PPI the same day.</div>
+      </div>
+      <div class="theme-item item" style="padding:7px 0; border-bottom:1px solid #30363d; font-size:12px">
+        <div class="theme-title" style="font-weight:600; color:#e6edf3; margin-bottom:2px">3. Rocket Lab, Simon Property earnings (Monday) plus a heavy US reporting week</div>
+        <div class="theme-desc" style="color:#8b949e; line-height:1.4">Around 140 US names reporting Monday alone; Super Micro, Lumentum, Cardinal Health (Tue) and Applied Materials, Tapestry (Thu) also flagged.</div>
+      </div>
+      <div class="theme-item item" style="padding:7px 0; border-bottom:1px solid #30363d; font-size:12px">
+        <div class="theme-title" style="font-weight:600; color:#e6edf3; margin-bottom:2px">4. Strait of Hormuz negotiation trajectory</div>
+        <div class="theme-desc" style="color:#8b949e; line-height:1.4">The single biggest swing factor for oil, gold, aviation and defence stocks all week.</div>
+      </div>
+      <div class="theme-item item" style="padding:7px 0; border-bottom:none; font-size:12px">
+        <div class="theme-title" style="font-weight:600; color:#e6edf3; margin-bottom:2px">5. Rio Tinto/Glencore standstill expiry aftermath</div>
+        <div class="theme-desc" style="color:#8b949e; line-height:1.4">Headline risk on renewed M&amp;A speculation remains live after the standstill lapsed.</div>
+      </div>
+    </div>
+
+    <div class="subcard theme-block" style="padding:12px; border-bottom:1px solid #30363d; font-size:12px; background:rgba(255, 255, 255, 0.03); border:1px solid #30363d; border-radius:4px">
+      <h3 style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.7px; color:#8b949e; margin:14px 0 7px; margin-top:0">This Month's Top 5</h3>
+      <div class="theme-item item" style="padding:7px 0; border-bottom:1px solid #30363d; font-size:12px">
+        <div class="theme-title" style="font-weight:600; color:#e6edf3; margin-bottom:2px">1. Euro DCM primary market reopening, expected September</div>
+        <div class="theme-desc" style="color:#8b949e; line-height:1.4">Market commentary points to a substantive reopening after Labor Day rather than within August; Q3 SSA supply weighted toward September.</div>
+      </div>
+      <div class="theme-item item" style="padding:7px 0; border-bottom:1px solid #30363d; font-size:12px">
+        <div class="theme-title" style="font-weight:600; color:#e6edf3; margin-bottom:2px">2. Next ECB decision, expected 10 September</div>
+        <div class="theme-desc" style="color:#8b949e; line-height:1.4">Traders are pricing a possible hike on energy-driven inflation from the Iran conflict — a hawkish ECB against a softening Fed is a live divergence theme.</div>
+      </div>
+      <div class="theme-item item" style="padding:7px 0; border-bottom:1px solid #30363d; font-size:12px">
+        <div class="theme-title" style="font-weight:600; color:#e6edf3; margin-bottom:2px">3. Strait of Hormuz risk remains the dominant tail risk</div>
+        <div class="theme-desc" style="color:#8b949e; line-height:1.4">Any breakdown in the reported reopening deal, or confirmation of further attacks, could re-ignite oil and gold volatility through the month.</div>
+      </div>
+      <div class="theme-item item" style="padding:7px 0; border-bottom:1px solid #30363d; font-size:12px">
+        <div class="theme-title" style="font-weight:600; color:#e6edf3; margin-bottom:2px">4. Next FOMC meeting</div>
+        <div class="theme-desc" style="color:#8b949e; line-height:1.4">Following Friday's payrolls shock and the sharp repricing of September hike odds, positioning builds through August into the meeting.</div>
+      </div>
+      <div class="theme-item item" style="padding:7px 0; border-bottom:none; font-size:12px">
+        <div class="theme-title" style="font-weight:600; color:#e6edf3; margin-bottom:2px">5. US-China tariff truce, expires 10 November</div>
+        <div class="theme-desc" style="color:#8b949e; line-height:1.4">No imminent August deadline, but the open Section 301 "excess capacity" investigation into 60 countries remains a background overhang.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ========== 15. KEY TRENDS TO WATCH ========== -->
+<div class="section section-wrapper" style="background:#161b22; border:1px solid #30363d; border-radius:6px; padding:16px; margin-bottom:14px">
+  <h2 style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#e6edf3; border-bottom:1px solid #30363d; padding-bottom:8px; margin-bottom:12px">15. Key Trends to Watch</h2>
+  <div class="three-col" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px">
+
+    <div class="subcard" style="background:rgba(255, 255, 255, 0.03); border:1px solid #30363d; border-radius:4px; padding:12px">
+      <h3 style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.7px; color:#8b949e; margin:14px 0 7px; margin-top:0">1 Day</h3>
+      <div class="commentary" style="color:#c9d1d9; font-size:12px; line-height:1.6">
+        <p style="margin-bottom:6px"><strong style="color:#e6edf3">Confirmation of Monday's futures:</strong> no genuine pre-open levels exist yet at this weekend writing time — check live futures shortly after the Sunday 18:00 ET US reopen.</p>
+        <p style="margin-bottom:6px"><strong style="color:#e6edf3">Strait of Hormuz weekend claims:</strong> unconfirmed reports of a further tanker/drone incident need verification against major wires before Monday's open.</p>
+        <p style="margin-bottom:6px"><strong style="color:#e6edf3">Barrick Mining and Ferguson earnings</strong> before the US open, plus Rocket Lab and Simon Property after the close.</p>
+        <p style="margin-bottom:0"><strong style="color:#e6edf3">Asian session read-through</strong> on chip-sector direction ahead of the European open.</p>
+      </div>
+    </div>
+
+    <div class="subcard" style="background:rgba(255, 255, 255, 0.03); border:1px solid #30363d; border-radius:4px; padding:12px">
+      <h3 style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.7px; color:#8b949e; margin:14px 0 7px; margin-top:0">1 Week</h3>
+      <div class="commentary" style="color:#c9d1d9; font-size:12px; line-height:1.6">
+        <p style="margin-bottom:6px"><strong style="color:#e6edf3">Wednesday 12 Aug:</strong> US CPI, the week's dominant single event for rate expectations.</p>
+        <p style="margin-bottom:6px"><strong style="color:#e6edf3">Thursday 13 Aug:</strong> UK Q2 GDP and US PPI.</p>
+        <p style="margin-bottom:6px"><strong style="color:#e6edf3">Friday 14 Aug:</strong> US retail sales and University of Michigan sentiment.</p>
+        <p style="margin-bottom:0"><strong style="color:#e6edf3">Ongoing:</strong> Strait of Hormuz negotiation trajectory, and whether the September Fed-hike repricing holds through the week.</p>
+      </div>
+    </div>
+
+    <div class="subcard" style="background:rgba(255, 255, 255, 0.03); border:1px solid #30363d; border-radius:4px; padding:12px">
+      <h3 style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.7px; color:#8b949e; margin:14px 0 7px; margin-top:0">1 Month</h3>
+      <div class="commentary" style="color:#c9d1d9; font-size:12px; line-height:1.6">
+        <p style="margin-bottom:6px"><strong style="color:#e6edf3">Expected September:</strong> euro DCM primary market reopening after the current lull, and the next ECB decision (10 Sept), where traders are pricing a possible hike on energy-driven inflation.</p>
+        <p style="margin-bottom:6px"><strong style="color:#e6edf3">Ongoing:</strong> Strait of Hormuz risk remains the dominant macro tail risk through the month; Reverse Yankee euro/sterling issuance pace continues as a structural theme.</p>
+        <p style="margin-bottom:0"><strong style="color:#e6edf3">10 November:</strong> US-China tariff truce expiry, with a live Section 301 "excess capacity" investigation into 60 countries running in the background.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<div class="footer" style="margin-top:20px; padding:14px 16px; background:#161b22; border:1px solid #30363d; border-radius:6px; font-size:11px; color:#8b949e">
+  <div class="sources-title" style="font-weight:700; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:8px; color:#e6edf3; font-size:11px">Sources</div>
+  <ul style="padding-left:16px; line-height:1.7">
+    <li>Bloomberg / BLS / Quartz — July nonfarm payrolls report and revisions</li>
+    <li>CNBC / AP-Washington Post / TheStreet / Benzinga — US index closes, sector performance, single-stock movers, 7 Aug 2026</li>
+    <li>CNBC / Reuters (via Korea Times/Yahoo) — September Fed hike-odds repricing; Kalshi prediction markets</li>
+    <li>Fortune / TradingEconomics / Yahoo Finance — gold, dollar index, EUR/USD moves</li>
+    <li>CNN / Middle East Eye / Republic World / Al Jazeera liveblog — Strait of Hormuz tension, Houthi tanker-strike claims, Saudi warnings</li>
+    <li>Wikipedia "Portal:Current events" (low-reliability, unconfirmed weekend items only) — flagged separately as unverified</li>
+    <li>BBN Times / MarketScreener / RTT News / Investing.com / ACY.com / Share Talk — European index closes, 7 Aug 2026 (CAC 40 and FTSE 100 flagged as conflicting across sources)</li>
+    <li>bbntimes.com / tradingkey.com / en.sedaily.com / finance.biggo.com — Asian index closes, 7 Aug 2026</li>
+    <li>TradingEconomics / Forbes Advisor / metalcharts.org / metalradar.com — commodities pricing</li>
+    <li>American Gas Association — Henry Hub natural gas context</li>
+    <li>GlobalCapital / IFR (headline-level access only, full text paywalled) / LBBW fixed income research — DCM primary market colour and credit spreads</li>
+    <li>Briefs.co / Moomoo / cbonds.com — AT&amp;T Reverse Yankee deal detail</li>
+    <li>Investing.com / LiteFinance weekly calendar — economic calendar, week of 10-16 Aug 2026</li>
+    <li>StockTitan / Zacks (via Yahoo Finance) / WallStreetZen / TipRanks / Daily Political — Monday earnings consensus (Barrick, Ferguson, Simon Property, Rocket Lab)</li>
+    <li>Mining Weekly / MINING.COM — Rio Tinto/Glencore standstill expiry</li>
+    <li>Yahoo Finance UK / Kalkine Media / ii.co.uk — aviation and defence sector stocks to watch</li>
+    <li>Bloomberg (via search summary) / Yahoo Finance — HSBC and Barclays bank-sector context</li>
+    <li>European Central Bank / Bank of England / Federal Reserve — policy meeting dates and context</li>
+  </ul>
+  <div class="warning" style="margin-top:12px; padding:8px 12px; background:rgba(248, 81, 73, 0.08); border-left:3px solid #f85149; color:#8b949e; font-size:11px; line-height:1.5">
+    Weekend edition. Data collected automatically between approximately 05:00 and 06:20 BST on 8 August 2026 via open web search. Direct WebFetch access to many primary sources (Bloomberg, GlobalCapital, IFR, cbonds, TradingEconomics, several news aggregators) was blocked throughout this session; figures come from search-engine snippet summaries rather than direct page reads. No genuine Monday pre-open futures data exists at this writing time — European futures do not trade over the weekend and US e-minis had not yet reopened for Sunday evening. CAC 40 and FTSE 100 Friday closing levels, exact Brent crude pricing, the direction of the July unemployment-rate move, and current-week DCM spread levels are all flagged as unconfirmed or conflicting above and should be re-verified before use. Two central weekend claims — further Hormuz-area tanker/drone incidents on 8 August — are sourced only from a low-reliability aggregator and are not confirmed by major financial wires. Verify all figures against a live terminal before making any decision. This document is not investment advice.
+  </div>
+</div>
+
+</body>
+</html>
