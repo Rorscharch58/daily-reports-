@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morning Briefing — 22 août 2026</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-card: #161b22;
+      --bg-table-header: #1c2333;
+      --border: #30363d;
+      --text: #c9d1d9;
+      --heading: #e6edf3;
+      --text-muted: #8b949e;
+      --green: #3fb950;
+      --red: #f85149;
+      --amber: #d29922;
+      --blue: #58a6ff;
+      --accent: #388bfd;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0d1117;
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      padding: 24px 20px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--heading);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .header .meta {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 5px;
+    }
+    .weekend-note {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: rgba(210,153,34,0.08);
+      border-left: 3px solid var(--amber);
+      color: var(--text);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    .section h2 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+    .section h3 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: var(--text-muted);
+      margin: 14px 0 7px;
+    }
+    .section h3:first-of-type { margin-top: 4px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    th {
+      background: var(--bg-table-header);
+      color: var(--text-muted);
+      text-align: left;
+      padding: 6px 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    td {
+      padding: 5px 10px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.025); }
+    .positive { color: var(--green); font-weight: 600; }
+    .negative { color: var(--red); font-weight: 600; }
+    .neutral { color: var(--text-muted); }
+    .nd { color: var(--text-muted); font-style: italic; }
+    .tag {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      vertical-align: middle;
+    }
+    .tag-high { background: rgba(248,81,73,0.2); color: var(--red); }
+    .tag-med { background: rgba(210,153,34,0.2); color: var(--amber); }
+    .tag-low { background: rgba(139,148,158,0.2); color: var(--text-muted); }
+    .tag-atl { background: rgba(63,185,80,0.2); color: var(--green); }
+    .news-item {
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .news-item:last-child { border-bottom: none; }
+    .news-title { font-weight: 600; color: var(--heading); font-size: 13px; }
+    .news-source { color: var(--accent); font-size: 11px; margin: 2px 0; }
+    .news-impact { color: var(--text-muted); font-size: 12px; line-height: 1.5; }
+    .commentary {
+      color: var(--text);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .commentary p { margin-bottom: 6px; }
+    .commentary p:last-child { margin-bottom: 0; }
+    .commentary strong { color: var(--heading); }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    .watch-item {
+      display: grid;
+      grid-template-columns: 170px 1fr 130px;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      align-items: start;
+    }
+    .watch-item:last-child { border-bottom: none; }
+    .watch-name { font-weight: 700; color: var(--heading); }
+    .watch-reason { color: var(--text-muted); line-height: 1.4; }
+    .watch-direction { text-align: right; font-size: 11px; font-weight: 600; }
+    .theme-item {
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+    .theme-item:last-child { border-bottom: none; }
+    .theme-title { font-weight: 600; color: var(--heading); margin-bottom: 2px; }
+    .theme-desc { color: var(--text-muted); line-height: 1.4; }
+    .event-item {
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+    .event-item:last-child { border-bottom: none; }
+    .subcard {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 12px;
+    }
+    .subcard h3 { margin-top: 0; }
+    .separator-row td {
+      background: rgba(56,139,253,0.05);
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 11px;
+    }
+    .footer {
+      margin-top: 20px;
+      padding: 14px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .footer .sources-title {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 8px;
+      color: var(--heading);
+      font-size: 11px;
+    }
+    .footer ul { padding-left: 16px; line-height: 1.7; }
+    .footer a { color: var(--blue); text-decoration: none; }
+    .warning {
+      margin-top: 12px;
+      padding: 8px 12px;
+      background: rgba(248,81,73,0.08);
+      border-left: 3px solid var(--red);
+      color: var(--text-muted);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    @media (max-width: 750px) {
+      .two-col, .three-col { grid-template-columns: 1fr; }
+      .watch-item { grid-template-columns: 1fr; }
+      .watch-direction { text-align: left; }
+    }
+
+    @media print {
+      body {
+        background: #0d1117 !important;
+        color: #c9d1d9 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .section, table, tr, td, th, .data-block, .theme-block, .calendar-row {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+
+      thead { display: table-header-group; }
+
+      p, li, div, span {
+        orphans: 3;
+        widows: 3;
+      }
+
+      .section-wrapper {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .item, .news-item, .stock-item, .theme-item, .event-item {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      @page {
+        size: A4 landscape;
+        margin: 12mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== 1. HEADER ========== -->
+<div class="header">
+  <h1>Morning Briefing &mdash; Samedi 22 Août 2026</h1>
+  <div class="meta">
+    Généré le 22 août 2026 &bull; 07:30 BST (Londres) &bull;
+    Données collectées entre 06:00 et 07:30 BST &bull;
+    Fuseau de référence : Europe/London (BST = UTC+1)
+  </div>
+  <div class="weekend-note">
+    <strong>Note weekend :</strong> les marchés européens, américains et asiatiques sont fermés le samedi et le dimanche. Ce briefing s'appuie sur la dernière clôture disponible (vendredi 21 août 2026) et anticipe la réouverture de lundi 24 août 2026 (Asie en premier, puis Europe à 08:00 BST, puis les États-Unis). Les sections « futures » et « calendrier » sont donc orientées vers la séance de lundi plutôt que vers une pré-ouverture immédiate.
+  </div>
+</div>
+
+<!-- ========== 2. IMPORTANT NEWS ========== -->
+<div class="section section-wrapper">
+  <h2>2. Important News</h2>
+
+  <div class="news-item item">
+    <div class="news-title">Wall Street rebondit vendredi mais signe une 2e semaine de baisse consécutive</div>
+    <div class="news-source">CNBC / TheStreet / Yahoo Finance &bull; vendredi 21 août, clôture</div>
+    <div class="news-impact">Dow +0,98 %, S&amp;P 500 +0,43 %, Nasdaq +0,43 % vendredi, un rebond partiel après une semaine dominée par la volatilité obligataire. Sur cinq jours : S&amp;P environ &#8722;1,9 %, Nasdaq &#8722;2,5 %, Dow &#8722;1,8 %. La tech a été le secteur le plus faible (environ &#8722;3 % sur la semaine), en amont des résultats Nvidia de mercredi prochain.</div>
+  </div>
+
+  <div class="news-item item">
+    <div class="news-title">Rendement du Treasury 30 ans US au plus haut depuis 2007 (5,3 %), le 10 ans à 4,71-4,74 %</div>
+    <div class="news-source">Bloomberg &bull; 17-18 août</div>
+    <div class="news-impact">Craintes d'inflation, émissions massives liées aux investissements IA, déficits publics et pétrole cher poussent le long terme à la hausse. Le Trésor US (secrétaire Bessent) double ses rachats de dette longue à 4 Md$ par opération pour contenir la pression. Un point de vigilance direct pour les taux et le crédit en zone euro.</div>
+  </div>
+
+  <div class="news-item item">
+    <div class="news-title">Trump menace un « D-Day économique » contre l'Iran, nouvelles sanctions Hezbollah</div>
+    <div class="news-source">CNN / CNBC / The Hill &bull; 19-21 août</div>
+    <div class="news-impact">Nouvelles sanctions contre le Hezbollah annoncées le 20 août ; le secrétaire au Trésor Bessent doit détailler de nouvelles mesures visant tout pays continuant de commercer avec l'Iran. Le Brent est remonté vers 94 $/bbl, son plus haut depuis fin juillet, sur fond de trafic réduit dans le détroit d'Ormuz.</div>
+  </div>
+
+  <div class="news-item item">
+    <div class="news-title">Bitcoin signe sa meilleure semaine depuis 2023, pic intraday à ~79 400 $</div>
+    <div class="news-source">CoinDesk / Bloomberg &bull; 20-21 août</div>
+    <div class="news-impact">Stabilisation autour de 77 000-77 900 $ vendredi, portée par plus de 606 M$ de flux entrants sur les ETF spot en une seule journée et par des anticipations de baisse de taux Fed. Robinhood (+14 %) et Coinbase (+8 %) en ont profité sur la semaine. Reste environ 38 % sous le record d'octobre 2025.</div>
+  </div>
+
+  <div class="news-item item">
+    <div class="news-title">PMI flash US : activité la plus rapide en plus de 4 ans</div>
+    <div class="news-source">S&amp;P Global / Benzinga &bull; 21 août</div>
+    <div class="news-impact">Composite à 56,0 en août, plus haut depuis avril 2022, tiré par les services (56,8) et une reprise de l'embauche ; le manufacturier ralentit légèrement à 53,2. L'inflation des coûts d'intrants se modère. Signal positif pour la croissance US à l'approche de Jackson Hole.</div>
+  </div>
+</div>
+
+<!-- ========== 3. FUTURES EUROPEENNES ========== -->
+<div class="section section-wrapper">
+  <h2>3. Futures Européennes (Pré-ouverture)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Contrat</th>
+      <th>Dernier niveau connu</th>
+      <th>Statut ce samedi</th>
+      <th>Heure collecte</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Euro Stoxx 50 (FESX)</td>
+      <td>~6 433 (clôture cash veille, proxy)</td>
+      <td class="nd">Marché fermé &mdash; pas de future actif</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DAX (FDAX)</td>
+      <td>26 136,56 (clôture cash veille)</td>
+      <td class="nd">Marché fermé &mdash; pas de future actif</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CAC 40 (FCE)</td>
+      <td>8 484,43 (clôture cash veille)</td>
+      <td class="nd">Marché fermé &mdash; pas de future actif</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>FTSE 100 (Z)</td>
+      <td>10 816,56 (clôture cash veille)</td>
+      <td class="nd">Marché fermé &mdash; pas de future actif</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr class="separator-row" style="page-break-inside: avoid;">
+      <td colspan="4">Contexte US &mdash; Futures</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>S&amp;P 500 e-mini</td>
+      <td>7 674,37 (clôture cash veille)</td>
+      <td class="nd">Marché fermé jusqu'à dimanche ~23:00 BST</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nasdaq 100 e-mini</td>
+      <td>26 180,45 (Nasdaq Composite, clôture veille)</td>
+      <td class="nd">Marché fermé jusqu'à dimanche ~23:00 BST</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Dow Jones e-mini</td>
+      <td>53 277,01 (clôture cash veille)</td>
+      <td class="nd">Marché fermé jusqu'à dimanche ~23:00 BST</td>
+      <td>&mdash;</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Aucun future n'est coté ce samedi : les marchés à terme actions rouvrent généralement dimanche soir aux Etats-Unis (~23:00 BST), suivis par l'Asie lundi matin puis l'Europe à 08:00 BST. Les niveaux ci-dessus sont les dernières clôtures cash de vendredi, données comme référence pour la réouverture de lundi. Le contexte reste dominé par la remontée des rendements longs US, le pétrole proche de 94 $/bbl, et l'attente des résultats Nvidia (mercredi) et du symposium de Jackson Hole (27-29 août). Nous recommandons de vérifier les niveaux de futures réels dimanche soir ou lundi matin avant l'ouverture.</p>
+  </div>
+</div>
+
+<!-- ========== 4. CLOTURES EUROPEENNES ========== -->
+<div class="section section-wrapper">
+  <h2>4. Clôtures de la Veille &mdash; Indices Européens (vendredi 21 août 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Indice</th>
+      <th>Clôture</th>
+      <th>Variation</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Euro Stoxx 50 (proxy EU50)</td>
+      <td class="nd">~6 433</td>
+      <td class="positive">+0,19 %</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>STOXX 600 (référence panEuropéenne)</td>
+      <td>654,18</td>
+      <td class="positive">+0,59 %</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DAX 40</td>
+      <td>26 136,56</td>
+      <td class="positive">+0,59 % (+153,52 pts)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CAC 40</td>
+      <td>8 484,43</td>
+      <td class="positive">+0,37 % (+31,34 pts)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>FTSE 100</td>
+      <td>10 816,56</td>
+      <td class="positive">+0,64 % (+68,40 pts)</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>L'Europe a clôturé en hausse vendredi, effaçant une partie du repli de jeudi lié aux taux US. Les mines et matières premières ont été le secteur vedette (+2,5 %), portées par un dollar plus faible qui a soutenu l'or et le cuivre : Antofagasta (+5,4 %) et Endeavour Mining (+4,1 %) en tête du FTSE 100. Le luxe a rebondi (+1,4 %) après une nette baisse la veille, et les banques ont progressé légèrement. Le FTSE 100 a surperformé, bénéficiant le plus du rallye minier, tandis que Francfort et Paris ont enregistré des gains plus modestes. Note : le niveau Euro Stoxx 50 provient d'une série proxy (Trading Economics EU50), aucune seconde source n'a confirmé le chiffre exact.</p>
+  </div>
+</div>
+
+<!-- ========== 5. MARCHES US ========== -->
+<div class="section section-wrapper">
+  <h2>5. Marchés US &mdash; Séance de la Veille (vendredi 21 août 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Indice</th>
+      <th>Clôture</th>
+      <th>Variation</th>
+      <th>Note</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>S&amp;P 500</td>
+      <td>7 674,37</td>
+      <td class="positive">+0,43 %</td>
+      <td><span class="tag tag-med">2e semaine de baisse</span></td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Dow Jones Industrial Average</td>
+      <td>53 277,01</td>
+      <td class="positive">+0,98 % (+517,80 pts)</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nasdaq Composite</td>
+      <td>26 180,45</td>
+      <td class="positive">+0,43 %</td>
+      <td><span class="tag tag-med">Tech en retard sur la semaine</span></td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Wall Street a rebondi vendredi après une semaine dominée par la volatilité du marché obligataire et la remontée des rendements. La santé a mené le Dow (Merck, Johnson &amp; Johnson), tandis que les financières et les valeurs liées aux cryptos ont le plus progressé : Bitcoin a signé une hausse hebdomadaire d'environ 22 %, portant Robinhood (+~14 %) et Coinbase (+~8 %) ; les matériaux ont aussi gagné environ 2 %. La technologie a été le secteur le plus faible, en baisse de plus de 3 % sur la semaine, Amkor Technology (&#8722;~15 %) et Credo Technology (&#8722;~11 %) parmi les plus mauvaises performances hebdomadaires. Malgré le rebond de vendredi, les trois indices ont clôturé une 2e semaine consécutive de baisse (S&amp;P environ &#8722;1,9 %, Nasdaq &#8722;2,5 %, Dow &#8722;1,8 %), les prix élevés de l'énergie et la tension géopolitique au Moyen-Orient restant un facteur de pression.</p>
+  </div>
+</div>
+
+<!-- ========== 6. MARCHES ASIATIQUES ========== -->
+<div class="section section-wrapper">
+  <h2>6. Marchés Asiatiques &mdash; Dernière Séance (vendredi 21 août 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Indice</th>
+      <th>Clôture</th>
+      <th>Variation</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nikkei 225</td>
+      <td>66 016,36</td>
+      <td class="negative">&#8722;0,30 %</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Hang Seng</td>
+      <td>26 009,46</td>
+      <td class="positive">+1,21 %</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Shanghai Composite</td>
+      <td>3 905,20</td>
+      <td class="positive">+0,04 % (quasi stable)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Kospi (Corée du Sud)</td>
+      <td>6 912,95</td>
+      <td class="positive">+0,88 %</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p><strong>Marchés asiatiques fermés le week-end, réouverture lundi 24 août</strong> (l'Asie ouvre en premier dans la journée de trading mondiale, avant l'Europe puis les Etats-Unis). Séance de vendredi mitigée à modérément positive. Le Kospi a été le plus performant, porté par les valeurs de semi-conducteurs (Samsung Electronics, SK Hynix) sur des espoirs de retour aux actionnaires, compensant les craintes liées à la remontée des rendements US. Le Hang Seng a progressé et termine la semaine en hausse d'environ 3 %, mettant fin à deux semaines de baisse consécutives. Le Nikkei a été le point faible, tiré vers le bas par la technologie (SoftBank &#8722;2,5 %, Taiyo Yuden &#8722;3,4 %, Fujikura &#8722;1,1 %) et termine la semaine en baisse. Alibaba a chuté d'environ 3 % après avoir annoncé une chute de plus de 75 % du profit trimestriel liée à un capex IA agressif. Shanghai est resté quasi inchangé.</p>
+  </div>
+</div>
+
+<!-- ========== 7. COMMODITES ========== -->
+<div class="section section-wrapper">
+  <h2>7. Commodités (vendredi 21 août 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Matière première</th>
+      <th>Niveau</th>
+      <th>Variation</th>
+      <th>Heure</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Brent (ICE, USD/bbl)</td>
+      <td>~93,86-94,24</td>
+      <td class="positive">~stable à +0,08 %</td>
+      <td>Clôture veille</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>WTI (NYMEX, USD/bbl)</td>
+      <td>~86,64-87,32</td>
+      <td class="negative">~stable, &#8722;0,22 %</td>
+      <td>Clôture veille</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Or (XAU/USD, USD/oz)</td>
+      <td>~4 525-4 607</td>
+      <td class="positive">+~2 % (jour), +~10 % (mois)</td>
+      <td>Clôture veille</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Cuivre (COMEX, USD/lb)</td>
+      <td>~6,58-6,59</td>
+      <td class="positive">+1,79 %</td>
+      <td>Clôture veille</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Gaz naturel (Henry Hub, USD/MMBtu)</td>
+      <td>~2,75</td>
+      <td class="positive">+0,46 %</td>
+      <td>Clôture veille</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Gaz naturel (TTF européen, EUR/MWh)</td>
+      <td>~65,77</td>
+      <td class="positive">+0,72 % &mdash; plus haut depuis janvier 2023</td>
+      <td>Clôture veille</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Le pétrole reste soutenu par la guerre Iran et les restrictions de navigation dans le détroit d'Ormuz : Brent proche de 94 $/bbl, plus haut depuis fin juillet. Le gaz TTF européen atteint son plus haut niveau depuis janvier 2023 sur les mêmes craintes d'approvisionnement en GNL. L'or poursuit un rallye marqué (meilleur mois depuis janvier 2026), porté par l'assouplissement attendu de la Fed et la faiblesse du dollar à l'approche de Jackson Hole. Le cuivre reste bien soutenu par une offre physique tendue malgré des inquiétudes sur la demande chinoise. Point de vigilance : un Brent durablement au-dessus de 90 $ entretient la pression inflationniste en zone euro et complique l'agenda BCE, dont l'économiste en chef Philip Lane anticipe une inflation proche de 3 % jusqu'à fin d'année.</p>
+  </div>
+</div>
+
+<!-- ========== 8. TAUX & FX ========== -->
+<div class="section section-wrapper">
+  <h2>8. Taux &amp; FX (vendredi 21 août 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Instrument</th>
+      <th>Niveau</th>
+      <th>Variation</th>
+      <th>Heure</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>US Treasury 10 ans</td>
+      <td>~4,71-4,74 %</td>
+      <td class="neutral">~stable</td>
+      <td>Clôture veille</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>US Treasury 30 ans</td>
+      <td>~5,30 %</td>
+      <td class="negative">Plus haut depuis 2007</td>
+      <td>Semaine du 17-18 août</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Bund allemand 10 ans</td>
+      <td>~3,24 %</td>
+      <td class="positive">&#8722;1 pb</td>
+      <td>Clôture veille</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>EUR/USD</td>
+      <td>~1,1679-1,1691</td>
+      <td class="neutral">Quasi inchangé</td>
+      <td>Clôture veille</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>GBP/USD</td>
+      <td>~1,3643</td>
+      <td class="positive">+0,09 %</td>
+      <td>Clôture veille</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DXY (Dollar Index)</td>
+      <td>~98,66</td>
+      <td class="negative">En baisse, plus bas depuis mai 2026</td>
+      <td>Clôture veille</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Le 30 ans US atteint son plus haut niveau depuis 2007 (5,3 %), le Trésor doublant ses rachats de dette longue pour contenir la pression (craintes d'inflation, émissions liées au capex IA, déficits). Le 10 ans reste proche de 4,7 %. Le Bund allemand se détend légèrement à 3,24 %. Le dollar reste sous pression (DXY à son plus bas depuis mai, environ &#8722;2,4 % sur le mois), les investisseurs se tournant vers l'or et les cryptos alors que le programme de rachat du Trésor (Bessent) et les espoirs de baisse de taux Fed avant Jackson Hole pèsent sur le billet vert. L'EUR/USD tient autour de 1,17, la livre progresse légèrement.</p>
+  </div>
+</div>
+
+<!-- ========== 9. DCM ========== -->
+<div class="section section-wrapper">
+  <h2>9. DCM &mdash; Marché Primaire Obligataire</h2>
+
+  <h3>Émissions de la Semaine (17-21 août 2026)</h3>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Émetteur</th>
+      <th>Devise</th>
+      <th>Montant</th>
+      <th>Maturité</th>
+      <th>Coupon / Spread</th>
+      <th>Notes</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Sika AG (Suisse, chimie spécialisée)</td>
+      <td>EUR</td>
+      <td>1 000 M&euro; (hybride, 2x500 M&euro;)</td>
+      <td>30NC5.75 / 2e tranche</td>
+      <td>4,375 % (prix 99,397, yield 4,500 %) / tranche 2 prix 99,153, yield 5,000 %</td>
+      <td>Premier hybride de l'émetteur. Coordinateur global Citigroup ; bookrunners BofA, Citigroup, UBS.</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>République de Finlande</td>
+      <td>EUR</td>
+      <td>4 000 M&euro;</td>
+      <td>7 ans (avril 2033)</td>
+      <td>Coupon 3,300 %, prix 99,953, yield 3,310 %</td>
+      <td>Spread resserré d'environ 10 pb vs émission comparable il y a un an. Livre bien couvert. Leads BNP Paribas, BofA, Danske, Deutsche Bank, JPMorgan.</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Mizuho Financial Group</td>
+      <td>EUR</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+      <td class="nd">Actif sur le marché euro cette semaine selon Bloomberg, détails non confirmés par les sources publiques.</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Land NRW / NRW.Bank (SSA)</td>
+      <td>EUR</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+      <td class="nd">Pricing resserré malgré la volatilité, attirant les investisseurs avec un pickup vs KfW. Détails complets non disponibles (contenu GlobalCapital sous abonnement).</td>
+    </tr>
+  </table>
+  <div style="margin-top:6px; font-size:11px; color:var(--text-muted);">Volume total du marché primaire européen cette semaine : environ 38,3-38,5 Md&euro;, décrit par Bloomberg comme la reprise post-été la plus rapide jamais enregistrée.</div>
+
+  <h3>Pipeline / Semaine du 24 Août</h3>
+  <div class="commentary">
+    <p>Le marché des covered bonds anticipe une reprise imminente des émissions publiques, la première émission benchmark post-été étant attendue sous deux semaines après sept semaines sans émission benchmark. Côté corporate IG, les banques préparent des mandats pour une reprise, mais le vrai redémarrage de volume est attendu en septembre plutôt que fin août : la semaine du 24 août devrait rester légère, dans la continuité de la saisonnalité estivale habituelle. Aucun deal corporate ou SSA spécifiquement mandaté pour le 24-28 août n'a été identifié dans les sources publiques (n/d).</p>
+  </div>
+
+  <h3>Principaux Spreads de Crédit</h3>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Indice</th>
+      <th>Niveau (pb)</th>
+      <th>Contexte / Sens</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>iTraxx Europe Main 5 ans</td>
+      <td class="nd">n/d (pas de print d'août confirmé)</td>
+      <td class="positive">Référence début juillet : ~50,7 pb, plus bas en 5 mois &mdash; biais de resserrement</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>iTraxx Europe Crossover 5 ans</td>
+      <td class="nd">n/d (pas de print d'août confirmé)</td>
+      <td class="positive">Référence mi-mai : 315-320 pb vs pic de 460 pb en mars 2025 &mdash; tendance de resserrement sur l'année</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CDX IG 5 ans (USD)</td>
+      <td class="nd">n/d</td>
+      <td class="positive">Décrit qualitativement comme « historiquement serré »</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Spread IG corporate EUR moyen</td>
+      <td class="nd">n/d</td>
+      <td class="positive">Proche du 20e percentile historique (serré) fin 2025/début 2026</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>ICE CoCo/AT1 Index (référence financières)</td>
+      <td>~206 pb</td>
+      <td class="positive">Vs médiane historique de 385 pb &mdash; marché AT1 très demandé</td>
+    </tr>
+  </table>
+  <div style="margin-top:6px; font-size:11px; color:var(--text-muted); font-style:italic;">Niveaux exacts iTraxx/CDX pour la clôture du 21 août non disponibles via sources publiques ; les références de juillet/mai sont données à titre directionnel uniquement.</div>
+
+  <h3>Commentaire Marché Primaire</h3>
+  <div class="commentary">
+    <p>Le ton reste constructif à l'approche de septembre. Les émissions bien sursouscrites de cette semaine, un souverain (Finlande) et un industriel (premier hybride de Sika), ainsi que la présence d'un financière japonaise (Mizuho) sur l'euro, suggèrent une fenêtre d'émission fonctionnellement ouverte. Les covered bonds et l'offre corporate/financières plus large sont annoncés par les desks comme prêts pour une reprise de volume une fois le calendrier post-vacances dégagé. Fin août reste une phase de transition, pas l'évènement principal : le vrai volume devrait se construire à partir de la première semaine de septembre. Pour les industriels, l'énergie et le transport, les spreads AT1/hybrides serrés (coupons de 4,4-5,0 % pour le premier hybride de Sika) et la demande SSA ferme pointent vers des coûts de financement globalement favorables pour tout émetteur prêt à lancer tôt.</p>
+  </div>
+</div>
+
+<!-- ========== 10. CALENDRIER ECONOMIQUE ========== -->
+<div class="section section-wrapper">
+  <h2>10. Calendrier Économique &mdash; Semaine du 24 Août 2026</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Heure (BST)</th>
+      <th>Zone</th>
+      <th>Indicateur</th>
+      <th>Consensus / Importance</th>
+      <th>Jour</th>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td>12:30</td>
+      <td>US</td>
+      <td>Chicago Fed National Activity Index (juillet)</td>
+      <td class="nd">Consensus n/d</td>
+      <td><span class="tag tag-med">Lun 24 &bull; Moyenne</span></td>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td>Après-midi</td>
+      <td>US</td>
+      <td>Dallas Fed Manufacturing Survey ; adjudications T-bills</td>
+      <td class="nd">Consensus n/d</td>
+      <td><span class="tag tag-low">Lun 24 &bull; Faible</span></td>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td>09:30</td>
+      <td>Allemagne</td>
+      <td>Ifo Business Climate</td>
+      <td class="nd">Consensus n/d</td>
+      <td><span class="tag tag-high">Mar 25 &bull; Haute</span></td>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td>14:00-15:00</td>
+      <td>US</td>
+      <td>Case-Shiller Home Price Index, Richmond Fed, New Home Sales, Consumer Confidence</td>
+      <td class="nd">Consensus n/d</td>
+      <td><span class="tag tag-med">Mar 25 &bull; Moyenne</span></td>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td class="nd">n/d</td>
+      <td>US</td>
+      <td>Durable Goods Orders ; flux de données PIB Q2 (2e estimation)</td>
+      <td class="nd">Consensus n/d</td>
+      <td><span class="tag tag-high">Mer 26 &bull; Haute</span></td>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td>Après clôture US</td>
+      <td>US</td>
+      <td>Résultats NVIDIA (Q2 FY27) &mdash; catalyseur majeur de la semaine</td>
+      <td>Consensus ~92-95 Md$ CA (+~97 % YoY)</td>
+      <td><span class="tag tag-high">Mer 26 &bull; Haute</span></td>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td>10:00</td>
+      <td>Zone euro</td>
+      <td>PIB (2e estimation) et balance commerciale</td>
+      <td class="nd">Consensus n/d</td>
+      <td><span class="tag tag-high">Jeu 27 &bull; Haute</span></td>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td class="nd">n/d</td>
+      <td>US</td>
+      <td>Inscriptions chômage hebdomadaires, stocks de gros</td>
+      <td class="nd">Consensus n/d</td>
+      <td><span class="tag tag-med">Jeu 27 &bull; Moyenne</span></td>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td class="nd">n/d</td>
+      <td>US</td>
+      <td>Symposium de Jackson Hole (Kansas City Fed) &mdash; ouverture, thème « Financial Innovation : Implications for Payments and Policy »</td>
+      <td class="nd">&mdash;</td>
+      <td><span class="tag tag-high">Jeu 27 - Sam 29 &bull; Haute</span></td>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td class="nd">n/d</td>
+      <td>US</td>
+      <td>Discours d'ouverture de Jackson Hole &mdash; première intervention du président Fed Kevin Warsh dans ce cadre</td>
+      <td class="nd">&mdash;</td>
+      <td><span class="tag tag-high">Ven 28 &bull; Haute</span></td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Lundi 24 août est une journée calme, sans publication majeure zone euro ou UK. La semaine se densifie ensuite avec l'Ifo allemand mardi, l'inflation PCE US et les résultats Nvidia mercredi, le PIB zone euro et l'ouverture de Jackson Hole jeudi, et le discours tant attendu de Kevin Warsh vendredi &mdash; sa première sortie publique majeure en tant que président de la Fed, 19 jours avant le FOMC du 16 septembre. Un rapport isolé nommait un intervenant différent pour ce discours ; cette information n'a pas pu être corroborée par des sources fiables et doit être considérée comme non confirmée.</p>
+  </div>
+</div>
+
+<!-- ========== 11. EVENEMENTS CORPORATE ========== -->
+<div class="section section-wrapper">
+  <h2>11. Événements &amp; Publications Corporate &mdash; Semaine du 24 Août</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Société</th>
+      <th>Place</th>
+      <th>Événement</th>
+      <th>Jour</th>
+    </tr>
+    <tr class="event-item" style="page-break-inside: avoid;">
+      <td>PDD Holdings, XPeng, Tuya, NAPCO Security Technologies</td>
+      <td>Nasdaq / NYSE</td>
+      <td>Résultats trimestriels (ADR chinois et small-caps principalement)</td>
+      <td>Lun 24</td>
+    </tr>
+    <tr class="event-item" style="page-break-inside: avoid;">
+      <td>NVIDIA (NVDA)</td>
+      <td>Nasdaq</td>
+      <td>Résultats Q2 FY27 après clôture &mdash; catalyseur de la semaine pour la thématique IA et le Nasdaq</td>
+      <td>Mer 26</td>
+    </tr>
+    <tr class="event-item" style="page-break-inside: avoid;">
+      <td>Marvell Technology, Salesforce, CrowdStrike, Workday, Okta, Autodesk, Synopsys</td>
+      <td>Nasdaq / NYSE</td>
+      <td>Résultats trimestriels</td>
+      <td>Mer-Ven</td>
+    </tr>
+    <tr class="event-item" style="page-break-inside: avoid;">
+      <td>Ulta Beauty, Best Buy, Dollar General, Abercrombie &amp; Fitch, Dick's Sporting Goods, Affirm</td>
+      <td>NYSE / Nasdaq</td>
+      <td>Résultats trimestriels &mdash; lecture sur le consommateur US</td>
+      <td>Mer-Ven</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Agenda corporate européen très allégé pour la semaine : aucune publication ou AGM de grande capitalisation FTSE, DAX ou CAC 40 n'a été identifiée dans les sources publiques, cohérent avec une saison de résultats Q2 zone euro déjà largement bouclée fin août. L'attention du marché se concentre sur les publications américaines, en particulier Nvidia mercredi, et sur le symposium de Jackson Hole en fin de semaine.</p>
+  </div>
+</div>
+
+<!-- ========== 12. ACTIONS A SUIVRE ========== -->
+<div class="section section-wrapper">
+  <h2>12. Actions à Suivre (Semaine du 24 Août)</h2>
+
+  <div class="watch-item item">
+    <div class="watch-name">American Airlines (AAL) &mdash; US</div>
+    <div class="watch-reason">Seule grande compagnie aérienne US dans le rouge sur l'année (~&#8722;12 % YTD). La remontée du carburant (WTI ~87 $/bbl) pèse sur les marges.</div>
+    <div class="watch-direction negative">Baissier / Surveiller</div>
+  </div>
+
+  <div class="watch-item item">
+    <div class="watch-name">Delta Air Lines (DAL) &mdash; US</div>
+    <div class="watch-reason">Meilleure performance du secteur, +16 % YTD. Vu comme la compagnie bénéficiant le plus d'une demande premium résiliente.</div>
+    <div class="watch-direction positive">Haussier</div>
+  </div>
+
+  <div class="watch-item item">
+    <div class="watch-name">Honeywell (HON) &mdash; US</div>
+    <div class="watch-reason">Action en baisse d'environ 20 % après avoir abaissé sa guidance de croissance organique 2026 à 4-5 % (vs 7-9 %). Risque de poursuite des révisions à la baisse des analystes.</div>
+    <div class="watch-direction negative">Baissier / Risque de suite</div>
+  </div>
+
+  <div class="watch-item item">
+    <div class="watch-name">BAE Systems (BA.) &mdash; LSE</div>
+    <div class="watch-reason">Programme de rachat d'actions en cours et vent favorable des dépenses de défense européennes. Environ +2,7 % récemment.</div>
+    <div class="watch-direction positive">Haussier</div>
+  </div>
+
+  <div class="watch-item item">
+    <div class="watch-name">Babcock International (BAB) &mdash; LSE</div>
+    <div class="watch-reason">Progression d'environ +3 % dans le sillage de BAE Systems, portée par la même demande de défense européenne.</div>
+    <div class="watch-direction positive">Haussier</div>
+  </div>
+
+  <div class="watch-item item">
+    <div class="watch-name">Sunrise Energy Metals (SRL / SREMF)</div>
+    <div class="watch-reason">A sécurisé un engagement de prêt américain conditionnel d'environ 400-566 M$ pour la production de scandium destinée à la défense et l'aérospatiale. Prévoit une cotation US. Nom spéculatif, forte volatilité.</div>
+    <div class="watch-direction positive">Haussier / Spéculatif</div>
+  </div>
+
+  <div class="watch-item item">
+    <div class="watch-name">Metro Bank (MTRO) &mdash; LSE</div>
+    <div class="watch-reason">Signaux contradictoires : une source indique &#8722;9,5 % sur des revenus H1 sous-jacents faibles, une autre indique +2 % sur des rumeurs de fusion avec Aldermore (~2 Md£). Nécessite confirmation lundi.</div>
+    <div class="watch-direction neutral">Neutre / Non résolu</div>
+  </div>
+
+  <div class="watch-item item">
+    <div class="watch-name">DBS Group (D05) &mdash; Singapour</div>
+    <div class="watch-reason">Profit trimestriel record au T2, action à un plus haut historique. Baromètre pour le sentiment bancaire asiatique et mondial.</div>
+    <div class="watch-direction positive">Haussier</div>
+  </div>
+
+  <div class="watch-item item">
+    <div class="watch-name">MP Materials (MP) &mdash; US / Mines de cuivre</div>
+    <div class="watch-reason">Cuivre proche de ses plus hauts en 2 mois (~14 000 $/tonne LME). Thématique terres rares et relocalisation américaine de l'approvisionnement stratégique.</div>
+    <div class="watch-direction positive">Haussier</div>
+  </div>
+
+  <div class="watch-item item">
+    <div class="watch-name">Banques européennes (secteur)</div>
+    <div class="watch-reason">HSBC réitère un positionnement « préférence banques » pour H2 2026 sur la thématique des taux, avec une préférence pour les banques italiennes et espagnoles plutôt que britanniques ou françaises. Signal de valeur relative plutôt qu'un catalyseur mono-titre.</div>
+    <div class="watch-direction positive">Haussier / Valeur relative</div>
+  </div>
+</div>
+
+<!-- ========== 13. GROS POINTS MACRO/CORPO/POLITIQUE ========== -->
+<div class="section section-wrapper">
+  <h2>13. Macro / Corporate / Politique &mdash; Points Clés</h2>
+
+  <h3>Macro</h3>
+  <div class="commentary item">
+    <p><strong>Fed sous Kevin Warsh, crédibilité testée :</strong> assermenté président le 22 mai 2026, Warsh a subi un début compliqué, ayant retenu ses projections de taux lors de son premier FOMC de juin. Les probabilités d'une baisse le 16 septembre sont actuellement proches de zéro, mais les données d'emploi faibles de juillet plaident pour un scénario contraire.</p>
+    <p><strong>Jackson Hole, 27-29 août :</strong> thème « Financial Innovation : Implications for Payments and Policy ». Premier discours de Warsh en tant que président de la Fed dans ce cadre, attendu vendredi 28 août.</p>
+    <p><strong>BCE :</strong> l'économiste en chef Philip Lane anticipe une inflation en zone euro proche de 3 % jusqu'à la fin de l'année, citant l'effet de la guerre en Iran sur les prix de l'énergie.</p>
+    <p><strong>BoE :</strong> taux maintenu à 3,75 % pour la 5e réunion consécutive (vote 6-3). CPI UK de juin à 2,6 %, la BoE anticipant un pic proche de 3,2 % au T4 2026 sur les coûts énergétiques.</p>
+    <p><strong>Emploi US :</strong> créations non agricoles de juillet à &#8722;23 000, chômage à 4,1 %, révisions combinées mai/juin à &#8722;103 000. Un contraste net avec le PMI flash solide.</p>
+  </div>
+
+  <h3>Corporate</h3>
+  <div class="commentary item">
+    <p><strong>Résultats bancaires exceptionnels mi-juillet :</strong> les cinq grandes banques US ont battu le consensus. JPMorgan a affiché un profit trimestriel record de 21,2 Md$ (+41 % YoY) ; Goldman Sachs a signé son meilleur trimestre jamais enregistré (BPA 20,98 $, revenus +39 % YoY), portés par le trading et les commissions de banque d'investissement.</p>
+    <p><strong>NVIDIA en ligne de mire :</strong> résultats Q2 FY27 mercredi 26 août après clôture, consensus autour de 92-95 Md$ de chiffre d'affaires (+~97 % YoY). Le plus grand catalyseur mono-titre de la semaine pour la thématique IA et le Nasdaq.</p>
+    <p><strong>Activité M&amp;A soutenue :</strong> rachat d'ATG Entertainment par Endeavor/Mari pour 6 Md$ (15 août), acquisition de Fiberhost/Inea par Deutsche Telekom pour environ 1 Md&euro; (16 août), cession de sa filiale jeux vidéo par Alibaba pour plus de 1,5 Md$ (17 août), fusion Curium-Lantheus, fusion tout-actions Supernus-Indivior (environ 2,2 Md$ de revenus combinés).</p>
+  </div>
+
+  <h3>Politique / Géopolitique</h3>
+  <div class="commentary item">
+    <p><strong>Guerre en Iran (depuis le 28 février 2026) :</strong> le trafic dans le détroit d'Ormuz reste fortement réduit, à environ 8-9 M bpd sur un flux normal de 20 M bpd. L'Iran signale des dommages sur ses installations gazières.</p>
+    <p><strong>« D-Day économique » de Trump :</strong> nouvelles sanctions contre le Hezbollah le 20 août, menace de pénalités contre tout pays continuant de commercer avec l'Iran. Téhéran qualifie la démarche de « recette pour le colonialisme » et menace de représailles juridiques.</p>
+    <p><strong>Pourparlers Russie-Ukraine à l'arrêt :</strong> les négociations trilatérales US-Ukraine-Russie sont suspendues depuis février 2026, coïncidant avec le déclenchement de la guerre en Iran. Le renseignement ukrainien indique qu'aucune disposition au cessez-le-feu n'a été observée côté russe (18 août).</p>
+    <p><strong>Frictions commerciales US-Chine persistantes :</strong> nouveau tarif Section 301 de 12,5 % (application travail forcé) effectif depuis le 24 juillet, la Chine ripostant sur les interdictions d'importation de robots/onduleurs et l'ajout d'entités à sa liste noire.</p>
+  </div>
+</div>
+
+<!-- ========== 14. KEY THEMES ========== -->
+<div class="section section-wrapper">
+  <h2>14. Key Themes &mdash; Top 5 par Horizon</h2>
+  <div class="three-col">
+
+    <div class="subcard">
+      <h3>Top 5 pour Lundi (24 Août)</h3>
+      <div class="theme-item item">
+        <div class="theme-title">1. Réplique du choc obligataire</div>
+        <div class="theme-desc">Le 30 ans US à 5,3 % (plus haut depuis 2007) doit se stabiliser ou continuer de se dégrader après le renforcement des rachats du Trésor. Détermine le ton pour les actifs risqués lundi.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">2. Pétrole au-dessus de 90 $</div>
+        <div class="theme-desc">Le risque de sanctions sur l'Iran maintient le Brent proche de 94 $/bbl. Toute perturbation du détroit d'Ormuz ce week-end pourrait faire gapper les valeurs sensibles à l'énergie et à l'inflation dès l'ouverture.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">3. Momentum crypto</div>
+        <div class="theme-desc">Bitcoin (~77-79 K$) teste si l'appétit pour le risque se propage aux actions lundi ou s'inverse, des voix évoquant déjà un « bull trap ».</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">4. Sous-performance tech</div>
+        <div class="theme-desc">Repli du Nasdaq sur 5 jours (~&#8722;3 % pour la tech) à l'approche des résultats Nvidia de mercredi. Le repositionnement pourrait continuer lundi.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">5. Annonces de sanctions Iran/Hezbollah</div>
+        <div class="theme-desc">Tout détail supplémentaire de sanctions annoncé par Bessent est un moteur de marché de premier ordre compte tenu du lien direct avec le pétrole.</div>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>Top 5 de la Semaine (24-28 Août)</h3>
+      <div class="theme-item item">
+        <div class="theme-title">1. Résultats NVIDIA (mercredi, après clôture)</div>
+        <div class="theme-desc">Le plus grand catalyseur mono-titre de la semaine pour la thématique IA et la direction du Nasdaq.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">2. Inflation PCE de juillet (mercredi)</div>
+        <div class="theme-desc">Le PCE core est attendu en ralentissement vers 3,2 % YoY (vs 3,3 %). Une surprise dans un sens ou l'autre redessine les probabilités de baisse Fed le 16 septembre.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">3. Symposium de Jackson Hole (27-29 août)</div>
+        <div class="theme-desc">Premier discours de Warsh en tant que président de la Fed vendredi. Les marchés surveilleront tout écart par rapport à son engagement de ne pas donner d'orientation à court terme.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">4. Autres résultats (Salesforce, CrowdStrike, HP, Okta)</div>
+        <div class="theme-desc">Confirmeront ou contrediront le signal PMI services solide observé cette semaine.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">5. Suivi du marché du Trésor</div>
+        <div class="theme-desc">Nouvelles opérations de rachat et résultats d'adjudications (2/5/7 ans) comme jauge de l'apaisement du test imposé par les marchés obligataires à Warsh.</div>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>Top 5 du Mois (Août-Septembre 2026)</h3>
+      <div class="theme-item item">
+        <div class="theme-title">1. Décision FOMC du 16 septembre</div>
+        <div class="theme-desc">Test décisif de la crédibilité de Warsh. Les marchés ne pricent quasiment aucune baisse actuellement, mais les données d'emploi faibles plaident pour un assouplissement.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">2. Trajectoire de la guerre en Iran</div>
+        <div class="theme-desc">La campagne de « guerre économique » de Trump peut désescalader via des sanctions ou déclencher une perturbation supplémentaire d'Ormuz. Le pétrole entre 90 et 95 $ reste un input clé pour la Fed.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">3. Prime de terme et vente obligataire</div>
+        <div class="theme-desc">Le 30 ans à un plus haut de 18 ans. Un maintien durable au-dessus de 5 % resserrerait sensiblement les conditions financières en septembre et pèserait sur les actions.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">4. Résolution de la trêve commerciale US-Chine</div>
+        <div class="theme-desc">La trêve d'un an (depuis octobre 2025) doit être prolongée. Les dynamiques tarifaires Section 301 et de rétorsion restent non résolues à l'approche de l'automne.</div>
+      </div>
+      <div class="theme-item item">
+        <div class="theme-title">5. Rapport sur l'emploi de septembre (4 septembre)</div>
+        <div class="theme-desc">Confirmera si la tendance de refroidissement du marché du travail (deux mois faibles consécutifs) se poursuit, un input clé pour la Fed aux côtés du PCE.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ========== 15. KEY TRENDS ========== -->
+<div class="section section-wrapper">
+  <h2>15. Key Trends à Surveiller</h2>
+  <div class="three-col">
+
+    <div class="subcard">
+      <h3>À 1 Jour (Lundi 24 Août)</h3>
+      <div class="commentary">
+        <p><strong>Taux :</strong> direction des rendements US après les nouvelles de sanctions sur l'Iran ce week-end. Annonce de sanctions attendue de Bessent.</p>
+        <p><strong>Pétrole :</strong> ouverture proche de 94 $/bbl, surveillance de tout titre lié au détroit d'Ormuz.</p>
+        <p><strong>Crypto :</strong> suivi du Bitcoin au-dessus/en dessous de 77 K$.</p>
+        <p><strong>Tech :</strong> stabilisation du Nasdaq à l'approche des résultats Nvidia.</p>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>À 1 Semaine (24-28 Août)</h3>
+      <div class="commentary">
+        <p><strong>Résultats NVIDIA</strong> mercredi après clôture ; PCE de juillet mercredi matin.</p>
+        <p><strong>Symposium de Jackson Hole</strong> mercredi à vendredi, discours de Kevin Warsh vendredi matin.</p>
+        <p><strong>Résultats secondaires :</strong> Salesforce, CrowdStrike, HP, Okta, Synopsys.</p>
+        <p><strong>Géopolitique :</strong> tout titre d'escalade ou de désescalade sur l'Iran/Ormuz ; résultats d'adjudications du Trésor.</p>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>À 1 Mois (Septembre 2026)</h3>
+      <div class="commentary">
+        <p><strong>Décision FOMC du 16 septembre :</strong> test clé de la crédibilité de la Fed Warsh.</p>
+        <p><strong>Rapport sur l'emploi du 4 septembre.</strong></p>
+        <p><strong>Trajectoire BCE :</strong> prochain bulletin économique le 24 septembre, inflation zone euro proche de 3 %.</p>
+        <p><strong>Renouvellement de la trêve commerciale US-Chine</strong> et poursuite de la guerre en Iran comme thème structurant du risque pétrolier.</p>
+        <p><strong>Rendements longs US :</strong> surveillance continue du 30 ans (5%+) comme thème structurel lié au déficit et à l'émission de dette liée au capex IA.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<div class="footer">
+  <div class="sources-title">Sources Principales Utilisées</div>
+  <ul>
+    <li>CNBC / TheStreet / Yahoo Finance &mdash; clôtures US du 21 août 2026</li>
+    <li>BNN Bloomberg &mdash; rebond actions US, volatilité obligataire</li>
+    <li>Finimize / Invezz / Irish Times &mdash; clôtures européennes du 21 août 2026</li>
+    <li>Trading Economics &mdash; indices EU50, Brent, WTI, or, cuivre, gaz naturel, rendements obligataires, EUR/USD, GBP/USD</li>
+    <li>Investing.com / Korea Times / Bloomingbit &mdash; clôtures asiatiques du 21 août 2026</li>
+    <li>FX Leaders / GoldSilver.com &mdash; analyse or</li>
+    <li>Daily Caller / Barchart / FXStreet &mdash; analyse DXY et dollar</li>
+    <li>Bloomberg &mdash; rendements Treasury, rachats du Trésor US, marché obligataire européen (reprise post-été)</li>
+    <li>GlobeNewswire &mdash; émission hybride Sika AG</li>
+    <li>GlobalCapital / Treasury Finland &mdash; émission souveraine Finlande, pipeline covered bonds et corporate</li>
+    <li>Convex &mdash; références iTraxx Crossover et spreads de crédit</li>
+    <li>CNN / CNBC / The Hill &mdash; sanctions Iran, guerre économique Trump</li>
+    <li>CoinDesk / Bloomberg &mdash; marché Bitcoin</li>
+    <li>S&amp;P Global / Benzinga &mdash; PMI flash US</li>
+    <li>Fortune / Kalshi &mdash; Fed sous Kevin Warsh</li>
+    <li>Investing.com / Regards of Wallstreet &mdash; symposium de Jackson Hole</li>
+    <li>BLS &mdash; emploi US juillet 2026</li>
+    <li>Moscow Times / New Voice of Ukraine &mdash; pourparlers Russie-Ukraine</li>
+    <li>China Briefing &mdash; frictions commerciales US-Chine</li>
+    <li>Kiplinger / Earnings Whispers / CMC Markets &mdash; calendrier de résultats semaine du 24 août</li>
+    <li>MarketBeat / 24/7 Wall St / Capital Brief / Kalkine Media &mdash; actions à suivre (aviation, défense, mines, banques)</li>
+    <li>Investing.com / ifo Institute / Kansas City Fed &mdash; calendrier économique semaine du 24 août</li>
+  </ul>
+  <div class="warning">
+    Données collectées automatiquement entre 06:00 et 07:30 BST le samedi 22 août 2026 via recherches web en sources ouvertes. Les marchés étant fermés le week-end, la majorité des données reflète la clôture de vendredi 21 août 2026 ; les sections calendrier et événements corporate sont orientées vers la semaine du 24 août. Certaines données marquées <em>n/d</em> n'ont pas pu être obtenues de façon fiable et requièrent un accès Bloomberg Terminal, Refinitiv Eikon ou ICE pour confirmation. À vérifier avant toute décision d'investissement ou d'exécution de transaction. Ce document n'est pas un conseil en investissement.
+  </div>
+</div>
+
+</body>
+</html>
