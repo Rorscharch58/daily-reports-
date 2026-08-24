@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morning Briefing — 24 August 2026</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-card: #161b22;
+      --bg-table-header: #1c2333;
+      --border: #30363d;
+      --text: #c9d1d9;
+      --heading: #e6edf3;
+      --text-muted: #8b949e;
+      --green: #3fb950;
+      --red: #f85149;
+      --amber: #d29922;
+      --blue: #58a6ff;
+      --accent: #58a6ff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      padding: 24px 20px;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--heading);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .header .meta {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 5px;
+    }
+    .section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    .section h2 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+    .section h3 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: var(--text-muted);
+      margin: 14px 0 7px;
+    }
+    .section h3:first-of-type { margin-top: 4px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    th {
+      background: var(--bg-table-header);
+      color: var(--text-muted);
+      text-align: left;
+      padding: 6px 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    td {
+      padding: 5px 10px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    .positive { color: var(--green); font-weight: 600; }
+    .negative { color: var(--red); font-weight: 600; }
+    .neutral { color: var(--text-muted); }
+    .nd { color: var(--text-muted); font-style: italic; }
+    .tighten { color: var(--green); font-weight: 600; }
+    .widen { color: var(--red); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      vertical-align: middle;
+    }
+    .tag-high { background: rgba(248,81,73,0.2); color: var(--red); }
+    .tag-med { background: rgba(210,153,34,0.2); color: var(--amber); }
+    .tag-low { background: rgba(139,148,158,0.2); color: var(--text-muted); }
+    .news-item {
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .news-item:last-child { border-bottom: none; }
+    .news-title { font-weight: 600; color: var(--heading); font-size: 13px; }
+    .news-source { color: var(--accent); font-size: 11px; margin: 2px 0; }
+    .news-impact { color: var(--text-muted); font-size: 12px; line-height: 1.5; }
+    .commentary { color: var(--text); font-size: 12px; line-height: 1.6; }
+    .commentary p { margin-bottom: 6px; }
+    .commentary p:last-child { margin-bottom: 0; }
+    .commentary strong { color: var(--heading); }
+    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .watch-item {
+      display: grid;
+      grid-template-columns: 170px 1fr 130px;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      align-items: start;
+    }
+    .watch-item:last-child { border-bottom: none; }
+    .watch-name { font-weight: 700; color: var(--heading); }
+    .watch-reason { color: var(--text-muted); line-height: 1.4; }
+    .watch-direction { text-align: right; font-size: 11px; font-weight: 600; }
+    .theme-item, .theme-block { padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+    .theme-item:last-child { border-bottom: none; }
+    .theme-title { font-weight: 600; color: var(--heading); margin-bottom: 2px; }
+    .theme-desc { color: var(--text-muted); line-height: 1.4; }
+    .subcard {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 12px;
+    }
+    .subcard h3 { margin-top: 0; }
+    .separator-row td {
+      background: rgba(88,166,255,0.06);
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 11px;
+    }
+    .footer {
+      margin-top: 20px;
+      padding: 14px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .footer .sources-title {
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px;
+      margin-bottom: 8px; color: var(--heading); font-size: 11px;
+    }
+    .footer ul { padding-left: 16px; line-height: 1.7; }
+    .warning {
+      margin-top: 12px; padding: 8px 12px;
+      background: rgba(210,153,34,0.08);
+      border-left: 3px solid var(--amber);
+      color: var(--text-muted); font-size: 11px; line-height: 1.5;
+    }
+    @media (max-width: 750px) {
+      .three-col { grid-template-columns: 1fr; }
+      .watch-item { grid-template-columns: 1fr; }
+      .watch-direction { text-align: left; }
+    }
+    @media print {
+      body {
+        background: #0d1117 !important;
+        color: #c9d1d9 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .section, table, tr, td, th, .data-block, .theme-block, .calendar-row {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      thead { display: table-header-group; }
+      p, li, div, span { orphans: 3; widows: 3; }
+      .section-wrapper { page-break-inside: avoid !important; break-inside: avoid !important; }
+      .item, .news-item, .stock-item, .theme-item, .event-item {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      @page { size: A4 landscape; margin: 12mm; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Morning Briefing &mdash; Monday 24 August 2026</h1>
+  <div class="meta">
+    Generated 24 August 2026 &bull; 07:00 BST (London) &bull;
+    Data collected via web research between approximately 05:30 and 07:00 BST &bull;
+    Reference timezone: Europe/London (BST = UTC+1)
+  </div>
+</div>
+
+<!-- ========== 2. IMPORTANT NEWS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>2. Important News</h2>
+
+  <div class="item news-item">
+    <div class="news-title">Bessent to unveil "toughest sanctions in history" against Iran today</div>
+    <div class="news-source">CNBC / FXStreet &bull; collected ~06:00 BST</div>
+    <div class="news-impact">US Treasury Secretary Scott Bessent said an "economic D-Day" begins Monday, calling it the greatest financial offensive ever marshaled against an adversary. Markets are awaiting the exact scope of the package as the US-Iran war approaches its six-month mark. This is the single largest catalyst for today's session across oil, risk assets and safe havens.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Oil slips ahead of sanctions detail: Brent -1.24% to $93.22, WTI -1.3% to $85.93</div>
+    <div class="news-source">CNBC &bull; collected ~06:00 BST</div>
+    <div class="news-impact">Crude eased Monday as traders positioned ahead of the announcement rather than reacting to it, following weeks of elevated prices tied to the near-total shutdown of Strait of Hormuz shipping since the war began on 28 February.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Gold at $4,654/oz, highest since mid-May, up ~5% on the week</div>
+    <div class="news-source">Yahoo Finance &bull; last update ~22:41 EDT Sunday</div>
+    <div class="news-impact">Rally linked to renewed concern over US fiscal sustainability after the Treasury signaled larger planned purchases of longer-dated government debt. Safe-haven demand from the Iran war is compounding the move.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Fed Chair Kevin Warsh's first Jackson Hole keynote lands Friday, 19 days before the September FOMC decision</div>
+    <div class="news-source">CME Group / TradingKey &bull; week-ahead coverage</div>
+    <div class="news-impact">Delivered the same day as July core PCE, the speech is the week's key signal for the rate path. US 10-year yields are already near 20-month highs and 30-year yields have topped 5.3%, so any hawkish lean would extend pressure on long-duration assets.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Nvidia reports Q2 FY2027 earnings Wednesday after the close</div>
+    <div class="news-source">TradingKey / Capital Street FX &bull; week-ahead coverage</div>
+    <div class="news-impact">Framed by the market as a referendum on whether the AI-infrastructure capex trade can keep absorbing higher financing costs. A bellwether for the wider semiconductor and datacentre supply chain, including European names.</div>
+  </div>
+</div>
+</div>
+
+<!-- ========== 3. EUROPEAN FUTURES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>3. European Futures (Pre-open)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Contract</th>
+      <th>Level</th>
+      <th>Expected move</th>
+      <th>Collection time</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Euro Stoxx 50 / Stoxx 600 futures</td>
+      <td class="nd">n/a (exact level)</td>
+      <td class="neutral">Near flatline, cautious tone</td>
+      <td>~06:30 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DAX futures</td>
+      <td>~26,076</td>
+      <td class="positive">+0.25% intraday</td>
+      <td>~06:30 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CAC 40 futures</td>
+      <td class="nd">n/a</td>
+      <td class="neutral">In line with Euro Stoxx, near flat</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>FTSE 100 futures</td>
+      <td class="nd">n/a</td>
+      <td class="neutral">In line with broader tone, near flat</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr class="separator-row" style="page-break-inside: avoid;">
+      <td colspan="4">US context &mdash; premarket futures</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>S&amp;P 500 e-mini</td>
+      <td>7,691.25</td>
+      <td class="positive">+0.2% vs Friday close</td>
+      <td>~06:30 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nasdaq 100 e-mini</td>
+      <td>29,272.50</td>
+      <td class="positive">Modestly firmer</td>
+      <td>~06:30 BST</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>European futures are essentially glued to the flatline heading into the open. Stoxx 600 and Euro Stoxx 50 futures are parked near unchanged after Friday's rebound snapped a run of losing sessions. The market is not pricing a clear direction ahead of Bessent's Iran sanctions announcement later today &mdash; expect the real move to come intraday once details land, not at the cash open.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 4. YESTERDAY'S CLOSES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>4. Yesterday's Closes &mdash; European Indices (Friday 21 August 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Index</th>
+      <th>Close</th>
+      <th>Change</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Euro Stoxx 50</td>
+      <td class="nd">n/a (level)</td>
+      <td class="positive">+0.56%</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DAX 40</td>
+      <td>26,136.56</td>
+      <td class="positive">+0.59%</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CAC 40</td>
+      <td>8,484.43</td>
+      <td class="positive">+0.37%</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>FTSE 100</td>
+      <td>10,816.56</td>
+      <td class="positive">+0.6%</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>European equities closed Friday's session firmer across the board, narrowly avoiding what would have been their worst losing streak in nearly a decade. The rebound was driven by stronger-than-expected eurozone business activity data (flash PMI ticked up to 52.1). Despite the Friday bounce, the CAC 40 still finished the week down roughly 1.76%, underlining how deep the prior sell-off had been on rising yields, elevated oil and Iran-war-driven geopolitical risk.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 5. US MARKETS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>5. US Markets &mdash; Yesterday's Session (Friday 21 August 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Index</th>
+      <th>Close</th>
+      <th>Change</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>S&amp;P 500</td>
+      <td>7,674.37</td>
+      <td class="positive">+0.4%</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Dow Jones Industrial Average</td>
+      <td>53,277.01</td>
+      <td class="positive">+1.0%</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nasdaq Composite</td>
+      <td>26,180.45</td>
+      <td class="positive">+0.4%</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>All three benchmarks closed higher Friday, capping a volatile week in which bond-market swings dominated price action. The Dow led the bounce, but the S&amp;P 500 and Dow both still logged back-to-back weekly losses as the 10-year Treasury yield pushed toward 4.74%, close to 20-month highs, on inflation concern tied to war-driven oil prices. Sector-level breadth for Friday's session could not be reliably confirmed from available sources &mdash; marked n/a. Key takeaway: markets shrugged off a rough week into the close, but the underlying bond-yield stress that caused it is unresolved heading into this week's Nvidia earnings and Warsh's Jackson Hole speech.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 6. ASIAN MARKETS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>6. Asian Markets &mdash; Overnight Session</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Index</th>
+      <th>Close</th>
+      <th>Change</th>
+      <th>As of</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nikkei 225</td>
+      <td>66,016</td>
+      <td class="negative">&#8722;0.30%</td>
+      <td>Fri 21 Aug (most recent confirmed)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Hang Seng</td>
+      <td>25,698</td>
+      <td class="positive">+0.8%</td>
+      <td>Thu 20 Aug (most recent confirmed)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Shanghai Composite</td>
+      <td>3,905</td>
+      <td class="positive">+0.04%</td>
+      <td>Fri 21 Aug (most recent confirmed)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Kospi</td>
+      <td class="nd">n/a</td>
+      <td class="nd">n/a</td>
+      <td class="nd">Could not be reliably sourced for this window</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p><strong>Data note:</strong> today's (Monday) Asian close could not be confirmed with a reliable, clearly-dated source at collection time and is marked n/a rather than estimated. The most recent confirmed reference points above are from Thursday/Friday last week. Context: Asian equities have been under pressure over the past sessions from rising global bond yields (30-year US Treasury above 5.3%, multi-year highs in Japan, France and Germany) and from oil-price volatility tied to the Iran war, given Asia takes over 80% of Hormuz-transiting oil and gas.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 7. COMMODITIES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>7. Commodities</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Commodity</th>
+      <th>Level</th>
+      <th>Change</th>
+      <th>Collection time</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Brent (ICE, USD/bbl)</td>
+      <td>93.22</td>
+      <td class="negative">&#8722;1.24%</td>
+      <td>~06:00 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>WTI (NYMEX, USD/bbl)</td>
+      <td>85.93</td>
+      <td class="negative">&#8722;1.3%</td>
+      <td>~06:00 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Gold (XAU/USD, USD/oz)</td>
+      <td>4,654.66</td>
+      <td class="positive">~+5% on the week</td>
+      <td>Sun 22:41 EDT (latest available)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Natural gas (Henry Hub, USD/MMBtu)</td>
+      <td>2.73</td>
+      <td class="negative">&#8722;1.45%</td>
+      <td>~06:30 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Copper (COMEX, USD/lb)</td>
+      <td>6.58</td>
+      <td class="negative">&#8722;0.01%</td>
+      <td>Sun (latest available)</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Oil is pulling back, not because tension is easing, but because the market is waiting for Bessent's sanctions detail before repricing risk either way &mdash; a break above the recent highs or a fade toward $90 Brent are both live outcomes today. Gold's move to a more-than-three-month high reflects a rare combination of safe-haven demand (Iran war) and a fiscal-sustainability story (US Treasury signaling more long-dated issuance), a mix worth watching for follow-through into rates. Copper and natural gas are little changed and not signaling anything new this morning.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 8. RATES & FX ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>8. Rates &amp; FX</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Instrument</th>
+      <th>Level</th>
+      <th>Change</th>
+      <th>As of</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>US 10-year Treasury yield</td>
+      <td>4.74%</td>
+      <td class="negative">Near 20-month highs</td>
+      <td>Fri 21 Aug</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>German 10-year Bund yield</td>
+      <td>~3.25%</td>
+      <td class="negative">Near highest since March 2011</td>
+      <td>Fri 21 Aug</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>EUR/USD</td>
+      <td>~1.17</td>
+      <td class="nd">n/a intraday move</td>
+      <td>Fri 21 Aug</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>GBP/USD</td>
+      <td>~1.36</td>
+      <td class="nd">n/a intraday move</td>
+      <td>Fri 21 Aug</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DXY (Dollar Index)</td>
+      <td>98.839</td>
+      <td class="nd">n/a intraday move</td>
+      <td>Fri 21 Aug</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Today's exact FX and yield print for Monday's pre-open could not be reliably confirmed and is marked against the last available Friday reference. The bigger picture: both US and German long-end yields sit near multi-year highs, a global bond-yield story (30-year US Treasury above 5.3%, French, German and Japanese yields also at multiyear highs) driven by war-linked oil inflation. Warsh's Friday Jackson Hole keynote is the next major catalyst for the rates complex.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 9. DCM ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>9. DCM &mdash; Primary Bond Market</h2>
+
+  <h3>Yesterday's Issuances</h3>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Issuer</th>
+      <th>Size</th>
+      <th>Maturity</th>
+      <th>Coupon / Spread</th>
+      <th>Notes</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td class="nd">n/a</td>
+      <td class="nd">n/a</td>
+      <td class="nd">n/a</td>
+      <td class="nd">n/a</td>
+      <td class="nd">No specific EUR corporate IG/HY, SSA or financials deal-level pricing could be reliably sourced via open web search for Friday's session (Bloomberg/IFR/GlobalCapital deal data is largely paywalled). Friday is also typically a light primary day.</td>
+    </tr>
+  </table>
+
+  <h3>Pipeline / Expected Today</h3>
+  <div class="commentary item">
+    <p>No specific mandated EUR deals for today could be confirmed from open sources. Directionally, GlobalCapital reporting indicates the euro corporate bond market is "readying for an issuance burst," with issuers said to be considering moving early rather than waiting for the traditional post-summer rush, given still-stable rates and steady demand. Watch industrials, transport and energy names opportunistically testing the window this week.</p>
+  </div>
+
+  <h3>Key Spreads</h3>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Index</th>
+      <th>Level (bps)</th>
+      <th>Direction</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>iTraxx Europe Main (5Y)</td>
+      <td class="nd">n/a</td>
+      <td class="nd">Not reliably sourced for today</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>iTraxx Europe Crossover (5Y)</td>
+      <td class="nd">n/a &mdash; last confirmed ~318bps (mid-May 2026)</td>
+      <td class="tighten">Had tightened from ~410bps (Oct 2025)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CDX.NA.IG (5Y)</td>
+      <td class="nd">n/a</td>
+      <td class="nd">Not reliably sourced for today</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Average euro corporate IG spread</td>
+      <td class="nd">n/a</td>
+      <td class="nd">Not reliably sourced for today</td>
+    </tr>
+  </table>
+  <div style="margin-top:6px; font-size:11px; color:var(--text-muted); font-style:italic;">Real-time iTraxx/CDX levels require a Bloomberg Terminal, ICE or Markit data feed; open web sources only carry stale snapshots. Flagged n/a rather than estimated.</div>
+
+  <h3>Commentary</h3>
+  <div class="commentary item">
+    <p>The primary window looks technically open but cautious. GlobalCapital notes new-issue premiums (NIPs) have been climbing as order books thin through the summer, a sign investors are demanding more concession even as headline demand holds up. Roughly three-quarters of respondents to GlobalCapital's corporate bond survey expect spreads to widen into year-end as compensation for a more unsettled rate and macro backdrop. Against a rising-yield, war-driven-inflation backdrop, funding conditions are tougher than in H1 2026 but remain serviceable for well-rated issuers, particularly in industrials, transport and energy where real-asset backing and elevated commodity prices support investor appetite. Bessent's sanctions announcement today is a live wildcard for tone into the rest of the week.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 10. ECONOMIC CALENDAR ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>10. Economic Calendar &mdash; Today (24 August 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <th>London time</th>
+      <th>Indicator</th>
+      <th>Consensus</th>
+      <th>Importance</th>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td colspan="4" class="nd">No major eurozone, UK or US data releases are scheduled today. The calendar is deliberately light (36 minor events, none flagged high-importance) &mdash; today's market driver is the Bessent Iran sanctions announcement, not economic data.</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Looking ahead this week: Tuesday brings US July durable goods orders, Conference Board consumer confidence, new home sales and Case-Shiller home prices. Thursday brings the second estimate of US Q2 GDP, weekly jobless claims and pending home sales. Friday brings July core PCE &mdash; the Fed's preferred inflation gauge &mdash; the same day Warsh delivers his first Jackson Hole keynote as chair.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 11. CORPORATE EVENTS & EARNINGS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>11. Corporate Events &amp; Earnings</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Company</th>
+      <th>Market</th>
+      <th>Event</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td colspan="3" class="nd">No headline European or US earnings/AGMs confirmed for today from open sources; the day's ~38 scheduled reports skew to smaller names not individually confirmed. Corporate-event flow is light ahead of a heavier back half of the week.</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Later this week: Nvidia reports Wednesday after the close; Marvell Technology, Autodesk, Workday, Best Buy, Bilibili, Dollar General and Dollar Tree also report. No major European large-cap results are confirmed for today.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 12. STOCKS TO WATCH ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>12. Stocks to Watch</h2>
+
+  <div class="item watch-item">
+    <div class="watch-name">Nvidia (NVDA) &mdash; Nasdaq</div>
+    <div class="watch-reason">Reports Q2 FY2027 earnings Wednesday. The market is treating the print as a referendum on whether the AI-infrastructure capex trade survives higher financing costs. Expect positioning volume to build into the print starting today.</div>
+    <div class="watch-direction neutral">Positioning / volatile</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Barrick Mining (B) &mdash; NYSE</div>
+    <div class="watch-reason">Trading around $45.13, +7.22% as of Friday, riding gold's move to $4,654/oz, its highest since mid-May. Metals &amp; mining momentum name most directly geared to the gold rally.</div>
+    <div class="watch-direction positive">Bullish (gold-linked)</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Huntington Ingalls Industries (HII) &mdash; NYSE</div>
+    <div class="watch-reason">Awarded a $2.2bn contract in August to advance US surveillance and intelligence capabilities. Defense-budget tailwind story continues.</div>
+    <div class="watch-direction positive">Bullish (contract win)</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Boeing / GE Aerospace / RTX / Lockheed Martin &mdash; US aerospace &amp; defense</div>
+    <div class="watch-reason">Flagged among the sector's key names to watch this week by market screens; broader defense complex remains supported by elevated geopolitical risk from the Iran war.</div>
+    <div class="watch-direction positive">Bullish bias (sector)</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">European tanker &amp; shipping names</div>
+    <div class="watch-reason">Strait of Hormuz transits remain at 8&ndash;15 vessels/day versus ~130 pre-war, a structural freight-rate story. Today's Iran sanctions detail is a direct catalyst for the whole tanker/shipping complex, long or short.</div>
+    <div class="watch-direction neutral">High volatility, catalyst-driven</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Stoxx Europe 600 Banks (sector)</div>
+    <div class="watch-reason">Banks led Friday's gains (+0.4%) alongside property shares as eurozone PMI ticked higher. Elevated Bund yields (~3.25%) remain a net positive for European bank net interest income.</div>
+    <div class="watch-direction positive">Bullish bias (rates)</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">European energy majors (Stoxx Europe 600 Oil &amp; Gas)</div>
+    <div class="watch-reason">Sector was muted Friday (+0.1%) even as Brent eased. Today's sanctions announcement is a binary catalyst: an escalation supports oil and the sector, a de-escalation signal (e.g. any Iran-Oman progress) would pressure it.</div>
+    <div class="watch-direction neutral">Binary, headline-driven</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">European airlines</div>
+    <div class="watch-reason">Modest tailwind from this morning's ~1.2&ndash;1.3% pullback in Brent/WTI, but exposed to a fast reversal if Bessent's announcement reignites the oil bid.</div>
+    <div class="watch-direction neutral">Tactically positive, fragile</div>
+  </div>
+</div>
+</div>
+
+<!-- ========== 13. MACRO / CORPORATE / POLITICAL HIGHLIGHTS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>13. Macro / Corporate / Political Highlights</h2>
+
+  <h3>Macro</h3>
+  <div class="commentary item">
+    <p><strong>Global bond yields elevated:</strong> US 10-year near 4.74% (20-month highs), 30-year above 5.3%; German, French and Japanese long yields also at multiyear highs, driven by war-linked oil inflation risk.</p>
+    <p><strong>Warsh's first Jackson Hole keynote as Fed Chair, Friday:</strong> Lands the same day as July core PCE, 19 days before the September FOMC decision &mdash; the week's central catalyst for the rate path.</p>
+    <p><strong>Gold near record levels on fiscal concern:</strong> $4,654/oz, highest since mid-May, linked to renewed worry over US fiscal sustainability after the Treasury signaled larger long-dated debt purchases.</p>
+    <p><strong>Eurozone PMI ticked up to 52.1 in August:</strong> Modest positive surprise that helped European equities snap their losing streak Friday.</p>
+  </div>
+
+  <h3>Corporate</h3>
+  <div class="commentary item">
+    <p><strong>Nvidia earnings Wednesday:</strong> Q2 FY2027 results seen as the key test of whether the AI-capex trade can keep absorbing higher financing costs.</p>
+    <p><strong>Busy earnings back half of week:</strong> Marvell, Autodesk, Workday, Best Buy, Bilibili, Dollar General and Dollar Tree also report.</p>
+    <p><strong>Huntington Ingalls' $2.2bn defense contract</strong> underscores continued government spending tailwinds for the aerospace &amp; defense complex.</p>
+    <p><strong>European corporate bond market "readying for an issuance burst"</strong> per GlobalCapital, as issuers weigh moving ahead of typical autumn volatility.</p>
+  </div>
+
+  <h3>Political / Geopolitical</h3>
+  <div class="commentary item">
+    <p><strong>Bessent's Iran sanctions unveiling today:</strong> Billed as the "toughest sanctions in history," described by Bessent as an "economic D-Day." The single biggest event risk of the session.</p>
+    <p><strong>US-Iran war nears six months:</strong> Began 28 February with a US-Israel air campaign; Strait of Hormuz transits have collapsed to 8&ndash;15 vessels/day from ~130 pre-war, disrupting roughly a fifth of global oil supply.</p>
+    <p><strong>Iran-Oman talks reportedly close</strong> on a framework for reopening Hormuz, contingent on the US easing sanctions and paying reparations &mdash; a potential de-escalation path worth watching against today's sanctions news.</p>
+    <p><strong>Asymmetric risk:</strong> any credible de-escalation signal would be a sharp bearish catalyst for oil and bullish for risk assets; further escalation would do the opposite.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 14. KEY THEMES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>14. Key Themes &mdash; Top 5 by Horizon</h2>
+  <div class="three-col">
+
+    <div class="subcard theme-block">
+      <h3>Today's Top 5</h3>
+      <div class="theme-item">
+        <div class="theme-title">1. Bessent's Iran sanctions unveiling</div>
+        <div class="theme-desc">Binary catalyst for oil, risk assets and safe havens; billed as the toughest package to date.</div>
+      </div>
+      <div class="theme-item">
+        <div class="theme-title">2. Oil pulls back pre-announcement</div>
+        <div class="theme-desc">Brent &#8722;1.24%, WTI &#8722;1.3% as markets position ahead of, not on, the news.</div>
+      </div>
+      <div class="theme-item">
+        <div class="theme-title">3. Gold near $4,650</div>
+        <div class="theme-desc">Fiscal-sustainability and safe-haven bid continuing into the new week.</div>
+      </div>
+      <div class="theme-item">
+        <div class="theme-title">4. Light macro calendar</div>
+        <div class="theme-desc">No major eurozone/UK/US data; geopolitics, not data, drives today's tape.</div>
+      </div>
+      <div class="theme-item">
+        <div class="theme-title">5. Pre-Nvidia positioning</div>
+        <div class="theme-desc">Traders adjusting ahead of Wednesday's AI-capex referendum.</div>
+      </div>
+    </div>
+
+    <div class="subcard theme-block">
+      <h3>This Week's Top 5</h3>
+      <div class="theme-item">
+        <div class="theme-title">1. Nvidia Q2 FY2027 earnings (Wed)</div>
+        <div class="theme-desc">AI-infrastructure trade litmus test amid higher financing costs.</div>
+      </div>
+      <div class="theme-item">
+        <div class="theme-title">2. Warsh's Jackson Hole keynote (Fri)</div>
+        <div class="theme-desc">First address as Fed Chair, 19 days before the September FOMC decision.</div>
+      </div>
+      <div class="theme-item">
+        <div class="theme-title">3. July core PCE (Fri)</div>
+        <div class="theme-desc">Fed's preferred inflation gauge, released alongside Warsh's speech.</div>
+      </div>
+      <div class="theme-item">
+        <div class="theme-title">4. Q2 GDP second estimate (Thu)</div>
+        <div class="theme-desc">Growth confirmation amid ongoing bond-market volatility.</div>
+      </div>
+      <div class="theme-item">
+        <div class="theme-title">5. Iran sanctions follow-through</div>
+        <div class="theme-desc">Watch for retaliation, escalation, or signs of an Iran-Oman Hormuz breakthrough.</div>
+      </div>
+    </div>
+
+    <div class="subcard theme-block">
+      <h3>This Month's Top 5</h3>
+      <div class="theme-item">
+        <div class="theme-title">1. Iran war trajectory</div>
+        <div class="theme-desc">Six-month mark reached; Hormuz remains roughly 90% shut, a structural oil-supply risk.</div>
+      </div>
+      <div class="theme-item">
+        <div class="theme-title">2. Fed policy path under Warsh</div>
+        <div class="theme-desc">September FOMC decision looms with markets repricing amid elevated yields.</div>
+      </div>
+      <div class="theme-item">
+        <div class="theme-title">3. Global bond-yield stress</div>
+        <div class="theme-desc">30-year US Treasury above 5.3%; German Bund near multi-decade highs.</div>
+      </div>
+      <div class="theme-item">
+        <div class="theme-title">4. European bond-issuance burst</div>
+        <div class="theme-desc">Issuers reportedly frontloading ahead of the usual autumn volatility window.</div>
+      </div>
+      <div class="theme-item">
+        <div class="theme-title">5. AI capex durability</div>
+        <div class="theme-desc">Nvidia, Marvell and hyperscaler results test whether the trade survives higher rates.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ========== 15. KEY TRENDS TO WATCH ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>15. Key Trends to Watch</h2>
+  <div class="three-col">
+
+    <div class="subcard">
+      <h3>1 Day</h3>
+      <div class="commentary item">
+        <p><strong>Bessent's sanctions announcement</strong> is the dominant risk for today's session &mdash; tone and scope will move oil, gold and risk assets sharply once released.</p>
+        <p><strong>Light data calendar</strong> means positioning, not releases, will drive intraday moves.</p>
+        <p><strong>Oil direction:</strong> a break either side of the pre-announcement range is likely once details land.</p>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>1 Week</h3>
+      <div class="commentary item">
+        <p><strong>Nvidia earnings (Wed)</strong> and <strong>Warsh's Jackson Hole keynote (Fri)</strong> bookend the week as the two dominant catalysts.</p>
+        <p><strong>Tuesday's durable goods and consumer confidence</strong>, and <strong>Thursday's Q2 GDP revision</strong>, provide interim data points.</p>
+        <p><strong>DCM:</strong> watch whether the "issuance burst" GlobalCapital flagged materializes once summer books thicken.</p>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>1 Month</h3>
+      <div class="commentary item">
+        <p><strong>Iran-Oman Hormuz talks:</strong> any brokered reopening path would be a major bearish catalyst for oil.</p>
+        <p><strong>September FOMC decision</strong> under Warsh, following his Jackson Hole tone-setting.</p>
+        <p><strong>Elevated global bond yields</strong> (30-year US Treasury above 5.3%) risk constraining risk-asset valuations and corporate funding costs into year-end.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<div class="footer">
+  <div class="sources-title">Sources</div>
+  <ul>
+    <li>CNBC &mdash; oil prices/Iran sanctions, stock market live updates 20&ndash;24 August 2026</li>
+    <li>Reuters (via CNBC/FXStreet syndication) &mdash; Bessent Iran sanctions coverage</li>
+    <li>Yahoo Finance / TheStreet / The Globe and Mail &mdash; US index closes Friday 21 August 2026</li>
+    <li>Trading Economics &mdash; DAX, CAC 40, FTSE 100, Euro Stoxx 50, Nikkei, Shanghai Composite, Hang Seng, US/German 10Y yields, DXY (search-indexed snapshots)</li>
+    <li>Investing.com / BBNTimes / LBC / MarketScreener &mdash; European index close levels 21 August 2026</li>
+    <li>Yahoo Finance &mdash; gold spot price, 23 August 2026</li>
+    <li>MarketBeat &mdash; Barrick Mining, defense stocks to watch, 23 August 2026</li>
+    <li>StockTitan &mdash; Huntington Ingalls Industries contract award</li>
+    <li>GlobalCapital &mdash; euro corporate bond market issuance tone and NIP commentary</li>
+    <li>TradingKey / Capital Street FX / CME Group &mdash; week-ahead: Nvidia earnings, Jackson Hole, PCE</li>
+    <li>Al Jazeera / CNN / Wikipedia (2026 Strait of Hormuz crisis) &mdash; Iran war and Hormuz shipping disruption context</li>
+    <li>Earnings Whispers / TipRanks / Kiplinger &mdash; earnings calendar, week of 24&ndash;28 August 2026</li>
+  </ul>
+  <div class="warning">
+    Data collected automatically via web search on the morning of 24 August 2026. Figures marked <em>n/a</em> could not be reliably sourced from open web results at collection time (in several cases because Bloomberg/Refinitiv/ICE-terminal-only data such as live iTraxx/CDX levels and same-day Asian closes are not available through open search) and were not estimated or invented. Verify all figures before making any decision. This document is not investment advice.
+  </div>
+</div>
+
+</body>
+</html>
