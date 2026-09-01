@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Briefing — 1 September 2026</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg-card: #161b22;
+    --bg-table-header: #1c2333;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --heading: #e6edf3;
+    --text-muted: #8b949e;
+    --green: #3fb950;
+    --red: #f85149;
+    --amber: #d29922;
+    --blue: #58a6ff;
+    --accent: #388bfd;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 24px 20px;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+  .header { border-bottom: 2px solid var(--accent); padding-bottom: 14px; margin-bottom: 20px; }
+  .header h1 { font-size: 20px; font-weight: 700; color: var(--heading); letter-spacing: 1px; text-transform: uppercase; }
+  .header .meta { color: var(--text-muted); font-size: 12px; margin-top: 5px; }
+  .section { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 16px; margin-bottom: 14px; }
+  .section h2 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 12px; }
+  .section h3 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: var(--text-muted); margin: 14px 0 7px; }
+  .section h3:first-of-type { margin-top: 4px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { background: var(--bg-table-header); color: var(--text-muted); text-align: left; padding: 6px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+  td { padding: 5px 10px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.025); }
+  .positive { color: var(--green); font-weight: 600; }
+  .negative { color: var(--red); font-weight: 600; }
+  .neutral { color: var(--text-muted); }
+  .nd { color: var(--text-muted); font-style: italic; }
+  .tag { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; vertical-align: middle; }
+  .tag-high { background: rgba(248,81,73,0.2); color: var(--red); }
+  .tag-med { background: rgba(210,153,34,0.2); color: var(--amber); }
+  .tag-wide { background: rgba(248,81,73,0.2); color: var(--red); }
+  .tag-tight { background: rgba(63,185,80,0.2); color: var(--green); }
+  .news-item { padding: 9px 0; border-bottom: 1px solid var(--border); }
+  .news-item:last-child { border-bottom: none; }
+  .news-title { font-weight: 600; color: var(--heading); font-size: 13px; }
+  .news-source { color: var(--accent); font-size: 11px; margin: 2px 0; }
+  .news-impact { color: var(--text-muted); font-size: 12px; line-height: 1.5; }
+  .commentary { color: var(--text); font-size: 12px; line-height: 1.6; }
+  .commentary p { margin-bottom: 6px; }
+  .commentary p:last-child { margin-bottom: 0; }
+  .commentary strong { color: var(--heading); }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .watch-item { display: grid; grid-template-columns: 170px 1fr 130px; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 12px; align-items: start; }
+  .watch-item:last-child { border-bottom: none; }
+  .watch-name { font-weight: 700; color: var(--heading); }
+  .watch-reason { color: var(--text-muted); line-height: 1.4; }
+  .watch-direction { text-align: right; font-size: 11px; font-weight: 600; }
+  .theme-item { padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+  .theme-item:last-child { border-bottom: none; }
+  .theme-title { font-weight: 600; color: var(--heading); margin-bottom: 2px; }
+  .theme-desc { color: var(--text-muted); line-height: 1.4; }
+  .subcard { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 4px; padding: 12px; }
+  .subcard h3 { margin-top: 0; }
+  .separator-row td { background: rgba(56,139,253,0.05); color: var(--text-muted); font-style: italic; font-size: 11px; }
+  .footer { margin-top: 20px; padding: 14px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; font-size: 11px; color: var(--text-muted); }
+  .footer .sources-title { font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px; color: var(--heading); font-size: 11px; }
+  .footer ul { padding-left: 16px; line-height: 1.7; }
+  .footer a { color: var(--blue); text-decoration: none; }
+  .warning { margin-top: 12px; padding: 8px 12px; background: rgba(210,153,34,0.08); border-left: 3px solid var(--amber); color: var(--text-muted); font-size: 11px; line-height: 1.5; }
+  @media (max-width: 750px) {
+    .three-col { grid-template-columns: 1fr; }
+    .watch-item { grid-template-columns: 1fr; }
+    .watch-direction { text-align: left; }
+  }
+  @media print {
+    body { background: #0d1117 !important; color: #c9d1d9 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .section, table, tr, td, th, .data-block, .theme-block, .calendar-row { page-break-inside: avoid !important; break-inside: avoid !important; }
+    h1, h2, h3, h4, h5, h6 { page-break-after: avoid !important; break-after: avoid !important; }
+    thead { display: table-header-group; }
+    p, li, div, span { orphans: 3; widows: 3; }
+    .section-wrapper { page-break-inside: avoid !important; break-inside: avoid !important; }
+    .item, .news-item, .stock-item, .theme-item, .event-item { page-break-inside: avoid !important; break-inside: avoid !important; }
+    @page { size: A4 landscape; margin: 12mm; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Morning Briefing &mdash; Tuesday 1 September 2026</h1>
+  <div class="meta">
+    Generated pre-European open &bull; London timezone (BST, UTC+1) &bull;
+    Data collected via web search covering the US session of Monday 31 August and the Asian session of Tuesday 1 September &bull;
+    Approximate collection window: late evening 31 Aug &ndash; early morning 1 Sept BST
+  </div>
+</div>
+
+<!-- ========== 2. IMPORTANT NEWS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>2. Important News</h2>
+
+  <div class="item news-item">
+    <div class="news-title">US strikes Iranian rocket launchers on Larak Island; Iran retaliates against US bases in Jordan</div>
+    <div class="news-source">CNBC, Al Jazeera &bull; Sunday 30 Aug &ndash; Monday 31 Aug</div>
+    <div class="news-impact">First direct exchange of fire between US and Iran in roughly a month, six months into the conflict. IRGC forces were seen preparing sea-mine-laden rockets aimed at the Strait of Hormuz before the US strike; Iran responded with missiles/drones on the King Hussein and Al Azraq bases in Jordan. Ends the market's "de-escalation" bet and re-ignites the oil risk premium.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Brent jumps above $90/bbl, WTI above $86 after the Larak Island strike</div>
+    <div class="news-source">CNBC, Investing.com, The Hill &bull; Monday 31 Aug</div>
+    <div class="news-impact">Brent (Nov contract) +3.2% to $90.90/bbl; WTI (Oct) +3.5% to $86.28/bbl. Strait of Hormuz vessel traffic down over 80% since the war began (28 Feb). Tanker freight rates (Middle East Gulf&ndash;Japan, LR2) hit a record $107.72/ton on 27 Aug. Direct read-through to inflation, ECB/Fed policy and airline/shipping cost bases.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Warsh's Jackson Hole speech pushes September Fed hike odds to 60&ndash;66%</div>
+    <div class="news-source">CNBC, Forbes/CME FedWatch, TheStreet &bull; Friday 28 Aug, still moving markets Monday</div>
+    <div class="news-impact">Fed Chair Kevin Warsh gave a hawkish reading of inflation at Jackson Hole, reaffirming the 2% PCE target and saying underlying trends have not "meaningfully improved." CME FedWatch-implied odds of a 25bp hike at the 15&ndash;16 Sept FOMC jumped from ~30% pre-speech to 60&ndash;66%. US 2Y yield +12bp to 4.35%; 10Y near 4.72&ndash;4.75%.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">US equities close lower Monday as Iran tensions flare, but still post a positive August</div>
+    <div class="news-source">CNBC, Yahoo Finance, The Motley Fool, 24/7 Wall St. &bull; Monday 31 Aug close</div>
+    <div class="news-impact">S&amp;P 500 -0.33% to 7,686.14; Dow -0.70% (-374pt) to 53,185.90; Nasdaq Composite -0.12% to 26,370.89. Dow led the selling. Risk-off tone tied directly to the US-Iran exchange of fire, not to a fundamental shift in earnings outlook.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">German 10Y Bund yield hits 3.3%, highest since May 2011, as ECB hike bets build</div>
+    <div class="news-source">Trading Economics, market commentary &bull; Monday 31 Aug</div>
+    <div class="news-impact">Markets are pricing the ECB deposit rate near 2.7% by December, implying roughly 80% odds of a second hike after one expected as soon as September. Combined with the Fed's hawkish pivot, this is a global rates repricing, not a eurozone-specific move &mdash; keep duration and rate-sensitive equities (utilities, real estate) on watch.</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ========== 3. EUROPEAN FUTURES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>3. European Futures (Pre-Open)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Contract</th>
+      <th>Level</th>
+      <th>Indicative move</th>
+      <th>Collection time</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Euro Stoxx 50 / Stoxx 600 futures</td>
+      <td class="nd">n/a (level)</td>
+      <td class="negative">&#8722;0.2%</td>
+      <td>Pre-open, 1 Sept</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DAX futures</td>
+      <td class="nd">n/a</td>
+      <td class="nd">Directionally negative, in line with Stoxx 600</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CAC 40 futures</td>
+      <td class="nd">n/a</td>
+      <td class="nd">Directionally negative, in line with Stoxx 600</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>FTSE 100 futures</td>
+      <td class="nd">n/a</td>
+      <td class="nd">Directionally negative, in line with Stoxx 600</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr class="separator-row" style="page-break-inside: avoid;">
+      <td colspan="4">US context &mdash; overnight futures</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>S&amp;P 500 futures</td>
+      <td class="nd">n/a</td>
+      <td class="negative">&#8722;0.27%</td>
+      <td>Overnight, 1 Sept</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nasdaq 100 futures</td>
+      <td class="nd">n/a</td>
+      <td class="positive">+0.06%</td>
+      <td>Overnight, 1 Sept</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Dow futures</td>
+      <td class="nd">n/a</td>
+      <td class="negative">&#8722;0.60%</td>
+      <td>Overnight, 1 Sept</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Cautious, slightly negative open indicated. Two forces pulling in opposite directions: rising oil and hawkish central bank repricing (Fed + ECB) argue for a soft open, while Nasdaq futures' small positive print shows mega-cap tech holding up better than cyclicals. Exact index-level futures prints for DAX/CAC/FTSE were not available from public sources this morning; direction is inferred from the broader Stoxx 600 futures move.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 4. YESTERDAY'S CLOSES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>4. Yesterday's Closes &mdash; European Indices</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Index</th>
+      <th>Close</th>
+      <th>Change</th>
+      <th>Session</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Euro Stoxx 50</td>
+      <td>~6,480</td>
+      <td class="negative">&#8722;0.09%</td>
+      <td>Mon 31 Aug</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DAX 40</td>
+      <td>26,338</td>
+      <td class="negative">&#8722;0.87% (&#8722;231pt)</td>
+      <td>Mon 31 Aug</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CAC 40</td>
+      <td class="nd">n/a (Mon close)</td>
+      <td class="nd">n/a &mdash; last confirmed 8,401.18</td>
+      <td>Fri 28 Aug: +0.98%</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>FTSE 100</td>
+      <td>10,824.26</td>
+      <td class="positive">+0.29%</td>
+      <td>Fri 28 Aug (UK Summer Bank Holiday Mon 31 Aug &mdash; market closed)</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>UK markets were shut Monday for the Summer Bank Holiday, so FTSE's reference close is Friday. DAX gave back 0.87% Monday as the Iran escalation and Bund yield spike weighed on rate-sensitive and industrial names. Euro Stoxx 50 broadly flat (-0.09%). CAC 40's Monday close was not available from public sources at collection time; its last confirmed print (Friday) was firmly positive.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 5. US MARKETS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>5. US Markets &mdash; Yesterday's Session (Monday 31 August)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Index</th>
+      <th>Close</th>
+      <th>Change</th>
+      <th>Note</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>S&amp;P 500</td>
+      <td>7,686.14</td>
+      <td class="negative">&#8722;0.33%</td>
+      <td>Still positive for August</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Dow Jones Industrial Average</td>
+      <td>53,185.90</td>
+      <td class="negative">&#8722;0.70% (&#8722;374.09pt)</td>
+      <td>Led the session's losses</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nasdaq Composite</td>
+      <td>26,370.89</td>
+      <td class="negative">&#8722;0.12%</td>
+      <td>Most resilient of the three</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Risk-off session driven squarely by the US-Iran exchange of fire, not by earnings or data. Dow underperformed on its heavier industrial/energy-cost sensitivity; Nasdaq's mega-cap tech weighting cushioned the index. Energy and defense-linked names were the notable outperformers intraday as oil spiked; rate-sensitive cyclicals and long-duration growth names lagged as the 10Y yield pushed toward 4.75% on hawkish Fed repricing. Takeaway: markets are now trading two live tail risks simultaneously &mdash; a hot war escalation and a hawkish pivot at the Fed &mdash; a combination that argues for a defensive, headline-driven session again today.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 6. ASIAN MARKETS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>6. Asian Markets &mdash; Overnight Session (Tuesday 1 September)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Index</th>
+      <th>Level</th>
+      <th>Change</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nikkei 225</td>
+      <td>&lt;66,000</td>
+      <td class="negative">&#8722;0.6%</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Hang Seng</td>
+      <td>25,567</td>
+      <td class="negative">&#8722;0.1% (Mon ref.)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Shanghai Composite</td>
+      <td class="nd">n/a (level)</td>
+      <td class="positive">+0.86%</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Kospi</td>
+      <td class="nd">n/a</td>
+      <td class="nd">n/a</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Mixed-to-soft Asian tape. Nikkei fell below 66,000 as rising oil prices revive Japanese inflation worries and add to expectations of a near-term BoJ hike &mdash; Japan now facing the same imported-inflation dynamic as Europe. Hang Seng roughly flat/soft. Shanghai Composite the outperformer, up 0.86%, decoupling from the regional risk-off tone; mainland investors appear less exposed to the Hormuz/tanker dynamic than North Asian importers. Kospi data unavailable from public sources at collection time.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 7. COMMODITIES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>7. Commodities</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Commodity</th>
+      <th>Level</th>
+      <th>Change</th>
+      <th>Collection time</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Brent (ICE, USD/bbl)</td>
+      <td>90.90</td>
+      <td class="positive">+3.2%</td>
+      <td>Mon 31 Aug (post-Larak Island strike)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>WTI (NYMEX, USD/bbl)</td>
+      <td>86.28&ndash;86.57</td>
+      <td class="positive">+3.5% / +0.94%</td>
+      <td>Mon 31 Aug &ndash; Tue 1 Sept</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Gold (XAU/USD, USD/oz)</td>
+      <td>4,451.48</td>
+      <td class="negative">vs prior close 4,455.02</td>
+      <td>1 Sept, early session</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Copper (COMEX, USD/lb)</td>
+      <td>6.62</td>
+      <td class="positive">+0.47%</td>
+      <td>1 Sept</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Natural gas (Henry Hub, USD/MMBtu)</td>
+      <td>~2.90</td>
+      <td class="negative">&#8722;0.34% (approx., date uncertain)</td>
+      <td class="nd">n/a exact</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Oil is the story: Brent above $90 and WTI above $86 on the direct US-Iran military exchange, with Strait of Hormuz traffic down over 80% since the war began in February and tanker freight rates at record highs. This is now feeding directly into the Fed/ECB hawkish narrative &mdash; energy-driven inflation is exactly the channel both Warsh and the ECB are worried about. Gold is consolidating just under $4,460, held back by the higher-rates backdrop even as geopolitical risk would normally support it. Copper firm, supported by resilient industrial demand.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 8. RATES & FX ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>8. Rates &amp; FX</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Instrument</th>
+      <th>Level</th>
+      <th>Change</th>
+      <th>Collection time</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>US 10-Year Treasury</td>
+      <td>4.72&ndash;4.75%</td>
+      <td class="negative">Up sharply post-Warsh (2Y +12bp to 4.35%)</td>
+      <td>Mon 31 Aug</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>German 10Y Bund</td>
+      <td>3.30%</td>
+      <td class="negative">Highest since May 2011</td>
+      <td>Mon 31 Aug</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>EUR/USD</td>
+      <td>1.1619</td>
+      <td class="nd">n/a vs prior close</td>
+      <td>1 Sept</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>GBP/USD</td>
+      <td>1.3551</td>
+      <td class="nd">n/a vs prior close</td>
+      <td>1 Sept</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DXY (Dollar Index)</td>
+      <td>99.56&ndash;99.71</td>
+      <td class="negative">&#8722;0.12% (intraday)</td>
+      <td>1 Sept</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>A genuinely global hawkish repricing: US 2Y and 10Y both jumped after Warsh's Jackson Hole speech pushed September hike odds to 60&ndash;66%, while the German Bund 10Y hit a 15-year high on ECB hike bets (deposit rate seen near 2.7% by December, ~80% odds of a second hike). US-Germany 10Y spread remains wide. EUR/USD holding above 1.16 despite the Fed repricing, suggesting the market sees the ECB moving in parallel rather than falling behind. Watch today's ISM/PMI prints and eurozone flash inflation for confirmation of both central banks' next move.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 9. DCM ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>9. DCM &mdash; Primary Bond Market</h2>
+
+  <h3>Yesterday's Issuances</h3>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Issuer</th>
+      <th>Currency</th>
+      <th>Size</th>
+      <th>Maturity</th>
+      <th>Coupon / spread</th>
+      <th>Notes</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td colspan="6" class="nd">No individual corporate IG/HY/SSA/financials deal terms for 31 Aug could be reliably sourced from public search results (Bloomberg/IFR/GlobalCapital terminal access required). August was reported as a record issuance month for European financials.</td>
+    </tr>
+  </table>
+
+  <h3>Pipeline / Expected Today &amp; This Week</h3>
+  <div class="commentary">
+    <p>Trade press (The DESK, GlobalCapital) flags a heavy post-Labor Day / post-summer ramp-up in euro corporate issuance for September, historically one of the year's busiest primary months. No specific mandated deal names for today were available from public sources. Expect issuers to watch today's ISM/PMI data and any further Iran headlines before pricing, given the rates volatility.</p>
+  </div>
+
+  <h3>Key Spreads</h3>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Index</th>
+      <th>Level</th>
+      <th>Move / Direction</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>iTraxx Europe Main 5Y</td>
+      <td class="nd">n/a</td>
+      <td class="nd">Real-time level not available from public sources</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>iTraxx Europe Crossover 5Y</td>
+      <td class="nd">n/a</td>
+      <td class="nd">Real-time level not available from public sources</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CDX IG 5Y (USD)</td>
+      <td class="nd">n/a</td>
+      <td class="nd">Real-time level not available from public sources</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>EUR IG corporate aggregate spread</td>
+      <td>~205bp</td>
+      <td><span class="tag tag-wide">Widening</span></td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>GBP IG corporate aggregate spread</td>
+      <td>~207bp</td>
+      <td><span class="tag tag-wide">Widening</span></td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>EUR HY spread</td>
+      <td>~585bp</td>
+      <td><span class="tag tag-wide">Widening (+41bp)</span></td>
+    </tr>
+  </table>
+
+  <h3>Commentary</h3>
+  <div class="commentary">
+    <p>Primary market tone is cautious rather than shut. EUR IG and HY aggregate spreads have widened, and HY/IG funds are seeing outflows described as the largest year-to-date since 2002 &mdash; a genuine risk-appetite signal, not just a seasonal August lull. The combination of a hawkish Fed/ECB repricing and a live geopolitical shock (Iran) is a difficult backdrop for issuers to price into; expect any deals today to carry wider new-issue premiums than in August. Sectors we track &mdash; industrials, transport, energy, financials &mdash; will be the ones testing investor appetite first as September issuance ramps up; financials had a record August and should lead again.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 10. ECONOMIC CALENDAR ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>10. Economic Calendar &mdash; Today (1 September)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <th>London time</th>
+      <th>Indicator</th>
+      <th>Consensus</th>
+      <th>Importance</th>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td class="nd">Morning</td>
+      <td>Eurozone flash CPI (initial reading)</td>
+      <td class="nd">n/a</td>
+      <td><span class="tag tag-high">High</span></td>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td class="nd">Morning</td>
+      <td>Eurozone / UK final S&amp;P Global Manufacturing PMI</td>
+      <td class="nd">n/a</td>
+      <td><span class="tag tag-med">Medium</span></td>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td class="nd">Morning</td>
+      <td>UK mortgage approvals &amp; net lending</td>
+      <td class="nd">n/a</td>
+      <td><span class="tag tag-med">Medium</span></td>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td>13:45</td>
+      <td>US S&amp;P Global Manufacturing PMI (final)</td>
+      <td>53.2 (prior 53.2)</td>
+      <td><span class="tag tag-med">Medium</span></td>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td>14:00</td>
+      <td>US ISM Manufacturing PMI</td>
+      <td>55.2 (prior 55.6)</td>
+      <td><span class="tag tag-high">High</span></td>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td class="nd">Afternoon</td>
+      <td>US JOLTS Job Openings</td>
+      <td class="nd">n/a</td>
+      <td><span class="tag tag-med">Medium</span></td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Eurozone flash CPI is the key European print given the ECB's hawkish repricing this week &mdash; a hot number cements September hike odds. US ISM Manufacturing is the marquee US release; a print above the 55.2 consensus would reinforce the Fed hike narrative already running at 60-66% odds, while a miss would inject two-way risk into the rates market.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 11. CORPORATE EVENTS & EARNINGS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>11. Corporate Events &amp; Earnings</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Company</th>
+      <th>Market</th>
+      <th>Event</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td colspan="3" class="nd">No confirmed large-cap European or US earnings/AGM releases for 1 September could be reliably sourced from public search results. Early September sits between reporting seasons (Q2 largely wrapped, Q3 season starts mid-October); calendar is genuinely light today.</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>With the corporate calendar light, today's session will be driven almost entirely by macro (ISM/PMI, eurozone CPI) and geopolitical (Iran) headlines rather than single-name catalysts.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 12. STOCKS TO WATCH ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>12. Stocks to Watch</h2>
+
+  <div class="item watch-item">
+    <div class="watch-name">Frontline (FRO) &mdash; NYSE/Oslo</div>
+    <div class="watch-reason">Tanker rates at multi-decade highs on Hormuz disruption; stock +103% YTD. Direct beneficiary of any further escalation; BofA and Jefferies both positive even in a de-escalation scenario.</div>
+    <div class="watch-direction positive">Bullish</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Rheinmetall (RHM.DE) &mdash; DAX</div>
+    <div class="watch-reason">+18% YTD, part of the German defense rush alongside MTU and Airbus as US-Iran tensions and broader foreign-policy risk keep defense budgets in focus.</div>
+    <div class="watch-direction positive">Bullish</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Airbus (AIR.PA) &mdash; CAC 40</div>
+    <div class="watch-reason">Dual exposure: defense-order tailwind from the European rearmament trade, offset by higher jet fuel costs for airline customers as oil spikes above $90.</div>
+    <div class="watch-direction neutral">Mixed / watch</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">TotalEnergies (TTE.PA) / Shell (SHEL.L)</div>
+    <div class="watch-reason">Brent above $90 lifts FCF and upstream margins directly. Asymmetric risk: any Iran de-escalation headline would reverse the move quickly.</div>
+    <div class="watch-direction positive">Bullish (oil-linked)</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">MTU Aero Engines (MTX.DE) &mdash; DAX</div>
+    <div class="watch-reason">Named alongside Rheinmetall/Airbus/Infineon as part of Germany's defense-sector rush; also carries jet-fuel cost sensitivity via its civil aftermarket business.</div>
+    <div class="watch-direction positive">Bullish</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">European banks (BNP Paribas, SocGen, Deutsche Bank)</div>
+    <div class="watch-reason">German Bund 10Y at a 15-year high and ECB hikes now priced with ~80% odds by year-end &mdash; a steeper, higher curve is generally NII-positive for eurozone banks.</div>
+    <div class="watch-direction positive">Bullish (rates-linked)</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Utilities / real estate (SSE, Vonovia)</div>
+    <div class="watch-reason">Rate-sensitive sectors directly exposed to the Bund/Treasury yield spike; historically underperform when long yields re-rate higher this quickly.</div>
+    <div class="watch-direction negative">Bearish (rates-linked)</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Nikkei-listed exporters (Toyota, Sony)</div>
+    <div class="watch-reason">Oil-driven Japanese inflation is adding to BoJ hike expectations; a stronger yen scenario would pressure exporter earnings. Nikkei already down 0.6% below 66,000 overnight.</div>
+    <div class="watch-direction negative">Bearish / watch</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ========== 13. MACRO/CORPORATE/POLITICAL ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>13. Macro / Corporate / Political Highlights</h2>
+
+  <h3>Macro</h3>
+  <div class="commentary">
+    <p><strong>Fed turns hawkish under Warsh:</strong> Jackson Hole speech pushed September hike odds from ~30% to 60&ndash;66% (CME FedWatch). 2Y yield +12bp to 4.35%, 10Y near 4.72&ndash;4.75%.</p>
+    <p><strong>ECB following in parallel:</strong> German Bund 10Y at 3.30%, highest since May 2011. Markets price the deposit rate near 2.7% by December &mdash; roughly 80% odds of a second hike after one expected as soon as September.</p>
+    <p><strong>Oil-driven inflation channel is now global:</strong> Brent above $90 is the direct transmission mechanism feeding both the Fed's and the ECB's hawkish repricing, and is now showing up in Japan too (Nikkei sold off on the same logic).</p>
+  </div>
+
+  <h3>Corporate</h3>
+  <div class="commentary">
+    <p><strong>European financials had a record August for bond issuance</strong>, per GlobalCapital, ahead of what trade press expects to be a very heavy September primary calendar.</p>
+    <p><strong>Credit funds under pressure:</strong> HY/IG outflows described as the largest YTD since 2002; EUR IG aggregate spreads near 205bp and EUR HY near 585bp, both widening.</p>
+    <p><strong>Defense sector momentum continues</strong> in Germany (Rheinmetall +18% YTD) and in tanker shipping (Frontline +103% YTD), both direct beneficiaries of the ongoing Iran conflict.</p>
+  </div>
+
+  <h3>Political / Geopolitical</h3>
+  <div class="commentary">
+    <p><strong>US-Iran war, six months in:</strong> First direct exchange of fire in a month (Larak Island strike / Jordan base retaliation) ends the market's de-escalation bet. Strait of Hormuz traffic down over 80% since the war began 28 February.</p>
+    <p><strong>Tanker/insurance market distortion:</strong> LR2 freight rates hit a record $107.72/ton on 27 Aug; war-risk insurance premiums reportedly 7.5&ndash;10% of hull value. This is now a structural, not transient, cost layer for global energy shipping.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 14. KEY THEMES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>14. Key Themes &mdash; Top 5 by Horizon</h2>
+  <div class="three-col">
+
+    <div class="subcard">
+      <h3>Today's Top 5</h3>
+      <div class="item theme-item">
+        <div class="theme-title">1. US ISM Manufacturing PMI (14:00 BST)</div>
+        <div class="theme-desc">A beat reinforces the 60-66% September hike pricing already in the market; a miss reopens two-way risk on rates.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">2. Eurozone flash CPI</div>
+        <div class="theme-desc">Key confirmation point for the ECB's own hawkish repricing after the Bund yield spike to 3.30%.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">3. Any further Iran/Hormuz headlines</div>
+        <div class="theme-desc">The conflict is now binary and headline-driven session to session; a further strike extends the oil rally, any ceasefire signal reverses it sharply.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">4. Oil above $90 feeding into equities</div>
+        <div class="theme-desc">Energy/defense/tanker names bid, rate- and fuel-cost-sensitive names (utilities, airlines, real estate) under pressure.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">5. German Bund at a 15-year yield high</div>
+        <div class="theme-desc">Sets the tone for European bank stocks (NII-positive) versus duration-sensitive sectors (negative) today.</div>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>This Week's Top 5</h3>
+      <div class="item theme-item">
+        <div class="theme-title">1. US labour market data into the FOMC</div>
+        <div class="theme-desc">JOLTS today, with payrolls typically due later in the week &mdash; the key remaining input before the 15&ndash;16 Sept Fed decision.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">2. September primary bond market ramp-up</div>
+        <div class="theme-desc">Trade press expects a very heavy week for euro corporate issuance; watch new-issue premiums given wider spreads.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">3. Iran conflict trajectory</div>
+        <div class="theme-desc">Whether the Larak Island/Jordan exchange stays contained or escalates further will dictate the oil risk premium all week.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">4. ECB commentary ahead of a likely September move</div>
+        <div class="theme-desc">Any officials' remarks this week will be read against the 80%-priced second hike by December.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">5. Credit fund flows</div>
+        <div class="theme-desc">Watch whether the largest-since-2002 YTD HY/IG outflows continue or stabilize as September issuance begins.</div>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>This Month's Top 5</h3>
+      <div class="item theme-item">
+        <div class="theme-title">1. FOMC decision, 15&ndash;16 September</div>
+        <div class="theme-desc">Odds at 60-66% for a hike; the outcome and Warsh's tone will set the rates trajectory into year-end.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">2. ECB decision (expected as soon as September)</div>
+        <div class="theme-desc">Markets price ~80% odds of a second hike by December, taking the deposit rate to ~2.7%.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">3. US-Iran war, seven-month mark</div>
+        <div class="theme-desc">Structural disruption to the Strait of Hormuz and tanker markets shows no sign of resolving; oil above $90 is the key stagflation risk for both the Fed and ECB.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">4. September euro/USD primary bond calendar</div>
+        <div class="theme-desc">Historically one of the heaviest issuance months; test of investor appetite after record August financials supply and widening spreads.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">5. BoJ policy path</div>
+        <div class="theme-desc">Oil-driven Japanese inflation is now feeding near-term BoJ hike expectations, a third major central bank moving hawkish in parallel.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ========== 15. KEY TRENDS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>15. Key Trends to Watch</h2>
+  <div class="three-col">
+
+    <div class="subcard">
+      <h3>1 Day</h3>
+      <div class="commentary">
+        <p><strong>ISM/PMI + eurozone CPI:</strong> The two data points most likely to move rates and equities intraday.</p>
+        <p><strong>Iran headline risk:</strong> Binary catalyst for oil and safe-haven flows through the session.</p>
+        <p><strong>Sector rotation:</strong> Energy/defense/tankers vs. utilities/real estate/airlines on the rates and oil moves.</p>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>1 Week</h3>
+      <div class="commentary">
+        <p><strong>US labour data</strong> feeding directly into FOMC positioning.</p>
+        <p><strong>September bond issuance wave</strong> testing appetite after August's record financials supply and current spread widening.</p>
+        <p><strong>Iran conflict trajectory</strong> as the dominant swing factor for oil and rates volatility.</p>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>1 Month</h3>
+      <div class="commentary">
+        <p><strong>FOMC (15&ndash;16 Sept) and a likely ECB hike</strong> &mdash; the first synchronized hawkish move from both central banks in this cycle.</p>
+        <p><strong>Oil above $90 as a stagflation risk</strong> for both US and European growth/inflation trajectories.</p>
+        <p><strong>Credit market stress test:</strong> whether record outflows and widening spreads stabilize or deepen as the September primary calendar opens.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<div class="footer">
+  <div class="sources-title">Sources Used</div>
+  <ul>
+    <li>CNBC &mdash; Iran/Larak Island strikes, Jackson Hole/Warsh coverage, US market close 31 Aug, Asia-Pacific markets</li>
+    <li>Al Jazeera &mdash; US-Iran strikes and retaliation, Strait of Hormuz shipping impact</li>
+    <li>The Hill, Investing.com &mdash; oil price reaction to Larak Island strike</li>
+    <li>Yahoo Finance, The Motley Fool, 24/7 Wall St. &mdash; US and European index closes</li>
+    <li>Forbes / CME FedWatch, TheStreet, Morningstar &mdash; September Fed hike odds</li>
+    <li>Trading Economics &mdash; German Bund yield, DXY, commodities</li>
+    <li>GlobalCapital, The DESK (fi-desk.com) &mdash; European primary bond market conditions and spreads</li>
+    <li>Investing.com &mdash; US ISM/S&amp;P Global PMI calendar, EUR/USD, GBP/USD levels</li>
+    <li>EIA, Bloomingbit, Congress.gov CRS &mdash; Strait of Hormuz tanker rates and shipping disruption</li>
+  </ul>
+  <div class="warning">
+    Data collected automatically via web search ahead of the European open on 1 September 2026. Figures marked <em>n/a</em> could not be reliably sourced from public search results and require Bloomberg Terminal / Refinitiv Eikon / ICE access to confirm. Some data points reflect the most recent reliably-sourced session (e.g. Friday's FTSE close following the UK bank holiday) rather than the prior calendar day. Verify all figures before making any investment decision. This document is not investment advice.
+  </div>
+</div>
+
+</body>
+</html>
