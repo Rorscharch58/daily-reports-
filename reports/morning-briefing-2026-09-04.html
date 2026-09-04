@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morning Briefing — 4 septembre 2026</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-card: #161b22;
+      --bg-table-header: #1c2333;
+      --border: #30363d;
+      --text: #c9d1d9;
+      --text-heading: #e6edf3;
+      --text-muted: #8b949e;
+      --green: #3fb950;
+      --red: #f85149;
+      --amber: #d29922;
+      --blue: #58a6ff;
+      --accent: #388bfd;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      padding: 24px 20px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-heading);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .header .meta {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 5px;
+    }
+    .section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    .section h2 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+    .section h3 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: var(--text-muted);
+      margin: 14px 0 7px;
+    }
+    .section h3:first-of-type { margin-top: 4px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    th {
+      background: var(--bg-table-header);
+      color: var(--text-muted);
+      text-align: left;
+      padding: 6px 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    td {
+      padding: 5px 10px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.025); }
+    .positive { color: var(--green); font-weight: 600; }
+    .negative { color: var(--red); font-weight: 600; }
+    .neutral { color: var(--text-muted); }
+    .nd { color: var(--text-muted); font-style: italic; }
+    .tag {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      vertical-align: middle;
+    }
+    .tag-high { background: rgba(248,81,73,0.2); color: var(--red); }
+    .tag-med { background: rgba(210,153,34,0.2); color: var(--amber); }
+    .tag-atl { background: rgba(63,185,80,0.2); color: var(--green); }
+    .news-item {
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .news-item:last-child { border-bottom: none; }
+    .news-title { font-weight: 600; color: var(--text-heading); font-size: 13px; }
+    .news-source { color: var(--accent); font-size: 11px; margin: 2px 0; }
+    .news-impact { color: var(--text-muted); font-size: 12px; line-height: 1.5; }
+    .commentary { color: var(--text); font-size: 12px; line-height: 1.6; }
+    .commentary p { margin-bottom: 6px; }
+    .commentary p:last-child { margin-bottom: 0; }
+    .commentary strong { color: var(--text-heading); }
+    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .watch-item {
+      display: grid;
+      grid-template-columns: 160px 1fr 130px;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      align-items: start;
+    }
+    .watch-item:last-child { border-bottom: none; }
+    .watch-name { font-weight: 700; color: var(--text-heading); }
+    .watch-reason { color: var(--text-muted); line-height: 1.4; }
+    .watch-direction { text-align: right; font-size: 11px; font-weight: 600; }
+    .theme-item { padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+    .theme-item:last-child { border-bottom: none; }
+    .theme-title { font-weight: 600; color: var(--text-heading); margin-bottom: 2px; }
+    .theme-desc { color: var(--text-muted); line-height: 1.4; }
+    .subcard {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 12px;
+    }
+    .subcard h3 { margin-top: 0; }
+    .separator-row td {
+      background: rgba(56,139,253,0.05);
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 11px;
+    }
+    .footer {
+      margin-top: 20px;
+      padding: 14px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .footer .sources-title {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 8px;
+      color: var(--text-heading);
+      font-size: 11px;
+    }
+    .footer ul { padding-left: 16px; line-height: 1.7; }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .warning {
+      margin-top: 12px;
+      padding: 8px 12px;
+      background: rgba(248,81,73,0.08);
+      border-left: 3px solid var(--red);
+      color: var(--text-muted);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    @media (max-width: 750px) {
+      .three-col { grid-template-columns: 1fr; }
+      .watch-item { grid-template-columns: 1fr; }
+      .watch-direction { text-align: left; }
+    }
+
+    @media print {
+      body {
+        background: #0d1117 !important;
+        color: #c9d1d9 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .section, table, tr, td, th, .data-block, .theme-block, .calendar-row {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+
+      thead { display: table-header-group; }
+
+      p, li, div, span {
+        orphans: 3;
+        widows: 3;
+      }
+
+      .section-wrapper {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .item, .news-item, .stock-item, .theme-item, .event-item {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      @page {
+        size: A4 landscape;
+        margin: 12mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== 1. EN-TETE ========== -->
+<div class="header">
+  <h1>Morning Briefing &mdash; Vendredi 4 Septembre 2026</h1>
+  <div class="meta">
+    Généré le 4 septembre 2026 &bull; ~07:00 BST (Londres) &bull;
+    Données collectées entre 06:15 et 07:00 BST via recherche web (pas de flux temps réel) &bull;
+    Fuseau de référence : Europe/London (BST = UTC+1)
+  </div>
+</div>
+
+<!-- ========== 2. IMPORTANT NEWS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>2. Important News</h2>
+
+  <div class="item news-item">
+    <div class="news-title">Rapport emploi US (NFP) d'août publié aujourd'hui à 13:30 BST (8:30 ET)</div>
+    <div class="news-source">CNBC / BLS &bull; consensus établi mercredi/jeudi</div>
+    <div class="news-impact">Consensus &asymp; +53 000 à +58 000 créations d'emplois non-agricoles, taux de chômage attendu stable à 4,1 %. Fait suite à juin/juillet quasi-nuls (juillet &#8722;23 000 vs +83 000 attendu). C'est le catalyseur macro le plus important de la séance, publié avant l'ouverture US mais après l'ouverture européenne — risque de volatilité forte sur toutes les classes d'actifs en cours de matinée.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Wall Street signe sa meilleure séance du mois jeudi : S&amp;P 500 +1,06 %, Dow +1,18 %, Nasdaq +1,40 %</div>
+    <div class="news-source">CNBC / TheStreet / Yahoo Finance &bull; clôture jeudi 3 septembre</div>
+    <div class="news-impact">S&amp;P 500 à 7 747, Dow à 53 686 (+624 pts), Nasdaq à 26 584. Rallye porté par la détente des rendements obligataires et la baisse des probabilités de hausse Fed. Contexte porteur pour l'ouverture européenne, sous réserve du NFP de l'après-midi.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Probabilité d'une hausse de taux Fed en septembre retombée à ~50 %, contre ~70 % en début de semaine</div>
+    <div class="news-source">Bloomberg &bull; jeudi 3 septembre</div>
+    <div class="news-impact">Le gouverneur Fed Waller a évoqué des signes de "désinflation" prometteurs, suggérant un vote pour un statu quo lors du FOMC du 16 septembre. Repricing marqué sur les swaps de taux — favorable aux actifs risqués et aux valeurs de duration longue si confirmé.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Le vice-président JD Vance appelle la Fed à baisser ses taux pour l'accessibilité au logement</div>
+    <div class="news-source">Bloomberg &bull; jeudi 3 septembre</div>
+    <div class="news-impact">Ajoute à la pression de l'administration Trump sur la Fed à l'approche du FOMC du 16 septembre. Risque perçu sur l'indépendance de la banque centrale — facteur de fond à surveiller sur le long terme des Treasuries.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Résultats tech contrastés post-clôture : Broadcom recule malgré un beat, Snowflake bondit +16 %</div>
+    <div class="news-source">Benzinga / Yahoo Finance &bull; mercredi soir / jeudi</div>
+    <div class="news-impact">Broadcom (AVGO) &#8722;2,4 % environ en pré-marché/after-hours sur une guidance Q4 jugée faible malgré des résultats meilleurs que prévu. Snowflake (SNOW) +16 % sur un T2 solide et une guidance relevée. Signal mitigé pour le secteur IA/semi à l'approche de l'ouverture européenne (ASML, Infineon, STMicroelectronics à suivre).</div>
+  </div>
+</div>
+</div>
+
+<!-- ========== 3. FUTURES EUROPEENNES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>3. Futures Européennes (Pré-ouverture)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Contrat</th>
+      <th>Niveau</th>
+      <th>Variation indicative</th>
+      <th>Heure collecte</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Euro Stoxx 50 (FESX)</td>
+      <td class="nd">n/d</td>
+      <td class="nd">Biais positif attendu (non confirmé par source datée du jour)</td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DAX (FDAX)</td>
+      <td class="nd">n/d</td>
+      <td class="nd">Biais positif attendu</td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CAC 40 (FCE)</td>
+      <td class="nd">n/d</td>
+      <td class="nd">Biais positif attendu</td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>FTSE 100 (Z)</td>
+      <td class="nd">n/d</td>
+      <td class="nd">Biais positif attendu</td>
+      <td>—</td>
+    </tr>
+    <tr class="separator-row" style="page-break-inside: avoid;">
+      <td colspan="4">Contexte US — Futures pré-marché</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>S&amp;P 500 e-mini</td>
+      <td class="nd">n/d</td>
+      <td class="positive">Positif (commentaires Trump "market will go up")</td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nasdaq 100 e-mini</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+      <td>—</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Niveaux exacts de futures non disponibles via recherche web à l'heure de rédaction — ce briefing n'a pas accès à un flux de cotation temps réel (Bloomberg/Reuters Eikon/Eurex direct requis pour les niveaux précis). Biais directionnel : positif, porté par la meilleure séance de Wall Street depuis un mois (jeudi) et le rallye asiatique de la nuit. Point de vigilance majeur : le NFP américain à 13:30 BST peut inverser la tendance d'ouverture en quelques minutes, avant même la clôture européenne du jour.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 4. CLOTURES EUROPEENNES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>4. Clôtures de la Veille — Indices Européens (3 septembre 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Indice</th>
+      <th>Clôture</th>
+      <th>Variation</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Euro Stoxx 50</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DAX 40</td>
+      <td class="nd">n/d</td>
+      <td class="positive">+0,65 %</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CAC 40</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>FTSE 100</td>
+      <td>&asymp; 10 750</td>
+      <td class="nd">n/d (indice décrit comme "stabilisé", plus bas niveau en deux semaines)</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Données de clôture précises non toutes disponibles via sources publiques ce matin. Le DAX a progressé de 0,65 % jeudi (Investing.com). Le FTSE 100 s'est stabilisé autour de 10 750 points, son plus bas niveau en deux semaines, après deux séances de repli, la détente du sell-off obligataire mondial ayant limité la casse. Euro Stoxx 50 et CAC 40 : niveaux et variations non confirmés par une source datée fiable — marqués n/d conformément à la règle de données de ce rapport.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 5. MARCHES US ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>5. Orientation des Marchés US (Séance du 3 septembre 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Indice</th>
+      <th>Clôture</th>
+      <th>Variation</th>
+      <th>Note</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>S&amp;P 500</td>
+      <td>7 747</td>
+      <td class="positive">+1,06 %</td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Dow Jones</td>
+      <td>53 686</td>
+      <td class="positive">+1,18 % (+624 pts)</td>
+      <td><span class="tag tag-atl">Meilleure séance du mois</span></td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nasdaq Composite</td>
+      <td>26 584</td>
+      <td class="positive">+1,40 % (+366 pts)</td>
+      <td>—</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Séance nettement haussière sur les trois indices, la meilleure depuis un mois, portée par la détente des rendements obligataires et le repricing à la baisse des probabilités de hausse Fed (~50 % contre ~70 % en début de semaine) après les commentaires du gouverneur Waller sur la désinflation. Secteurs en tête : technologie/IA (Snowflake +16 % post-résultats), valeurs sensibles aux taux. Secteur en retard : semi-conducteurs à guidance faible (Broadcom &#8722;2,4 % malgré un beat). Point clé : le rapport NFP d'août est publié aujourd'hui à 13:30 BST, avant l'ouverture US.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 6. MARCHES ASIATIQUES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>6. Orientation des Marchés Asiatiques (Séance du 4 septembre 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Indice</th>
+      <th>Clôture</th>
+      <th>Variation</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nikkei 225</td>
+      <td>64 952</td>
+      <td class="positive">+1,15 % (+737,52 pts)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Hang Seng</td>
+      <td class="nd">n/d</td>
+      <td class="positive">+2,10 % (+529,69 pts)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Shanghai Composite</td>
+      <td class="nd">n/d</td>
+      <td class="positive">+0,35 % (+13,76 pts)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Kospi (Corée du Sud)</td>
+      <td class="nd">n/d</td>
+      <td class="positive">+1,26 % (+82,64 pts)</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Rebond généralisé en Asie, porté par le rallye de Wall Street jeudi et la nouvelle détente des rendements obligataires ; les grandes valeurs technologiques ont entraîné l'ensemble des indices régionaux. Hang Seng en tête (+2,10 %), suivi du Kospi (+1,26 %) et du Nikkei (+1,15 %). Shanghai Composite plus modeste (+0,35 %). Niveaux absolus (hors Nikkei) non confirmés par une source datée fiable — marqués n/d.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 7. COMMODITES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>7. Commodités</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Matière première</th>
+      <th>Niveau</th>
+      <th>Variation</th>
+      <th>Date / Heure</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Brent (ICE, USD/bbl)</td>
+      <td>95,82</td>
+      <td class="nd">n/d</td>
+      <td>3 sept. 2026</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>WTI (NYMEX, USD/bbl)</td>
+      <td>74,05</td>
+      <td class="nd">n/d</td>
+      <td>3 sept. 2026</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Or (XAU/USD, USD/oz)</td>
+      <td>&asymp; 4 428</td>
+      <td class="positive">+0,92 %</td>
+      <td>Clôture 3 sept. 2026</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Cuivre (COMEX, USD/lb)</td>
+      <td>6,42</td>
+      <td class="negative">Plus bas niveau depuis juillet</td>
+      <td>2 sept. 2026</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Gaz naturel (Henry Hub, USD/MMBtu)</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Gaz naturel (TTF européen, EUR/MWh)</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+      <td>—</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Pétrole nettement en retrait par rapport aux niveaux du printemps (Brent &lt;96 $/bbl vs &gt;105 $/bbl en mai), soulageant la pression inflationniste sur la zone euro. L'or se maintient proche de ses plus hauts historiques autour de 4 400 $/oz, soutenu par les anticipations de baisse de la pression sur les taux réels. Le cuivre est retombé à son plus bas niveau depuis juillet, un signal potentiellement défavorable pour le secteur metals &amp; mining à surveiller aujourd'hui compte tenu du NFP.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 8. TAUX & FX ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>8. Taux &amp; FX</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Instrument</th>
+      <th>Niveau</th>
+      <th>Variation</th>
+      <th>Date / Heure</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>US Treasury 10 ans</td>
+      <td>4,76 %</td>
+      <td class="positive">&#8722;3 pb</td>
+      <td>3 sept. 2026</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Bund allemand 10 ans</td>
+      <td>3,36 %</td>
+      <td class="nd">Proche du plus haut de 15 ans (3,3951 % mercredi)</td>
+      <td>3 sept. 2026</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>EUR/USD</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>GBP/USD</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DXY (Dollar Index)</td>
+      <td>&asymp; 98,98</td>
+      <td class="negative">&#8722;0,59 %</td>
+      <td>~24h glissantes</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Le 10 ans US se détend légèrement à 4,76 % après le rallye actions et le repricing des probabilités Fed. Le Bund allemand reste sous tension, proche de son plus haut de 15 ans (3,3951 %), reflétant les inquiétudes budgétaires/offre en zone euro. Le dollar s'affaiblit (DXY &asymp; 98,98, &#8722;0,59 %) à mesure que les paris sur une hausse Fed en septembre reculent. EUR/USD et GBP/USD : niveaux spot précis non confirmés par une source datée fiable ce matin — marqués n/d. Le NFP de 13:30 BST est le prochain catalyseur majeur pour l'ensemble du complexe taux/FX.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 9. DCM ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>9. DCM — Marché Primaire Obligataire</h2>
+
+  <h3>Issuances de la Veille / Début de Semaine (Septembre 2026)</h3>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Émetteur</th>
+      <th>Devise</th>
+      <th>Montant</th>
+      <th>Maturité</th>
+      <th>Spread/Coupon</th>
+      <th>Notes</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Erste Group Bank (FIG)</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+      <td class="nd">GlobalCapital rapporte qu'Erste Group a ouvert le bal de l'offre FIG européenne de septembre en surperformant les récentes conditions de pricing, sur les trois grandes devises ; détails (taille, tranche, spread, resserrement IPT-to-pricing) non disponibles via sources publiques.</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Corporates IG/HY France</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+      <td class="nd">GlobalCapital évoque une offre française "continuant à un bon rythme" en ce début septembre, sans détail émetteur/montant confirmé.</td>
+    </tr>
+  </table>
+
+  <h3>Pipeline / Prévisions pour Aujourd'hui et la Semaine</h3>
+  <div class="commentary">
+    <p>Aucun mandat spécifique identifié via sources publiques pour la séance de vendredi 4 septembre. Contexte saisonnier : la rentrée de septembre est traditionnellement l'un des mois les plus actifs de l'année pour l'offre EUR IG/SSA/FIG ("September supply burst"), et GlobalCapital signale que le marché euro corporate se prépare à une vague d'émissions. Le calendrier économique chargé (NFP aujourd'hui, réunion BCE les 9-10 septembre, FOMC les 15-16 septembre) pourrait pousser certains émetteurs à accélérer leurs mandats en tout début de semaine prochaine pour devancer la volatilité.</p>
+  </div>
+
+  <h3>Principaux Spreads de Crédit</h3>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Indice</th>
+      <th>Niveau (pb)</th>
+      <th>Variation / Sens</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>iTraxx Europe Main 5 ans</td>
+      <td class="nd">n/d</td>
+      <td class="nd">—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>iTraxx Europe Crossover 5 ans</td>
+      <td class="nd">n/d</td>
+      <td class="nd">—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CDX IG 5 ans (USD)</td>
+      <td class="nd">n/d</td>
+      <td class="nd">—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Spread IG corporate EUR moyen</td>
+      <td class="nd">n/d</td>
+      <td class="nd">—</td>
+    </tr>
+  </table>
+  <div style="margin-top:6px; font-size:11px; color:var(--text-muted); font-style:italic;">Niveaux exacts iTraxx/CDX du jour non disponibles via recherche web publique — nécessite Bloomberg Terminal, ICE ou Markit. Aucune valeur ancienne n'est reportée ici afin d'éviter toute confusion avec un niveau du jour.</div>
+
+  <h3>Commentaire Marché Primaire</h3>
+  <div class="commentary">
+    <p>La fenêtre primaire euro semble techniquement ouverte à l'entame de septembre : Erste Group a inauguré l'offre FIG du mois avec des conditions de pricing meilleures que les émissions récentes selon GlobalCapital, signe d'un appétit investisseur solide en ce début de "rentrée". Le rallye actions de jeudi et la détente relative des rendements longs américains sont des facteurs de soutien pour le sentiment crédit. Vigilance toutefois sur le NFP du jour et la réunion BCE des 9-10 septembre, qui pourraient introduire de la volatilité et inciter certains émetteurs industrials/financials à figer leurs conditions de financement avant ces échéances plutôt qu'après.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 10. CALENDRIER ECONOMIQUE ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>10. Calendrier Économique du Jour (4 septembre 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Heure (BST)</th>
+      <th>Zone</th>
+      <th>Indicateur</th>
+      <th>Consensus</th>
+      <th>Importance</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>13:30</td>
+      <td>US</td>
+      <td>Emploi non-agricole (NFP) — août</td>
+      <td>+53 000 à +58 000 (cons.) / chômage 4,1 %</td>
+      <td><span class="tag tag-high">Haute</span></td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>13:30</td>
+      <td>US</td>
+      <td>Salaire horaire moyen — août (MoM/YoY)</td>
+      <td class="nd">Consensus n/d</td>
+      <td><span class="tag tag-med">Moyenne</span></td>
+    </tr>
+    <tr class="separator-row" style="page-break-inside: avoid;">
+      <td colspan="5">Zone euro / UK — aucune publication majeure confirmée pour ce jour via sources publiques</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Publication reine du jour : le rapport NFP américain d'août à 13:30 BST, qui suit deux mois de créations d'emplois quasi-nulles (juin et juillet, avec une révision de juillet à &#8722;23 000). Un chiffre en ligne ou au-dessus du consensus renforcerait le scénario de statu quo Fed le 16 septembre ; un chiffre nettement plus faible relancerait les paris sur une baisse de taux et pourrait peser sur le dollar tout en soutenant les actions. Aucune publication macro majeure identifiée pour la zone euro ou le Royaume-Uni ce vendredi via les sources consultées — à confirmer localement.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 11. EVENEMENTS CORPORATE ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>11. Événements &amp; Publications Corporate</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Société</th>
+      <th>Place</th>
+      <th>Événement</th>
+      <th>Heure</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td colspan="4" class="nd">Aucun résultat/AGM de grande capitalisation européenne confirmé pour aujourd'hui via sources publiques consultées.</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Agenda corporate calme ce vendredi en Europe. Les publications majeures récentes (Broadcom, Snowflake, Hewlett Packard Enterprise) sont sorties mercredi/jeudi et continuent d'influencer le sentiment sectoriel tech/IA à l'ouverture. L'attention du marché reste concentrée sur la macro (NFP) plutôt que sur le newsflow corporate aujourd'hui.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 12. ACTIONS A SUIVRE ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>12. Actions à Suivre</h2>
+
+  <div class="item watch-item">
+    <div class="watch-name">Broadcom (AVGO) — US</div>
+    <div class="watch-reason">Résultats meilleurs que prévu mais guidance Q4 jugée faible. Recul &#8722;2,4 % environ en pré-marché/after-hours mercredi soir. Effet de contagion possible sur les semi-conducteurs européens (ASML, Infineon, STMicroelectronics) à l'ouverture.</div>
+    <div class="watch-direction negative">Baissier</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Snowflake (SNOW) — US</div>
+    <div class="watch-reason">T2 solide, guidance relevée, action +16 % post-clôture. Signal positif pour la thématique cloud/IA — à surveiller pour tout effet d'entraînement sur les valeurs logicielles européennes.</div>
+    <div class="watch-direction positive">Haussier fort</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Banques zone euro (ex. BNP Paribas, Deutsche Bank) — Financials</div>
+    <div class="watch-reason">Bund allemand proche de son plus haut de 15 ans (3,36 %) : environnement de courbe pentue potentiellement favorable au NII. Le NFP de l'après-midi pourrait toutefois inverser la tendance des taux en quelques minutes.</div>
+    <div class="watch-direction neutral">Neutre / Sensible taux</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Pétrolières intégrées (ex. TotalEnergies, Shell) — Energy</div>
+    <div class="watch-reason">Brent à 95,82 $/bbl, en net retrait par rapport aux niveaux du printemps 2026 (&gt;105 $). Pression potentielle sur les flux de trésorerie des majors si le repli se confirme.</div>
+    <div class="watch-direction negative">Légèrement baissier</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Metals &amp; Mining (ex. ArcelorMittal, Rio Tinto, Glencore)</div>
+    <div class="watch-reason">Cuivre au plus bas depuis juillet (6,42 $/lb). Signal potentiellement négatif pour le sentiment sur le secteur mines/métaux à l'ouverture européenne.</div>
+    <div class="watch-direction negative">Baissier</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Compagnies aériennes (ex. IAG, Lufthansa, Air France-KLM) — Aviation</div>
+    <div class="watch-reason">Brent et WTI en retrait par rapport aux niveaux du printemps ; carburant moins cher = soutien marginal pour les marges du secteur, sous réserve de la confirmation de la baisse des prix de l'énergie.</div>
+    <div class="watch-direction positive">Légèrement haussier</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Shipping &amp; Aerospace/Defense — Europe</div>
+    <div class="watch-reason">Aucun catalyseur spécifique et sourcé identifié pour ces secteurs aujourd'hui via les recherches menées. Secteurs à surveiller mécaniquement sur la réaction générale du marché au NFP plutôt que sur du newsflow idiosyncratique.</div>
+    <div class="watch-direction neutral">n/d — pas de catalyseur confirmé</div>
+  </div>
+</div>
+</div>
+
+<!-- ========== 13. GROS POINTS MACRO/CORPO/POLITIQUE ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>13. Gros Points Macro / Corpo / Politiques</h2>
+
+  <h3>Macro</h3>
+  <div class="commentary">
+    <p><strong>NFP août — le grand rendez-vous du jour :</strong> Consensus +53 000 à +58 000 après deux mois quasi-nuls (juin/juillet, juillet révisé à &#8722;23 000). Chômage attendu stable à 4,1 %. Résultat décisif pour le FOMC du 16 septembre.</p>
+    <p><strong>Probabilités Fed en recul :</strong> Les paris sur une hausse de taux en septembre sont retombés à ~50 % (contre ~70 % en début de semaine) après les commentaires "désinflation" du gouverneur Waller.</p>
+    <p><strong>Pression politique sur la Fed :</strong> Le VP JD Vance a appelé à des baisses de taux pour l'accessibilité au logement, ajoutant à la pression de l'administration Trump sur l'indépendance de la banque centrale.</p>
+    <p><strong>Calendrier banques centrales :</strong> BCE le 9-10 septembre (Berlin), FOMC le 15-16 septembre. Deux échéances rapprochées qui structurent le mois.</p>
+  </div>
+
+  <h3>Corporate</h3>
+  <div class="commentary">
+    <p><strong>Broadcom — guidance qui déçoit :</strong> Résultats au-dessus des attentes mais prévisions Q4 jugées faibles par le marché, action en repli malgré le beat.</p>
+    <p><strong>Snowflake — accélération cloud/IA confirmée :</strong> T2 solide, guidance relevée, +16 % post-clôture — signal positif pour la demande logicielle liée à l'IA.</p>
+    <p><strong>Erste Group Bank — ouverture de la rentrée FIG euro :</strong> Pricing meilleur que les émissions récentes selon GlobalCapital, signal d'appétit investisseur pour le crédit bancaire européen en ce début septembre.</p>
+  </div>
+
+  <h3>Politique / Géopolitique</h3>
+  <div class="commentary">
+    <p><strong>Tension sur l'indépendance de la Fed :</strong> Les appels répétés de l'administration Trump (dont le VP Vance) en faveur de baisses de taux, à quelques jours du NFP et à moins de deux semaines du FOMC, alimentent le débat sur la crédibilité de la politique monétaire américaine — facteur de fond pour le dollar et les Treasuries longs.</p>
+    <p><strong>Aucun développement géopolitique majeur nouveau</strong> identifié dans les sources consultées pour la nuit écoulée — section marquée sobrement en l'absence de newsflow confirmé.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 14. KEY THEMES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>14. Key Themes — Top 5 par Horizon</h2>
+  <div class="three-col">
+
+    <div class="subcard">
+      <h3>Top 5 du Jour</h3>
+      <div class="item theme-item">
+        <div class="theme-title">1. NFP août à 13:30 BST</div>
+        <div class="theme-desc">Catalyseur numéro un de la séance. Un chiffre faible relance les paris de baisse Fed ; un chiffre solide conforte le statu quo du 16 septembre.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">2. Carry-over du rallye Wall Street de jeudi</div>
+        <div class="theme-desc">Meilleure séance du mois sur les indices US ; sert de toile de fond positive à l'ouverture européenne, sous réserve du NFP.</div>
+      </div>
+      <div class="theme-item">
+        <div class="theme-title">3. Repricing des probabilités de hausse Fed</div>
+        <div class="theme-desc">Odds retombées à ~50 % après les commentaires de Waller — sensible à toute surprise du NFP dans un sens ou dans l'autre.</div>
+      </div>
+      <div class="theme-item">
+        <div class="theme-title">4. Rallye asiatique de la nuit</div>
+        <div class="theme-desc">Hang Seng +2,10 %, Kospi +1,26 %, Nikkei +1,15 % — confirme l'appétit pour le risque en amont de l'ouverture européenne.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">5. Faiblesse du dollar (DXY)</div>
+        <div class="theme-desc">DXY &#8722;0,59 % sur les probabilités Fed en baisse — sensible à un NFP qui surprendrait à la hausse.</div>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>Top 5 de la Semaine</h3>
+      <div class="item theme-item">
+        <div class="theme-title">1. Réaction du marché au NFP du jour</div>
+        <div class="theme-desc">Le positionnement de la semaine prochaine dépendra largement de la lecture du marché sur l'ampleur de la faiblesse (ou non) de l'emploi américain.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">2. Réunion BCE (9-10 septembre)</div>
+        <div class="theme-desc">Première grande échéance banque centrale de la semaine prochaine, à Berlin — ton sur l'inflation et la croissance zone euro à surveiller.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">3. Suites Broadcom / Snowflake</div>
+        <div class="theme-desc">Digestion des réactions contrastées post-résultats sur le secteur tech/IA, avec effet potentiel sur les semi-conducteurs européens.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">4. Reprise du marché primaire euro</div>
+        <div class="theme-desc">Erste Group ouvre le bal de la rentrée FIG ; test de l'appétit investisseur pour une vague d'émissions plus large en septembre.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">5. Direction des rendements US10Y/Bund</div>
+        <div class="theme-desc">Bund proche d'un plus haut de 15 ans ; toute nouvelle détente ou tension influence directement le sentiment sur les banques et les valeurs de croissance.</div>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>Top 5 du Mois</h3>
+      <div class="item theme-item">
+        <div class="theme-title">1. FOMC du 15-16 septembre</div>
+        <div class="theme-desc">Première grande échéance du mois. Décision de taux et ton de Waller/Powell déterminants pour la trajectoire H2 2026.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">2. Réunion BCE du 9-10 septembre</div>
+        <div class="theme-desc">Structure le début du mois pour les taux et le crédit euro, en amont du FOMC américain une semaine plus tard.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">3. Pression politique sur l'indépendance de la Fed</div>
+        <div class="theme-desc">Les appels de l'administration Trump à des baisses de taux pourraient s'intensifier à l'approche du FOMC — facteur de fond pour le dollar et les Treasuries.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">4. Vague d'émissions obligataires de rentrée</div>
+        <div class="theme-desc">Septembre est traditionnellement l'un des mois les plus actifs pour l'offre EUR IG/SSA/FIG — à suivre pour le pipeline industrials/transport/énergie.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">5. Trajectoire du marché de l'emploi US</div>
+        <div class="theme-desc">Après deux mois quasi-nuls (juin/juillet), le NFP d'août et les révisions à venir conditionnent le narratif "ralentissement contrôlé vs récession" pour le reste du T3.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ========== 15. KEY TRENDS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>15. Key Trends à Surveiller</h2>
+  <div class="three-col">
+
+    <div class="subcard">
+      <h3>À 1 Jour</h3>
+      <div class="commentary">
+        <p><strong>NFP à 13:30 BST :</strong> Résultat binaire — chiffre faible = paris sur baisse Fed relancés, chiffre solide = confirmation du statu quo du 16 septembre. Principale source de volatilité intraday sur actions, taux et dollar.</p>
+        <p><strong>Suivi semi-conducteurs :</strong> Réaction des valeurs européennes (ASML, Infineon, STMicroelectronics) à la guidance faible de Broadcom.</p>
+        <p><strong>Direction du cuivre :</strong> Plus bas depuis juillet — à surveiller pour un éventuel effet sur le secteur mines/métaux à l'ouverture.</p>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>À 1 Semaine</h3>
+      <div class="commentary">
+        <p><strong>Réunion BCE (9-10 septembre) :</strong> Premier grand rendez-vous banque centrale de la semaine — ton sur l'inflation zone euro et la trajectoire de croissance.</p>
+        <p><strong>Repositionnement post-NFP :</strong> Ajustement des paris FOMC en fonction du chiffre d'emploi du jour.</p>
+        <p><strong>Pipeline primaire euro :</strong> Suivi de l'ampleur de la vague d'émissions de rentrée après l'ouverture par Erste Group.</p>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>À 1 Mois</h3>
+      <div class="commentary">
+        <p><strong>FOMC du 15-16 septembre :</strong> Décision de taux et communication — enjeu central pour la trajectoire des marchés jusqu'à fin d'année.</p>
+        <p><strong>Indépendance de la Fed :</strong> Pression politique croissante (Trump, Vance) à surveiller comme facteur de fond pour le dollar et les Treasuries longs.</p>
+        <p><strong>Saison de résultats Q3 :</strong> Les premières publications (calendrier US) donneront le ton pour la suite du cycle IA/tech après les réactions mitigées de cette semaine.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<div class="footer">
+  <div class="sources-title">Sources Principales Utilisées</div>
+  <ul>
+    <li>CNBC — clôtures US/Asie, marché de l'emploi août, contexte Fed</li>
+    <li>Bloomberg — commentaires Waller/Vance, DXY, FOMC/ECB</li>
+    <li>Reuters (via agrégateurs) — clôtures indices européens, taux</li>
+    <li>TheStreet / Yahoo Finance — clôtures US détaillées du 3 septembre</li>
+    <li>Trading Economics — rendements US10Y/Bund, gaz/or/copper</li>
+    <li>GlobalCapital / IFR — contexte marché primaire euro, Erste Group</li>
+    <li>Convex — Brent/WTI (3 septembre 2026)</li>
+    <li>India TV News / agrégateurs marché — clôtures Asie du 4 septembre</li>
+    <li>Benzinga — réactions résultats Broadcom/Snowflake</li>
+  </ul>
+  <div class="warning">
+    Données collectées automatiquement via recherche web (pas de flux de marché temps réel type Bloomberg/Refinitiv). De nombreux points de données n'ont pas pu être confirmés par une source datée fiable et sont marqués "n/d" conformément à la règle de ce rapport : aucune valeur n'est inventée ou estimée. Vérifier tout chiffre avant toute décision d'investissement.
+  </div>
+</div>
+
+</body>
+</html>
