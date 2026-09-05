@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morning Briefing — 5 septembre 2026</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-card: #161b22;
+      --bg-table-header: #1c2333;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --green: #3fb950;
+      --red: #f85149;
+      --amber: #d29922;
+      --blue: #58a6ff;
+      --accent: #388bfd;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      padding: 24px 20px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .header .meta {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 5px;
+    }
+    .weekend-banner {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: rgba(210,153,34,0.1);
+      border-left: 3px solid var(--amber);
+      color: var(--text);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    .section h2 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+    .section h3 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: var(--text-muted);
+      margin: 14px 0 7px;
+    }
+    .section h3:first-of-type { margin-top: 4px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    th {
+      background: var(--bg-table-header);
+      color: var(--text-muted);
+      text-align: left;
+      padding: 6px 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    td {
+      padding: 5px 10px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.025); }
+    .positive { color: var(--green); font-weight: 600; }
+    .negative { color: var(--red); font-weight: 600; }
+    .neutral { color: var(--text-muted); }
+    .nd { color: var(--text-muted); font-style: italic; }
+    .tag {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      vertical-align: middle;
+    }
+    .tag-high { background: rgba(248,81,73,0.2); color: var(--red); }
+    .tag-med { background: rgba(210,153,34,0.2); color: var(--amber); }
+    .tag-atl { background: rgba(63,185,80,0.2); color: var(--green); }
+    .tag-closed { background: rgba(139,148,158,0.2); color: var(--text-muted); }
+    .news-item {
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .news-item:last-child { border-bottom: none; }
+    .news-title { font-weight: 600; color: var(--text); font-size: 13px; }
+    .news-source { color: var(--accent); font-size: 11px; margin: 2px 0; }
+    .news-impact { color: var(--text-muted); font-size: 12px; line-height: 1.5; }
+    .commentary {
+      color: var(--text);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .commentary p { margin-bottom: 6px; }
+    .commentary p:last-child { margin-bottom: 0; }
+    .commentary strong { color: var(--text); }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    .watch-item {
+      display: grid;
+      grid-template-columns: 160px 1fr 110px;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      align-items: start;
+    }
+    .watch-item:last-child { border-bottom: none; }
+    .watch-name { font-weight: 700; color: var(--text); }
+    .watch-reason { color: var(--text-muted); line-height: 1.4; }
+    .watch-direction { text-align: right; font-size: 11px; font-weight: 600; }
+    .theme-item {
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+    .theme-item:last-child { border-bottom: none; }
+    .theme-title { font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .theme-desc { color: var(--text-muted); line-height: 1.4; }
+    .subcard {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 12px;
+    }
+    .subcard h3 { margin-top: 0; }
+    .separator-row td {
+      background: rgba(56,139,253,0.05);
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 11px;
+    }
+    .footer {
+      margin-top: 20px;
+      padding: 14px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .footer .sources-title {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 8px;
+      color: var(--text);
+      font-size: 11px;
+    }
+    .footer ul { padding-left: 16px; line-height: 1.7; }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .warning {
+      margin-top: 12px;
+      padding: 8px 12px;
+      background: rgba(248,81,73,0.08);
+      border-left: 3px solid var(--red);
+      color: var(--text-muted);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    @media (max-width: 750px) {
+      .two-col, .three-col { grid-template-columns: 1fr; }
+      .watch-item { grid-template-columns: 1fr; }
+      .watch-direction { text-align: left; }
+    }
+    @media print {
+      body {
+        background: #0d1117 !important;
+        color: #c9d1d9 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .section, table, tr, td, th, .data-block, .theme-block, .calendar-row {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      thead { display: table-header-group; }
+      p, li, div, span {
+        orphans: 3;
+        widows: 3;
+      }
+      .section-wrapper {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .item, .news-item, .stock-item, .theme-item, .event-item {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      @page {
+        size: A4 landscape;
+        margin: 12mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== EN-TETE ========== -->
+<div class="header">
+  <h1>Morning Briefing &mdash; Samedi 5 Septembre 2026</h1>
+  <div class="meta">
+    Généré le 5 septembre 2026 &bull; ~08:00 BST (Londres) &bull;
+    Données collectées entre 06:30 et 08:00 BST &bull;
+    Fuseau de référence : Europe/London (BST = UTC+1)
+  </div>
+  <div class="weekend-banner">
+    <strong>Note :</strong> le 5 septembre 2026 est un samedi &mdash; aucune séance cash ni pré-ouverture Europe/US aujourd'hui. Ce briefing récapitule la clôture de vendredi 4 septembre et prépare la réouverture de lundi 7 septembre. <strong>Lundi 7 septembre est férié aux États-Unis (Labor Day) : NYSE, Nasdaq et marché obligataire US fermés.</strong> Les marchés européens, eux, ouvrent normalement lundi.
+  </div>
+</div>
+
+<!-- ========== 2. IMPORTANT NEWS ========== -->
+<div class="section section-wrapper">
+  <h2>2. Important News</h2>
+
+  <div class="item news-item">
+    <div class="news-title">Payrolls US août : +162 000 emplois créés, très au-dessus du consensus (+53 000/+55 000)</div>
+    <div class="news-source">BLS / CNBC / Investrade &bull; publié vendredi 4 septembre</div>
+    <div class="news-impact">Chômage stable à 4,1 %. Salaire horaire moyen +0,3 % MoM / +3,1 % YoY. Révisions de juin-juillet relevées de +55 000 cumulés. Plus forte hausse mensuelle depuis mars. Impact marché : probabilité d'une hausse Fed en septembre remontée à ~58-60 % contre ~50-52 % avant la publication (CME FedWatch). Rendements et dollar en hausse, actions en repli vendredi.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Kevin Warsh (Fed) hausse le ton sur l'inflation à Jackson Hole (28 août)</div>
+    <div class="news-source">CNBC / PBS / Washington Post &bull; discours du 28 août, effets persistants cette semaine</div>
+    <div class="news-impact">Warsh a averti que les lectures d'inflation de l'été, meilleures qu'attendu, ne signalent pas d'amélioration durable de la tendance sous-jacente. Marchés désormais positionnés pour un possible relèvement de taux lors du FOMC de mi-septembre, scénario jugé quasi improbable avant ce discours. Rapport CPI à venir avant le FOMC sera déterminant.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Escalade militaire US-Iran début septembre : frappes US dans le détroit d'Ormuz, ripostes iraniennes sur EAU et Jordanie</div>
+    <div class="news-source">Bloomberg / Al Jazeera / CNBC &bull; 1&ndash;2 septembre, effets persistants</div>
+    <div class="news-impact">Brent et WTI en forte hausse sur la semaine, rendements obligataires mondiaux à des plus hauts pluriannuels. Espoirs de normalisation du trafic à Ormuz anéantis. Pression inflationniste supplémentaire qui renforce les paris sur un resserrement Fed et BCE. Risque géopolitique élevé sur le week-end &mdash; toute nouvelle escalade samedi/dimanche impacterait fortement l'ouverture asiatique de lundi et l'ouverture européenne.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Inflation zone euro août : 3,3 % YoY (vs 2,9 % en juillet), plus haut depuis septembre 2023</div>
+    <div class="news-source">Eurostat / CNBC / Irish Times &bull; publié 1er septembre</div>
+    <div class="news-impact">Énergie +14,3 % YoY (contre +10,3 % en juillet), principal moteur via le conflit au Moyen-Orient. Marchés positionnent désormais une hausse de 25 pb de la BCE la semaine prochaine (dépôt à 2,50 % contre 2,25 % actuellement) comme quasi acquise. Réunion BCE prévue le 10-11 septembre.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Tesla (TSLA) -6 % vendredi après le lancement du Cybercab, LULU en chute à un plus bas de 7 ans</div>
+    <div class="news-source">CNBC / Investrade &bull; séance du 4 septembre</div>
+    <div class="news-impact">Le lancement du robotaxi Cybercab a laissé les analystes avec plus de questions que de réponses &mdash; pire séance pour Tesla depuis le 23 juillet. Lululemon a abaissé à nouveau ses prévisions de ventes annuelles, pénalisée par la faiblesse persistante en Chine. Secteur consommation discrétionnaire parmi les plus faibles de la séance.</div>
+  </div>
+</div>
+
+<!-- ========== 3. FUTURES EUROPEENNES ========== -->
+<div class="section section-wrapper">
+  <h2>3. Futures Européennes (Pré-ouverture)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Contrat</th>
+      <th>Niveau</th>
+      <th>Statut</th>
+      <th>Heure collecte</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Euro Stoxx 50 (FESX)</td>
+      <td class="nd">n/d</td>
+      <td><span class="tag tag-closed">Marché fermé — week-end</span></td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DAX (FDAX)</td>
+      <td class="nd">n/d</td>
+      <td><span class="tag tag-closed">Marché fermé — week-end</span></td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CAC 40 (FCE)</td>
+      <td class="nd">n/d</td>
+      <td><span class="tag tag-closed">Marché fermé — week-end</span></td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>FTSE 100 (Z)</td>
+      <td class="nd">n/d</td>
+      <td><span class="tag tag-closed">Marché fermé — week-end</span></td>
+      <td>—</td>
+    </tr>
+    <tr class="separator-row" style="page-break-inside: avoid;">
+      <td colspan="4">Contexte US — Futures</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>S&amp;P 500 e-mini</td>
+      <td class="nd">n/d</td>
+      <td><span class="tag tag-closed">Pas de séance pertinente avant dimanche soir</span></td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nasdaq 100 e-mini</td>
+      <td class="nd">n/d</td>
+      <td><span class="tag tag-closed">Idem</span></td>
+      <td>—</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Aucune pré-ouverture pertinente aujourd'hui : marchés actions et futures Eurex/CME en pause week-end. La prochaine séance de référence est l'ouverture de Francfort/Paris/Londres lundi 7 septembre à 08:00 BST ; les futures US resteront fermés ce jour-là (Labor Day). Le biais directionnel pour lundi dépendra (i) de l'actualité du week-end sur le dossier Iran et (ii) du repositionnement post-payrolls US amorcé vendredi (risk-off modéré, hausse des rendements et du dollar).</p>
+  </div>
+</div>
+
+<!-- ========== 4. CLOTURES EUROPEENNES ========== -->
+<div class="section section-wrapper">
+  <h2>4. Clôtures de la Veille — Indices Européens (vendredi 4 septembre 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Indice</th>
+      <th>Clôture</th>
+      <th>Variation</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Euro Stoxx 50</td>
+      <td>~6 401</td>
+      <td class="positive">+0,34 %</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DAX 40</td>
+      <td>~26 048</td>
+      <td class="nd">quasi stable (n/d précis)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CAC 40</td>
+      <td class="nd">n/d</td>
+      <td class="negative">légèrement négatif</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>FTSE 100</td>
+      <td>10 828</td>
+      <td class="neutral">quasi inchangé</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Séance européenne sans tendance nette vendredi. L'Euro Stoxx 50 progresse modestement (+0,34 %), le DAX termine quasi stable, le FTSE 100 clôture essentiellement plat (10 828, à quatre points de son ouverture). Le CAC 40 sous-performe légèrement, plombé par Dassault Systèmes (&minus;3,38 %), TotalEnergies (&minus;1,45 %) et Air Liquide (&minus;1,15 %). Toile de fond : inflation zone euro à 3,3 % et anticipation d'une hausse BCE la semaine prochaine, conflit Iran maintenant le pétrole élevé.</p>
+  </div>
+</div>
+
+<!-- ========== 5. MARCHES US ========== -->
+<div class="section section-wrapper">
+  <h2>5. Orientation des Marchés US (Séance du 4 septembre 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Indice</th>
+      <th>Clôture</th>
+      <th>Variation</th>
+      <th>Note</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>S&amp;P 500</td>
+      <td>7 718,60</td>
+      <td class="negative">&#8722;0,38 %</td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Dow Jones</td>
+      <td>53 414,25</td>
+      <td class="negative">&#8722;0,51 % (&#8722;271,86 pts)</td>
+      <td>—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nasdaq Composite</td>
+      <td>26 506,99</td>
+      <td class="negative">&#8722;0,29 %</td>
+      <td>—</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Séance baissière vendredi : le rapport sur l'emploi d'août (+162 000, très supérieur au consensus) a ravivé les paris sur une hausse Fed en septembre, poussant rendements et dollar à la hausse et pesant sur les actions à l'approche du long week-end de Labor Day. Secteurs en tête : technologie (XLK), industrials (XLI), utilities (XLU). Secteurs en retard : santé (XLV), consommation discrétionnaire (XLY) &mdash; Tesla &minus;6 % post-lancement Cybercab &mdash; communication services (XLC) et énergie (XLE). Lululemon a chuté à un plus bas de 7 ans après un nouvel abaissement de ses prévisions de ventes, pénalisée par la Chine. Le S&P 500 avait atteint plusieurs records en août avant cette pause de fin de semaine.</p>
+  </div>
+</div>
+
+<!-- ========== 6. MARCHES ASIATIQUES ========== -->
+<div class="section section-wrapper">
+  <h2>6. Orientation des Marchés Asiatiques (Dernière séance : 3&ndash;4 septembre 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Indice</th>
+      <th>Clôture</th>
+      <th>Variation</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nikkei 225</td>
+      <td>64 214,48</td>
+      <td class="negative">&#8722;0,17 %</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Hang Seng</td>
+      <td>25 213,31</td>
+      <td class="negative">&#8722;0,39 %</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Shanghai Composite</td>
+      <td>3 942,09</td>
+      <td class="positive">+0,02 %</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Kospi (Corée du Sud)</td>
+      <td>6 579,48</td>
+      <td class="positive">+0,26 %</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Asie fermée pour le week-end ; dernière séance disponible en ordre dispersé, sous la pression des rendements obligataires américains en hausse et du conflit US-Iran. Le Nikkei recule pour la deuxième séance, le Hang Seng cède du terrain, tandis que Shanghai et le Kospi tiennent quasi stables à légèrement positifs. La réouverture de lundi (Tokyo, Hong Kong, Shanghai, Séoul) sera le premier test de marché après les payrolls US et sur tout développement du week-end concernant l'Iran.</p>
+  </div>
+</div>
+
+<!-- ========== 7. COMMODITES ========== -->
+<div class="section section-wrapper">
+  <h2>7. Commodités (dernière clôture disponible, vendredi 4 septembre)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Matière première</th>
+      <th>Niveau</th>
+      <th>Variation</th>
+      <th>Heure/Note</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Brent (ICE, USD/bbl)</td>
+      <td>95,85</td>
+      <td class="positive">+0,35 %</td>
+      <td>Sur la semaine, en forte hausse post-frappes US-Iran (pic &gt;100 $ signalé début septembre)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>WTI (NYMEX, USD/bbl)</td>
+      <td>91,22</td>
+      <td class="negative">&#8722;0,09 %</td>
+      <td>Range du jour 88,75&ndash;92,16 $</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Or (XAU/USD, USD/oz)</td>
+      <td>~4 470&ndash;4 477</td>
+      <td class="negative">léger repli</td>
+      <td>Or et Bitcoin ont cédé du terrain vendredi après le rallye de la semaine, sur prises de bénéfices post-payrolls</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Argent (XAG/USD, USD/oz)</td>
+      <td>~65,5</td>
+      <td class="nd">n/d précis</td>
+      <td>9h ET vendredi</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Gaz naturel (Henry Hub, USD/MMBtu)</td>
+      <td>2,92&ndash;2,94</td>
+      <td class="positive">+0,89 %</td>
+      <td>Prévisions météo chaudes vs offre domestique abondante</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Cuivre (COMEX, USD/lb)</td>
+      <td>~6,4&ndash;6,5</td>
+      <td class="negative">recul depuis le record du 25 août (6,7 $)</td>
+      <td>Pression des rendements et craintes de taux</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Le pétrole reste la variable clé : les frappes US-Iran début septembre ont propulsé le Brent et le WTI à des niveaux non revus depuis juillet, entretenant la pression inflationniste sur la zone euro (énergie +14,3 % YoY en août) et sur la Fed. L'or et l'argent, qui avaient rallié toute la semaine sur les craintes de hausse de taux et le risque géopolitique, ont marqué une pause vendredi après les payrolls. Le cuivre reste sous son record d'août, pénalisé par la hausse des rendements mondiaux et des craintes sur la demande. Tout développement supplémentaire sur le dossier Iran ce week-end serait le principal catalyseur pour l'ouverture de lundi.</p>
+  </div>
+</div>
+
+<!-- ========== 8. TAUX & FX ========== -->
+<div class="section section-wrapper">
+  <h2>8. Taux &amp; FX (dernière clôture disponible, vendredi 4 septembre)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Instrument</th>
+      <th>Niveau</th>
+      <th>Variation / Note</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>US Treasury 10 ans</td>
+      <td>4,76 %</td>
+      <td class="negative">en forte hausse sur la semaine (payrolls + risque Iran + Fed hawkish)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Bund allemand 10 ans</td>
+      <td>3,34 %</td>
+      <td class="nd">quasi stable (&#8722;1 pb vs veille)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Spread US10Y &ndash; Bund10Y</td>
+      <td>~142 pb</td>
+      <td class="nd">écart large, reflète la divergence de cycle Fed/BCE</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>EUR/USD</td>
+      <td>~1,1627&ndash;1,1629</td>
+      <td class="nd">range hebdo 1,1569&ndash;1,1649</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>GBP/USD</td>
+      <td class="nd">n/d précis (sous 1,2150 signalé)</td>
+      <td class="negative">tendance baissière depuis fin août</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DXY (Dollar Index)</td>
+      <td>~99,7&ndash;100</td>
+      <td class="positive">soutenu par le discours Warsh à Jackson Hole et les payrolls</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Le T10 US grimpe à 4,76 %, plus haut pluriannuel, sous l'effet cumulé du discours hawkish de Warsh à Jackson Hole, des payrolls d'août très supérieurs au consensus et de la prime de risque géopolitique liée à l'Iran. Le Bund reste comparativement stable à 3,34 %, la BCE étant sur le point d'agir (hausse attendue le 10-11 septembre) mais avec une trajectoire de resserrement plus classique. Le dollar est bien soutenu (DXY proche de 100) et l'EUR/USD reste sous pression dans un range 1,157&ndash;1,165. La livre poursuit sa tendance baissière entamée fin août. Point de vigilance lundi : marché obligataire US fermé (Labor Day), donc price action Treasuries au ralenti ; le Bund et les devises resteront actifs.</p>
+  </div>
+</div>
+
+<!-- ========== 9. DCM ========== -->
+<div class="section section-wrapper">
+  <h2>9. DCM — Marché Primaire Obligataire</h2>
+
+  <h3>Issuances de la Veille (vendredi 4 septembre 2026)</h3>
+  <div class="commentary">
+    <p class="nd">Aucune donnée fiable d'issuance EUR IG/HY/SSA/financials pour la séance du 4 septembre n'a pu être obtenue via les sources publiques consultées (Reuters, Bloomberg, IFR, GlobalCapital non accessibles depuis cette session). Un accès Bloomberg Terminal / IFR / GlobalCapital est nécessaire pour confirmer le detail deal-by-deal (émetteur, taille, coupon, resserrement IPT-to-pricing). Point macro pertinent : les hyperscalers américains ont plus que doublé leur part dans les émissions "reverse Yankee" en euros entre 2025 et 2026, tendance de fond du marché IG EUR cette année (source : ECB Blog, 31 août 2026).</p>
+  </div>
+
+  <h3>Pipeline / Attendu Aujourd'hui et Semaine Prochaine</h3>
+  <div class="commentary">
+    <p>Marché primaire fermé le week-end. Lundi 7 septembre marque généralement une réouverture prudente en zone euro juste avant la réunion BCE du 10-11 septembre (hausse de 25 pb largement anticipée à 2,50 %) : les émetteurs pourraient privilégier une fenêtre en tout début de semaine pour sécuriser des conditions avant le comité, ou au contraire attendre la décision de la BCE pour figer leur pricing. Aucun mandat spécifique confirmé dans les sources disponibles.</p>
+  </div>
+
+  <h3>Principaux Spreads de Crédit</h3>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Indice</th>
+      <th>Niveau (pb)</th>
+      <th>Variation / Sens</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>iTraxx Europe Main 5 ans</td>
+      <td class="nd">n/d</td>
+      <td class="nd">Non disponible via sources publiques</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>iTraxx Europe Crossover 5 ans</td>
+      <td class="nd">n/d</td>
+      <td class="nd">Non disponible via sources publiques</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CDX IG 5 ans (USD)</td>
+      <td class="nd">n/d</td>
+      <td class="nd">Non disponible via sources publiques</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Spread IG corporate EUR moyen</td>
+      <td class="nd">n/d</td>
+      <td class="nd">Non disponible via sources publiques</td>
+    </tr>
+  </table>
+  <div style="margin-top:6px; font-size:11px; color:var(--text-muted); font-style:italic;">Niveaux exacts iTraxx/CDX non disponibles via recherche web ouverte pour cette session &mdash; accès Bloomberg Terminal / ICE / Markit requis pour confirmation.</div>
+
+  <h3>Commentaire Marché Primaire</h3>
+  <div class="commentary">
+    <p>Sans accès direct aux flux Bloomberg/IFR pour cette session, l'appréciation du ton primaire reste indirecte. Le contexte macro (T10 US à 4,76 %, Bund à 3,34 %, hausse BCE quasi-certaine le 10-11 septembre, pétrole élevé sur fond de conflit Iran) pointe vers des conditions de financement plus chères qu'en début d'été mais pas fermées : la demande structurelle pour le papier IG bien noté reste intacte, portée notamment par le flux "reverse Yankee" des hyperscalers américains en euros. Vigilance particulière sur les secteurs énergie et transport, directement exposés à la volatilité du pétrole, et sur les financières en amont de la décision BCE.</p>
+  </div>
+</div>
+
+<!-- ========== 10. CALENDRIER ECONOMIQUE ========== -->
+<div class="section section-wrapper">
+  <h2>10. Calendrier Économique (Week-end du 5&ndash;6 septembre : aucune publication majeure)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Date / Heure (BST)</th>
+      <th>Zone</th>
+      <th>Indicateur</th>
+      <th>Consensus</th>
+      <th>Importance</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Lun. 7 sept. — toute la journée</td>
+      <td>US</td>
+      <td>Labor Day — marchés actions, obligataire, banques et administrations fermés</td>
+      <td class="nd">—</td>
+      <td><span class="tag tag-high">Haute (fermeture)</span></td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Lun. 8 sept.</td>
+      <td>Zone euro</td>
+      <td>Indice de confiance des investisseurs Sentix — septembre</td>
+      <td class="nd">Consensus n/d</td>
+      <td><span class="tag tag-med">Moyenne</span></td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Jeu. 10&ndash;11 sept.</td>
+      <td>Zone euro</td>
+      <td>Réunion de politique monétaire BCE — décision taux</td>
+      <td>Hausse de 25 pb largement anticipée (dépôt 2,25 % &rarr; 2,50 %)</td>
+      <td><span class="tag tag-high">Haute</span></td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Aucune publication macro significative n'est prévue ce samedi ou dimanche. Le calendrier de la semaine à venir est dominé par la réunion de la BCE (10-11 septembre), avec une hausse de taux de 25 pb massivement pricée par le marché suite à l'inflation d'août à 3,3 %. Le calendrier US est comprimé par la fermeture de Labor Day lundi ; le FOMC se réunit mi-septembre (date exacte non confirmée dans les sources consultées) avec un CPI américain attendu avant la décision — publication clé pour arbitrer entre statu quo et hausse.</p>
+  </div>
+</div>
+
+<!-- ========== 11. EVENEMENTS CORPORATE ========== -->
+<div class="section section-wrapper">
+  <h2>11. Événements &amp; Publications Corporate</h2>
+  <div class="commentary">
+    <p class="nd">Aucun événement corporate ou publication de résultats significatif identifié pour le week-end du 5-6 septembre ou l'ouverture de lundi 7 septembre (jour férié US, agenda européen également allégé en tout début de semaine). Aucune donnée fiable disponible via les sources publiques consultées pour cette session — à confirmer via calendrier Bloomberg/Refinitiv en début de semaine prochaine.</p>
+  </div>
+</div>
+
+<!-- ========== 12. ACTIONS A SUIVRE ========== -->
+<div class="section section-wrapper">
+  <h2>12. Actions à Suivre (pour la réouverture de lundi)</h2>
+
+  <div class="item watch-item">
+    <div class="watch-name">Tesla (TSLA) — Nasdaq</div>
+    <div class="watch-reason">&minus;6 % vendredi après le lancement du Cybercab jugé décevant par les analystes. Pire séance depuis le 23 juillet. Surveiller tout commentaire de broker en début de semaine.</div>
+    <div class="watch-direction negative">Baissier / Volatil</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Lululemon (LULU) — Nasdaq</div>
+    <div class="watch-reason">Plus bas de 7 ans vendredi après un nouvel abaissement des prévisions de ventes annuelles, faiblesse persistante en Chine.</div>
+    <div class="watch-direction negative">Baissier</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">TotalEnergies (TTE.PA) — CAC 40</div>
+    <div class="watch-reason">Brent proche de 96 $/bbl sur fond de conflit Iran = flux FCF favorables, mais action en retrait vendredi (&minus;1,45 %) malgré la hausse du brut. Position à réévaluer selon actualité Iran du week-end.</div>
+    <div class="watch-direction neutral">Neutre / Surveiller</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Dassault Systèmes (DSY.PA) — CAC 40</div>
+    <div class="watch-reason">&minus;3,38 % vendredi, principal frein du CAC 40. Vérifier tout catalyseur spécifique (broker note, guidance) avant la réouverture.</div>
+    <div class="watch-direction negative">Baissier</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">ASML (ASML.AS) — AEX</div>
+    <div class="watch-reason">+1,5 % en fin de semaine dernière, tech européenne bien orientée. Sensible à tout mouvement sur les rendements US/EUR en tout début de semaine.</div>
+    <div class="watch-direction positive">Haussier modéré</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Infineon (IFX.DE) — DAX</div>
+    <div class="watch-reason">+2,2 % en fin de semaine dernière sur la dynamique semi-conducteurs européenne.</div>
+    <div class="watch-direction positive">Haussier modéré</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Volkswagen (VOW3.DE) — DAX</div>
+    <div class="watch-reason">Bond de plus de 8 % signalé en fin de semaine dernière — catalyseur spécifique non confirmé dans les sources disponibles, à vérifier en ouverture de semaine.</div>
+    <div class="watch-direction positive">Haussier (à confirmer)</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Banques européennes (BNP, SocGen, Deutsche Bank)</div>
+    <div class="watch-reason">Bund à 3,34 % et hausse BCE quasi-certaine le 10-11 septembre : environnement de taux porteur pour les NII. Réaction du secteur à surveiller dès lundi en amont de la décision.</div>
+    <div class="watch-direction positive">Haussier taux</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Compagnies aériennes européennes (IAG, Air France-KLM, Lufthansa)</div>
+    <div class="watch-reason">Brent élevé (~96 $) sur fond de conflit Iran = pression sur les coûts carburant. Tout signe de désescalade ce week-end serait un catalyseur haussier immédiat pour le secteur.</div>
+    <div class="watch-direction negative">Baissier (coûts carburant)</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Shipping / tankers (Frontline, d'Amico, Euronav)</div>
+    <div class="watch-reason">Exposition directe aux tensions dans le détroit d'Ormuz. Taux spot et primes de risque géopolitique restent le principal moteur du secteur — à surveiller de très près lundi.</div>
+    <div class="watch-direction positive">Haussier (risque géopolitique)</div>
+  </div>
+</div>
+
+<!-- ========== 13. GROS POINTS MACRO/CORPO/POLITIQUE ========== -->
+<div class="section section-wrapper">
+  <h2>13. Gros Points Macro / Corpo / Politiques</h2>
+
+  <h3>Macro</h3>
+  <div class="commentary">
+    <p><strong>Payrolls US août très supérieurs au consensus :</strong> +162 000 vs +53-55 000 attendu, chômage stable à 4,1 %, salaires +3,1 % YoY. Révisions à la hausse de juin-juillet (+55 000 cumulés). Rebat les cartes sur la trajectoire Fed à quelques jours du FOMC.</p>
+    <p><strong>Warsh hawkish à Jackson Hole :</strong> Le président de la Fed a averti que l'inflation sous-jacente ne montre pas d'amélioration franche malgré des lectures d'été meilleures qu'attendu. Probabilité de hausse en septembre désormais ~58-60 % (CME FedWatch), contre quasi nulle avant son discours du 28 août.</p>
+    <p><strong>Inflation zone euro à 3,3 % :</strong> plus haut depuis septembre 2023, tirée par l'énergie (+14,3 % YoY). Hausse de 25 pb de la BCE le 10-11 septembre désormais vue comme une décision quasi acquise (dépôt à 2,50 %).</p>
+    <p><strong>Rendements mondiaux à des plus hauts pluriannuels :</strong> T10 US à 4,76 %, alimenté par la combinaison Warsh hawkish + payrolls forts + prime de risque géopolitique Iran.</p>
+  </div>
+
+  <h3>Corporate</h3>
+  <div class="commentary">
+    <p><strong>Tesla — Cybercab en demi-teinte :</strong> Le lancement tant attendu du robotaxi laisse les analystes perplexes ; action &minus;6 % vendredi, pire séance depuis fin juillet.</p>
+    <p><strong>Lululemon — alerte Chine :</strong> Nouvel abaissement de la guidance annuelle, action à un plus bas de 7 ans. Confirme la faiblesse persistante de la demande discrétionnaire chinoise pour les marques occidentales premium.</p>
+    <p><strong>Big Tech américaine et euro-bonds :</strong> Les hyperscalers US ont doublé leur part dans les émissions "reverse Yankee" en euros entre 2025 et 2026 (ECB Blog), tendance structurelle à suivre sur le marché IG européen cette année.</p>
+    <p><strong>Résultats européens solides au S1 :</strong> BPA du Stoxx Europe 600 en hausse de ~14 % au S1 2026, prévision +15 % sur l'année complète, porté par l'énergie, la tech, la défense et les infrastructures.</p>
+  </div>
+
+  <h3>Politique / Géopolitique</h3>
+  <div class="commentary">
+    <p><strong>Escalade US-Iran :</strong> Frappes américaines sur une position dans le détroit d'Ormuz début septembre, ripostes iraniennes visant les Émirats arabes unis et la Jordanie. Espoirs de normalisation du trafic maritime anéantis. Risque de nouvelle escalade sur le week-end &mdash; principal facteur de risque de queue pour l'ouverture de lundi.</p>
+    <p><strong>Fed sous pression politique et interne :</strong> Warsh pousse pour une action rapide contre l'inflation, en délicat équilibre avec des voix plus prudentes au sein du FOMC (ex. Waller, qui plaide pour le statu quo sauf surprise sur les données). Vote potentiellement clivé attendu à la prochaine réunion.</p>
+    <p><strong>BCE en position réactive :</strong> Contrainte par une inflation importée (énergie) plutôt que par une surchauffe domestique, la BCE agit dans un contexte de croissance modeste — configuration délicate pour la communication de la semaine prochaine.</p>
+  </div>
+</div>
+
+<!-- ========== 14. KEY THEMES ========== -->
+<div class="section section-wrapper">
+  <h2>14. Key Themes — Top 5 par Horizon</h2>
+  <div class="three-col">
+
+    <div class="subcard">
+      <h3>Top 5 du Jour / Week-end</h3>
+      <div class="item theme-item">
+        <div class="theme-title">1. Développements Iran sur le week-end</div>
+        <div class="theme-desc">Toute nouvelle frappe ou signal de désescalade entre samedi et dimanche soir sera le principal moteur de l'ouverture asiatique et européenne de lundi.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">2. Digestion des payrolls US d'août</div>
+        <div class="theme-desc">Le marché continue de repricer la probabilité d'une hausse Fed en septembre (~58-60 %) ; repositionnement susceptible de se poursuivre en tout début de semaine.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">3. Fermeture Labor Day lundi</div>
+        <div class="theme-desc">Liquidité réduite sur les actifs US lundi (actions, obligataire, FX moins actif) ; l'Europe négociera avec des volumes potentiellement plus légers que d'habitude.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">4. Positionnement pré-BCE</div>
+        <div class="theme-desc">Les investisseurs commencent à se positionner avant la décision du 10-11 septembre ; les financières et les taux courts EUR seront à surveiller dès lundi.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">5. Suivi Tesla / Lululemon</div>
+        <div class="theme-desc">Réactions de brokers et notes sectorielles attendues en tout début de semaine sur ces deux dossiers ayant marqué la séance de vendredi.</div>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>Top 5 de la Semaine</h3>
+      <div class="item theme-item">
+        <div class="theme-title">1. Réunion BCE (10-11 septembre)</div>
+        <div class="theme-desc">Hausse de 25 pb largement anticipée (dépôt à 2,50 %). Le ton de Lagarde sur la trajectoire post-hausse sera scruté de près.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">2. Sentix zone euro (8 septembre)</div>
+        <div class="theme-desc">Premier baromètre de confiance investisseurs post-inflation à 3,3 % et pré-BCE.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">3. Semaine écourtée aux US</div>
+        <div class="theme-desc">Labor Day lundi ; reprise mardi avec potentiellement des volumes de rattrapage sur les repositionnements post-payrolls.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">4. Trajectoire pétrole / Iran</div>
+        <div class="theme-desc">Toute évolution du conflit cette semaine continuera de dicter la composante énergie de l'inflation zone euro et US.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">5. Préparatifs FOMC mi-septembre</div>
+        <div class="theme-desc">Le marché affine ses attentes (hausse vs statu quo) à l'approche de la réunion ; CPI US à surveiller avant le comité.</div>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>Top 5 du Mois</h3>
+      <div class="item theme-item">
+        <div class="theme-title">1. FOMC mi-septembre — premier test Warsh</div>
+        <div class="theme-desc">Probabilité de hausse ~58-60 % pricée ; une hausse effective marquerait un tournant majeur de cycle sous la présidence Warsh.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">2. Trajectoire BCE post-hausse de septembre</div>
+        <div class="theme-desc">Reste-t-on sur un cycle de resserrement prolongé si l'inflation importée (énergie) persiste au-delà de septembre ?</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">3. Issue du conflit Iran</div>
+        <div class="theme-desc">Facteur dominant pour le pétrole et l'inflation mondiale sur tout le mois ; risque de queue significatif dans les deux sens.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">4. Rendements souverains à des plus hauts pluriannuels</div>
+        <div class="theme-desc">Un T10 US proche de 4,8 % et un Bund à 3,3 % pourraient peser sur les valorisations actions si la tendance se poursuit en septembre.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">5. Saison de résultats S2 et flux "reverse Yankee" EUR</div>
+        <div class="theme-desc">Poursuite de la dynamique de résultats européens solides (Stoxx 600 +15 % attendu sur l'année) et de l'essor des émissions obligataires EUR des hyperscalers US.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ========== 15. KEY TRENDS ========== -->
+<div class="section section-wrapper">
+  <h2>15. Key Trends à Surveiller</h2>
+  <div class="three-col">
+
+    <div class="subcard">
+      <h3>À 1 Jour (réouverture lundi)</h3>
+      <div class="commentary">
+        <p><strong>Actualité Iran du week-end :</strong> Principal facteur de risque binaire pour l'ouverture asiatique puis européenne de lundi.</p>
+        <p><strong>Volumes réduits :</strong> Labor Day aux US signifie une liquidité plus faible sur les actifs américains ; mouvements européens à interpréter avec prudence.</p>
+        <p><strong>Repositionnement post-payrolls :</strong> Poursuite probable du mouvement de hausse des rendements et du dollar amorcé vendredi.</p>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>À 1 Semaine</h3>
+      <div class="commentary">
+        <p><strong>Décision BCE (10-11 sept.) :</strong> Hausse de 25 pb quasi actée ; le communiqué et la conférence de presse de Lagarde sur la suite du cycle seront déterminants pour l'EUR et les taux courts.</p>
+        <p><strong>Sentix (8 sept.) :</strong> Premier indicateur avancé de confiance post-inflation à 3,3 %.</p>
+        <p><strong>Préparation du FOMC :</strong> Marché continuera d'ajuster ses attentes sur la probabilité de hausse Fed à mesure que de nouvelles données/déclarations arrivent.</p>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>À 1 Mois</h3>
+      <div class="commentary">
+        <p><strong>FOMC mi-septembre :</strong> Premier test de la présidence Warsh sur une décision de taux effective &mdash; hausse vs statu quo, avec CPI US clé entre-temps.</p>
+        <p><strong>Trajectoire du conflit Iran :</strong> Continuera de dicter la composante énergie de l'inflation mondiale et la marge de manœuvre des banques centrales sur tout le mois.</p>
+        <p><strong>Cycle de resserrement BCE/Fed synchronisé :</strong> Si les deux banques centrales resserrent en septembre, le risque de ralentissement de la croissance en zone euro (déjà fragile) et aux US augmente pour le T4.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<div class="footer">
+  <div class="sources-title">Sources Principales Utilisées</div>
+  <ul>
+    <li>CNBC — stock market live updates 31 août au 4 septembre 2026, jobs report août, Kevin Warsh Jackson Hole, euro zone inflation, US-Iran escalation</li>
+    <li>Yahoo Finance / TheStreet — closes S&amp;P 500, Dow Jones, Nasdaq 4 septembre 2026</li>
+    <li>Investrade — Market Review &amp; Morning Preview, 1&ndash;4 septembre 2026</li>
+    <li>Bloomberg — Oil market news, US-Iran strikes, ECB Blog reverse Yankee issuance (31 août 2026)</li>
+    <li>Al Jazeera / PBS / Washington Post / NPR — US-Iran conflict, Kevin Warsh Jackson Hole coverage</li>
+    <li>Eurostat / Irish Times — Euro area inflation August 2026 (3.3%)</li>
+    <li>Trading Economics — US 10Y yield, German Bund 10Y, DAX, Euro Stoxx 50, natural gas, copper</li>
+    <li>Forbes Advisor / CNBC Select / Fortune — Gold, silver, WTI/Brent oil prices 4 septembre 2026</li>
+    <li>24/7 Wall St. — FTSE 100, S&amp;P 500 close detail</li>
+    <li>StockNow.ai / MarketScreener / Convex — European closes detail, CAC 40 constituent moves</li>
+    <li>LiteFinance — Weekly economic calendar 7&ndash;13 septembre 2026 (Sentix, ECB)</li>
+    <li>Yahoo Finance / AOL / NTD — US Labor Day 2026 market holiday schedule</li>
+    <li>Goldman Sachs Insights — European equities earnings growth 2026</li>
+  </ul>
+  <div class="warning">
+    Données collectées automatiquement entre 06:30 et 08:00 BST le 5 septembre 2026 via recherches web en sources ouvertes. Le 5 septembre étant un samedi, la quasi-totalité des chiffres reflète la dernière clôture disponible (vendredi 4 septembre) et non une séance en cours. Certaines données marquées <em>n/d</em> n'ont pas pu être obtenues de façon fiable (notamment niveaux iTraxx/CDX, détail des issuances DCM, calendrier corporate) et nécessitent un accès Bloomberg Terminal, Refinitiv Eikon, IFR ou GlobalCapital pour confirmation. À vérifier avant toute décision d'investissement ou d'exécution de transaction. Ce document n'est pas un conseil en investissement.
+  </div>
+</div>
+
+</body>
+</html>
