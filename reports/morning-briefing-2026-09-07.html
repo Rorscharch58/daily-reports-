@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morning Briefing — 7 September 2026</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-card: #161b22;
+      --bg-table-header: #1c2333;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --green: #3fb950;
+      --red: #f85149;
+      --amber: #d29922;
+      --blue: #58a6ff;
+      --accent: #388bfd;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      padding: 24px 20px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .header .meta {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 5px;
+    }
+    .banner {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: rgba(210,153,34,0.1);
+      border-left: 3px solid var(--amber);
+      color: var(--text);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    .section h2 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+    .section h3 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: var(--text-muted);
+      margin: 14px 0 7px;
+    }
+    .section h3:first-of-type { margin-top: 4px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    th {
+      background: var(--bg-table-header);
+      color: var(--text-muted);
+      text-align: left;
+      padding: 6px 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    td {
+      padding: 5px 10px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.025); }
+    .positive { color: var(--green); font-weight: 600; }
+    .negative { color: var(--red); font-weight: 600; }
+    .neutral { color: var(--text-muted); }
+    .nd { color: var(--text-muted); font-style: italic; }
+    .tag {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      vertical-align: middle;
+    }
+    .tag-high { background: rgba(248,81,73,0.2); color: var(--red); }
+    .tag-med { background: rgba(210,153,34,0.2); color: var(--amber); }
+    .tag-atl { background: rgba(63,185,80,0.2); color: var(--green); }
+    .news-item {
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .news-item:last-child { border-bottom: none; }
+    .news-title { font-weight: 600; color: var(--text); font-size: 13px; }
+    .news-source { color: var(--accent); font-size: 11px; margin: 2px 0; }
+    .news-impact { color: var(--text-muted); font-size: 12px; line-height: 1.5; }
+    .commentary {
+      color: var(--text);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .commentary p { margin-bottom: 6px; }
+    .commentary p:last-child { margin-bottom: 0; }
+    .commentary strong { color: var(--text); }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    .watch-item {
+      display: grid;
+      grid-template-columns: 160px 1fr 130px;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      align-items: start;
+    }
+    .watch-item:last-child { border-bottom: none; }
+    .watch-name { font-weight: 700; color: var(--text); }
+    .watch-reason { color: var(--text-muted); line-height: 1.4; }
+    .watch-direction { text-align: right; font-size: 11px; font-weight: 600; }
+    .theme-item {
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+    .theme-item:last-child { border-bottom: none; }
+    .theme-title { font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .theme-desc { color: var(--text-muted); line-height: 1.4; }
+    .subcard {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 12px;
+    }
+    .subcard h3 { margin-top: 0; }
+    .separator-row td {
+      background: rgba(56,139,253,0.05);
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 11px;
+    }
+    .footer {
+      margin-top: 20px;
+      padding: 14px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .footer .sources-title {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 8px;
+      color: var(--text);
+      font-size: 11px;
+    }
+    .footer ul { padding-left: 16px; line-height: 1.7; }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .warning {
+      margin-top: 12px;
+      padding: 8px 12px;
+      background: rgba(248,81,73,0.08);
+      border-left: 3px solid var(--red);
+      color: var(--text-muted);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    @media (max-width: 750px) {
+      .two-col, .three-col { grid-template-columns: 1fr; }
+      .watch-item { grid-template-columns: 1fr; }
+      .watch-direction { text-align: left; }
+    }
+    @media print {
+      body {
+        background: #0d1117 !important;
+        color: #c9d1d9 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .section, table, tr, td, th, .data-block, .theme-block, .calendar-row {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      thead { display: table-header-group; }
+      p, li, div, span {
+        orphans: 3;
+        widows: 3;
+      }
+      .section-wrapper {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .item, .news-item, .stock-item, .theme-item, .event-item {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      @page {
+        size: A4 landscape;
+        margin: 12mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Morning Briefing &mdash; Monday 7 September 2026</h1>
+  <div class="meta">
+    Compiled Sunday 6 September 2026, ahead of Monday's European pre-open &bull;
+    Reference timezone: Europe/London &bull;
+    All levels are last verifiable close/print at time of research (see per-block timestamps)
+  </div>
+  <div class="banner">
+    <strong>Scheduling note:</strong> this run fired on Sunday 6 September, a non-trading day. European cash markets were closed and Monday's Asian/European pre-open sessions had not yet started at compilation time. This edition is built as a Monday 7 September pre-open briefing: "yesterday's close" refers to Friday 4 September (last session before the weekend), and "today" refers to Monday 7 September. <strong>US stock and bond markets are closed Monday 7 September for Labor Day</strong> &mdash; no US cash session, thin/no futures context, and no US earnings that day.
+  </div>
+</div>
+
+<!-- ========== 2. IMPORTANT NEWS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>2. Important News</h2>
+
+  <div class="item news-item">
+    <div class="news-title">US August payrolls shock to the upside: +162k vs +53k expected, unemployment steady at 4.1%</div>
+    <div class="news-source">TheStreet / CNBC &bull; Friday 4 September, US session</div>
+    <div class="news-impact">Triggered a broad Wall Street selloff Friday as it raised the odds of a Fed hike at the 15-16 September FOMC. Treasury yields rose (2Y hit its highest since January 2025), the dollar strengthened and gold fell. Sets a risk-off tone into the new week.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Fed Chair Kevin Warsh says inflation trends have "not meaningfully improved," Fed has "work to do"</div>
+    <div class="news-source">CNBC &bull; comments around 31 August, ahead of the 15-16 September FOMC</div>
+    <div class="news-impact">Markets are pricing roughly a 66% probability of a 25bp hike at the September meeting, per Fed funds futures cited by CNBC. Hawkish repricing is the dominant rates narrative heading into next week's decision.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Trump administration moves toward a new ~7.5% tariff on China for "flooding" global markets with cheap goods</div>
+    <div class="news-source">AP via local10.com &bull; late August, still the operative trade-policy backdrop</div>
+    <div class="news-impact">Comes on top of 10-12.5% tariffs announced last month on 60 economies. Officials reportedly believe this level would not derail the year-long US-China trade truce or the Trump-Xi meeting expected late September. Binary risk for industrials, autos and tech supply chains.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">European equities set for a cautious, slightly lower open Monday</div>
+    <div class="news-source">Reuters (via MarketScreener) &bull; week-ahead preview</div>
+    <div class="news-impact">Futures point to a soft open following Friday's Wall Street pullback and a mixed Asian session. Reuters flags September's seasonal reputation for higher US equity risk aversion and rising global bond yields on debt-sustainability and Middle East concerns.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Gold slid roughly 2% to near $4,380/oz Friday as the dollar rallied on the hot jobs print</div>
+    <div class="news-source">Rio Times Online &bull; Friday 4 September</div>
+    <div class="news-impact">Repricing of Fed-hike odds hit havens broadly; silver and other precious metals also came under pressure into the weekend.</div>
+  </div>
+</div>
+</div>
+
+<!-- ========== 3. EUROPEAN FUTURES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>3. European Futures (Pre-Open, Monday 7 September)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Contract</th>
+      <th>Level</th>
+      <th>Indicative move</th>
+      <th>Collection time / source</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Euro Stoxx 50 futures</td>
+      <td class="nd">n/a</td>
+      <td class="negative">~&#8722;0.2% indicated</td>
+      <td>Reuters week-ahead preview, pre-weekend</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DAX futures</td>
+      <td class="nd">n/a</td>
+      <td class="negative">~&#8722;0.2% indicated</td>
+      <td>Reuters week-ahead preview, pre-weekend</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CAC 40 futures</td>
+      <td class="nd">n/a</td>
+      <td class="negative">&lt;&#8722;0.1% indicated</td>
+      <td>Reuters week-ahead preview, pre-weekend</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>FTSE 100 futures</td>
+      <td class="nd">n/a</td>
+      <td class="nd">n/a &mdash; no reliable indication sourced</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr class="separator-row" style="page-break-inside: avoid;">
+      <td colspan="4">US futures context</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>S&amp;P 500 / Nasdaq / Dow e-mini</td>
+      <td class="nd">n/a</td>
+      <td class="nd">n/a</td>
+      <td class="nd">US markets closed Monday 7 Sept (Labor Day) &mdash; no reliable pre-open quote sourced</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Directional indications only &mdash; no confirmed weekend futures print was available via public search at compilation time (Sunday). European contracts typically re-open Sunday evening (Eurex); levels should be re-checked at the desk before relying on this section. With the US closed for Labor Day, Monday's European session should see below-average volume and limited cross-asset read-through from US futures.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 4. YESTERDAY'S CLOSES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>4. Yesterday's Closes &mdash; European Indices (Friday 4 September 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;"><th>Index</th><th>Close</th><th>Change</th></tr>
+    <tr style="page-break-inside: avoid;"><td>Euro Stoxx 50</td><td>6,396</td><td class="positive">+0.2%</td></tr>
+    <tr style="page-break-inside: avoid;"><td>DAX 40</td><td>26,046.40</td><td class="positive">+0.17%</td></tr>
+    <tr style="page-break-inside: avoid;"><td>CAC 40</td><td>8,278.77</td><td class="negative">&#8722;0.09%</td></tr>
+    <tr style="page-break-inside: avoid;"><td>FTSE 100</td><td>~10,829</td><td class="neutral">~&#8722;0.02% (essentially flat)</td></tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Mixed, low-conviction session. DAX and Euro Stoxx 50 edged higher; CAC 40 underperformed, in keeping with the French political-uncertainty overhang flagged by Reuters ahead of the 2027 presidential election. FTSE 100 was essentially unchanged. Note: sources show minor discrepancies on the exact FTSE print (10,828&ndash;10,831); treated here as flat.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 5. US MARKETS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>5. US Markets &mdash; Friday 4 September 2026 Session</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;"><th>Index</th><th>Close</th><th>Change</th><th>Note</th></tr>
+    <tr style="page-break-inside: avoid;"><td>S&amp;P 500</td><td>7,718.60</td><td class="negative">&#8722;0.38%</td><td>&mdash;</td></tr>
+    <tr style="page-break-inside: avoid;"><td>Dow Jones Industrial Average</td><td>53,414.25</td><td class="negative">&#8722;271.86 pts / &#8722;0.51%</td><td>&mdash;</td></tr>
+    <tr style="page-break-inside: avoid;"><td>Nasdaq Composite</td><td>26,506.99</td><td class="negative">&#8722;0.29%</td><td>&mdash;</td></tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Broad-based decline as the hot August payrolls print (+162k vs +53k consensus) lifted Treasury yields and raised the odds of a 25bp hike at the 15-16 September FOMC. Trump publicly praised the jobs number while separately pressing the Fed to cut rates. Sector-level leaders/laggards for the session were not confirmed via public sources &mdash; treat as n/a rather than inferred. Copper and broader metals were reported under pressure from the same rate-hike repricing.</p>
+    <p><strong>Note:</strong> US markets are closed Monday 7 September for Labor Day &mdash; no cash session, no scheduled earnings.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 6. ASIAN MARKETS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>6. Asian Markets &mdash; Last Available Session (Friday 4 September 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;"><th>Index</th><th>Close</th><th>Change</th></tr>
+    <tr style="page-break-inside: avoid;"><td>Nikkei 225</td><td>65,020.94</td><td class="positive">+1.3%</td></tr>
+    <tr style="page-break-inside: avoid;"><td>Hang Seng</td><td>25,658.73</td><td class="positive">+1.8%</td></tr>
+    <tr style="page-break-inside: avoid;"><td>Shanghai Composite</td><td>3,921.40</td><td class="negative">&#8722;0.5%</td></tr>
+    <tr style="page-break-inside: avoid;"><td>Kospi</td><td>6,690.72</td><td class="positive">+1.7%</td></tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p><strong>Monday's actual overnight/Asian session (ahead of European open) is n/a</strong> &mdash; it had not started at the time this briefing was compiled (Sunday). The table above is the last confirmed session, Friday 4 September, shown for context: broadly positive, led by a tech rally spillover from Thursday's Wall Street gains, with Shanghai the laggard. Re-check Monday's actual Asian close before relying on this for the European open.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 7. COMMODITIES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>7. Commodities</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;"><th>Commodity</th><th>Level</th><th>Change</th><th>As of</th></tr>
+    <tr style="page-break-inside: avoid;"><td>Brent (ICE, USD/bbl)</td><td>96.28</td><td class="positive">+0.80%</td><td>Fri 4 Sept close</td></tr>
+    <tr style="page-break-inside: avoid;"><td>WTI (NYMEX, USD/bbl)</td><td>91.48</td><td class="positive">+0.20%</td><td>Fri 4 Sept close</td></tr>
+    <tr style="page-break-inside: avoid;"><td>Gold (XAU/USD, USD/oz)</td><td>~4,380</td><td class="negative">~&#8722;2%</td><td>Fri 4 Sept</td></tr>
+    <tr style="page-break-inside: avoid;"><td>Natural gas (Henry Hub, USD/MMBtu)</td><td class="nd">n/a</td><td class="nd">n/a</td><td class="nd">No reliable Sept 4 spot print sourced (Sept-26 contract last seen ~2.91 at Aug 27 expiry)</td></tr>
+    <tr style="page-break-inside: avoid;"><td>Natural gas (TTF, EUR/MWh)</td><td class="nd">n/a</td><td class="nd">n/a</td><td class="nd">Not sourced</td></tr>
+    <tr style="page-break-inside: avoid;"><td>Copper (COMEX, USD/lb)</td><td>~6.60</td><td class="neutral">~flat</td><td>Fri 4 Sept</td></tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Oil firmed slightly into the weekend. Gold's ~2% drop was the standout move, driven by dollar strength on the hot jobs data and rising Fed-hike odds. Copper held roughly flat: strong US jobs data and higher rate expectations are a headwind, offset by steady Chinese infrastructure demand. Natural gas prints for 4 September were not reliably sourced &mdash; treat as n/a.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 8. RATES & FX ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>8. Rates &amp; FX</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;"><th>Instrument</th><th>Level</th><th>Change</th><th>As of</th></tr>
+    <tr style="page-break-inside: avoid;"><td>US 10Y Treasury</td><td>4.79%</td><td class="negative">+~3bp</td><td>Fri 4 Sept</td></tr>
+    <tr style="page-break-inside: avoid;"><td>German 10Y Bund</td><td>~3.35%</td><td class="neutral">stabilised</td><td>Fri 4 Sept</td></tr>
+    <tr style="page-break-inside: avoid;"><td>EUR/USD</td><td>1.1610</td><td class="negative">&#8722;0.10%</td><td>Fri 4 Sept</td></tr>
+    <tr style="page-break-inside: avoid;"><td>GBP/USD</td><td>~1.35</td><td class="nd">n/a (single low-confidence source)</td><td>Fri 4 Sept, approx.</td></tr>
+    <tr style="page-break-inside: avoid;"><td>DXY (Dollar Index)</td><td>99.18</td><td class="nd">n/a</td><td>Fri 4 Sept</td></tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Yields moved higher across the curve after Friday's payrolls beat, cementing a hawkish repricing into the 15-16 September FOMC (~66% probability of a 25bp hike per futures-implied pricing). The dollar firmed broadly (DXY ~99.2, EUR/USD softer at 1.1610). The US 10Y/Bund spread remains wide, reflecting the transatlantic policy divergence between a hawkish Fed and a more settled ECB.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 9. DCM ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>9. DCM &mdash; Primary Bond Market</h2>
+
+  <h3>Yesterday's Issuances (Friday 4 September 2026)</h3>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;"><th>Issuer</th><th>Currency</th><th>Size</th><th>Maturity</th><th>Coupon/Spread</th><th>Notes</th></tr>
+    <tr style="page-break-inside: avoid;">
+      <td class="nd">n/a</td><td class="nd">n/a</td><td class="nd">n/a</td><td class="nd">n/a</td><td class="nd">n/a</td>
+      <td class="nd">No specific IG/HY/SSA/financials pricing for 4 Sept could be reliably confirmed via public search. Bloomberg/IFR/GlobalCapital terminal access required for deal-level detail.</td>
+    </tr>
+  </table>
+
+  <h3>Pipeline / Expected Today &amp; This Week</h3>
+  <div class="commentary">
+    <p>Public sources point to September historically bringing a wave of new corporate bond supply (The DESK: "September explodes with new corporate bonds" &mdash; headline only, full content not accessible). GlobalCapital separately flags euro IG corporate new-issue premiums (NIPs) climbing "as books thin," consistent with softer investor demand late in the week. No specific mandated deals for Monday 7 September or this week were confirmed via public search &mdash; treat pipeline detail as n/a pending desk-level access.</p>
+  </div>
+
+  <h3>Key Spreads</h3>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;"><th>Index</th><th>Level (bp)</th><th>Move / Direction</th></tr>
+    <tr style="page-break-inside: avoid;"><td>iTraxx Europe Main 5Y</td><td class="nd">n/a</td><td class="nd">No current print sourced</td></tr>
+    <tr style="page-break-inside: avoid;"><td>iTraxx Europe Crossover 5Y</td><td class="nd">n/a</td><td class="nd">Only stale reference found: ~318bp mid-May 2026 (tightened from 410bp Oct 2025) &mdash; not usable as current level</td></tr>
+    <tr style="page-break-inside: avoid;"><td>CDX IG 5Y (USD)</td><td class="nd">n/a</td><td class="nd">No current print sourced</td></tr>
+    <tr style="page-break-inside: avoid;"><td>Average EUR corporate IG spread</td><td class="nd">n/a</td><td class="nd">No current print sourced</td></tr>
+  </table>
+
+  <h3>Commentary</h3>
+  <div class="commentary">
+    <p>Public, non-terminal sources do not carry real-time iTraxx/CDX levels or deal-level EUR primary data; this section is materially data-light today and should not be relied on for trading decisions. Directionally, rising US and German yields plus a "books thinning" signal into the weekend point to a slightly more cautious primary tone than earlier in the summer, with issuers likely to favour early-week windows before Thursday's ECB meeting and Friday's US CPI. Big-tech/hyperscaler EUR IG issuance remains a live theme per the ECB's own commentary on US hyperscalers funding capex in the euro market.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 10. ECONOMIC CALENDAR ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>10. Economic Calendar &mdash; Monday 7 September &amp; Week Ahead</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;"><th>London time</th><th>Zone</th><th>Indicator</th><th>Consensus</th><th>Importance</th></tr>
+    <tr style="page-break-inside: avoid;" class="calendar-row"><td class="nd">n/a (exact time not confirmed)</td><td>Eurozone</td><td>Q2 GDP, trimmed estimate</td><td class="nd">n/a</td><td><span class="tag tag-med">Medium</span></td></tr>
+    <tr style="page-break-inside: avoid;" class="calendar-row"><td colspan="5" class="nd" style="font-style:italic;">US stock and bond markets closed &mdash; Labor Day holiday. No US releases.</td></tr>
+    <tr class="separator-row" style="page-break-inside: avoid;"><td colspan="5">Later this week</td></tr>
+    <tr style="page-break-inside: avoid;" class="calendar-row"><td class="nd">n/a</td><td>US</td><td>Tue 8 Sept: Consumer Credit (Jul)</td><td class="nd">n/a</td><td><span class="tag tag-med">Medium</span></td></tr>
+    <tr style="page-break-inside: avoid;" class="calendar-row"><td class="nd">n/a</td><td>Eurozone</td><td>Thu 10 Sept: ECB rate decision</td><td class="nd">n/a</td><td><span class="tag tag-high">High</span></td></tr>
+    <tr style="page-break-inside: avoid;" class="calendar-row"><td class="nd">n/a</td><td>US</td><td>Thu 10 Sept: PPI (Aug), Existing Home Sales (Aug), Wholesale Inventories (Jul)</td><td class="nd">n/a</td><td><span class="tag tag-med">Medium</span></td></tr>
+    <tr style="page-break-inside: avoid;" class="calendar-row"><td class="nd">n/a</td><td>US</td><td>Fri 11 Sept: CPI &amp; core CPI (Aug)</td><td class="nd">n/a</td><td><span class="tag tag-high">High</span></td></tr>
+    <tr style="page-break-inside: avoid;" class="calendar-row"><td class="nd">n/a</td><td>US</td><td>Fri 11 Sept: U. of Michigan consumer sentiment (Sept)</td><td class="nd">n/a</td><td><span class="tag tag-med">Medium</span></td></tr>
+    <tr style="page-break-inside: avoid;" class="calendar-row"><td class="nd">n/a</td><td>UK</td><td>Fri 11 Sept: Industrial Production &amp; Trade Balance (Jul)</td><td class="nd">n/a</td><td><span class="tag tag-med">Medium</span></td></tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Monday itself is quiet: only the Eurozone Q2 GDP trimmed estimate, with the US shut for Labor Day. The week's real catalysts are Thursday's ECB decision and Friday's US CPI, both landing ahead of the Fed's own 15-16 September decision the following week. Exact London release times for several items were not confirmed via public sources and are marked n/a &mdash; verify against Eurostat/BLS calendars before the open.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 11. CORPORATE EVENTS & EARNINGS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>11. Corporate Events &amp; Earnings</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;"><th>Company</th><th>Market</th><th>Event</th><th>Date</th></tr>
+    <tr style="page-break-inside: avoid;" class="event-item"><td colspan="4" class="nd" style="font-style:italic;">No European large-cap earnings or AGMs confirmed for Monday 7 September via public search.</td></tr>
+    <tr style="page-break-inside: avoid;" class="event-item"><td>Casey's General Stores (CASY)</td><td>Nasdaq</td><td>Earnings</td><td>Tue 8 Sept</td></tr>
+    <tr style="page-break-inside: avoid;" class="event-item"><td>Chewy (CHWY)</td><td>NYSE</td><td>Earnings</td><td>Wed 9 Sept</td></tr>
+    <tr style="page-break-inside: avoid;" class="event-item"><td>Broadcom (AVGO)</td><td>Nasdaq</td><td>Earnings &mdash; closely watched AI-capex bellwether</td><td>This week (day n/a &mdash; sources conflict on exact day)</td></tr>
+    <tr style="page-break-inside: avoid;" class="event-item"><td>Oracle (ORCL), Macy's (M), Adobe (ADBE)</td><td>US</td><td>Earnings</td><td>Thu 10 Sept</td></tr>
+    <tr style="page-break-inside: avoid;" class="event-item"><td>Kroger (KR)</td><td>NYSE</td><td>Earnings</td><td>Fri 11 Sept</td></tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Monday is a dead day for corporate news given the US holiday. Broadcom's report is the standout event this week as a read on AI-related capex demand; exact reporting day was inconsistently reported across sources and should be confirmed before positioning around it.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 12. STOCKS TO WATCH ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>12. Stocks to Watch</h2>
+
+  <div class="item watch-item">
+    <div class="watch-name">Boeing (BA) &mdash; NYSE</div>
+    <div class="watch-reason">Recently upgraded to Buy at Argus (exact date not confirmed). Aerospace sector remains volatile but this is a positive broker signal.</div>
+    <div class="watch-direction positive">Bullish</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">AeroVironment (AVAV) &mdash; Nasdaq</div>
+    <div class="watch-reason">Named a highest-conviction pick by KeyBanc within its aerospace/defense/space coverage, citing industry-leading margins and DoD relationships.</div>
+    <div class="watch-direction positive">Bullish</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Honeywell Aerospace &mdash; newly independent listing</div>
+    <div class="watch-reason">Now trading as a standalone public company following separation from Honeywell; supplies engines, avionics and connectivity to military/commercial aircraft. Watch early price discovery.</div>
+    <div class="watch-direction neutral">Watch / price discovery</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Capricorn Energy (CNE) &mdash; LSE</div>
+    <div class="watch-reason">DNO has agreed a $396m takeover of Capricorn Energy. M&amp;A-driven; watch for deal-completion newsflow and any competing bids.</div>
+    <div class="watch-direction positive">Bullish (deal)</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Nvidia (NVDA) / MediaTek &mdash; Nasdaq / TWSE</div>
+    <div class="watch-reason">Nvidia is investing $3.5bn in MediaTek. Read-through for the wider semiconductor/AI supply chain, including European equipment names.</div>
+    <div class="watch-direction positive">Bullish (sector)</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Metals &amp; Mining / copper names &mdash; broad</div>
+    <div class="watch-reason">Copper held roughly flat into the weekend: hot US jobs data and higher rate-hike odds are a headwind, offset by steady Chinese infrastructure demand. No single-name catalyst confirmed for Monday.</div>
+    <div class="watch-direction neutral">Neutral / mixed</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">European banks &mdash; sector</div>
+    <div class="watch-reason">Rising US and German yields (10Y 4.79% / Bund ~3.35%) are broadly supportive of net interest income. No specific single-name news catalyst confirmed for Monday; flagged as a rates-driven sector to watch, not a stock-specific call.</div>
+    <div class="watch-direction positive">Modestly supportive (rates)</div>
+  </div>
+</div>
+</div>
+
+<!-- ========== 13. MACRO / CORPORATE / POLITICAL HIGHLIGHTS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>13. Macro / Corporate / Political Highlights</h2>
+
+  <h3>Macro</h3>
+  <div class="commentary">
+    <p><strong>Hot US jobs report reshapes Fed odds:</strong> August payrolls +162k vs +53k expected, unemployment steady at 4.1%. Markets now price ~66% odds of a 25bp hike at the 15-16 September FOMC.</p>
+    <p><strong>Warsh turns more hawkish in tone:</strong> says inflation trends have "not meaningfully improved" and the Fed has "work to do," pushing back against hopes of near-term easing.</p>
+    <p><strong>Global yields grinding higher:</strong> Reuters cites debt-sustainability concerns and renewed Middle East tensions as background drivers of the rise in bond yields into the new week.</p>
+    <p><strong>French political uncertainty:</strong> flagged as a live risk for French assets less than seven months ahead of the 2027 presidential election.</p>
+  </div>
+
+  <h3>Corporate</h3>
+  <div class="commentary">
+    <p><strong>Nvidia &mdash; $3.5bn MediaTek investment:</strong> extends Nvidia's reach into the Taiwanese semiconductor ecosystem; read-through for the broader AI supply chain.</p>
+    <p><strong>DNO / Capricorn Energy:</strong> $396m takeover agreed, adding to a busy year for European energy-sector M&amp;A.</p>
+    <p><strong>Honeywell Aerospace spin-off:</strong> now trading independently, a notable structural event for the aerospace/defense supply chain.</p>
+    <p><strong>Euro IG primary softening slightly:</strong> GlobalCapital reports new-issue premiums climbing as order books thin &mdash; a signal of somewhat less aggressive investor demand into the new week.</p>
+  </div>
+
+  <h3>Political / Geopolitical</h3>
+  <div class="commentary">
+    <p><strong>Trump-Xi summit expected late September:</strong> a new ~7.5% China tariff is reportedly being weighed by the Trump administration, on top of last month's 10-12.5% tariffs on 60 economies; officials believe it would not derail the planned summit or the existing trade truce.</p>
+    <p><strong>Trump vs. Fed:</strong> the president praised the strong jobs number while separately pressing the Fed to cut rates &mdash; a tension likely to persist into the September FOMC.</p>
+    <p><strong>Middle East tensions:</strong> cited by Reuters as a contributing factor to the rise in global bond yields; specifics not detailed in sources reviewed.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 14. KEY THEMES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>14. Key Themes &mdash; Top 5 by Horizon</h2>
+  <div class="three-col">
+
+    <div class="subcard">
+      <h3>Today's Top 5 (Mon 7 Sept)</h3>
+      <div class="item theme-item">
+        <div class="theme-title">1. US Labor Day closure</div>
+        <div class="theme-desc">No US cash session; expect thinner liquidity and muted cross-asset signals into the European open.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">2. Soft European open indicated</div>
+        <div class="theme-desc">Futures point modestly lower after Friday's US selloff and a mixed Asian tape; confirm live levels at the open.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">3. Eurozone Q2 GDP (trimmed estimate)</div>
+        <div class="theme-desc">Only meaningful scheduled data point today; a downside surprise would weigh on EUR and periphery spreads.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">4. Fed repricing continues</div>
+        <div class="theme-desc">Markets digesting ~66% odds of a September hike after Friday's jobs beat; positioning for the FOMC starts now.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">5. French political risk overhang</div>
+        <div class="theme-desc">CAC 40's Friday underperformance consistent with pre-2027-election uncertainty; watch for fresh headlines.</div>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>This Week's Top 5</h3>
+      <div class="item theme-item">
+        <div class="theme-title">1. ECB rate decision, Thursday 10 September</div>
+        <div class="theme-desc">Key policy event of the week; tone matters as much as the decision itself given the divergence with a hawkish Fed.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">2. US CPI, Friday 11 September</div>
+        <div class="theme-desc">Last major US inflation print ahead of the 15-16 September FOMC; a hot number would cement hike expectations.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">3. Broadcom earnings</div>
+        <div class="theme-desc">Closely watched AI-capex bellwether; read-through for the whole semiconductor/AI infrastructure trade.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">4. Oracle, Adobe, Macy's earnings, Thursday 10 September</div>
+        <div class="theme-desc">Cloud/enterprise software and US consumer reads land the same day as the ECB decision.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">5. Holiday-shortened US week</div>
+        <div class="theme-desc">Monday's closure compresses positioning into four sessions; watch for thinner liquidity amplifying moves.</div>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>This Month's Top 5</h3>
+      <div class="item theme-item">
+        <div class="theme-title">1. FOMC decision, 15-16 September</div>
+        <div class="theme-desc">~66% priced probability of a 25bp hike; outcome and Warsh's tone will set the rates trajectory into Q4.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">2. Trump-Xi summit, expected late September</div>
+        <div class="theme-desc">Trade/tariff outcome is a binary risk for industrials, autos, semis and agricultural exporters.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">3. New ~7.5% China tariff under consideration</div>
+        <div class="theme-desc">On top of existing 10-12.5% tariffs on 60 economies; implementation timing and scope still unclear.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">4. French political uncertainty into 2027</div>
+        <div class="theme-desc">A slow-burn risk for OATs and French equities as the electoral cycle approaches.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">5. Global bond yield trend</div>
+        <div class="theme-desc">US 10Y near 4.8%, debt-sustainability concerns cited by Reuters as a persistent theme across developed markets.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ========== 15. KEY TRENDS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>15. Key Trends to Watch</h2>
+  <div class="three-col">
+
+    <div class="subcard">
+      <h3>1 Day</h3>
+      <div class="commentary">
+        <p><strong>Thin US-holiday liquidity:</strong> Monday's moves may be exaggerated by lower volumes with the US shut.</p>
+        <p><strong>Eurozone Q2 GDP:</strong> the day's one scheduled catalyst; a miss would pressure EUR and periphery spreads.</p>
+        <p><strong>French headlines:</strong> any fresh political newsflow could extend Friday's CAC underperformance.</p>
+        <p><strong>Confirm live futures/FX levels:</strong> this section was built pre-weekend; verify at the desk before the open.</p>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>1 Week</h3>
+      <div class="commentary">
+        <p><strong>ECB decision, Thursday:</strong> policy tone into a widening transatlantic rate divergence.</p>
+        <p><strong>US CPI, Friday:</strong> the last major data point ahead of the Fed's own meeting the following week.</p>
+        <p><strong>Broadcom / Oracle / Adobe earnings:</strong> AI-capex and enterprise-software reads for positioning into month-end.</p>
+        <p><strong>Primary market:</strong> watch whether the "books thinning" signal in euro IG persists or reverses once the US reopens Tuesday.</p>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>1 Month</h3>
+      <div class="commentary">
+        <p><strong>FOMC, 15-16 September:</strong> the defining event of the month for rates, credit and duration-sensitive equities.</p>
+        <p><strong>Trump-Xi summit:</strong> expected late September; tariff and trade-truce outcome is a major swing factor for global risk assets.</p>
+        <p><strong>New China tariff rollout:</strong> timing and final scope of the reported ~7.5% tariff still to be confirmed.</p>
+        <p><strong>French political cycle:</strong> a structural overhang on French assets as the 2027 election approaches.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<div class="footer">
+  <div class="sources-title">Sources Used</div>
+  <ul>
+    <li>TheStreet / CNBC / Washington Post / 247wallst.com &mdash; US jobs report and Friday 4 Sept close (S&amp;P, Dow, Nasdaq)</li>
+    <li>Trading Economics &mdash; Brent, WTI, copper, gold, EUR/USD, DXY, US 10Y, German Bund yield, FTSE/DAX/CAC levels</li>
+    <li>Rio Times Online &mdash; gold/silver/copper commentary, 4-6 September</li>
+    <li>Reuters (via MarketScreener/Armenpress) &mdash; European futures/week-ahead preview, Asian session closes</li>
+    <li>CNBC &mdash; Fed Chair Warsh comments, FOMC odds, Asia-Pacific markets</li>
+    <li>AP via local10.com &mdash; new China tariff reporting</li>
+    <li>Chase / Schwab / Marketplace.org &mdash; FOMC meeting date and rate-hike probability context</li>
+    <li>LiteFinance &mdash; week-ahead economic calendar, 7-13 September</li>
+    <li>Kiplinger / Earnings Whispers / Schwab &mdash; earnings calendar, week of 7 September, US Labor Day closure</li>
+    <li>The DESK (fi-desk.com) &mdash; September corporate bond supply headline (full text inaccessible)</li>
+    <li>GlobalCapital &mdash; euro IG new-issue premium commentary (headline only)</li>
+    <li>ECB blog &mdash; hyperscaler EUR IG issuance context</li>
+    <li>KeyBanc / Yahoo Finance &mdash; aerospace &amp; defense stock picks</li>
+    <li>Newsquawk &mdash; Boeing broker-rating move</li>
+    <li>LSEG / AO Shearman / European M&amp;A commentary &mdash; DNO/Capricorn Energy, Nvidia/MediaTek deals</li>
+  </ul>
+  <div class="warning">
+    Data collected automatically via open web search on Sunday 6 September 2026, ahead of Monday 7 September's European pre-open. Because markets were closed at compilation time, several "today" data points (live futures, Monday's Asian session, exact release times) could not be sourced and are marked <em>n/a</em>. DCM deal-level and credit-spread data require Bloomberg/Refinitiv/ICE terminal access not available here. Verify all levels before making any decision. This document is not investment advice.
+  </div>
+</div>
+
+</body>
+</html>
