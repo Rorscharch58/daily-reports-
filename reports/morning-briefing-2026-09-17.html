@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morning Briefing — 17 septembre 2026</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-card: #161b22;
+      --bg-table-header: #1c2333;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --green: #3fb950;
+      --red: #f85149;
+      --amber: #d29922;
+      --blue: #58a6ff;
+      --accent: #388bfd;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0d1117;
+      color: #c9d1d9;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      padding: 24px 20px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .header .meta {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 5px;
+    }
+    .section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    .section h2 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+    .section h3 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: var(--text-muted);
+      margin: 14px 0 7px;
+    }
+    .section h3:first-of-type { margin-top: 4px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    th {
+      background: var(--bg-table-header);
+      color: var(--text-muted);
+      text-align: left;
+      padding: 6px 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    td {
+      padding: 5px 10px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.025); }
+    .positive { color: var(--green); font-weight: 600; }
+    .negative { color: var(--red); font-weight: 600; }
+    .neutral { color: var(--text-muted); }
+    .nd { color: var(--text-muted); font-style: italic; }
+    .tag {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      vertical-align: middle;
+    }
+    .tag-high { background: rgba(248,81,73,0.2); color: var(--red); }
+    .tag-med { background: rgba(210,153,34,0.2); color: var(--amber); }
+    .tag-atl { background: rgba(63,185,80,0.2); color: var(--green); }
+    .news-item {
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .news-item:last-child { border-bottom: none; }
+    .news-title { font-weight: 600; color: var(--text); font-size: 13px; }
+    .news-source { color: var(--accent); font-size: 11px; margin: 2px 0; }
+    .news-impact { color: var(--text-muted); font-size: 12px; line-height: 1.5; }
+    .commentary {
+      color: var(--text);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .commentary p { margin-bottom: 6px; }
+    .commentary p:last-child { margin-bottom: 0; }
+    .commentary strong { color: var(--text); }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    .watch-item {
+      display: grid;
+      grid-template-columns: 160px 1fr 130px;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      align-items: start;
+    }
+    .watch-item:last-child { border-bottom: none; }
+    .watch-name { font-weight: 600; color: var(--text); }
+    .watch-reason { color: var(--text-muted); line-height: 1.5; }
+    .watch-direction { text-align: right; font-weight: 600; font-size: 11px; }
+    .watch-direction.positive { color: var(--green); }
+    .watch-direction.negative { color: var(--red); }
+    .watch-direction.neutral { color: var(--amber); }
+    .subcard { }
+    .theme-item { padding: 7px 0; border-bottom: 1px solid var(--border); }
+    .theme-item:last-child { border-bottom: none; }
+    .theme-title { font-weight: 600; color: var(--text); font-size: 12px; margin-bottom: 2px; }
+    .theme-desc { color: var(--text-muted); font-size: 11px; line-height: 1.5; }
+    .footer {
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .footer .sources-title {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .footer ul { padding-left: 16px; line-height: 1.7; }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .footer .warning {
+      margin-top: 12px;
+      padding: 10px 12px;
+      background: rgba(210,153,34,0.1);
+      border: 1px solid rgba(210,153,34,0.3);
+      border-radius: 4px;
+      color: var(--amber);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    @media (max-width: 750px) {
+      .two-col, .three-col { grid-template-columns: 1fr; }
+      .watch-item { grid-template-columns: 1fr; }
+      .watch-direction { text-align: left; }
+    }
+    @media print {
+      body {
+        background: #0d1117 !important;
+        color: #c9d1d9 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .section, table, tr, td, th, .data-block, .theme-block, .calendar-row {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      thead { display: table-header-group; }
+      p, li, div, span {
+        orphans: 3;
+        widows: 3;
+      }
+      .section-wrapper {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .item, .news-item, .stock-item, .theme-item, .event-item {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      @page {
+        size: A4 landscape;
+        margin: 12mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== 1. EN-TETE ========== -->
+<div class="header">
+  <h1>Morning Briefing &mdash; Jeudi 17 Septembre 2026</h1>
+  <div class="meta">
+    Généré le 17 septembre 2026 &bull; ~07:15 BST (Londres) &bull;
+    Données collectées entre ~05:30 et 07:15 BST via recherches web en sources ouvertes &bull;
+    Fuseau de référence : Europe/London (BST = UTC+1)
+  </div>
+</div>
+
+<!-- ========== 2. IMPORTANT NEWS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>2. Important News</h2>
+
+  <div class="item news-item">
+    <div class="news-title">La Fed relève ses taux à 3,75&ndash;4,00 %, première hausse depuis 2023</div>
+    <div class="news-source">CNBC &bull; mercredi 16 septembre, soirée US</div>
+    <div class="news-impact">Le FOMC a voté à l'unanimité une hausse de 25 pb. 16 des 18 responsables anticipent au moins une hausse supplémentaire cette année (dot-plot). Le nouveau président Kevin Warsh a justifié la décision par une inflation "persistante" &mdash; surprise hawkish qui a déclenché le repli de Wall Street mercredi. Taux directeur désormais à 3,75&ndash;4,00 %.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Trump exige une Fed à "1 % ou moins", ravive la bataille sur l'indépendance de la banque centrale</div>
+    <div class="news-source">CNBC &bull; mercredi 16 septembre, soirée</div>
+    <div class="news-impact">Quelques heures après la hausse, Trump a critiqué la Fed sur Truth Social. Warsh a refusé de commenter ses échanges privés avec Trump mais a rappelé que "l'indépendance est une rue à double sens". Point de vigilance : toute pression supplémentaire de la Maison Blanche sur la Fed est un facteur de volatilité pour les taux et le dollar.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Le pétrole se replie depuis ses plus hauts de 4 mois, les craintes sur l'offre libyenne/saoudienne s'atténuent</div>
+    <div class="news-source">Rigzone / Markets.com &bull; mercredi soir &ndash; jeudi matin</div>
+    <div class="news-impact">Le Brent, qui avait dépassé 108 $ mardi sur fond de perturbations d'approvisionnement au Moyen-Orient et de coupures en Libye, est repassé sous 105 $ ; le WTI a reflué vers 101&ndash;102 $ alors que la production libyenne se normalise. Soulagement partiel sur le narratif inflationniste lié à l'énergie.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Décision de la Bank of England aujourd'hui, 12h00 Londres</div>
+    <div class="news-source">HomeOwners Alliance / Finance Calendar &bull; au 16 septembre</div>
+    <div class="news-impact">Le MPC est attendu au statu quo à 3,75 %, mais une hausse à 4,00 % est jugée une "possibilité réelle" après un vote de maintien 6-3 en juillet (3 dissidents voulaient déjà 4 %) et une inflation tirée par l'énergie. Événement clé pour le FTSE et les gilts ce matin.</div>
+  </div>
+
+  <div class="item news-item">
+    <div class="news-title">Chine : données d'activité d'août contrastées</div>
+    <div class="news-source">Euronews / China Retail News &bull; publié mardi 15 septembre</div>
+    <div class="news-impact">Production industrielle +5,2 % YoY (au-dessus du consensus, accélération depuis 4,5 %) ; ventes au détail +0,4 % YoY (sous le consensus à 0,8 %, ralentissement). Confirme le déséquilibre production forte / consommation faible &mdash; pertinent pour les valeurs auto et luxe exposées à la Chine en Europe.</div>
+  </div>
+</div>
+</div>
+
+<!-- ========== 3. FUTURES EUROPEENNES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>3. Futures Européennes (Pré-ouverture)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Contrat</th>
+      <th>Variation indicative</th>
+      <th>Heure collecte</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Euro Stoxx 50 (FESX)</td>
+      <td class="positive">+0,32 %</td>
+      <td>~07:00 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DAX (FDAX)</td>
+      <td class="positive">+0,27 %</td>
+      <td>~07:00 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CAC 40 (FCE)</td>
+      <td class="positive">+0,24 %</td>
+      <td>~07:00 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>FTSE 100 (Z)</td>
+      <td class="positive">+0,20 %</td>
+      <td>~07:00 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td colspan="3" style="color:var(--text-muted); font-size:11px; padding-top:10px;">Contexte US — Futures pré-marché</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>S&amp;P 500 e-mini</td>
+      <td class="positive">7 668,50 &bull; +45,50 pts (+0,60 %)</td>
+      <td>~07:00 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nasdaq 100 e-mini</td>
+      <td class="positive">29 460,50 &bull; +203,75 pts (+0,70 %)</td>
+      <td>~07:00 BST</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Dow Jones e-mini</td>
+      <td class="positive">+331 pts (+0,64 %)</td>
+      <td>~07:00 BST</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Rebond des futures après le sell-off provoqué par la hausse de taux de la Fed, aidé par le repli du brut et la fermeté des semi-conducteurs américains en séance nocturne. La BoE (12h00) et les données US (claims, Philly Fed) sont les catalyseurs de la matinée &mdash; le biais d'ouverture reste positif mais fragile tant que la BoE n'a pas tranché.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 4. CLOTURES EUROPEENNES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>4. Clôtures de la Veille — Indices Européens (16 septembre 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Indice</th>
+      <th>Clôture</th>
+      <th>Variation</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Euro Stoxx 50</td>
+      <td>~6 258</td>
+      <td class="positive">+0,31 %</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DAX 40</td>
+      <td>~25 490</td>
+      <td class="positive">+0,3 % à +0,65 % (sources divergentes)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CAC 40</td>
+      <td>8 118</td>
+      <td class="positive">+0,4 %</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>FTSE 100</td>
+      <td>10 688,47</td>
+      <td class="positive">+0,28 %</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Séance européenne clôturée en légère hausse malgré le contexte de taux plus restrictif, aidée par le repli du pétrole en fin de journée. Le DAX affiche une dispersion notable selon les sources (+0,3 % à +0,65 %) &mdash; chiffre indicatif à confirmer. Les indices européens ont mieux résisté que Wall Street à la digestion de la hausse Fed, la décision étant intervenue après la clôture européenne.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 5. MARCHES US ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>5. Orientation des Marchés US (Séance du 16 septembre 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Indice</th>
+      <th>Clôture</th>
+      <th>Variation</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>S&amp;P 500</td>
+      <td>7 551,81</td>
+      <td class="negative">&#8722;0,45 %</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Dow Jones IA</td>
+      <td>51 461,90</td>
+      <td class="negative">&#8722;631,21 pts (&#8722;1,21 %)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nasdaq Composite</td>
+      <td>25 978,42</td>
+      <td class="negative">&#8722;0,01 % (quasi stable)</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Séance risk-off après la première hausse de taux de la Fed depuis 2023 et le ton hawkish de Warsh sur l'inflation persistante. Le Dow Jones mène les pertes ; le Nasdaq termine quasi stable, la mégacap tech amortissant le choc. Secteurs en retard : énergie (XLE &#8722;2,8 %, le pétrole ayant reflué après sa remontée) et financières (XLF &#8722;1,5 %), pénalisées par les craintes liées à la pentification de la courbe et au coût du crédit. Le 10 ans US s'est tendu vers ses plus hauts depuis 2007, pesant sur les valeurs cycliques et sensibles aux taux.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 6. MARCHES ASIATIQUES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>6. Orientation des Marchés Asiatiques (Séance du 17 septembre 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Indice</th>
+      <th>Niveau</th>
+      <th>Variation</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Nikkei 225</td>
+      <td>64 146,12 (ouverture)</td>
+      <td class="positive">+223,12 pts (~+0,35 %)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Hang Seng</td>
+      <td>24 490,04</td>
+      <td class="negative">&#8722;0,9 %</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Shanghai Composite</td>
+      <td>~3 891,60</td>
+      <td class="positive">+0,71 %</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Kospi (Corée du Sud)</td>
+      <td>6 756,11 (10h30 locale)</td>
+      <td class="positive">+0,6 %</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Séance asiatique dispersée mais globalement ferme. Le Japon et la Corée du Sud digèrent bien la hausse Fed : le Nikkei est porté par la vigueur des semi-conducteurs US et le repli du pétrole ; le Kospi est soutenu par les valeurs défense/construction navale malgré des ventes nettes continues des investisseurs étrangers. Hong Kong est le point faible régional, les investisseurs réévaluant les valeurs sensibles aux taux et l'immobilier face à une Fed plus restrictive.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 7. COMMODITES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>7. Commodités</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Matière première</th>
+      <th>Niveau</th>
+      <th>Variation</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Brent (ICE, USD/bbl)</td>
+      <td>~104&ndash;105</td>
+      <td class="negative">Repli depuis pic &gt;108 $ de mardi</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>WTI (NYMEX, USD/bbl)</td>
+      <td>~101&ndash;102 (102,13)</td>
+      <td class="negative">&#8722;0,29 %</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Or (XAU/USD, USD/oz)</td>
+      <td>~4 275&ndash;4 290</td>
+      <td class="negative">&gt;&#8722;1 % (post-Fed)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Gaz naturel (Henry Hub, USD/MMBtu)</td>
+      <td>2,90</td>
+      <td class="negative">&#8722;0,55 %</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Gaz naturel (TTF européen, EUR/MWh)</td>
+      <td>~78</td>
+      <td class="negative">En repli depuis le pic de début septembre (~84)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Cuivre (USD/lb, donnée du 15 sept.)</td>
+      <td>~6,39</td>
+      <td class="positive">+0,94 %</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Le pétrole se détend depuis ses plus hauts de 4 mois à mesure que les craintes sur l'offre libyenne et saoudienne s'atténuent, mais reste élevé sur fond de guerre en Iran (7e mois) qui perturbe les flux du Golfe. L'or recule de plus de 1 % après la hausse Fed, le dollar et les rendements plus fermes pesant sur le métal. Le cuivre reste proche de ses records (le 3 mois LME a touché 14 533 $/tonne le 7 septembre) mais a marqué une pause sur le report du plan tarifaire US et des paris Fed plus modérés liés au PPI. Le TTF européen se détend depuis son pic de début septembre, signe d'un léger apaisement sur les craintes d'approvisionnement hivernal.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 8. TAUX & FX ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>8. Taux &amp; FX</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Instrument</th>
+      <th>Niveau</th>
+      <th>Variation</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>US Treasury 10 ans</td>
+      <td>~4,97&ndash;5,01 %</td>
+      <td class="negative">Plus haut depuis 2007 (sources partiellement divergentes sur le sens intrajournalier)</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Bund allemand 10 ans</td>
+      <td>3,54 %</td>
+      <td class="negative">+1 pb</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>EUR/USD</td>
+      <td>~1,1490</td>
+      <td class="negative">Plus bas depuis plusieurs semaines, sous 1,1500</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>GBP/USD</td>
+      <td>1,3371</td>
+      <td class="negative">Sous 1,3400 &bull; 3e séance consécutive de baisse</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>DXY (Dollar Index)</td>
+      <td>100,28</td>
+      <td class="positive">+0,61 % (plus forte hausse quotidienne depuis mi-juin)</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Le dollar profite pleinement du ton hawkish de la Fed : le DXY enregistre sa plus forte hausse journalière depuis mi-juin, l'EUR/USD tombe sous 1,15 et la livre recule pour la 3e séance consécutive. Le 10 ans US flirte avec ses plus hauts depuis 2007 &mdash; niveau à confirmer en cours de séance, les sources divergent légèrement sur le sens du mouvement intrajournalier. Le Bund reste quasi stable (+1 pb à 3,54 %), la BCE ayant déjà relevé ses taux le 10 septembre (dépôt à 2,50 %). La décision de la BoE à 12h00 est le prochain catalyseur majeur pour la livre et les gilts.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 9. DCM ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>9. DCM — Marché Primaire Obligataire</h2>
+
+  <h3>Issuances de la Veille (16 septembre 2026)</h3>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Émetteur</th>
+      <th>Devise</th>
+      <th>Montant</th>
+      <th>Maturité</th>
+      <th>Coupon / Spread</th>
+      <th>Notes</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Publicis Groupe</td>
+      <td>EUR</td>
+      <td>500 M€</td>
+      <td>Septembre 2030</td>
+      <td class="nd">n/d</td>
+      <td>Corporate IG français, "successfully priced" selon communiqué. Détail coupon/spread non disponible en source ouverte.</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Aon plc</td>
+      <td>USD</td>
+      <td>13,5 Md$ (7 tranches, dont 2 Md$ sur la tranche 30 ans)</td>
+      <td>3 à 30 ans (tranche 30 ans : 2056)</td>
+      <td>Tranche 30 ans : 6,450 %</td>
+      <td>Financement de l'acquisition USI Insurance. Livre d'ordres total ~65 Md$ (&gt;7x couvert). Deal USD (priced lundi 14 sept.) mais structurant pour le ton du marché cette semaine — démontre un appétit robuste sur le très long terme malgré le sell-off obligataire.</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Autres SSA / Financials / HY EUR</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+      <td class="nd">n/d</td>
+      <td class="nd">Contenu IFR/GlobalCapital "Primary Market Monitor" en accès payant &mdash; noms de deals spécifiques non vérifiables via recherche ouverte.</td>
+    </tr>
+  </table>
+
+  <h3>Pipeline / Issuances Prévues (17 septembre et cette semaine)</h3>
+  <div class="commentary">
+    <p>Aucun deal EUR spécifiquement mandaté pour aujourd'hui n'a pu être vérifié via sources ouvertes (n/d). Tendance directionnelle identifiée : les émetteurs covered bonds sont annoncés pour une "issuance soutenue" après l'afflux de fin août ; les émetteurs SSA seraient enclins à avancer leurs besoins de financement H2 ("frontloading") ; l'émission de capital FIG (AT1/Tier 2) devrait rester un thème dominant jusqu'à fin d'année.</p>
+  </div>
+
+  <h3>Principaux Spreads de Crédit</h3>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Indice</th>
+      <th>Niveau (pb)</th>
+      <th>Variation / Sens</th>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>iTraxx Europe Main 5 ans</td>
+      <td class="nd">n/d</td>
+      <td class="nd">—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>iTraxx Europe Crossover 5 ans</td>
+      <td class="nd">n/d</td>
+      <td class="nd">Dernier point vérifiable ~318 pb (mai 2026) — trop ancien pour être utilisé</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>CDX IG 5 ans (USD)</td>
+      <td class="nd">n/d</td>
+      <td class="nd">—</td>
+    </tr>
+    <tr style="page-break-inside: avoid;">
+      <td>Spread IG corporate EUR moyen (OAS)</td>
+      <td class="nd">n/d</td>
+      <td class="nd">—</td>
+    </tr>
+  </table>
+  <div style="margin-top:6px; font-size:11px; color:var(--text-muted); font-style:italic;">Niveaux iTraxx/CDX exacts non disponibles via sources publiques — accès Bloomberg Terminal / ICE requis. Signal indirect : le VIX a clôturé à 17,20 le 16 septembre et le STOXX Europe Banks a reculé de ~1,3 % le 15 septembre, cohérent avec un biais d'écartement (widening) plutôt que de resserrement à l'entame de la séance.</div>
+
+  <h3>Commentaire Marché Primaire</h3>
+  <div class="commentary">
+    <p>La fenêtre primaire reste techniquement ouverte mais devient plus sélective. GlobalCapital note que les primes de nouvelle émission (NIP) remontent à mesure que "la sensibilité des investisseurs revient" après les hausses de taux Fed/BCE et le sell-off obligataire mondial (Bund, Gilt et Treasury à des plus hauts pluriannuels). Le papier très long (30 ans et plus) est de plus en plus évité par les émetteurs face à la remontée de la prime de terme, même si les livres d'ordres restent sursouscrits quand les deals sortent &mdash; la tranche 30 ans d'Aon a attiré plus de 7x son montant. Les émetteurs financiers sont qualifiés de "pragmatiques", avec une émission de capital (AT1/Tier 2) qui devrait rester le thème dominant du second semestre. Les covered bonds restent résilientes avec des NIP encore serrées. Secteurs à surveiller : industrials, transport et énergie restent soutenables pour les émetteurs IG bien notés, mais le coût de financement absolu augmente avec la remontée générale des taux.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 10. CALENDRIER ECONOMIQUE ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>10. Calendrier Économique du Jour (17 septembre 2026)</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Heure (Londres)</th>
+      <th>Zone</th>
+      <th>Indicateur</th>
+      <th>Consensus</th>
+      <th>Importance</th>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td>12:00</td>
+      <td>Royaume-Uni</td>
+      <td>Décision de taux Bank of England (MPC)</td>
+      <td>Statu quo à 3,75 % attendu ; hausse à 4,00 % jugée possible</td>
+      <td><span class="tag tag-high">Élevée</span></td>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td>13:30</td>
+      <td>États-Unis</td>
+      <td>Inscriptions hebdomadaires au chômage (Initial Jobless Claims)</td>
+      <td>Précédent ~206k</td>
+      <td><span class="tag tag-med">Moyenne</span></td>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td>13:30</td>
+      <td>États-Unis</td>
+      <td>Indice Philadelphia Fed (manufacturier)</td>
+      <td class="nd">n/d</td>
+      <td><span class="tag tag-med">Moyenne</span></td>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td>13:30</td>
+      <td>États-Unis</td>
+      <td>Permis de construire (Building Permits)</td>
+      <td class="nd">n/d</td>
+      <td><span class="tag tag-med">Moyenne</span></td>
+    </tr>
+    <tr class="calendar-row" style="page-break-inside: avoid;">
+      <td class="nd">n/d</td>
+      <td>Zone euro</td>
+      <td>CPI final de septembre</td>
+      <td class="nd">Date/heure de publication non confirmée</td>
+      <td><span class="tag tag-med">Moyenne</span></td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Contexte déjà publié qui façonne l'ouverture : CPI britannique d'août à 3,1 % (core 2,6 %), publié hier à 07:00 BST, qui rend la décision BoE de ce midi réellement disputée. L'indice ZEW de confiance en zone euro est retombé à 25,8 en septembre contre 39,9 attendu (publié mardi), premier signal concret de fragilisation de la confiance sous le choc énergie/taux. La Fed a relevé ses taux à 3,75&ndash;4,00 % hier vers 19:00 Londres.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 11. EVENEMENTS CORPORATE ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>11. Événements &amp; Publications Corporate</h2>
+  <table style="page-break-inside: avoid;">
+    <tr style="page-break-inside: avoid;">
+      <th>Société</th>
+      <th>Place</th>
+      <th>Événement</th>
+      <th>Heure</th>
+    </tr>
+    <tr class="event-row" style="page-break-inside: avoid;">
+      <td>Lennar (LEN)</td>
+      <td>NYSE (US)</td>
+      <td>Résultats Q3 FY2026 + call — consensus EPS ~1,30 $ (&#8722;35 % YoY), CA ~8,37 Md$. Baromètre du logement US sous taux hypothécaires ~6,76 %.</td>
+      <td>11:00 ET (16:00 BST)</td>
+    </tr>
+    <tr class="event-row" style="page-break-inside: avoid;">
+      <td>Darden Restaurants (DRI)</td>
+      <td>NYSE (US)</td>
+      <td>Résultats Q1 FY2027, avant ouverture US — lecture consommateur discrétionnaire US.</td>
+      <td>Avant ouverture US (~12:00 BST)</td>
+    </tr>
+    <tr class="event-row" style="page-break-inside: avoid;">
+      <td>FedEx (FDX)</td>
+      <td>NYSE (US)</td>
+      <td>Résultats Q1 FY2027, après clôture US — baromètre mondial du commerce et du fret.</td>
+      <td>Après clôture US (~22:00 BST)</td>
+    </tr>
+    <tr class="event-row" style="page-break-inside: avoid;">
+      <td>Abivax, ALTEN, Kalray, OSE Immunotherapeutics, AKWEL, Theraclion, Eurofins-Cerep</td>
+      <td>Paris (Euronext)</td>
+      <td>Publications de résultats mid/small-cap françaises du jour.</td>
+      <td class="nd">Horaires variables</td>
+    </tr>
+  </table>
+  <div class="commentary" style="margin-top:9px;">
+    <p>Aucune AGM de grande capitalisation européenne confirmée aujourd'hui (n/d). L'agenda corporate est dominé par les publications US (Lennar, Darden, FedEx) qui serviront de lecture croisée sur la résilience du consommateur et du commerce mondial face au resserrement monétaire synchronisé Fed/BCE/BoE.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 12. ACTIONS A SUIVRE ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>12. Actions à Suivre</h2>
+
+  <div class="item watch-item">
+    <div class="watch-name">easyJet (EZJ.L) — Aviation, Londres</div>
+    <div class="watch-reason">Accord de rachat "take-private" annoncé, valorisant le groupe ~5,7 Md£ (7,15 £/action). Flux d'arbitrage et effet de halo potentiel sur le secteur aérien européen.</div>
+    <div class="watch-direction positive">Haussier (deal)</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Lufthansa (LHAG.DE) — Aviation, Francfort</div>
+    <div class="watch-reason">Relevée à "Neutral" depuis "Underweight" par un broker ; titre proche de son plus haut sur 2 ans (~8,39 €).</div>
+    <div class="watch-direction positive">Haussier</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">IAG (ICAG.L) — Aviation, Londres</div>
+    <div class="watch-reason">Titre en repli de 2,1 % le 14 septembre sur fond de pétrole plus élevé et de dynamique de rachat d'actions ; surveiller la réaction au repli actuel du Brent.</div>
+    <div class="watch-direction negative">Baissier / à surveiller</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Maersk (MAERSK-B.CO) — Shipping, Copenhague</div>
+    <div class="watch-reason">Barclays signale un positionnement "extrêmement solide" avant les résultats de novembre. Titre déjà +~60 % YTD.</div>
+    <div class="watch-direction positive">Haussier</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Frontline (FRO) — Shipping, Oslo/NYSE</div>
+    <div class="watch-reason">Date ex-dividende spécial autour du 18 septembre — flux acheteur possible avant coupure du détachement.</div>
+    <div class="watch-direction positive">Haussier (flux)</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Rheinmetall / BAE Systems / Airbus — Aéro &amp; Défense</div>
+    <div class="watch-reason">Momentum de carnets de commandes : Rheinmetall (carnet 80,4 Md€), commande turque de Typhoon pour BAE, commandes Air China/Eutelsat pour Airbus.</div>
+    <div class="watch-direction positive">Haussier</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Shell / BP / TotalEnergies — Énergie</div>
+    <div class="watch-reason">Brent toujours soutenu par les perturbations d'approvisionnement liées à la guerre en Iran ; TotalEnergies a relevé son dividende intérimaire de 6 %.</div>
+    <div class="watch-direction positive">Haussier (oil élevé)</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">UBS / Deutsche Bank / UniCredit / SocGen / BNP Paribas / Santander — Banques</div>
+    <div class="watch-reason">Le STOXX Europe Banks a reculé de ~1,3 % le 15 septembre sur les craintes qu'une remontée des taux pénalise davantage les emprunteurs qu'elle ne profite aux marges nettes d'intérêt. UBS fait face à une incertitude additionnelle sur la réforme du capital suisse.</div>
+    <div class="watch-direction negative">Baissier</div>
+  </div>
+
+  <div class="item watch-item">
+    <div class="watch-name">Panier mineurs de cuivre — Metals &amp; Mining</div>
+    <div class="watch-reason">Cuivre toujours +~16 % YTD mais en repli depuis ses records sur le report du plan tarifaire US et des anticipations Fed plus mesurées post-PPI.</div>
+    <div class="watch-direction neutral">Mixte / à surveiller</div>
+  </div>
+</div>
+</div>
+
+<!-- ========== 13. GROS POINTS MACRO/CORPO/POLITIQUE ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>13. Gros Points Macro / Corpo / Politiques</h2>
+
+  <h3>Macro</h3>
+  <div class="commentary">
+    <p><strong>Fed — premier resserrement depuis 2023 :</strong> Hausse de 25 pb à 3,75&ndash;4,00 % le 16 septembre sous la présidence de Kevin Warsh, qui cite une inflation "trop élevée depuis trop longtemps". Le 10 ans US s'est tendu vers ses plus hauts depuis 2007. 16 des 18 membres du FOMC anticipent au moins une hausse supplémentaire cette année.</p>
+    <p><strong>BCE déjà en mode restrictif :</strong> Hausse du taux de dépôt à 2,50 % le 10 septembre &mdash; sa deuxième depuis le début de la guerre en Iran. Lagarde a qualifié la décision de "no brainer", l'inflation restant "bien au-dessus de l'objectif" plus longtemps que prévu ; prévision d'inflation 2026 maintenue à 3,0 %.</p>
+    <p><strong>BoE au pied du mur :</strong> Décision en direct aujourd'hui à 12h00 après un CPI britannique à 3,1 % en août ; le marché est passé d'anticipations de baisse à une probabilité réelle de hausse.</p>
+    <p><strong>Confiance zone euro qui se fissure :</strong> Le ZEW est retombé à 25,8 en septembre contre 39,9 attendu, les anticipations d'inflation bondissant &mdash; coûts de l'énergie élevés et incertitude géopolitique cités comme facteurs.</p>
+  </div>
+
+  <h3>Corporate</h3>
+  <div class="commentary">
+    <p><strong>Aon — financement obligataire record :</strong> Émission de 13,5 Md$ en 7 tranches (livre ~65 Md$) pour financer l'acquisition de USI Insurance &mdash; l'un des plus gros financements M&amp;A obligataires de 2026, avec une demande solide même sur la tranche 30 ans.</p>
+    <p><strong>easyJet — take-private :</strong> Accord de rachat à ~5,7 Md£, catalyseur pour le secteur aérien européen et source potentielle de flux d'arbitrage.</p>
+    <p><strong>Orange — appétit EUR confirmé :</strong> Émission jumbo de 4,1 Md€ en 4 tranches (livre ~16 Md€) plus tôt ce mois-ci, signe que la demande pour le crédit IG de qualité reste forte malgré la remontée des taux.</p>
+    <p><strong>Banques européennes — narratif inversé :</strong> Le rallye bancaire de 2026 s'est mué en repli lié aux taux (UBS, Deutsche Bank, UniCredit, SocGen, BNP, Santander tous sous pression le 15&ndash;16 septembre).</p>
+  </div>
+
+  <h3>Politique / Géopolitique</h3>
+  <div class="commentary">
+    <p><strong>Guerre en Iran (7e mois) :</strong> Perturbe toujours les flux maritimes du Golfe (tensions au détroit d'Ormuz, oléoduc est-ouest saoudien à l'arrêt, perturbations sur les champs libyens), maintenant le Brent proche de 105&ndash;108 $ et restant le principal moteur du cycle mondial actuel d'inflation et de resserrement monétaire.</p>
+    <p><strong>France — crise politique persistante :</strong> Chute du gouvernement Bayrou sur le budget 2026 ; Fitch a abaissé la note de la France à A+ (2025), avec une dette projetée vers 121 % du PIB d'ici 2027 &mdash; facteur de risque continu sur les OAT et les spreads périphériques.</p>
+    <p><strong>Sommet Trump-Xi programmé le 24 septembre à Washington :</strong> Catalyseur de politique commerciale à surveiller plus tard ce mois-ci &mdash; tariffs, contrôles export IA.</p>
+  </div>
+</div>
+</div>
+
+<!-- ========== 14. KEY THEMES ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>14. Key Themes — Top 5 par Horizon</h2>
+  <div class="three-col">
+
+    <div class="subcard">
+      <h3>Top 5 du Jour</h3>
+      <div class="item theme-item">
+        <div class="theme-title">1. Décision BoE (12h00 Londres)</div>
+        <div class="theme-desc">Choix réellement disputé entre statu quo et hausse après un CPI UK à 3,1 %. Une hausse serait un choc pour les gilts et la livre.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">2. Digestion post-Fed</div>
+        <div class="theme-desc">Les marchés continuent d'absorber la hausse de mercredi et le ton hawkish de Warsh ; repricing en cours sur actions et crédit.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">3. Repli du Brent depuis 108 $</div>
+        <div class="theme-desc">La détente sur l'offre libyenne/saoudienne allège temporairement la pression inflationniste énergie, sans lever le risque structurel lié à la guerre en Iran.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">4. Claims &amp; Philly Fed US (13h30)</div>
+        <div class="theme-desc">Lecture sur la résistance du marché du travail et du secteur manufacturier US face à des taux plus élevés.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">5. Résultats Lennar</div>
+        <div class="theme-desc">Test de la santé du secteur du logement US sous des taux hypothécaires à ~6,76 % &mdash; proxy de l'impact du choc de taux sur l'économie réelle.</div>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>Top 5 de la Semaine</h3>
+      <div class="item theme-item">
+        <div class="theme-title">1. Première hausse Fed depuis 2023</div>
+        <div class="theme-desc">Le 16 septembre marque un tournant de cycle ; la guidance pour d'autres hausses cette année structure les taux mondiaux.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">2. Décision BoE (17 septembre)</div>
+        <div class="theme-desc">Bascule possible d'un biais de statu quo vers un biais de hausse &mdash; réévaluation majeure pour les actifs britanniques.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">3. CPI UK à 3,1 %</div>
+        <div class="theme-desc">Redéfinit la trajectoire de taux anticipée pour la BoE sur le reste de l'année.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">4. Sell-off obligataire mondial</div>
+        <div class="theme-desc">10 ans US &gt;5 %, Bund et Gilts à des plus hauts pluriannuels &mdash; pression sur l'économie de l'émission obligataire primaire.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">5. Effondrement du ZEW zone euro</div>
+        <div class="theme-desc">Premier signal concret que la confiance se fissure sous le choc combiné énergie/taux.</div>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>Top 5 du Mois</h3>
+      <div class="item theme-item">
+        <div class="theme-title">1. Sommet Trump-Xi (24 septembre)</div>
+        <div class="theme-desc">Issue sur les tariffs et les contrôles export IA &mdash; catalyseur majeur pour les chaînes d'approvisionnement mondiales.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">2. Trajectoire de la guerre en Iran</div>
+        <div class="theme-desc">Toute escalade ou désescalade reste le principal facteur de bascule pour le pétrole, l'inflation et les taux mondiaux.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">3. Trajectoire budgétaire/politique française</div>
+        <div class="theme-desc">Suites de la chute du gouvernement Bayrou et risque d'action supplémentaire des agences de notation après la dégradation Fitch.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">4. Cycle de resserrement synchronisé Fed/BCE/BoE</div>
+        <div class="theme-desc">Première fois depuis des années que les trois banques centrales sont simultanément en mode restrictif &mdash; à suivre : prime de terme et comportement d'émission longue duration.</div>
+      </div>
+      <div class="item theme-item">
+        <div class="theme-title">5. Montée en puissance des résultats Q3</div>
+        <div class="theme-desc">FedEx et Darden cette semaine, puis publications européennes plus larges en octobre &mdash; premier test concret de l'impact des taux et de l'énergie sur les marges.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ========== 15. KEY TRENDS ========== -->
+<div class="section-wrapper">
+<div class="section">
+  <h2>15. Key Trends à Surveiller</h2>
+  <div class="three-col">
+
+    <div class="subcard">
+      <h3>À 1 Jour</h3>
+      <div class="commentary">
+        <p><strong>Décision BoE à midi :</strong> Catalyseur binaire pour livre et gilts &mdash; statu quo probable mais hausse non exclue.</p>
+        <p><strong>Trajectoire du Brent :</strong> Poursuite du repli ou stabilisation après le pic de mardi &mdash; determinant pour le narratif inflation/énergie de la séance.</p>
+        <p><strong>Claims &amp; Philly Fed (13h30) :</strong> Premier test post-Fed de la résistance de l'économie réelle US.</p>
+        <p><strong>Actualité guerre en Iran :</strong> Toute nouvelle attaque de pétrolier ou tension au détroit d'Ormuz reste un risque de queue haussier sur le pétrole.</p>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>À 1 Semaine</h3>
+      <div class="commentary">
+        <p><strong>Suivi des rendements Bund/Gilt/Treasury :</strong> Comportement post-Fed/BoE &mdash; poursuite de la tension ou stabilisation.</p>
+        <p><strong>Stabilisation ou poursuite du dérating bancaire :</strong> Le secteur bancaire européen a corrigé cette semaine ; à surveiller si le mouvement se prolonge.</p>
+        <p><strong>Capacité du marché primaire à absorber l'offre :</strong> À des NIP plus larges, en particulier sur le papier long duration.</p>
+        <p><strong>Résultats FedEx/Darden :</strong> Lecture sur le commerce mondial et le consommateur US.</p>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <h3>À 1 Mois</h3>
+      <div class="commentary">
+        <p><strong>Issue du sommet Trump-Xi (24 septembre) :</strong> Impact sur les tariffs et les chaînes d'approvisionnement mondiales.</p>
+        <p><strong>Trajectoire de la guerre en Iran :</strong> Escalade/désescalade et transmission au prix du pétrole.</p>
+        <p><strong>Crédibilité budgétaire française :</strong> Risque de nouvelle dégradation de notation après Fitch.</p>
+        <p><strong>Poursuite du cycle de resserrement Fed/BCE/BoE :</strong> Impact sur les plans d'émission obligataire H2 2026 (aversion au très long duration, NIP plus larges).</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<div class="footer">
+  <div class="sources-title">Sources Principales Utilisées</div>
+  <ul>
+    <li>CNBC — décision Fed, réaction Trump/Warsh, clôture US, rendement 10 ans US, or</li>
+    <li>Rigzone / Markets.com — pétrole Brent/WTI, 16&ndash;17 septembre 2026</li>
+    <li>Trading Economics — Bund allemand 10 ans, Shanghai Composite, gaz naturel TTF/Henry Hub</li>
+    <li>Investing.com — clôture DAX, calendrier résultats FedEx/Lennar/Darden</li>
+    <li>Panthere Group / 24/7 Wall St — clôtures CAC 40 et FTSE 100</li>
+    <li>Yahoo Finance / TheStreet — clôtures indices US, futures pré-marché</li>
+    <li>Moomoo / Aju Press — ouverture Nikkei 225, Kospi</li>
+    <li>FXStreet / FXEmpire / Wise — EUR/USD, GBP/USD, DXY</li>
+    <li>Rio Times — record cuivre</li>
+    <li>Webdisclosure — pricing obligation Publicis Groupe</li>
+    <li>Bloomberg — aversion émetteurs papier long duration, ECB Lagarde "no brainer"</li>
+    <li>Insurance Journal — émission obligataire Aon 13,5 Md$</li>
+    <li>GlobalCapital — primes de nouvelle émission, pipeline covered bonds/SSA/FIG, deal Orange</li>
+    <li>ONS (Office for National Statistics) — CPI Royaume-Uni août 2026</li>
+    <li>Finance Calendar / HomeOwners Alliance — calendrier et preview décision BoE</li>
+    <li>FXStreet — ZEW zone euro septembre 2026</li>
+    <li>Euronews — ventes au détail et production industrielle Chine août 2026</li>
+    <li>Al Jazeera / globalsecurity.org — suivi guerre en Iran</li>
+    <li>ING / Euronews — crise politique française, dégradation Fitch</li>
+    <li>ABC Money / MarketScreener / ad-hoc-news — easyJet, Lufthansa, IAG</li>
+    <li>Bloomberg / Simply Wall St — Maersk, Frontline</li>
+    <li>Yahoo Finance — défense (Rheinmetall/BAE/Airbus), énergie (Shell/BP/TotalEnergies), mineurs de cuivre</li>
+    <li>FXTrustScore — banques européennes</li>
+    <li>TipRanks / Alphastreet — calendrier résultats France, preview Lennar</li>
+  </ul>
+  <div class="warning">
+    Données collectées automatiquement entre ~05:30 et 07:15 BST le 17 septembre 2026 via recherches web en sources ouvertes. Certaines données marquées <em>n/d</em> (notamment les niveaux iTraxx/CDX et plusieurs détails de deals DCM) n'ont pas pu être obtenues de façon fiable en sources ouvertes et nécessitent un accès Bloomberg Terminal, Refinitiv Eikon ou ICE pour confirmation. Certains chiffres (DAX, 10 ans US, cuivre) présentaient de légers écarts entre sources au moment de la collecte — niveaux indicatifs à confirmer en séance. Ce document n'est pas un conseil en investissement. À vérifier avant toute décision d'investissement ou d'exécution de transaction.
+  </div>
+</div>
+
+</body>
+</html>
